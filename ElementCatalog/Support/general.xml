@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!DOCTYPE ftcs SYSTEM "futuretense_cs.dtd">
+<ftcs version="1.2">
+<!-- Support/general
+-
+- INPUT
+-
+- OUTPUT
+-
+ -->
+<meta http-equiv="Pragma" content="No-cache"/>
+<PROPERTY.GET PARAM="xcelerate.charset" INIFILE="futuretense_xcel.ini" VARNAME="charset"/>
+<meta http-equiv="Content-Type" content="text/html; charset=Variables.charset" REPLACEALL="Variables.charset"/>
+<satellite.link pagename="Support/css" outstring="csslink" satellite="true"/>
+<link rel="stylesheet" type="text/css" media="screen" href="Variables.csslink" REPLACEALL="Variables.csslink"/>    
+<title><CSVAR NAME="Variables.pagename"/></title>
+</ftcs>

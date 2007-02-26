@@ -1,0 +1,367 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+
+    <meta http-equiv="Content-Type"
+   content="text/html; charset=iso-8859-1">
+
+    <meta name="Generator" content="Microsoft Word 97">
+
+    <meta name="Template"
+   content="C:\Program Files\Microsoft Office\Office\html.dot">
+
+    <meta name="GENERATOR"
+   content="Mozilla/4.73 [en] (WinNT; U) [Netscape]">
+    <title>Integration CSEE402 with iPlanet's LDAP5.0/5.1</title>
+</head>
+<body link="#0000ff" vlink="#800080">
+<b>LDAP Integration</b> <br>
+(<i>CSEE with iPlanet's LDAP5.0 or LDAP5.1</i>) <br>
+Author: Krishna Gorthi <br>
+Version: 2.1
+<p>
+</p>
+
+<hr>
+<p>
+This document provides you with the basic steps to integrate CSEE with iPlanet's 
+LDAP5.0/5.1. This document assumes that you have upgraded/installed the CSEE 
+successfully. 
+</p>
+
+<p>
+On successfully integrating CSEE with LDAP : <br>
+You <b>can</b> do : 
+</p>
+
+<ul>
+    <li>
+        Adding a new user
+    </li>
+    <li>
+        Adding a new ACL to the user
+    </li>
+    <li>
+        Deleting a user
+    </li>
+    <li>
+        Searching for Users<br>
+    </li>
+
+</ul>
+<b>&nbsp;&nbsp;&nbsp; NOTE: </b>Users should have administative privilages      
+on LDAP to do the first three operations. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+You might want to consult your LDAP admin for configuring your users      and    
+groups.
+<p>
+you <b>cannot</b> do :  <br>
+</p>
+
+<ul>
+    <li>
+        Removing ACLs from a user
+    </li>
+    <li>
+        Adding a new ACL
+    </li>
+
+</ul>
+<u>Steps to follow to integrate CSEE with LDAP.</u><br>
+
+<ol>
+    <li>
+        Create the following groups on LDAP&nbsp;    
+    </li>
+
+    <blockquote>
+        <table border="1" cellspacing="0" cellpadding="5" cols="1"
+     width="16%">
+            <tbody>
+            <tr bgcolor="#99cc66">
+                <th align="center" valign="CENTER">ACLs</th>
+            </tr>
+            <tr>
+                <td>Browser</td>
+            </tr>
+            <tr>
+                <td>SiteGod</td>
+            </tr>
+            <tr>
+                <td>ContentEditor</td>
+            </tr>
+            <tr>
+                <td>ElementEditor</td>
+            </tr>
+            <tr>
+                <td>ElementReader</td>
+            </tr>
+            <tr>
+                <td>PageEditor</td>
+            </tr>
+            <tr>
+                <td>PageReader</td>
+            </tr>
+            <tr>
+                <td>UserEditor</td>
+            </tr>
+            <tr>
+                <td>UserReader</td>
+            </tr>
+            <tr>
+                <td>TableEditor</td>
+            </tr>
+            <tr>
+                <td>xceleditor</td>
+            </tr>
+            <tr>
+                <td>RemoteClient</td>
+            </tr>
+            <tr>
+                <td>xceladmin</td>
+            </tr>
+            <tr>
+                <td>VisitorAdmin</td>
+            </tr>
+            <tr>
+                <td>Visitor</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </blockquote>
+    <li>
+        Create the following user/password combinations on LDAP
+    </li>
+    <br>
+    <b>&nbsp;HINT: </b>Create only <b>ContentServer</b> to start with.   Creating 
+    other  users and associating  them with Groups through the CS  Admin UI is   
+    much simpler  after integration  is complete&nbsp;
+    <blockquote>
+        <table border="1" cellspacing="0" cellpadding="5" cols="2"
+     width="50%">
+            <tbody>
+            <tr bgcolor="#99cc66">
+                <th align="center" valign="CENTER">User</th>
+                <th align="center" valign="CENTER">Password</th>
+            </tr>
+            <tr>
+                <td>ContentServer</td>
+                <td>FutureTense</td>
+            </tr>
+            <tr>
+                <td>DefaultReader</td>
+                <td>SomeReader</td>
+            </tr>
+            <tr>
+                <td>xceladmin</td>
+                <td>xceladmin</td>
+            </tr>
+            <tr>
+                <td>xceleditor</td>
+                <td>xceleditor</td>
+            </tr>
+            <tr>
+                <td>user_designer</td>
+                <td>user</td>
+            </tr>
+            <tr>
+                <td>user_author</td>
+                <td>user</td>
+            </tr>
+            <tr>
+                <td>user_approver</td>
+                <td>user</td>
+            </tr>
+            <tr>
+                <td>user_checker</td>
+                <td>user</td>
+            </tr>
+            <tr>
+                <td>user_editor</td>
+                <td>user</td>
+            </tr>
+            <tr>
+                <td>user_publisher</td>
+                <td>user</td>
+            </tr>
+            <tr>
+                <td>user_marketer</td>
+                <td>user</td>
+            </tr>
+            <tr>
+                <td>user_pricer</td>
+                <td>user</td>
+            </tr>
+            <tr>
+                <td>user_analyst</td>
+                <td>user</td>
+            </tr>
+            <tr>
+                <td>user_expert</td>
+                <td>user</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </blockquote>
+    <li>
+        Associate the users and groups on the LDAP per the table    below.<b>&nbsp;</b>
+    </li>
+    <br>
+    <b>HINTS:</b>
+    <ul>
+        <li>
+            Set the ACLs needed for ContentServer to start with. Setting     ACLs   for 
+            other users is much easiers from CS Admin UI after the integration     is   
+            complete.
+        </li>
+        <li>
+            Make sure that <i>SiteGod</i> and <i>ContentEditor</i> groups    are   given the 
+            Administartive previlages in LDAP.
+        </li>
+
+    </ul>
+
+    <blockquote>
+        &nbsp;
+        <table border="1" cellspacing="0" cellpadding="5">
+            <tbody>
+            <tr bgcolor="#99cc66">
+                <th>ACL (Group)</th>
+                <th>Users</th>
+            </tr>
+            <tr>
+                <td>SiteGod</td>
+                <td>ContentServer (actual name set at installation)</td>
+            </tr>
+            <tr>
+                <td>Browser</td>
+                <td>ContentServer, DefaultReader, user_analyst, user_approver, user_author,     
+                user_checker, user_designer, user_editor, user_expert, user_marketer,  
+                user_pricer,    user_publisher, xceladmin, xceleditor</td>
+            </tr>
+            <tr>
+                <td>ContentEditor</td>
+                <td>ContentServer</td>
+            </tr>
+            <tr>
+                <td>ElementEditor</td>
+                <td>ContentServer, user_designer, xceladmin, xceleditor</td>
+            </tr>
+            <tr>
+                <td>ElementReader</td>
+                <td>ContentServer, user_analyst, user_approver, user_author, user_checker,      
+                user_editor, user_expert, user_marketer, user_pricer, user_publisher</td>
+            </tr>
+            <tr>
+                <td>PageEditor</td>
+                <td>ContentServer, user_designer, xceleditor</td>
+            </tr>
+            <tr>
+                <td>PageReader</td>
+                <td>ContentServer, DefaultReader, user_analyst, user_approver, user_author,     
+                user_checker, user_editor, user_expert, user_marketer, user_pricer,  
+                user_publisher</td>
+            </tr>
+            <tr>
+                <td>UserEditor</td>
+                <td>ContentServer, xceladmin</td>
+            </tr>
+            <tr>
+                <td>UserReader</td>
+                <td>ContentServer, user_analyst, user_approver, user_author, user_checker,      
+                user_designer, user_editor, user_expert, user_marketer, user_pricer, 
+                user_publisher,     xceladmin, xceleditor</td>
+            </tr>
+            <tr>
+                <td>TableEditor</td>
+                <td>ContentServer, user_designer, xceladmin</td>
+            </tr>
+            <tr>
+                <td>xceleditor</td>
+                <td>ContentServer, user_analyst, user_approver, user_author, user_checker,      
+                user_designer, user_editor, user_expert, user_marketer, user_pricer, 
+                user_publisher,     xceladmin, xceleditor</td>
+            </tr>
+            <tr>
+                <td>RemoteClient</td>
+                <td>ContentServer, user_analyst, user_approver, user_author, user_checker,      
+                user_designer, user_editor, user_expert, user_marketer, user_pricer, 
+                user_publisher,     xceladmin</td>
+            </tr>
+            <tr>
+                <td>xceladmin</td>
+                <td>ContentServer, xceladmin</td>
+            </tr>
+            <tr>
+                <td>Visitor</td>
+                <td>ContentServer, DefaultReader, user_analyst, user_approver, user_author,     
+                user_checker, user_designer, user_editor, user_expert, user_marketer,  
+                user_pricer,    user_publisher, xceladmin, xceleditor</td>
+            </tr>
+            <tr>
+                <td>VisitorAdmin</td>
+                <td>ContentServer, xceladmin</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </blockquote>
+    <li>
+        Get the latest version of LDAP Integration tool and import    it  through the 
+        project option in the Content Server Explorer.
+    </li>
+    <br>
+    <b>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; NOTE:</b> The tool  is written  
+    with JSPs so, you should  configure    your appserver to run  JSPs to use this 
+    tool..                                        <br>
+    <br>
+
+    <ul>
+        <li>
+            &nbsp;Invoke the following url from the browser  after filling  in  the     <b>host</b>, 
+            <b>port</b> and   <b>appserver root</b> values.
+        </li>
+
+    </ul>
+    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; <i><font color="#3333ff">&nbsp;&nbsp;&nbsp; 
+    http://host:port/&lt;appserver root&gt;/ContentServer?pagename=LDAP/Integrate</font></i>
+    <br>
+    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; <i><font
+     color="#000000"><b>&nbsp;&nbsp;&nbsp; Example: </b></font></i><font
+     color="#000000">http://localhost:80/servlet/ContentServer?pagename=LDAP/Integrate</font>
+
+    <ul>
+        <li>
+            Follow the steps given on each screen of the LDAP Integration tool.
+        </li>
+
+    </ul>
+
+    <ul>
+        <li>
+            Strictly follow the notes and cautions on the screen while using this tool 
+            inorder to integrate the CSEE &amp; LDAP hassle free.
+        </li>
+
+    </ul>
+    <br>
+    <li>
+        You have now successfully integrated the LDAP with CSEE.
+    </li>
+    &nbsp; <br>
+    &nbsp; <br>
+    &nbsp; <br>
+    &nbsp; <br>
+    &nbsp; <br>
+    &nbsp; <br>
+    &nbsp; <br>
+    &nbsp; <br>
+    &nbsp;            <br>
+
+</ol>
+<br>
+<br>
+</body>
+</html>

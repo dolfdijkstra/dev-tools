@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<!DOCTYPE ftcs SYSTEM "futuretense_cs.dtd">
+<ftcs version="1.2">
+<!-- Support/Login
+-
+- INPUT
+-
+- OUTPUT
+-
+-->
+<SETVAR NAME="errno" VALUE="0"/>
+<h1>Login with SiteGod Privileges</h1>
+<form name="LoginForm" enctype="multipart/form-data" ACTION="ContentServer" METHOD="POST">
+<input TYPE="HIDDEN" NAME="pagename" VALUE="Support/LoginPost"/>
+<input TYPE="HIDDEN" NAME="redir" VALUE="Variables.pagename" REPLACEALL="Variables.pagename"/>
+<table style="border:none">
+    <TR> 
+      <TD style="text-align:right; border:none"><b>User ID: </b></TD>
+      <TD style="border:none"><INPUT TYPE="TEXT" NAME="authusername" size="20"/></TD>
+    </TR>
+    <TR> 
+      <TD style="text-align:right; border:none"><b>Password: </b></TD>
+      <TD style="border:none"><INPUT TYPE="PASSWORD" NAME="authpassword" size="20"/></TD>
+    </TR>
+    <TR> 
+      <TD style="border:none">&nbsp;</TD>
+      <TD style="border:none"><INPUT TYPE="submit" VALUE="&nbsp;Login&nbsp;"/>&nbsp;<INPUT TYPE="reset" VALUE="&nbsp;Cancel&nbsp;"/></TD>
+    </TR>
+  </table>
+</form>
+<script language="JavaScript">
+<![CDATA[
+    document.LoginForm.authusername.focus();
+]]>
+</script>
+</ftcs>
