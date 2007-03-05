@@ -1,0 +1,85 @@
+<?xml version="1.0" ?>
+<!DOCTYPE FTCS SYSTEM "futuretense_cs.dtd">
+<FTCS Version="1.2">
+<!-- CacheManager/SelectItems
+-
+- INPUT
+-
+- OUTPUT
+-
+-->
+<CALLELEMENT NAME="Support/general"/>
+<div id="content">
+<CALLELEMENT NAME="Support/CacheManager/LeftNav"/>
+<div class="right-column">
+<script language="JavaScript">
+<![CDATA[
+function checkall () {
+	var obj = document.forms[0].elements[0];
+	var formCnt = obj.form.elements.length;
+	
+	for (i=0; i<formCnt; i++) {
+        if (obj.form.elements[i].name == "idlist")  {
+            if (obj.form.elements[i].checked)
+    			obj.form.elements[i].checked=false;
+             else
+                obj.form.elements[i].checked=true;
+        }
+	}
+}
+]]>
+</script>
+<h4>Find which Pages an Asset is Referenced</h4>
+<IF COND="IsVariable.c=false"><THEN>
+<h3>Select AssetType</h3>
+<FORM METHOD="POST" ACTION="ContentServer">
+	<INPUT TYPE="hidden" NAME="pagename" VALUE="Variables.pagename" REPLACEALL="Variables.pagename"/>
+   <SELECT name="c">
+       <SETVAR NAME="tablename" VALUE="AssetType"/>
+       <EXECSQL  SQL="SELECT assettype FROM AssetType ORDER BY assettype" LIST="assettypes" TABLE="AssetType" />
+       <LOOP LIST="assettypes">
+            <br/><OPTION value="assettypes.assettype" REPLACEALL="assettypes.assettype"><CSVAR NAME="assettypes.assettype"/></OPTION>
+       </LOOP>
+   </SELECT><br/><br/>
+   <INPUT TYPE="Submit" NAME="Submit" VALUE="List for Flush"/>
+   &nbsp;<INPUT TYPE="Submit" NAME="Submit" VALUE="List Container Pages"/>
+</FORM>
+</THEN><ELSE>
+	<SETVAR NAME="tablename" VALUE="SystemItemCache"/>
+	<EXECSQL  SQL="SELECT DISTINCT id FROM SystemItemCache WHERE id LIKE 'asset-%:Variables.c' ORDER BY id" LIST="items" TABLE="SystemItemCache" />
+	<IF COND="Variables.errno=-101"><THEN>There are no pages cached for assettype <CSVAR NAME="Variables.c"/>!<br/>
+	</THEN><ELSE>
+		<IF COND="Variables.Submit=List for Flush"><THEN>
+		<P><b>Select asset(s) whose container pages need to be <I>Flushed</I></b></P>
+			<FORM METHOD="POST" ACTION="ContentServer">
+				<INPUT TYPE="hidden" NAME="pagename" VALUE="Support/CacheManager/flushByItemPost"/>
+				<INPUT TYPE="hidden" NAME="cs-cs" VALUE="on"/>
+				<INPUT TYPE="hidden" NAME="cs-ss" VALUE="on"/>
+				<INPUT TYPE="hidden" NAME="ss" VALUE="on"/>
+				<A HREF="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Select all assets';return true;" onmouseout="window.status='';return true;">CheckAll</A>&nbsp;
+				<INPUT TYPE="Submit" NAME="Submit" VALUE="&nbsp;Flush&nbsp;"/><br/><br/>
+				<LOOP LIST="items">
+					<INPUT name="idlist" type="checkbox" value="items.id" REPLACEALL="items.id"/><CSVAR NAME="items.id"/><br/>
+				</LOOP>
+				<br/><A HREF="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Select all assets';return true;" onmouseout="window.status='';return true;">CheckAll</A>&nbsp;
+				<INPUT TYPE="Submit" NAME="Submit" VALUE="&nbsp;Flush&nbsp;"/>
+			</FORM>
+		</THEN><ELSE>
+		<P><b>Select asset(s) whose container pages need to be <I>Listed</I></b></P>
+			<FORM METHOD="POST" ACTION="ContentServer">
+				<INPUT TYPE="hidden" NAME="pagename" VALUE="Support/CacheManager/listByItemPost"/>
+				<A HREF="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Select all assets';return true;" onmouseout="window.status='';return true;">check all</A>&nbsp;
+				<INPUT TYPE="Submit" NAME="Submit" VALUE="&nbsp;List&nbsp;"/><br/><br/>
+				<LOOP LIST="items">
+					<INPUT name="idlist" type="checkbox" value="items.id" REPLACEALL="items.id"/><CSVAR NAME="items.id"/><br/>
+				</LOOP>
+				<br/><A HREF="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Select all assets';return true;" onmouseout="window.status='';return true;">check all</A>&nbsp;
+				<INPUT TYPE="Submit" NAME="Submit" VALUE="&nbsp;List&nbsp;"/>
+			</FORM>
+		</ELSE></IF>
+	</ELSE></IF>
+</ELSE></IF>
+</div>
+<CALLELEMENT NAME="Support/Footer"/>
+</div>
+</FTCS>
