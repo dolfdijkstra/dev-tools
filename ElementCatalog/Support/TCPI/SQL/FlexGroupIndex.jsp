@@ -1,6 +1,4 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
-%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
-%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
 %><%--
 // Support/TCPI/SQL/FlexGroupIndex
 //
@@ -18,9 +16,10 @@ _Root      (no new indexes)
 //
 // OUTPUT
 //
---%><%@ page import="COM.FutureTense.Interfaces.ICS" 
-%><%@ page import="COM.FutureTense.Interfaces.IList" 
-%><cs:ftcs>
+--
+%><%@ page import="COM.FutureTense.Interfaces.ICS" %><%@ page import="COM.FutureTense.Interfaces.IList" %>
+
+<cs:ftcs>
 <%-- **************************** FlexGroup Table **************************** --%>
 
 <ics:callelement element="Support/TCPI/SQL/CreateIndex">
