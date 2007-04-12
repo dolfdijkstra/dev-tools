@@ -16,9 +16,9 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<h4>Delete Leftover Entries in AssetPublishList table</h4>
+<h3>Delete Leftover Entries in AssetPublishList table</h3>
 
-<b>Number of Pubsessions</b><br/>
+<br/><b>Number of Pubsessions</b><br/>
 <ics:callelement element="Support/Audit/Default/DB/DisplayQuery">
     <ics:argument name="query" value='SELECT cs_status as status, count(id) as num FROM PubSession GROUP BY cs_status' />
 	<ics:argument name="table" value="PubSession" />

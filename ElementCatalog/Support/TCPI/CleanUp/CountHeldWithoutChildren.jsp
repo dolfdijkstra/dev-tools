@@ -17,9 +17,8 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/TCPI/LeftNav"/>
-<div class="right-column">
-<h3>Count Held Assets with/without Children</h3>
+<ics:callelement element="Support/Topnav"/>
+<h3><center>Count Held Assets with/without Children</center></h3>
 <b>Number of held assets per target and assettype</b>
 <ics:sql sql="SELECT COUNT(DISTINCT assetid) AS num, pt.name as name, assettype FROM ApprovedAssets aa, PubTarget pt WHERE pt.id= aa.targetid AND  tstate IN ('C') GROUP BY pt.name, assettype ORDER BY pt.name, assettype" table="ApprovedAssetDeps" listname="aa" />
 <table class="altClass">
@@ -87,7 +86,6 @@
     </tr>
 	</ics:listloop>
 </table>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

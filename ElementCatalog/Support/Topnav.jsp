@@ -23,7 +23,7 @@
     java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss z"); 
 %>
     <div id="logo">
-        <b><font size="4">Fatwire Corporation Support Tools</font></b>
+        <font size="4"><b>Fatwire Corporation Support Tools</b></font>
         <table width="100%" style="border:none"><tr>
                 <td width="25%" style="text-transform:none;border-bottom:none"><b><font color="white" size="2"><%=ics.GetSSVar("username")%> at <%= hostname%>:<%= serverport%></font></b></td>
                 <td width="25%" style="text-align:right;border-bottom:none"><b><font color="white" size="2"><%= df.format(new java.util.Date())%></font></b></td>
@@ -43,7 +43,7 @@
                     <li><a href="ContentServer?pagename=Support/Verify/Home">MISC</a></li>
                     <li><a href="ContentServer?pagename=Support/LDAP/Integrate">LDAP</a></li>
                     <li><a href="ContentServer?pagename=Support/Info/sqlplus">SQLPLUS</a></li>
-                    <li><a href="ContentServer?pagename=Support/Logout">Logout</a></li>                
+                    <li><a href="ContentServer?pagename=Support/Logout">LOGOUT</a></li>                
                 </ul>
             </b>
     </div>

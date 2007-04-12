@@ -17,8 +17,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <h3>Move Files in PubKeyTable</h3>
 <ics:callelement element="Support/TCPI/PubKeys/UpdateBatch">
   <ics:argument name="delete" value="true" />
@@ -28,7 +27,6 @@
 <ics:sql sql="SELECT count(id) as num FROM PubKeyTable WHERE urlkey NOT LIKE('%/%')" table="PubKeyTable" listname="pubkeys"/>	
 <ics:resolvevariables name="pubkeys.num"/> pubkeys can be moved. <br/><a href='ContentServer?pagename=<ics:getvar name="pagename"/>&delete=true&limit=<ics:getvar name="limit"/>'>Click here to move <ics:getvar name="limit"/> pubkey urlkey fields.</a><br/>
 <ics:clearerrno />
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

@@ -17,12 +17,10 @@
 %><cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Flex/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <ics:callelement element="Support/Flex/Audit/AssetForm">
     <ics:argument name="PostPage" value="Parents"/>
 </ics:callelement>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

@@ -17,9 +17,8 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Flex/LeftNav"/>
-<div class="right-column">
-<center><h4>Count Attributes</h4></center>
+<ics:callelement element="Support/Topnav"/>
+<center><h3>Count Attributes</h3></center>
 <p>This page shows how often an attribute is used for assets of type <b><ics:getvar name="assettype"/></b></p>
 <% boolean show= false; %>
 <ics:clearerrno/>
@@ -62,7 +61,6 @@
 	</tr>
 </ics:listloop>
 </table>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

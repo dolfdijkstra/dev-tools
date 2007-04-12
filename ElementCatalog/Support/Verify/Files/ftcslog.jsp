@@ -20,8 +20,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Verify/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <%
     String inipath = Utilities.osSafeSpec(getServletContext().getInitParameter("inipath"));
     String jsproot = ics.GetProperty("cs.jsproot");
@@ -60,7 +59,6 @@
 %>
     </pre>
 <% } %>   
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>        
 </cs:ftcs>

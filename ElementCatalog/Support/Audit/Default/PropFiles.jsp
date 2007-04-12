@@ -45,6 +45,7 @@ class IniFileFilter implements java.io.FileFilter {
 }
 %>
 <cs:ftcs>
+<h3>Content Server Property Files</h3>
 <%
     String inipath = Utilities.osSafeSpec(getServletContext().getInitParameter("inipath"));
     File[] inifiles = new File(inipath).listFiles(new IniFileFilter());
@@ -60,12 +61,19 @@ class IniFileFilter implements java.io.FileFilter {
 </table>
 
 <%
-	//TODO: this is not the correct way to get to the WEB-INF. Have a look at realpath
-   String jsproot = ics.GetProperty("cs.jsproot");
-   String resources = jsproot.substring(0,jsproot.lastIndexOf("jsp"))+"WEB-INF/classes";
-   String proppath = Utilities.osSafeSpec(resources);
-   File[] propfiles = new File[0];//(proppath).listFiles(new IniFileFilter());
-   //java.util.Arrays.sort(propfiles);
+   String root = request.getRequestURI();	
+   String croot1 = root.substring(root.indexOf("/"));
+   String croot2 = root.substring(root.lastIndexOf("/"));
+   String contextroot = null;
+   if (croot1.equals(croot2)) 
+      contextroot = "/";   
+   else 
+      contextroot = root.substring(root.indexOf("/"), root.lastIndexOf("/"));
+   String realpath = request.getRealPath(contextroot);      
+   String resources = realpath.substring(0, realpath.lastIndexOf(Utilities.osSafeSpec("/"))) + "/WEB-INF/classes";
+   String proppath = Utilities.osSafeSpec(resources);   
+   File[] propfiles = new File(proppath).listFiles(new IniFileFilter());
+   java.util.Arrays.sort(propfiles);
 %>
 <br/><a href="ContentServer?pagename=<%= ics.GetVar("pagename") %>&prop=all&cmd=PropFiles">DisplayAll</a>
 <table class="altClass" style="width:40%">
@@ -80,7 +88,7 @@ String prop = ics.GetVar("prop");
 %>
 <br/><br/><table class="altClass" style="width:60%">
 <% if(iniprop != null) { %>
-    <b><%= iniprop%></b>
+    <h3><b><%= iniprop%></b></h3>
 <%
     Properties props = new Properties();
     if ("all".equals(iniprop)){
@@ -104,7 +112,7 @@ String prop = ics.GetVar("prop");
 }
 else if(prop != null) {
 %>
-    <b><%= prop%></b>
+    <h3><b><%= prop%></b></h3>
 <%
     Properties props = new Properties();
     if ("all".equals(prop)){

@@ -17,8 +17,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <h3>Check <i>AssetRelationTree</i> for Missing Assets</h3><br/>
 <% boolean doDelete ="true".equals(ics.GetVar("delete")); %>
 
@@ -65,7 +64,6 @@ Number of assets in AssetRelationTree without a valid parent: <b><ics:listget li
     </ics:listloop>
 </table>
 <ics:clearerrno/>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

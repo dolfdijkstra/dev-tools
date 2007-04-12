@@ -18,9 +18,8 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/TCPI/LeftNav"/>
-<div class="right-column">
-<center><h4>Force Publish to a Destination</h4></center>
+<ics:callelement element="Support/Topnav"/>
+<center><h3>Force Publish to a Destination</h3></center>
 
 <ics:if condition='<%= ics.GetVar("forcepub")!=null %>'>
 <ics:then>
@@ -82,7 +81,6 @@
     </ics:if>
 </ics:else>
 </ics:if>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

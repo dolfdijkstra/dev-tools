@@ -10,8 +10,7 @@
 -->
 <CALLELEMENT NAME="Support/general"/>
 <div id="content">
-<CALLELEMENT NAME="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<CALLELEMENT NAME="Support/Topnav"/>
 <SCRIPT LANGUAGE="JavaScript">
 <![CDATA[
 function checkall () {
@@ -150,7 +149,6 @@ function checkall () {
 	</IF>
 </ELSE>
 </IF>
-</div>
 <CALLELEMENT NAME="Support/Footer"/>
 <SETVAR NAME="errno" VALUE="0"/>
 </div>

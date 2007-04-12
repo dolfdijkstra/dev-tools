@@ -18,9 +18,8 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Verify/LeftNav"/>
-<div class="right-column">
-<center><h4>Export TableData to XML Format</h4></center>
+<ics:callelement element="Support/Topnav"/>
+<center><h3>Export TableData to XML Format</h3></center>
 <form method="POST" action="ContentServer">
   <table class="altClass">
     <tr>
@@ -47,7 +46,6 @@ if(ics.GetErrno() == 0 && schema != null && schema.hasData()){
   <p><input type="submit" value="Submit">&nbsp;<input type="reset" value="Reset"></p>
   <input type="hidden" name="pagename" value="Support/Verify/xml/export">
 </form>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

@@ -40,16 +40,16 @@
 
 <div class="right-column">
   <div class="entry">
-    <b>General Information</b> 
+    <h3>General Information</h3> 
         <p>The Content Server Support Tools are intended for use by experienced users with SiteGod privileges to assist in audit, cleanup, help diagnose and resolve problems. These tools can be customized by end users to their need.</p>
 <% if (!ics.UserIsMember("SiteGod")){ %>      
       <div class="entry-header">
         <ics:callelement element="Support/Login"/>
       </div>
 <% } else { %>
-    <b>Overview</b>
+    <br/><h3>Overview</h3>
         <p>
-        <b>Home:</b> Displays information about current system and appserver properties.<br/>
+        <b>Info:</b> Displays information about current system and appserver properties.<br/>
         <b>System:</b> Helps general audit of the system and miscellaneous cleanup tools.<br/>
         <b>Approval:</b> Displays information about approval subsystem, approval affected tables and events.<br/>
         <b>Cache:</b> Displays information about CacheManager subsystem.<br/>

@@ -27,7 +27,7 @@ String query = "SELECT t.table_name as tblname, i.index_name as indexname, c.col
 +"AND ic.column_id = c.column_id "
 +"ORDER BY LOWER(t.table_name), i.index_name, ic.sequence,c.column_name";
 %>
-<h1>Lists all indexes</h1>
+<h3><center>Lists all indexes</center></h3>
 <ics:callelement element="Support/Audit/Default/DB/DisplayQuery">
 	<ics:argument name="query" value='<%= query %>' />
 	<ics:argument name="table" value='SystemInfo' />

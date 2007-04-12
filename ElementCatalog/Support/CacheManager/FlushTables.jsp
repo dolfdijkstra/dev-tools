@@ -18,8 +18,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/CacheManager/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <script language="JavaScript">
 function checkall () {
 	var obj = document.forms[0].elements[0];
@@ -34,7 +33,7 @@ function checkall () {
 	}
 }
 </script>
-<h4>Flush Tables</h4>
+<h3>Flush Tables</h3>
 <%
 String thisPage = ics.GetVar("pagename");
 String cmd = ics.GetVar("cmd");
@@ -60,7 +59,6 @@ if (tables != null){
 	</ics:listloop>
 <br/><a href="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Check all';return true;" onmouseout="window.status='';return true;">CheckAll</a>&nbsp;<input type="Submit" name="Submit" value="Flush">
 </form>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

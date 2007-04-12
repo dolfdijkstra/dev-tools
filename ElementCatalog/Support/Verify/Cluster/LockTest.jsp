@@ -18,9 +18,8 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Verify/LeftNav"/>
-<div class="right-column">
-<h4>File Lock test</h4>
+<ics:callelement element="Support/Topnav"/>
+<h3>File Lock test</h3>
 <%
 if (Utilities.fileLockLoadOK()) {
 
@@ -62,7 +61,6 @@ out.write("<br>");
 
 }
 %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

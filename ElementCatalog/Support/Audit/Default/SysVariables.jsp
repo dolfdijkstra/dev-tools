@@ -17,7 +17,7 @@
 <%@ page import="java.util.*"%>
 <cs:ftcs>
 
-<h4>System Variables</h4>
+<center><h3>System Variables</h3></center>
 <table class="altClass">
 <%
 Enumeration e = System.getProperties().propertyNames();

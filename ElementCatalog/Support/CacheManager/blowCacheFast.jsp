@@ -20,9 +20,8 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/CacheManager/LeftNav"/>
-<div class="right-column">
-<h3><center>Delete PageCache</center></h3>
+<ics:callelement element="Support/Topnav"/>
+<h3><center>Delete System PageCache</center></h3>
 <%
 String thisPage = ics.GetVar("pagename");
 if (ics.GetVar("blowaway")!=null) { 
@@ -59,14 +58,13 @@ Defdir: <b><ics:getvar name="defdir"/></b><br>
 <%} else { %>
 <br/>
 <ics:sql sql="SELECT count(*) as itemnum FROM SystemItemCache" listname="itemlist" table="SystemItemCache"/>
-<b>Total <ics:listget listname="itemlist" fieldname="itemnum"/> SystemItemCache rows will be deleted.</b><br/>
+Total <b><ics:listget listname="itemlist" fieldname="itemnum"/></b> SystemItemCache rows will be deleted.<br/>
 <ics:sql sql="SELECT count(*) as pagenum FROM SystemPageCache" listname="pagelist" table="SystemPageCache"/>
-<b>Total <ics:listget listname="pagelist" fieldname="pagenum"/> SystemPageCache (with filesystem data) will be deleted.</b>
+Total <b><ics:listget listname="pagelist" fieldname="pagenum"/></b> SystemPageCache (with filesystem data) will be deleted.
 <form method="POST" action='ContentServer?pagename=<%=thisPage %>'>
 <b>Do you want to blow away all cache? </b>&nbsp;<input type="Submit" name="blowaway" value="BlowAway"><br/>
 </form> 
 <% } %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

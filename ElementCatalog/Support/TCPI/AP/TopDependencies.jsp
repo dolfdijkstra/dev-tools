@@ -17,8 +17,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <center><h3>Top Dependencies</h3></center><br/>
 <ics:sql sql="SELECT count(aad.id) AS num, aa.assetid as assetid, aa.assettype as assettype FROM ApprovedAssetDeps aad, ApprovedAssets aa WHERE aad.ownerid = aa.id GROUP BY aa.assetid, aa.assettype ORDER BY num DESC, assettype, assetid" table="ApprovedAssetDeps" limit='<%= ics.GetVar("showmax") %>' listname="aad" />
 <table class="altClass">
@@ -37,7 +36,6 @@
 	</tr>
     </ics:listloop>
 </table>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

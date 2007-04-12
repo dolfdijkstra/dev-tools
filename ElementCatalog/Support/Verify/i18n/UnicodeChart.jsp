@@ -17,10 +17,9 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Verify/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<center><h4>Code Charts</h2></center>
+<center><h3>Code Charts</h3></center>
 <p align="center">The charts in this list are arranged in code point order.</p>
 <table class="altClass">
   <tr> 
@@ -525,7 +524,6 @@
       Private Use Area-B</a></td>
   </tr>
 </table>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>        
 </cs:ftcs>

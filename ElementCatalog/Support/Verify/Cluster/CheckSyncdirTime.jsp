@@ -21,8 +21,7 @@
 <cs:ftcs>
  <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Verify/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <h4>Test timstamps of files in sync dir</h4>
 <div>It is now: <%= new java.util.Date() %></div><br><%
 String syncDir = ics.GetProperty("ft.usedisksync");
@@ -65,7 +64,6 @@ if (syncDir == null || syncDir.length() ==0) {
     }
 }
 %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

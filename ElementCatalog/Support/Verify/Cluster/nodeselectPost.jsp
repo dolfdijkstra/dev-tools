@@ -20,8 +20,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Verify/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
     <h4>Cluster nodes Response</h4>
 <%
 String[] consts = {"type","url","username","password"};
@@ -62,7 +61,6 @@ for (int i=0; i< numOfNodes;i++){
 }
 %>
 <br/><b>.......Post end</b>
-</div>
 <ics:callelement element="Support/Footer" />
 </div>
 </cs:ftcs>

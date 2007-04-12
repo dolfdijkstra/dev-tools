@@ -20,8 +20,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/CacheManager/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <%
 // create the cache manager
 CacheManager cm = new CacheManager(ics);                 
@@ -50,7 +49,6 @@ if ("on".equals(ics.GetVar("cs"))) {
 
 	<h5><%=cm.getCSInventory(ics,CacheHelper.sBasic)%></h5>
 <% } %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

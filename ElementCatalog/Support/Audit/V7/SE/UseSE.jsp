@@ -30,7 +30,7 @@ function checkall () {
 	}
 }
 </script>
-<center><h4>Verity SearchEngine Reindex</h4></center>
+<center><h3>Verity SearchEngine Reindex</h3></center>
 <%
    String thisPage = ics.GetVar("pagename");
    String cmd = ics.GetVar("cmd");

@@ -14,12 +14,10 @@
 </satellite:tag>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Flex/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <ics:callelement element="Support/Flex/Audit/AssetTypeForm">
     <ics:argument name="PostPage" value="MissingAttributes"/>
 </ics:callelement>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 <satellite:tag>

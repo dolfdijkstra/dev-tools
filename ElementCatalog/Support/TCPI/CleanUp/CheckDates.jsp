@@ -17,8 +17,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <h3>Validate Dates in ApprovedAssets and ApprovedAssetDeps Tables</h3>
 <%
   String assetType = ics.GetVar("assettype");
@@ -150,7 +149,6 @@
       <% } %> 
     <% } %>
 <% } %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

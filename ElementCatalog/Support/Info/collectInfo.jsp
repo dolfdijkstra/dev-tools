@@ -454,10 +454,29 @@ private static void printAttributes(ServletRequest request, ServletContext conte
 %>
 </div>
 <% } else { %>
-   <div class="right-column">
-        <div class="entry-header">
-             <ics:callelement element="Support/Login"/>
-        </div>
+    <div class="left-column">
+      <h2>Categories</h2>
+      <ul class="subnav divider">
+        <li><a href="http://www.fatwire.com" class="Fatwire">Fatwire</a></li>								
+      </ul>
+      <h2>Recent Entries</h2>
+      <ul class="subnav divider">
+        <li><a href="http://www.fatwire.com/cs/Satellite/NewsITNewsPage_US.html">News</a></li>
+      </ul>
+      <h2>Fatwire Support</h2>
+      <ul class="subnav divider">
+        <li><a href="http://www.fatwire.com/support/">Support</a></li>
+      </ul>
+    </div>
+
+   <div class="right-column">      
+      <div class="entry">
+           <h3>General Information</h3> 
+           <p>The Content Server Support Tools are intended for use by experienced users with SiteGod privileges to assist in audit, cleanup, help diagnose and resolve problems. These tools can be customized by end users to their need.</p>      
+           <div class="entry-header">
+                <ics:callelement element="Support/Login"/>
+           </div>
+      </div>
    </div>
 <% } %>
 <ics:callelement element="Support/Footer"/>

@@ -10,8 +10,7 @@
 -->
 <CALLELEMENT NAME="Support/general"/>
 <div id="content">
-<CALLELEMENT NAME="Support/CacheManager/LeftNav"/>
-<div class="right-column">
+<CALLELEMENT NAME="Support/Topnav"/>
 <script language="JavaScript">
 <![CDATA[
 function checkall () {
@@ -29,9 +28,9 @@ function checkall () {
 }
 ]]>
 </script>
-<h4>Find which Pages an Asset is Referenced</h4>
+<h3>Find which Pages an Asset is Referenced</h3>
 <IF COND="IsVariable.c=false"><THEN>
-<h3>Select AssetType</h3>
+<h4>Select AssetType</h4>
 <FORM METHOD="POST" ACTION="ContentServer">
 	<INPUT TYPE="hidden" NAME="pagename" VALUE="Variables.pagename" REPLACEALL="Variables.pagename"/>
    <SELECT name="c">
@@ -79,7 +78,6 @@ function checkall () {
 		</ELSE></IF>
 	</ELSE></IF>
 </ELSE></IF>
-</div>
 <CALLELEMENT NAME="Support/Footer"/>
 </div>
 </FTCS>

@@ -25,8 +25,7 @@
 </satellite:tag>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/CacheManager/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <h3>Flush Pages by Item</h3>
 
 <%
@@ -80,7 +79,6 @@ if (!Utilities.goodString(idval)){
 <% if (ics.GetErrno() < 0) { %>
     Error: <%= errorMsg%>
 <% } %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 <satellite:tag>

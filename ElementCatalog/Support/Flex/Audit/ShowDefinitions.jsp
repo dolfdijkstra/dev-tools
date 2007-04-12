@@ -22,9 +22,8 @@
 
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Flex/LeftNav"/>
-<div class="right-column">
-<center><h4>Template Definitions</h4></center>
+<ics:callelement element="Support/Topnav"/>
+<center><h3>Template Definitions</h3></center>
 
 <p>This pages lists the template definitions for <b><ics:getvar name="assettype"/></b> assettype, attributes defined and how many assets are using this template definition</p>
 
@@ -147,7 +146,6 @@
 	</tr>
 	</ics:listloop>
 </table>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 

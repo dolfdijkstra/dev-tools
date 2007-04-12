@@ -14,9 +14,8 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Verify/LeftNav"/>
-<div class="right-column">
-<center><h4>Basic Cluster test</h4></center>
+<ics:callelement element="Support/Topnav"/>
+<center><h3>Basic Cluster test</h3></center>
 <table class="altClass">
 <tr><th>runtime hashCode</th><th>Current thread</th><th>Session id</th></tr>
 <tr><td><%= Runtime.getRuntime().hashCode()  %></td><td><%= Thread.currentThread().getName() %></td><td><%= ics.SessionID() %></td><tr>
@@ -38,7 +37,6 @@ for (int i=0; i<60; i++) {
 }
 %>
 </table>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

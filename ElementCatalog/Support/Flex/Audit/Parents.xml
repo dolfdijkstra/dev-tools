@@ -10,9 +10,8 @@
 -->
 <CALLELEMENT NAME="Support/general"/>
 <div id="content">
-<CALLELEMENT NAME="Support/Flex/LeftNav"/>
-<div class="right-column">
-<center><h4>Attributes and Parents</h4></center>
+<CALLELEMENT NAME="Support/Topnav"/>
+<center><h3>Attributes and Parents</h3></center>
 <!--SETVAR NAME="assetid" VALUE="992972140421"/-->
 <setvar NAME="errno" VALUE="0"/>
 <IF COND="IsVariable.maxList=false">
@@ -103,7 +102,6 @@
     </LOOP>
 </then>
 </if>
-</div>
 <CALLELEMENT NAME="Support/Footer"/>
 </div>
 

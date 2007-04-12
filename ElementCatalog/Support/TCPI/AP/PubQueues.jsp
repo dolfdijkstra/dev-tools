@@ -33,16 +33,14 @@ static String sqlTTA="SELECT count(id) as num FROM ApprovedAssets";
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/TCPI/LeftNav"/>
-<div class="right-column">
-<center><h4>Overview of ApprovedAssets</h4></center>
+<ics:callelement element="Support/Topnav"/>
+<center><h3>Overview of ApprovedAssets</h3></center>
 <% if ("true".equals(ics.GetVar("detail")) ){
 %><ics:callelement element="Support/TCPI/AP/PubDestTotalsDetail"/><%
 } else {
 %><ics:callelement element="Support/TCPI/AP/PubDestTotals"/><%
 }
 %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

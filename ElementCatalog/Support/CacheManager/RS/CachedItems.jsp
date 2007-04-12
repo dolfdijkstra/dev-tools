@@ -39,7 +39,7 @@
 <ics:callelement element="Support/general"/>
 <ics:callelement element="Support/Topnav"/>
 <div id="content">
-<h3>Resultset Cache Profiler</h3>
+<center><h3>Resultset Cache Profiler - Detail View</h3></center>
     <table class="altClass">
     <%
         DateFormat df = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
@@ -95,7 +95,6 @@
         }
          %>
     </table>
-</div>    
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

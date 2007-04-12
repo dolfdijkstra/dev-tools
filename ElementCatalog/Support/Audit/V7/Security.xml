@@ -11,7 +11,7 @@
 
 <!-- Getting the eventhost is not the way to do it, CS.HTTP_HOST is.-->
 
-<center><h4>Content Server Security Audit</h4></center>
+<center><h3>Content Server Security Audit</h3></center>
 
 <h3><b>Quick Reference</b></h3>
 <ul class="subnav">

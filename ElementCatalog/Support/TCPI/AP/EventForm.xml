@@ -10,8 +10,7 @@
 -->
 <CALLELEMENT NAME="Support/general"/>
 <div id="content">
-<CALLELEMENT NAME="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<CALLELEMENT NAME="Support/Topnav"/>
 <SCRIPT LANGUAGE="JavaScript">
 <![CDATA[
 function checkall () {
@@ -112,7 +111,6 @@ function checkall () {
     <a href="ContentServer?pagename=Variables.pagename&#38;cmd=EventForm&#38;enabled=true" REPLACEALL="Variables.pagename">List Enabled Events</a><br/>
 </else>
 </if>
-</div>
 <CALLELEMENT NAME="Support/Footer"/>
 </div>
 </ftcs>

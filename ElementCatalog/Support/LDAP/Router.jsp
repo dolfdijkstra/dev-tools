@@ -14,12 +14,6 @@
 <div id="content">
 <ics:callelement element="Support/Topnav"/>
 
-<div class="left-column gray">
-  <ul class="subnav divider">
-    <a href="ContentServer?pagename=Support/LDAP/Integrate">Login</a>
-  </ul>
-</div>
-<div class="right-column">
 <%!
 // Common Constants..
 public static final String kPagename        = "pagename";
@@ -340,7 +334,6 @@ if ( (status && (! op.equals(kRefresh)) && stage.equals(kLDAPStage)) ||
 }
 LogDebugMessage ("After [" + element + "], Status[" + status + "], Stage[" + stage + "]");
 %>
-</div>
 <%
 // Invoke the product footer - This will be printed all the time
 element = "Support/Footer";

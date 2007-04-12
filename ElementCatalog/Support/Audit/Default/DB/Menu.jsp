@@ -22,7 +22,7 @@ return "<a href=\"ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd="
 %>
 <cs:ftcs>
 
-<center><h4>DB Consistency Check</h4></center>
+<center><h3>DB Consistency Check</h3></center>
 
 <table class="altClass">
 <tr>

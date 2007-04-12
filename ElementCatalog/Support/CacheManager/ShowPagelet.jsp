@@ -18,8 +18,7 @@
 %><cs:ftcs><%
 %><ics:callelement element="Support/general"/><%
 %><div id="content"><%
-%><ics:callelement element="Support/CacheManager/LeftNav"/><%
-%><div class="right-column"><%
+%><ics:callelement element="Support/Topnav"/><%
 %><h3><center>SystemItemCache vs SystemPageCache</center></h3><%
 %><time:set name='pagetime'/><%
 %><ics:sql sql='select distinct id as assetid from systemitemcache order by id' listname='idlist' table='SystemItemCache'/>
@@ -54,7 +53,6 @@
     </ics:listloop>
 </table>
 It took <time:get name='pagetime'/> Millisecs to calculate..
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

@@ -10,8 +10,7 @@
 -->
 <CALLELEMENT NAME="Support/general"/>
 <div id="content">
-<CALLELEMENT NAME="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<CALLELEMENT NAME="Support/Topnav"/>
 <setvar NAME="errno" VALUE="0"/>
 <selectto LIST="uiPubTgts" WHAT="id,name,description,type" FROM="PubTarget"/>
 <if COND="IsError.Variables.errno=false">
@@ -22,7 +21,7 @@
 	<loop LIST="uiPubTgts">
 		<DELIVERYTYPE.LOAD NAME="dtype" OBJECTID="uiPubTgts.type"/>
 		<DELIVERYTYPE.GET NAME="dtype" FIELD="name" OUTPUT="dtype:name"/>
-		Creating PubKeyCleanup event for <CSVAR NAME="uiPubTgts.name (Variables.dtype:name)"/><br/>
+		Creating PubKeyCleanup event for <b><CSVAR NAME="uiPubTgts.name (Variables.dtype:name)"/></b><br/>
 		<APPEVENT NAME="PubKeyCleanup_uiPubTgts.id" GUID="ContentServer" TIMES="*:1,6,11,16,21,26,31,36,41,46,51,56:20 */*/*">
 			<ARGUMENT NAME="pagename" VALUE="Support/TCPI/CleanUp/CountPubKeyTable"/>
 			<ARGUMENT NAME="delete" VALUE="true"/>
@@ -41,7 +40,6 @@
 Problem finding pubtargets <CSVAR NAME="Variables.errno"/><br/>
 </else>
 </if>
-</div>
 <CALLELEMENT NAME="Support/Footer"/>
 </div>
 </FTCS> 

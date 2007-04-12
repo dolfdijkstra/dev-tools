@@ -17,8 +17,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <%
 boolean bContinue=true;
 
@@ -130,7 +129,6 @@ if (bContinue) {
 	</ics:listloop>
 	</table>
 	<% } %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

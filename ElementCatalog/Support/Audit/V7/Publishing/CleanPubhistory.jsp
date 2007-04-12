@@ -33,7 +33,7 @@ public boolean delete(String file) {
 
 <cs:ftcs>
     
-    <H2 align="center">PubSessions deleted </H2>
+    <H3 align="center">PubSessions deleted </H3>
     <table class="altClass">
         <tr>
             <th>Pubsession</th>

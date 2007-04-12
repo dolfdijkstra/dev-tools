@@ -18,9 +18,8 @@
 
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/CacheManager/LeftNav"/>
-<div class="right-column">
-<h4>Unknowndeps Pages</h4>
+<ics:callelement element="Support/Topnav"/>
+<center><h3>Unknowndeps Pages</h3></center>
 <ics:sql sql='select distinct sc.id as pagename, count(sp.pagename) as num from systempagecache sp, systemitemcache sc where sp.id = sc.page and sc.id like \'unknowndeps%\' group by sc.id order by num desc' listname='unknownlist' table='SystemItemCache'/>
 <% int total = 0; %>
 <ics:listloop listname="unknownlist">
@@ -35,7 +34,6 @@ There are total <%= total %> unknowdeps pages...
         <td><%= i++ %></td>
         <td>
         <satellite:link>
-          <satellite:parameter name='urlbase' value='Satellite'/>
           <satellite:parameter name='pagename' value='Support/CacheManager/listByItemPost'/>
         </satellite:link>
         <a href='<%= ics.GetVar("referURL")+"&idlist="+ics.ResolveVariables("unknownlist.pagename")%>'><ics:resolvevariables name="unknownlist.pagename"/></a>
@@ -44,7 +42,6 @@ There are total <%= total %> unknowdeps pages...
       </tr>
     </ics:listloop>
 </table>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

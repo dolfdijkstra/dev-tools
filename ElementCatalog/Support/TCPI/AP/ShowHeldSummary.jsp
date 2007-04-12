@@ -17,8 +17,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <h3><center>Held Summary</center></h3>
 <b>Assetid: <ics:getvar name="assetid" /></b><br/>
 
@@ -88,7 +87,6 @@
 <% } else { %>
     <font color="red">No Depenedents to Display</font> <br/>
 <% } %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

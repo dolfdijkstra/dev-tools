@@ -17,7 +17,7 @@
 <%@ page import="java.util.*"%>
 <cs:ftcs>
 
-<h4>ContentServer Variables</h4>
+<h3>Content Server Variables</h3>
 <table class="altClass">
 <%
 Enumeration e = ics.GetVars();
@@ -28,7 +28,7 @@ while ( e.hasMoreElements()) {
 <% } %>
 </table>
 
-<br/><h4>ContentServer SessionVariables</h4>
+<br/><h3>Content Server SessionVariables</h3>
 <table class="altClass">
 <%
 e = ics.GetSSVars();

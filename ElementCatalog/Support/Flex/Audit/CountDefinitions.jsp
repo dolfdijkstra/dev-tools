@@ -17,9 +17,8 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Flex/LeftNav"/>
-<div class="right-column">
-<center><h4>Count Definitions</h4></center>
+<ics:callelement element="Support/Topnav"/>
+<center><h3>Count Definitions</h3></center>
 <p>This pages show how often a template is used for assets of type <b><ics:getvar name="assettype"/></b></p>
 <ics:clearerrno/>
 <ics:sql sql='<%= ics.ResolveVariables("SELECT assettemplate, \'flextemplateid\' as tid FROM FlexAssetTypes WHERE assettype=\'Variables.assettype\'") %>' table="FlexAssetTypes" listname="types"/>
@@ -47,7 +46,6 @@
         <td><ics:listget listname="templatecount" fieldname="num"/></td>
     </tr>
 </table>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

@@ -17,9 +17,8 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Flex/LeftNav"/>
-<div class="right-column">
-<center><h4>Missing Attributes</h4></center>
+<ics:callelement element="Support/Topnav"/>
+<center><h3>Missing Attributes</h3></center>
 <p>This page lists, for assetype <b><ics:getvar name="assettype"/></b>, all templates, required attributes and how many assets do not have all the required attributes definied (currently) by their template. If this number if greater than 0 then a link is presented to inspect those assets.</p>
 
 <ics:clearerrno/>
@@ -73,7 +72,6 @@
 	</tr>
 </ics:listloop>
 </table>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

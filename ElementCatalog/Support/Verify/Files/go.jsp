@@ -45,8 +45,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Verify/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <%!
     //FEATURES
     private static final boolean NATIVE_COMMANDS = true;
@@ -1954,7 +1953,6 @@ Upload finished.
 </html><%
     }
 %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>        
 </cs:ftcs>

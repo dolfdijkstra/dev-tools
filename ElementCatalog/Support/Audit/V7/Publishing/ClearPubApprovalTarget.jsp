@@ -16,7 +16,7 @@
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <%@ page import="java.util.StringTokenizer" %>
 <cs:ftcs>
-<h4>Delete Publish/Approval Status per Target</h4>
+<h3>Delete Publish/Approval Status per Target</h3>
 <%
 String cmd = ics.GetVar("cmd");
 String[] tables = {"PubKeyTable", "ApprovedAssets","ApprovedAssetDeps","PubContext","PublishedAssets","PubSession", "PubMessage"}; 

@@ -16,7 +16,8 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<h4>Delete Entire Publish/Approval Status</h4>
+<h3>Delete Entire Publish/Approval Status</h3>
+<br/>
 <%
 String cmd = ics.GetVar("cmd");
 String[] tables = {"PubKeyTable", "PublishedAssets", "ApprovedAssets","ApprovedAssetDeps","PubSession","PubContext","AssetPublishList"}; 

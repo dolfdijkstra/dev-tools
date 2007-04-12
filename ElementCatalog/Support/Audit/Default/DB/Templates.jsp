@@ -16,7 +16,7 @@
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
 
-<center><h4>Templates</h4></center>
+<center><h3>Templates</h3></center>
 
 <%
 ics.SetVar("cacheinfo","cacheinfo");

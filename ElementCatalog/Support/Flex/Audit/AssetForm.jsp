@@ -25,7 +25,7 @@ String sql ="SELECT assettype, description FROM AssetType WHERE assettype IN ("
 +"ORDER BY assettype ASC";
 String pagename="Support/Flex/Audit/" + ics.GetVar("PostPage");
 %>
-<center><h4><ics:getvar name="PostPage"/></h4></center>
+<center><h3>Show <ics:getvar name="PostPage"/></h3></center>
 <ics:sql sql='<%=sql %>' table="FlexAssetTypes" listname="assettypes"/>
 
 <form method="GET" action="ContentServer">

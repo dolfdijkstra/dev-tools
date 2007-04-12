@@ -17,8 +17,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <%
 ics.SetVar("tname","PubKeyTable");
 
@@ -113,7 +112,6 @@ Number of rows in the table: <b><ics:listget listname="tcount" fieldname="num"/>
     </li>		
     </ics:listloop>
 </ul>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

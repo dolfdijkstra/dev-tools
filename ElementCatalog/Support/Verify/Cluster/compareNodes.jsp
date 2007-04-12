@@ -11,8 +11,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Verify/LeftNav"/>
-<div class="right-column">    
+<ics:callelement element="Support/Topnav"/>
 <%
 try {
 	String num = ics.GetSSVar("cluster.numofnodes");
@@ -48,7 +47,6 @@ try {
 	out.write(e.getMessage());
 }
 %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

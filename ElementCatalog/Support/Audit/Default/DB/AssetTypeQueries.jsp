@@ -19,7 +19,7 @@
 
 <cs:ftcs>
 
-<center><h4>AssetType Queries</h4></center>
+<center><h3>AssetType Queries</h3></center>
 
 <%
 String queryids = ics.GetVar("queryid");
@@ -42,8 +42,8 @@ if (queryids!=null && assettypes != null) {
 			int qid = Integer.parseInt(queryid);
 			if (qid >=0 && qid < query.length) {
 				%>
-				<h3><%= ics.ResolveVariables(query[qid][2]) %></h3>
-				<b><%= ics.ResolveVariables(query[qid][0]) %></b><br>
+				<h4><%= ics.ResolveVariables(query[qid][2]) %></h4>
+				<%= ics.ResolveVariables(query[qid][0]) %><br>
 				<ics:callelement element="Support/Audit/Default/DB/DisplayQuery">
 					<ics:argument name="query" value='<%= ics.ResolveVariables(query[qid][0]) %>' />
 					<ics:argument name="table" value='<%= ics.ResolveVariables(query[qid][1]) %>' />

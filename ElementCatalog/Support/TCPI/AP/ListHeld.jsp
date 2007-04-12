@@ -17,11 +17,10 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/TCPI/LeftNav"/>
-<div class="right-column">
-<center><h4>Held Assets</h4></center>
+<ics:callelement element="Support/Topnav"/>
+<center><h3>Held Assets</h3></center>
 
-<h3>Held Assets per AssetType per Target</h3>
+<h4>Held Assets per AssetType per Target</h4>
 <ics:clearerrno/>
 <ics:sql sql="SELECT pt.name as name, aps.assettype as assettype , count(aps.id) as num FROM ApprovedAssets aps, PubTarget pt WHERE aps.tstate IN('H') AND pt.id=aps.targetid GROUP BY pt.name, aps.assettype ORDER BY name, assettype" table="ApprovedAssets" listname="yyy" />
 <% if (ics.GetErrno() == -101) { %>
@@ -87,7 +86,6 @@
 		</ics:listloop>
 	</table>
 <% } %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

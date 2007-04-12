@@ -23,8 +23,7 @@
 <satellite:tag><satellite:parameter name='type' value='open'/></satellite:tag>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/CacheManager/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <h3>List Pages by Item</h3><BR/>
 <%
 String idval = ics.GetVar("idlist");
@@ -62,7 +61,6 @@ if (!Utilities.goodString(idval)){
 <% if (ics.GetErrno() < 0) { %>
     Error: <%=errorMsg%>
 <% } %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 <satellite:tag><satellite:parameter name='type' value='close'/></satellite:tag>

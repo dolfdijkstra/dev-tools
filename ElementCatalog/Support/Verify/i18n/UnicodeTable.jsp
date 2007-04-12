@@ -18,8 +18,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Verify/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <%!
 class Chart {
 	int start=0;
@@ -238,7 +237,6 @@ for (int i=start; i< end ; i=i+step){
 See also <a href="http://www.w3.org/TR/charmod/" target="_new">Character Model for the World Wide Web 1.0</a><br>
 See also <a href="http://www.alanwood.net/unicode/index.html" target="_new">Alan Wood's site</a><br>
 See also <a href="http://www.unicode.org/iuc/iuc10/x-utf8.html" target="_new">UTF-8 sample</a><br>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>        
 </cs:ftcs>

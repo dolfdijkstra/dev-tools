@@ -17,8 +17,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Verify/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <%
    int numOfNodes;
    if (ics.GetVar("numofnodes")!=null) {
@@ -46,7 +45,6 @@
 </tr>
 </table>
 </form>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

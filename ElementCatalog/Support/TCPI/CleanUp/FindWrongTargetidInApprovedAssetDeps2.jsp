@@ -18,8 +18,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <h3>Checks targetid between ApprovedAsset and ApprovedAssetDeps match</h3><br/>
 <ics:sql sql ="SELECT id,name FROM PubTarget ORDER BY name" table="PubTarget" listname="targets"/>
 
@@ -80,7 +79,6 @@
 commit;
 <% } %>
 </p>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

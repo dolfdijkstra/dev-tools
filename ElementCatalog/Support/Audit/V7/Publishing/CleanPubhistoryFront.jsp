@@ -18,7 +18,7 @@
 <%@ page import="java.util.*"%>
 
 <cs:ftcs>
-    <center><h4>List of Pubsessions to delete</h4></center>
+    <center><h3>List of Pubsessions to delete</h3></center>
     <table class="altClass">
         <tr>
             <th>Pubsession</th>

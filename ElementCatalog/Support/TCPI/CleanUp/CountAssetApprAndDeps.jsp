@@ -17,8 +17,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <%
 ics.SetVar("tname","ApprovedAssetDeps");
 boolean delete = false;//"true".equals(ics.GetVar("delete"));
@@ -59,7 +58,6 @@ boolean delete = false;//"true".equals(ics.GetVar("delete"));
     	%>
 	</tr>
 </table>	
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

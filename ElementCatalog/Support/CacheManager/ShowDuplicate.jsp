@@ -19,9 +19,8 @@
 
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/CacheManager/LeftNav"/>
-<div class="right-column">
-<center><h4>Cached Pages</h4></center>
+<ics:callelement element="Support/Topnav"/>
+<center><h3>Cached Pages</h3></center>
 <%!
 static class PageInfo {
     int count = 0;
@@ -177,7 +176,6 @@ for (Iterator it = sortall.entrySet().iterator(); it.hasNext();) {
 out.print("</table>");
 counter.clear();
 %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

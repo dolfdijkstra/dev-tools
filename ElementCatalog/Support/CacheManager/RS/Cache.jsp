@@ -44,7 +44,6 @@
 <cs:ftcs><html>
 <ics:callelement element="Support/general"/>
 <body>
-
 <ics:callelement element="Support/Topnav"/>
 <div id="content">
 <center><h3>Resultset Cache Profiler</h3></center>
@@ -121,9 +120,7 @@
     2) Hits compared to misses and hit count in total.<br/>
     3) Size compared to MaxSize. If size is at maxsize and remove num is growing you might want to enlarge the cache size in futuretense.ini.</li>
 </ul>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </body></html>
 </cs:ftcs>
-

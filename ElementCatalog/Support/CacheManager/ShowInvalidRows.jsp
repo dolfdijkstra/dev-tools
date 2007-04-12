@@ -19,8 +19,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/CacheManager/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <script language="JavaScript">
 function checkall () {
     var obj = document.forms[0].elements[0];
@@ -82,7 +81,7 @@ public String DeleteItem(String pid, ICS ics)
 }
 %>
 
-<center><h4>PageCache Tables</h4></center>
+<center><h3>System PageCache Tables</h3></center>
 
 <%
 String thisPage = ics.GetVar("pagename");
@@ -117,7 +116,7 @@ else if (noparent != null){
 <% } %>
 <br/>
 
-<h3>SystemPageCache</h3>
+<h4>SystemPageCache</h4>
 <time:set name="pagetime"/>
 <%
 try
@@ -185,7 +184,7 @@ try
 SystemPageCache urlpage took <time:get name="pagetime"/> ms 
 <br/><br/>
 
-<h3>SystemItemCache</h3>
+<h4>SystemItemCache</h4>
 <time:set name="itemtime"/>
 <ics:sql table="SystemItemCache" listname="cachedItems" sql="select count(si.id) as num from systemitemcache si where not exists (select null from systempagecache sp where sp.id = si.page)" />
 
@@ -208,7 +207,6 @@ Items (SystemItemCache) without a referenced parent (SystemPageCache): <ics:list
 </form> 
 
 SystemItemCache took <time:get name="itemtime"/> ms 
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

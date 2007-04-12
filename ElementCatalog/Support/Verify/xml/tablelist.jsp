@@ -17,9 +17,8 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Verify/LeftNav"/>
-<div class="right-column">
-<center><h4>Table in XML Format</h4></center>
+<ics:callelement element="Support/Topnav"/>
+<center><h3>Table in XML Format</h3></center>
 <table class="altClass" style="width:30%">
     <tr><th>TableName</th></tr>
 <%
@@ -46,7 +45,6 @@ if(tschema != null && tschema.hasData()){
     No schema found!
 <% } %>
 </table>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

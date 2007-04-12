@@ -10,48 +10,47 @@
 -->
 <CALLELEMENT NAME="Support/general"/>
 <div id="content">
-<CALLELEMENT NAME="Support/CacheManager/LeftNav"/>
-<div class="right-column">
- <Script Language="Javascript">
-    function gotoPreview(F, dict)
-    {
-        <PROPERTY.GET INIFILE="futuretense_xcel.ini" PARAM="xcelerate.previewhost" VARNAME="preview-host"/>
-        <PROPERTY.GET INIFILE="futuretense_xcel.ini" PARAM="xcelerate.previewservlet" VARNAME="preview-servlet"/>
-        var pURL = "<ics.resolvevariables NAME="$(Variables.preview-host)$(CS.Property.ft.approot)$(Variables.preview-servlet)" delimited="true"/>";
-        pURL = pURL + "?pagename=";
-         
-        i = 0;
-        <![CDATA[
-        while (i < dict.options.length) {
-            if (dict.options[i].selected) {
-                var value = dict.options[i].value;
-    
-                if (value == "None") return;
-    
-                pURL = pURL + dict.options[i].value;
-                break;
-            }
-            i++;
-        }
-        ]]>
-	showPreview(pURL);
-    }
-	
-	function openPreview(id)
-	{
-        var pURL = "<ics.resolvevariables NAME="$(Variables.preview-host)$(CS.Property.ft.approot)ContentServer" delimited="true"/>";
-        pURL = pURL + "?pagename=";
-       	pURL = pURL + "Support/CacheManager/ShowCachedPage&#38;pid=" + id;
-         
-        PreviewWindow = window.open(pURL, "NewPreviewContent", "width=700,height=480,scrollbars=yes,toolbar=no,location=no,status=yes,menubar=no,resizable=yes,directories=no");
-        PreviewWindow.focus();
-    }	
+<CALLELEMENT NAME="Support/Topnav"/>
+<Script Language="Javascript">
+function gotoPreview(F, dict)
+{
+    <PROPERTY.GET INIFILE="futuretense_xcel.ini" PARAM="xcelerate.previewhost" VARNAME="preview-host"/>
+    <PROPERTY.GET INIFILE="futuretense_xcel.ini" PARAM="xcelerate.previewservlet" VARNAME="preview-servlet"/>
+    var pURL = "<ics.resolvevariables NAME="$(Variables.preview-host)$(CS.Property.ft.approot)$(Variables.preview-servlet)" delimited="true"/>";
+    pURL = pURL + "?pagename=";
+     
+    i = 0;
+    <![CDATA[
+    while (i < dict.options.length) {
+        if (dict.options[i].selected) {
+            var value = dict.options[i].value;
 
-    function showPreview(pURL)
-    {
-        PreviewWindow = window.open(pURL, "PreviewContent", "width=640,height=480,scrollbars=yes,toolbar=yes,location=yes,status=yes,menubar=yes,resizable=yes,directories=yes");
-        PreviewWindow.focus();
-    }	
+            if (value == "None") return;
+
+            pURL = pURL + dict.options[i].value;
+            break;
+        }
+        i++;
+    }
+    ]]>
+showPreview(pURL);
+}
+
+function openPreview(id)
+{
+    var pURL = "<ics.resolvevariables NAME="$(Variables.preview-host)$(CS.Property.ft.approot)ContentServer" delimited="true"/>";
+    pURL = pURL + "?pagename=";
+   	pURL = pURL + "Support/CacheManager/ShowCachedPage&#38;pid=" + id;
+     
+    PreviewWindow = window.open(pURL, "NewPreviewContent", "width=700,height=480,scrollbars=yes,toolbar=no,location=no,status=yes,menubar=no,resizable=yes,directories=no");
+    PreviewWindow.focus();
+}	
+
+function showPreview(pURL)
+{
+    PreviewWindow = window.open(pURL, "PreviewContent", "width=640,height=480,scrollbars=yes,toolbar=yes,location=yes,status=yes,menubar=yes,resizable=yes,directories=yes");
+    PreviewWindow.focus();
+}	
 </Script>
 
 <h3>List Assets per Cached Pagelet</h3>
@@ -84,7 +83,6 @@
 		</CALLELEMENT>		
 	</ELSE></IF>
 </ELSE></IF>
-</div>
 <CALLELEMENT NAME="Support/Footer"/>
 </div>
 </FTCS>

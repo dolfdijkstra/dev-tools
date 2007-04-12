@@ -17,8 +17,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <% if (ics.UserIsMember("SiteGod")){ %>
 	<h3><center>SQL Optimization, Referential Integrity and Cleanup Duplicate Scripts</center></h3>
 	<table class="altClass">
@@ -74,7 +73,6 @@
 <% } else { %>
 	<ics:callelement element="Support/TCPI/LoginForm"/>
 <% } %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

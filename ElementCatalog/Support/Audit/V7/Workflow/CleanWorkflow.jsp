@@ -32,7 +32,7 @@ if (defdir.charAt(defdir.length()-1) != java.io.File.separatorChar) {
 long now = System.currentTimeMillis();
 %>
 
-<center><h4>Clean Workflow Tables</h4></center>
+<center><h3>Clean Workflow Tables</h3></center>
 <PRE>This Tool Deletes Completed Workflow History</PRE>
 
 <% if (delete) { %>

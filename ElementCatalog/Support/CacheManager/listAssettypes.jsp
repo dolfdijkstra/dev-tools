@@ -45,9 +45,8 @@ static String getQSStripped(String qs){
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/CacheManager/LeftNav"/>
-<div class="right-column">
-<h3>ContentServer Cache</h3>
+<ics:callelement element="Support/Topnav"/>
+<h3>Content Server Cache</h3>
 
 <% if ("full".equals(ics.GetVar("mode"))) { %>
 <table class="altClass">
@@ -95,7 +94,6 @@ static String getQSStripped(String qs){
 	</ics:listloop>
 </table>
 <% } %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

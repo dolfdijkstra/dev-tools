@@ -10,8 +10,7 @@
 -->
 <CALLELEMENT NAME="Support/general"/>
 <div id="content">
-<CALLELEMENT NAME="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<CALLELEMENT NAME="Support/Topnav"/>
 <setvar NAME="errno" VALUE="0"/>
 <ICS.QUERYEVENTS LIST="events" NAME="MovePubKeys" TYPE="1" />
 <IF COND="Variables.errno=-101">
@@ -38,7 +37,6 @@
 	</IF>	
 </ELSE>
 </IF>
-</div>
 <CALLELEMENT NAME="Support/Footer"/>
 </div>
 </FTCS>

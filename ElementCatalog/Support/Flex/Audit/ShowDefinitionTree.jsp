@@ -96,14 +96,13 @@ class TemplateNode {
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Flex/LeftNav"/>
-<div class="right-column">
-<center><h4>Flex Asset Definition Tree</h4></center>
+<ics:callelement element="Support/Topnav"/>
+<center><h3>Flex Asset Definition Tree</h3></center>
 
 <ics:sql sql='SELECT assettemplate FROM FlexGroupTypes ORDER BY assettemplate' table='FlexGroupTypes' listname="templatetypes"/>
 
 <ics:listloop listname="templatetypes">
-	<i><h3><ics:resolvevariables name="templatetypes.assettemplate"/></h3></i><br/>
+	<i><h4><ics:resolvevariables name="templatetypes.assettemplate"/></h4></i><br/>
 	<ics:clearerrno/>
 	<ics:sql sql='<%= ics.ResolveVariables("select td.name as name , td.id as id from templatetypes.assettemplate td where not exists (select 1 from templatetypes.assettemplate_TGroup tg where td.id = tg.ownerid) AND td.status != \'VO\' order by name") %>' table='<%=ics.ResolveVariables("templatetypes.assettemplate") %>' listname="defs"/>
 	<ics:listloop listname="defs">
@@ -120,7 +119,6 @@ class TemplateNode {
 	</ics:listloop>
 	<br/>
 </ics:listloop>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

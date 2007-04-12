@@ -86,8 +86,15 @@
 		font-weight: bold;
   }
 
+  h3 {
+		font-family: Helvetica, Arial, Tahoma, Verdana, sans-serif;
+		font-size: 16px;
+		font-weight: bold;
+		color: #4A525A;
+  }
+
   .entry-header h1, .entry-header h2, .entry-header h2 a {
-		font-family: Arial, Tahoma, Verdana, sans-serif;
+		font-family: Helvetica, Arial, Tahoma, Verdana, sans-serif;
 		font-size: 15px;
 		color: #660000;
 		text-decoration: none;
@@ -99,14 +106,14 @@
   }   
 
   .entry-header h3, .entry-header h3 a {
-		font-family: Tahoma, Arial, Verdana, sans-serif;
+		font-family: Helvetica, Arial, Tahoma, Verdana, sans-serif;
 		font-size: 10px;
 		font-weight: bold;
 		color: #4A525A;
   }
 
   .right-column h4 {
-		font-family: Arial, Tahoma, Verdana, sans-serif;
+		font-family: Helvetica, Arial, Tahoma, Verdana, sans-serif;
 		font-size: 16px;
 		font-weight: bold;
 		color: #4A525A;
@@ -123,7 +130,7 @@
   }
 
   .right-column h5 {
-	  font-family: Arial, Tahoma, Verdana, sans-serif;
+	  font-family: Helvetica, Arial, Tahoma, Verdana, sans-serif;
 	  font-size: 14px;
 	  background-color: white;
   }
@@ -172,7 +179,7 @@
   }
 
   .footer p, .footer a {
-	  font-family: Tahoma, Arial, Verdana, sans-serif;
+	  font-family: Helvetica, Arial, Tahoma, Verdana, sans-serif;
 	  font-size: 11px;
 	  color: #737C85;
   }
@@ -230,7 +237,7 @@
 
   #nav ul {
 	  list-style: none;
-	  line-height: 1;
+	  line-height: 2;
 	  padding: 0;
 	  margin: 0 0 0 100px;
 	  text-align: center;        
@@ -238,7 +245,7 @@
 
   #nav a {
 	  display: block;
-	  font-family: Arial, Tahoma, Verdana, sans-serif;
+	  font-family: Tahoma, Arial, Tahoma, Verdana, sans-serif;
 	  font-size: 10px;
 	  text-decoration: none;
 	  padding: 10px 0 0 0;
@@ -254,7 +261,7 @@
 
   #nav a:hover {
 	  display: block;
-	  font-family: Arial, Tahoma, Verdana, sans-serif;
+	  font-family: Tahoma, Arial, Tahoma, Verdana, sans-serif;
 	  font-size: 10px;
 	  text-decoration: none;
 	  background-color: #BABBBF;
@@ -272,7 +279,7 @@
 	  float: left;
 	  padding: 0;
 	  margin: 0;
-	  width: 112px;        
+	  width: 90px;        
   }
 
   ul.subnav {
@@ -305,7 +312,7 @@
 	  width: 100%; 
 	  border-collapse: collapse; 
 	  border: 1px solid #ddd; 
-	  font-family: Verdana, Tahoma, Arial, sans-serif; 
+	  font-family: Tahoma, Arial, Tahoma, Verdana, sans-serif; 
 	  font-size: 12px; 
 	  word-spacing: normal;
 	  overflow: hidden;
@@ -329,8 +336,5 @@
   table td, table th { 
 	  padding: 4px; 
 	  vertical-align: center;
-  }
-  h3 {
-  text-align: center; 
   }
 </style>

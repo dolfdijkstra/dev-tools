@@ -17,8 +17,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <h3><center>Detail View - Asset Dependents</center></h3>
 <% if (ics.GetVar("assetid")!=null) { %>
 <%//<b>Assetid: <ics:getvar name="assetid" /></b><hr/> %>
@@ -386,7 +385,6 @@ Legend:<br/>
     <b>Any Assetid: </b><input type="text" name="assetid" value=""/></b>&nbsp;<input type="Submit" name="showheld" value="ShowHeld"><br/>
     </form> 
 <% } %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

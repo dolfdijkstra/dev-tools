@@ -20,8 +20,8 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/Verify/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
+<center><h3>Unicode Form Post</h3></center>
 <%
 IList meta = ics.CatalogDef("jsp01",null,new StringBuffer());
 if (ics.GetErrno()==-104){
@@ -122,7 +122,6 @@ if (ics.GetErrno()==-104){
 		<input type='submit'/>
 	</form>
 	<hr />
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>        
 </cs:ftcs>

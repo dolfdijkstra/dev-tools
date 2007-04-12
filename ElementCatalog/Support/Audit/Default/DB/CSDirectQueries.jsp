@@ -17,7 +17,7 @@
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
 
-<center><h4>CSApps Queries</h4></center>
+<center><h3>CSApps Queries</h3></center>
 
 <%
 String queryid = ics.GetVar("queryid");
@@ -46,7 +46,7 @@ if (queryid!=null){
 	if (qid >=0 && qid < query.length) {
 		%>
 		<h4><%= query[qid][2] %></h4>
-		<b><%= query[qid][0] %></b><br/>
+		<%= query[qid][0] %><br/>
 		<ics:callelement element="Support/Audit/Default/DB/DisplayQuery">
 			<ics:argument name="query" value='<%= query[qid][0] %>' />
 			<ics:argument name="table" value='<%= query[qid][1] %>' />

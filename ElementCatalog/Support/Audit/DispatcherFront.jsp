@@ -16,18 +16,16 @@
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
 <ics:callelement element="Support/general" />
+<div id="content">
+<ics:callelement element="Support/Topnav" />
 <ics:setvar name="errno" value="0" />
 <% if(!ics.UserIsMember("SiteGod")) { %>
 	<h2><center>ContentServer System Audit Tool</center></h2>
 	<div>Sorry, you don't have access without SiteGod privledges.<br/>
 	Please <a href="ContentServer?pagename=Support/Audit/Start">Login</a></div>
 <% } else { %>
-    <div id="content">
-        <ics:callelement element="Support/Audit/LeftNav"/>
-            <div class="right-column">
-                <ics:callelement element="Support/Audit/Dispatcher" />
-            </div>
+        <ics:callelement element="Support/Audit/Dispatcher" />
         <ics:callelement element="Support/Footer" /> 
-    </div>
 <% } %>
+</div>
 </cs:ftcs>
