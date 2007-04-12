@@ -16,22 +16,20 @@
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
 <% 
-    String hostname = null;
-    try {
-        hostname = java.net.InetAddress.getLocalHost().getHostName();
-    } catch (java.net.UnknownHostException e){}
-    String serverport = Integer.toString(request.getServerPort());
-    java.text.DateFormat df = new java.text.SimpleDateFormat("MMM dd, yyyy hh:mm:ss a z"); 
+String hostname = null;
+try {
+    hostname = java.net.InetAddress.getLocalHost().getHostName();
+} catch (java.net.UnknownHostException e){}
+String serverport = Integer.toString(request.getServerPort());
+java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss z"); 
 %>
-    <div id="logo">
-        <b><font size="4">Fatwire Corporation&raquo;</font>&nbsp;&nbsp;<font size="3">SupportTools</font></b>
-        <table width="100%" style="border:none"><tr>
-                <td width="25%" style="text-transform:none;border-bottom:none"><b><font color="white" size="2"><%= hostname%></font></b></td>
-                <td width="25%" style="border-bottom:none"><b><font color="white" size="2"><%= serverport%></font></b></td>
-                <td width="25%" style="text-transform:none;border-bottom:none"><b><font color="white" size="2"><%=ics.GetSSVar("username")%></font></b></td>
-                <td width="25%" style="text-align:right;border-bottom:none"><b><font color="white" size="2"><%= df.format(new java.util.Date())%></font></b></td>
-        </tr></table>           
-    </div>
+	<div id="logo">
+	    <b><font size="4">Fatwire Corporation Support Tools</font></b>
+	    <table width="100%" style="border:none"><tr>
+	            <td width="25%" style="text-transform:none;border-bottom:none"><b><font color="white" size="2"><%=ics.GetSSVar("username")%> at <%= hostname%>:<%= serverport%></font></b></td>
+	            <td width="25%" style="text-align:right;border-bottom:none"><b><font color="white" size="2"><%= df.format(new java.util.Date())%></font></b></td>
+	    </tr></table>           
+	</div>
     <div id="nav-bg">
         <div id="nav">
             <b>
