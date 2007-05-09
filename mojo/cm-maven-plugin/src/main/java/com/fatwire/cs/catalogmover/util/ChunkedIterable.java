@@ -162,49 +162,5 @@ public class ChunkedIterable<T> implements Iterable<Iterable<T>> {
         return new ChunkedIterator(this._iterable.iterator());
     }
 
-    public static void main(final String[] a) {
-        final Map<Integer, String> l = new TreeMap<Integer, String>();
-        for (int i = 0; i < 15; i++) {
-            l.put(i, String.valueOf(i));
-        }
-        int j = 0;
-        for (final Iterable<Entry<Integer, String>> i : new ChunkedIterable<Entry<Integer, String>>(
-                l.entrySet(), 10)) {
-            System.out.println(j);
-            for (final Entry<Integer, String> u : i) {
-                System.out.println(j + ":" + u);
-            }
-            j++;
-        }
-        // int j = 0;
-        for (final Iterable<Entry<Integer, String>> i : new ChunkedIterable<Entry<Integer, String>>(
-                l.entrySet(), 10)) {
-            System.out.println(j);
-            for (final Entry<Integer, String> u : i) {
-                System.out.println(j + ":" + u);
-            }
-            for (final Entry<Integer, String> u : i) {
-                System.out.println(j + ":" + u);
-            }
-
-            j++;
-        }
-
-    }
-
-    public static void main2(final String[] a) {
-        final List<Integer> l = new LinkedList<Integer>();
-        for (int i = 0; i < 100; i++) {
-            l.add(i);
-        }
-        int j = 0;
-        for (final Iterable<Integer> i : new ChunkedIterable<Integer>(l, 10)) {
-            System.out.println(j);
-            for (final Integer u : i) {
-                System.out.println(j + ":" + u);
-            }
-            j++;
-        }
-    }
 
 }

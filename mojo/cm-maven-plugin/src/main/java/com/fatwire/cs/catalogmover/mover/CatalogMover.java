@@ -38,6 +38,8 @@ public class CatalogMover {
 
     private String ttTableName;
 
+    String mirrorprotocolversion = null;
+
     public void moveCatalog(final IProgressMonitor monitor)
             throws HttpAccessException, IOException {
 
@@ -64,12 +66,18 @@ public class CatalogMover {
 
     public void move(final Iterable<Row> rows, final IProgressMonitor monitor)
             throws HttpAccessException, IOException {
-        monitor.beginTask("Moving rows to ContentServer", -1);
+        monitor.beginTask("Moving rows to ContentServer for catalog "
+                + catalog.getName(), -1);
         final HostConfig hc = new HostConfig(csPath);
         httpAccess = new HttpAccess(hc);
         final RequestState state = new RequestState();
         httpAccess.setState(state);
         mirrorGetConfig();
+        if (this.mirrorprotocolversion == null) {
+            throw new RuntimeException(
+                    "Could not find the protocol version. Is the configuration correct?");
+
+        }
         createTempTable();
         int errorCount = 0;
         try {
@@ -92,7 +100,7 @@ public class CatalogMover {
                 }
                 log.trace(post.toString());
 
-                monitor.subTask(post.toString());
+                monitor.subTask("Sending " + i + " rows to ContentServer.");
 
                 final ResponseStatusCode status = execute(post);
                 monitor.worked(i);
@@ -171,7 +179,7 @@ public class CatalogMover {
     }
 
     protected void mirrorGetConfig() throws HttpAccessException, IOException {
-        String mirrorprotocolversion = null;
+
         final Post post = new Post();
         post.setUrl(csPath.getPath());
         post.addMultipartData("authusername", username);
