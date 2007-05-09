@@ -14,20 +14,21 @@ public class Row {
         this.data = data;
     }
 
-    public String getData(int colNum) {
+    public String getData(final int colNum) {
         return data.getCell(rowNum, colNum).getCell();
     }
 
-    public String getData(String headerName) {
+    public String getData(final String headerName) {
         int col = -1;
-        for (Header header : data.getHeaders().values()) {
+        for (final Header header : data.getHeaders().values()) {
             if (headerName.equals(header.getHeader())) {
                 col = header.getColumn();
                 break;
             }
         }
-        if (col == -1)
+        if (col == -1) {
             throw new NoSuchElementException();
+        }
         return getData(col);
     }
 

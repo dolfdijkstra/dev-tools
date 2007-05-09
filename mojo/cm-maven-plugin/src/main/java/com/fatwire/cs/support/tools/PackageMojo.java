@@ -85,11 +85,11 @@ public class PackageMojo extends AbstractMojo {
      */
     private MavenProjectHelper projectHelper;
 
-    protected static File getOutputFile(File basedir, String finalName,
-            String classifier) {
+    protected static File getOutputFile(final File basedir,
+            final String finalName, String classifier) {
         if (classifier == null) {
             classifier = "";
-        } else if (classifier.trim().length() > 0
+        } else if ((classifier.trim().length() > 0)
                 && !classifier.startsWith("-")) {
             classifier = "-" + classifier;
         }
@@ -99,15 +99,15 @@ public class PackageMojo extends AbstractMojo {
 
     public void execute() throws MojoExecutionException {
         try {
-            File targetFile = getOutputFile(outputDirectory, zipName,
-                    classifier);
+            final File targetFile = PackageMojo.getOutputFile(outputDirectory,
+                    zipName, classifier);
             performPackaging(targetFile);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new MojoExecutionException("Could not zip", e);
         }
     }
 
-    private void performPackaging(File targetFile) throws IOException,
+    private void performPackaging(final File targetFile) throws IOException,
             ArchiverException, ManifestException,
             DependencyResolutionRequiredException, MojoExecutionException,
             MojoFailureException {
@@ -121,21 +121,20 @@ public class PackageMojo extends AbstractMojo {
                 getExcludes());
         zipArchiver.createArchive();
 
-        String classifier = this.classifier;
+        final String classifier = this.classifier;
         if (classifier != null) {
             projectHelper.attachArtifact(getProject(), "zip", classifier,
                     targetFile);
         } else {
-            Artifact artifact = getProject().getArtifact();
+            final Artifact artifact = getProject().getArtifact();
             if (primaryArtifact) {
                 artifact.setFile(targetFile);
-            } else if (artifact.getFile() == null
+            } else if ((artifact.getFile() == null)
                     || artifact.getFile().isDirectory()) {
                 artifact.setFile(targetFile);
             }
         }
     }
-
 
     /**
      * @return the project
@@ -147,7 +146,7 @@ public class PackageMojo extends AbstractMojo {
     /**
      * @param project the project to set
      */
-    public void setProject(MavenProject project) {
+    public void setProject(final MavenProject project) {
         this.project = project;
     }
 
@@ -163,24 +162,25 @@ public class PackageMojo extends AbstractMojo {
      * @param webappDirectory the target directory
      * @throws java.io.IOException if an error occured while copying webResources
      */
-    public void copyResources(File sourceDirectory, File webappDirectory)
-            throws IOException {
+    public void copyResources(final File sourceDirectory,
+            final File webappDirectory) throws IOException {
         if (!sourceDirectory.equals(webappDirectory)) {
             getLog().info(
                     "Copy webapp webResources to "
                             + webappDirectory.getAbsolutePath());
             if (sourceDirectory.exists()) {
-                String[] fileNames = getSourceFiles(sourceDirectory);
+                final String[] fileNames = getSourceFiles(sourceDirectory);
                 for (int i = 0; i < fileNames.length; i++) {
-                    copyFileIfModified(new File(sourceDirectory, fileNames[i]),
-                            new File(webappDirectory, fileNames[i]));
+                    PackageMojo.copyFileIfModified(new File(sourceDirectory,
+                            fileNames[i]), new File(webappDirectory,
+                            fileNames[i]));
                 }
             }
         }
     }
 
-    private static void copyFileIfModified(File source, File destination)
-            throws IOException {
+    private static void copyFileIfModified(final File source,
+            final File destination) throws IOException {
         if (destination.lastModified() < source.lastModified()) {
             FileUtils.copyFile(source.getCanonicalFile(), destination);
             // preserve timestamp
@@ -195,8 +195,8 @@ public class PackageMojo extends AbstractMojo {
      * @param sourceDir the directory to be scanned
      * @return the array of filenames, relative to the sourceDir
      */
-    private String[] getSourceFiles(File sourceDir) {
-        DirectoryScanner scanner = new DirectoryScanner();
+    private String[] getSourceFiles(final File sourceDir) {
+        final DirectoryScanner scanner = new DirectoryScanner();
         scanner.setBasedir(sourceDir);
         scanner.setExcludes(new String[0]);
         scanner.addDefaultExcludes();
@@ -209,6 +209,7 @@ public class PackageMojo extends AbstractMojo {
         return new String[] { "**" };
 
     }
+
     private String[] getExcludes() {
         return DirectoryScanner.DEFAULTEXCLUDES;
 

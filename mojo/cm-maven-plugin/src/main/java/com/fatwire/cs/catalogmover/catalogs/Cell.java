@@ -73,14 +73,14 @@ class Key implements Comparable<Key> {
     }
 
     public int compareTo(final Key o) {
-        if (column == o.column && row == o.row) {
+        if ((column == o.column) && (row == o.row)) {
             return 0;
         }
 
         if (row < o.row) {
             return -1;
         }
-        if (row == o.row && column < o.column) {
+        if ((row == o.row) && (column < o.column)) {
             return -1;
             //		if (column < o.column)
             //			return -1;

@@ -6,119 +6,123 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.TreeMap;
 
-public class TableData implements Iterable<Row>{
+public class TableData implements Iterable<Row> {
 
-	public static final int COLTYPENUMBER = 0;
+    public static final int COLTYPENUMBER = 0;
 
-	public static final int COLTYPETEXT = 1;
+    public static final int COLTYPETEXT = 1;
 
-	public static final int COLTYPEDATE = 2;
+    public static final int COLTYPEDATE = 2;
 
-	public static final int COLTYPEBINARY = 3;
+    public static final int COLTYPEBINARY = 3;
 
-	public static final int COLTYPEUNKNOWN = 4;
+    public static final int COLTYPEUNKNOWN = 4;
 
-	// ---
-	// Current html table format
-	public static final int BASETMLVERSION = 3;
+    // ---
+    // Current html table format
+    public static final int BASETMLVERSION = 3;
 
-	public static final int HTMLTABLEVERSION = 3;
+    public static final int HTMLTABLEVERSION = 3;
 
-	private String tableName;
+    private String tableName;
 
-	private String tableType;
+    private String tableType;
 
-	private String databaseType;
+    private String databaseType;
 
-	private Map<Key, Cell> cells;
+    private Map<Key, Cell> cells;
 
-	private Map<Integer, Header> headers;
-	private int rowCount;
+    private Map<Integer, Header> headers;
 
-	public TableData() {
-		cells = new TreeMap<Key, Cell>();
-		headers = new HashMap<Integer, Header>();
-	}
+    private int rowCount;
 
-	public void addCell(final int row, final int column, final String cell) {
-		cells.put(new Key(row, column), new Cell(row, headers.get(column), cell));
-		rowCount = Math.max(rowCount, row);
-	}
+    public TableData() {
+        cells = new TreeMap<Key, Cell>();
+        headers = new HashMap<Integer, Header>();
+    }
 
-	public void addHeader(final int column, final String header, final String schema, final int value) {
-		headers.put(column, new Header(column, header, schema, value));
-	}
+    public void addCell(final int row, final int column, final String cell) {
+        cells.put(new Key(row, column),
+                new Cell(row, headers.get(column), cell));
+        rowCount = Math.max(rowCount, row);
+    }
 
-	public void setTableName(final String tableName) {
-		this.tableName = tableName;
+    public void addHeader(final int column, final String header,
+            final String schema, final int value) {
+        headers.put(column, new Header(column, header, schema, value));
+    }
 
-	}
+    public void setTableName(final String tableName) {
+        this.tableName = tableName;
 
-	public void setTableType(final String tableType) {
-		this.tableType = tableType;
+    }
 
-	}
+    public void setTableType(final String tableType) {
+        this.tableType = tableType;
 
-	public void setDatabaseType(final String type) {
-		databaseType = type;
+    }
 
-	}
+    public void setDatabaseType(final String type) {
+        databaseType = type;
 
-	public Map<Key, Cell> getCells() {
-		return cells;
-	}
+    }
 
-	public String getDatabaseType() {
-		return databaseType;
-	}
+    public Map<Key, Cell> getCells() {
+        return cells;
+    }
 
-	public Map<Integer, Header> getHeaders() {
-		return headers;
-	}
+    public String getDatabaseType() {
+        return databaseType;
+    }
 
-	public String getTableName() {
-		return tableName;
-	}
+    public Map<Integer, Header> getHeaders() {
+        return headers;
+    }
 
-	public String getTableType() {
-		return tableType;
-	}
+    public String getTableName() {
+        return tableName;
+    }
 
-	public Cell getCell(int k, int j) {
-		return getCells().get(new Key(k,j));
-	}
+    public String getTableType() {
+        return tableType;
+    }
 
-	public int getRowCount() {
-		return this.rowCount +1;
-	}
+    public Cell getCell(final int k, final int j) {
+        return getCells().get(new Key(k, j));
+    }
 
-	public boolean isTracked() {
-		return false;
-	}
+    public int getRowCount() {
+        return rowCount + 1;
+    }
 
-	public Iterator<Row> iterator() {
-		return new Iterator<Row>(){
-			private int counter=0;
+    public boolean isTracked() {
+        return false;
+    }
 
-			public boolean hasNext() {
-				return counter < rowCount;
-			}
+    public Iterator<Row> iterator() {
+        return new Iterator<Row>() {
+            private int counter = 0;
 
-			public Row next() {
-				if (!hasNext())
-	                throw new NoSuchElementException();
-				Row row = new Row(TableData.this,counter);
-				counter++;
-				return row;
-			}
+            public boolean hasNext() {
+                return counter < rowCount;
+            }
 
-			public void remove() {
-				assert false : "Unsupported operation remove()";
-				
-			}
-			
-		};
-	}
+            public Row next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                final Row row = new Row(TableData.this, counter);
+                counter++;
+                return row;
+            }
+
+            public void remove() {
+                assert false : "Unsupported operation remove()";
+
+            }
+
+        };
+    }
 
     public String getTableKey() {
         // first header is the key

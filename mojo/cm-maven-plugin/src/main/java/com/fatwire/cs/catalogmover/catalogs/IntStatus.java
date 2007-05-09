@@ -10,8 +10,7 @@ package com.fatwire.cs.catalogmover.catalogs;
  * Member is public to bypass overhead
  * of a method call on a simple container.
  */
-public class IntStatus
-{
+public class IntStatus {
     /**
      * The value of the object,
      * an int
@@ -22,12 +21,16 @@ public class IntStatus
      * Constructor, defaults the
      * status to 0
      */
-    public IntStatus()				{value = 0;}	// a decent value?
+    public IntStatus() {
+        value = 0;
+    } // a decent value?
 
     /**
      * Constructor, set the value
      *
      * @param v
      */
-    public IntStatus(final int v)			{value = v;}
+    public IntStatus(final int v) {
+        value = v;
+    }
 }

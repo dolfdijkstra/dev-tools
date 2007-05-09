@@ -2,7 +2,7 @@ package com.fatwire.cs.catalogmover.mover;
 
 public class NullProgressMonitor implements IProgressMonitor {
 
-    public void beginTask(String string, int i) {
+    public void beginTask(final String string, final int i) {
 
     }
 
@@ -10,11 +10,11 @@ public class NullProgressMonitor implements IProgressMonitor {
         return false;
     }
 
-    public void subTask(String string) {
+    public void subTask(final String string) {
 
     }
 
-    public void worked(int i) {
+    public void worked(final int i) {
 
     }
 

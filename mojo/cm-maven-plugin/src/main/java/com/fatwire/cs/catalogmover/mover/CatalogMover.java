@@ -69,19 +69,19 @@ public class CatalogMover {
         httpAccess = new HttpAccess(hc);
         final RequestState state = new RequestState();
         httpAccess.setState(state);
-        this.mirrorGetConfig();
-        this.createTempTable();
+        mirrorGetConfig();
+        createTempTable();
         int errorCount = 0;
         try {
             for (final Iterable<Row> list : new ChunkedIterable<Row>(rows,
-                    rowsPerPost)) {
+                    CatalogMover.rowsPerPost)) {
                 final Post post = new Post();
                 post.setUrl(csPath.getPath());
                 post.addMultipartData("authusername", username);
                 post.addMultipartData("authpassword", password);
                 post.addMultipartData("tablename", ttTableName);
                 post.addMultipartData("ftcmd", "replacerows");
-                post.addMultipartData("tablekey", this.catalog.getTableKey());
+                post.addMultipartData("tablekey", catalog.getTableKey());
                 int i = 0;
                 for (final Row element : list) {
                     addToPost(post, element, i);
@@ -108,7 +108,7 @@ public class CatalogMover {
                 } while (status.setNextError());
 
             }
-            this.commit();
+            commit();
         } finally {
             httpAccess.close();
         }
@@ -116,13 +116,14 @@ public class CatalogMover {
     }
 
     void addToPost(final Post post, final Row element, final int rowNum) {
-        int cols = element.getNumberOfColumns();
+        final int cols = element.getNumberOfColumns();
         for (int i = 0; i < cols; i++) {
-            Header header = element.getHeader(i);
-            String name = header.getHeader();
+            final Header header = element.getHeader(i);
+            final String name = header.getHeader();
             String val = element.getData(i);
-            if (val.length() == 0)
+            if (val.length() == 0) {
                 continue;
+            }
             if (name.toLowerCase().startsWith("url")) {
                 val = val.replace('\\', '/');
                 final String folder = getFolder(val);
@@ -178,15 +179,16 @@ public class CatalogMover {
         post.addMultipartData("ftcmd", "mirrorgetconfig");
 
         final ResponseStatusCode status = execute(post);
-        if (status.getResult())
+        if (status.getResult()) {
             mirrorprotocolversion = status.getParams().get(
                     "mirrorprotocolversion");
+        }
         log.debug(mirrorprotocolversion);
 
     }
 
-    private ResponseStatusCode execute(Post post) throws HttpAccessException,
-            IOException {
+    private ResponseStatusCode execute(final Post post)
+            throws HttpAccessException, IOException {
         final ResponseStatusCode status = new ResponseStatusCode();
         final long t = System.currentTimeMillis();
         Response response = null;
@@ -197,14 +199,14 @@ public class CatalogMover {
                     + Long.toString(System.currentTimeMillis() - t) + " ms.");
             log.trace(response);
             if (response.getStatusCode() == 200) {
-                String charset = response.getResponseEncoding();
+                final String charset = response.getResponseEncoding();
 
-                InputStreamReader in = new InputStreamReader(response
+                final InputStreamReader in = new InputStreamReader(response
                         .getResponseBodyAsStream(), charset);
-                char[] b = new char[1024];
+                final char[] b = new char[1024];
                 int c = 0;
 
-                StringBuilder out = new StringBuilder();
+                final StringBuilder out = new StringBuilder();
 
                 while ((c = in.read(b)) != -1) {
                     out.append(b, 0, c);
@@ -214,8 +216,9 @@ public class CatalogMover {
 
             }
         } finally {
-            if (response != null)
+            if (response != null) {
                 response.close();
+            }
         }
         return status;
 
@@ -232,8 +235,9 @@ public class CatalogMover {
         post.addMultipartData("parenttablename", catalog.getName());
         //tablename
         final ResponseStatusCode status = execute(post);
-        if (status.getResult())
+        if (status.getResult()) {
             ttTableName = status.getParams().get("tablename");
+        }
 
     }
 

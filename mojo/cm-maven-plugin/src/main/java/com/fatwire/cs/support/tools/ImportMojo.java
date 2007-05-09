@@ -6,7 +6,6 @@ import java.net.URL;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.project.MavenProject;
 
 import com.fatwire.cs.catalogmover.mover.CatalogMover;
 import com.fatwire.cs.catalogmover.mover.IProgressMonitor;
@@ -20,15 +19,6 @@ import com.fatwire.cs.catalogmover.mover.LocalCatalog;
  * @goal import
  */
 public class ImportMojo extends AbstractMojo {
-    /**
-     * The maven project.
-     *
-     * @parameter expression="${project}"
-     * @required
-     * @readonly
-     */
-    private MavenProject project;
-
     /**
      * @parameter
      * @required
@@ -88,7 +78,7 @@ public class ImportMojo extends AbstractMojo {
             cm.moveCatalog(new IProgressMonitor() {
                 private String task;
 
-                public void beginTask(String string, int i) {
+                public void beginTask(final String string, final int i) {
                     task = string;
                     getLog().info("begin task " + string);
 
@@ -98,16 +88,16 @@ public class ImportMojo extends AbstractMojo {
                     return false;
                 }
 
-                public void subTask(String string) {
+                public void subTask(final String string) {
                     getLog().info("begin sub task " + string);
                 }
 
-                public void worked(int i) {
+                public void worked(final int i) {
                     getLog().info(" task " + task + " has worked " + i);
                 }
 
             });
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new MojoFailureException(this, e.getMessage(), e.getMessage());
         }
 

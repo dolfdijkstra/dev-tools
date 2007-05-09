@@ -78,7 +78,7 @@ public class LocalCatalog {
     }
 
     public Iterable<Row> getRows1() {
-        int rowCount = 1;//table.getRowCount();
+        final int rowCount = 1;//table.getRowCount();
 
         final List<Row> rows = new ArrayList<Row>();
         for (int rowNum = 0; rowNum < rowCount; rowNum++) {

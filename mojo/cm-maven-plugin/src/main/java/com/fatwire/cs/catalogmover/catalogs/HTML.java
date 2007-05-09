@@ -1,19 +1,16 @@
 package com.fatwire.cs.catalogmover.catalogs;
 
-
 // This just provides a responsitory
 // for html bits
 
-public final class HTML
-{
+public final class HTML {
     /**
      * bold a string
      *
      * @param s input
      * @return <b>input</b>
      */
-    public static final String boldthis(final String s)
-    {
+    public static final String boldthis(final String s) {
         return ("<b>" + s + "</b>");
     }
 
@@ -24,8 +21,7 @@ public final class HTML
      * @param data
      * @return string
      */
-    public static final String caption(final String data)
-    {
+    public static final String caption(final String data) {
         return ("\n<CAPTION ALIGN=LEFT>" + data + "</CAPTION>\n");
     }
 
@@ -35,8 +31,7 @@ public final class HTML
      * @param s
      * @return string
      */
-    public static final String comment(final String s)
-    {
+    public static final String comment(final String s) {
         return ("<!--" + s + "-->");
     }
 
@@ -45,8 +40,7 @@ public final class HTML
      *
      * @return String with end html tags
      */
-    public static final String endpage()
-    {
+    public static final String endpage() {
         return "</body>\n</html>";
     }
 
@@ -55,8 +49,7 @@ public final class HTML
      *
      * @return string
      */
-    public static final String endtable()
-    {
+    public static final String endtable() {
         return ("</TABLE>\n");
     }
 
@@ -65,8 +58,7 @@ public final class HTML
      *
      * @return string
      */
-    public static final String gencomment()
-    {
+    public static final String gencomment() {
         return ("\n<!-- CatalogManager-->\n");
     }
 
@@ -76,8 +68,7 @@ public final class HTML
      * @param data header data
      * @return string
      */
-    public static final String header(final String data)
-    {
+    public static final String header(final String data) {
         return ("<th>" + data + "</th>\n");
     }
 
@@ -87,8 +78,7 @@ public final class HTML
      * @param coldata header data
      * @return string
      */
-    public static final String row(final String coldata)
-    {
+    public static final String row(final String coldata) {
         return ("<tr>\n" + coldata + "</tr>\n");
     }
 
@@ -97,11 +87,8 @@ public final class HTML
      *
      * @return String with start html tags
      */
-    public static final String startpage(final String t)
-    {
-        return "<html>\n<head><title>"
-                + t
-                + "</title></head>\n<body>\n";
+    public static final String startpage(final String t) {
+        return "<html>\n<head><title>" + t + "</title></head>\n<body>\n";
     }
 
     /**
@@ -112,14 +99,14 @@ public final class HTML
      * @param padding
      * @return string
      */
-    public static final String table(final int border, final int spacing, final int padding)
-    {
+    public static final String table(final int border, final int spacing,
+            final int padding) {
         final String s = Integer.toString(border);
         final String s2 = Integer.toString(padding);
         final String s3 = Integer.toString(spacing);
 
-        return ("\n<TABLE BORDER=" + s
-                + " CELLSPACING=" + s3 + " CELLPADDING=" + s2 + ">\n");
+        return ("\n<TABLE BORDER=" + s + " CELLSPACING=" + s3 + " CELLPADDING="
+                + s2 + ">\n");
     }
 
     /**
@@ -128,8 +115,7 @@ public final class HTML
      * @param s input
      * @return <u>input</u>
      */
-    public static final String underlinethis(final String s)
-    {
+    public static final String underlinethis(final String s) {
         return ("<u>" + s + "</u>");
     }
 }

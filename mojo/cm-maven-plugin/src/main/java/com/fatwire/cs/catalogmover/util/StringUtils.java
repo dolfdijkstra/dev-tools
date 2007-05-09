@@ -16,19 +16,21 @@ import org.apache.commons.logging.LogFactory;
 public class StringUtils {
 
     public static boolean goodString(final String s) {
-        return s != null && s.length() > 0;
+        return (s != null) && (s.length() > 0);
     }
 
-    public static final Collection<String> arguments(String cmd, int sep) {
-        byte data[] = { (byte) '\0' };
+    public static final Collection<String> arguments(final String cmd,
+            final int sep) {
+        final byte data[] = { (byte) '\0' };
         data[0] = (byte) sep;
-        String str = new String(data);
-        return arguments(cmd, str);
+        final String str = new String(data);
+        return StringUtils.arguments(cmd, str);
     }
 
-    public static final List<String> arguments(String cmd, String sep) {
-        List<String> v = new LinkedList<String>();
-        arguments(v, cmd, sep);
+    public static final List<String> arguments(final String cmd,
+            final String sep) {
+        final List<String> v = new LinkedList<String>();
+        StringUtils.arguments(v, cmd, sep);
         return v;
     }
 
@@ -38,22 +40,24 @@ public class StringUtils {
     //
     // StringTokenizer doesn't work since it requires a
     // token and this doesn't
-    public static final Collection<String> arguments(Collection<String> v,
-            String cmd, String sep) {
+    public static final Collection<String> arguments(
+            final Collection<String> v, final String cmd, final String sep) {
         try {
-            StringTokenizer tokenizer = new StringTokenizer(cmd, sep, false);
+            final StringTokenizer tokenizer = new StringTokenizer(cmd, sep,
+                    false);
             while (tokenizer.hasMoreTokens()) {
                 // tokenizer returns true always at least
                 // once, so watch out for dead string
-                String s = tokenizer.nextToken().trim();
-                if (!emptyString(s))
+                final String s = tokenizer.nextToken().trim();
+                if (!StringUtils.emptyString(s)) {
                     v.add(s);
+                }
             }
-        } catch (NoSuchElementException exception) {
+        } catch (final NoSuchElementException exception) {
             LogFactory.getLog(StringUtils.class).error(
                     "NoSuchElementException creating a list from " + cmd,
                     exception);
-        } catch (StringIndexOutOfBoundsException exception) {
+        } catch (final StringIndexOutOfBoundsException exception) {
             LogFactory.getLog(StringUtils.class).error(
                     "StringIndexOutOfBoundsException creating a list from "
                             + cmd, exception);
@@ -61,15 +65,17 @@ public class StringUtils {
         return v;
     }
 
-    public static final boolean emptyString(String x) {
+    public static final boolean emptyString(final String x) {
         // if the string is null, return true==empty
-        if (x == null)
+        if (x == null) {
             return true;
+        }
 
-        int len = x.length();
+        final int len = x.length();
         for (int i = 0; i < len; i++) {
-            if (!Character.isWhitespace(x.charAt(i)))
+            if (!Character.isWhitespace(x.charAt(i))) {
                 return false;
+            }
         }
 
         return true;
@@ -83,14 +89,15 @@ public class StringUtils {
      * @param bDecode    true to indicate that decoding is desired
      * @since 4.0
      */
-    public static final void seedTo(String inputParam, Map<String, String> map,
-            boolean bDecode) {
-        if (emptyString(inputParam))
+    public static final void seedTo(final String inputParam,
+            final Map<String, String> map, final boolean bDecode) {
+        if (StringUtils.emptyString(inputParam)) {
             return;
+        }
 
         int iequal, iamper;
         int startAt = 0;
-        int inlen = inputParam.length();
+        final int inlen = inputParam.length();
         boolean bDone = false;
 
         while (!bDone) {
@@ -100,48 +107,53 @@ public class StringUtils {
                 iamper = inputParam.indexOf('&', iequal);
                 n = inputParam.substring(startAt, iequal).trim();
                 iequal++;
-                if (iequal >= inlen)
+                if (iequal >= inlen) {
                     break;
+                }
 
-                if (iamper == -1)
+                if (iamper == -1) {
                     v = inputParam.substring(iequal);
-                else
+                } else {
                     v = inputParam.substring(iequal, iamper);
+                }
 
-                if (iamper != -1)
+                if (iamper != -1) {
                     startAt = iamper + 1;
-                else
+                } else {
                     bDone = true;
+                }
 
                 // deal with stupid value
                 v = v.trim();
                 if (bDecode) {
                     try {
-                        n = decode(n);
-                        v = decode(v);
-                    } catch (Exception exception) {
+                        n = StringUtils.decode(n);
+                        v = StringUtils.decode(v);
+                    } catch (final Exception exception) {
                     }
                 }
                 map.put(n, v);
-            } else
+            } else {
                 break; // no more pairs
+            }
         }
 
     }
 
-    private static String PLATFORM_DEFAULT_CHARSET = Charset.defaultCharset()
-            .name();
+    private static final String PLATFORM_DEFAULT_CHARSET = Charset
+            .defaultCharset().name();
 
-    private static URLCodec APACHE_COMMONS_CODEC = new URLCodec(
-            PLATFORM_DEFAULT_CHARSET);
+    private static final URLCodec APACHE_COMMONS_CODEC = new URLCodec(
+            StringUtils.PLATFORM_DEFAULT_CHARSET);
 
-    private static String decode(String n) {
+    private static String decode(final String n) {
         try {
-            return APACHE_COMMONS_CODEC.decode(n, PLATFORM_DEFAULT_CHARSET);
-        } catch (UnsupportedEncodingException e) {
+            return StringUtils.APACHE_COMMONS_CODEC.decode(n,
+                    StringUtils.PLATFORM_DEFAULT_CHARSET);
+        } catch (final UnsupportedEncodingException e) {
             throw new IllegalStateException(
                     "Platform default encoding is not supported??? ", e);
-        } catch (DecoderException e) {
+        } catch (final DecoderException e) {
             throw new RuntimeException(e);
         }
     }

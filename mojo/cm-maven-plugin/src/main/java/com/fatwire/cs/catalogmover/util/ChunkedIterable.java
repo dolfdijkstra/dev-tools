@@ -70,140 +70,141 @@ import java.util.Map.Entry;
  * @param <T>
  */
 public class ChunkedIterable<T> implements Iterable<Iterable<T>> {
-	private final int _chunkSize;
+    private final int _chunkSize;
 
-	private final Iterable<T> _iterable;
+    private final Iterable<T> _iterable;
 
-	/**
-	 * Creates an instance given a List and chunk size.
-	 * 
-	 * @param iterable
-	 *            Original iterable
-	 * @param chunkSize
-	 *            size of each chunk
-	 * @throws IllegalArgumentException
-	 *             if chunkSize is <= 0.
-	 */
-	public ChunkedIterable(final Iterable<T> iterable, final int chunkSize) {
-		if (chunkSize <= 0) {
-			throw new IllegalArgumentException(
-					"Chunk size must be greater than 0");
-		}
-		if (iterable == null)
-			throw new NullPointerException("Iterable can not be null.");
-		_chunkSize = chunkSize;
-		_iterable = iterable;
-	}
+    /**
+     * Creates an instance given a List and chunk size.
+     * 
+     * @param iterable
+     *            Original iterable
+     * @param chunkSize
+     *            size of each chunk
+     * @throws IllegalArgumentException
+     *             if chunkSize is <= 0.
+     */
+    public ChunkedIterable(final Iterable<T> iterable, final int chunkSize) {
+        if (chunkSize <= 0) {
+            throw new IllegalArgumentException(
+                    "Chunk size must be greater than 0");
+        }
+        if (iterable == null) {
+            throw new NullPointerException("Iterable can not be null.");
+        }
+        _chunkSize = chunkSize;
+        _iterable = iterable;
+    }
 
-	private class ChunkedIterator implements Iterator<Iterable<T>> {
+    private class ChunkedIterator implements Iterator<Iterable<T>> {
 
-		private final Iterator<T> iterator;
+        private final Iterator<T> iterator;
 
-		public ChunkedIterator(final Iterator<T> iterator) {
-			super();
-			this.iterator = iterator;
-		}
+        public ChunkedIterator(final Iterator<T> iterator) {
+            super();
+            this.iterator = iterator;
+        }
 
-		/**
-		 * Any more chunks available for read?
-		 * 
-		 * @return <code>true</code> if more chunks are available,
-		 *         <code>false</code> otherwise
-		 */
-		public boolean hasNext() {
-			return iterator.hasNext();
-		}
+        /**
+         * Any more chunks available for read?
+         * 
+         * @return <code>true</code> if more chunks are available,
+         *         <code>false</code> otherwise
+         */
+        public boolean hasNext() {
+            return iterator.hasNext();
+        }
 
-		/**
-		 * Returns the next 'chunk'. The object returned is an Iterable with a
-		 * size less or equals than chunk size.
-		 * 
-		 * @return Iterable that a chunk of the original iterable
-		 */
-		public Iterable<T> next() {
-			return new Iterable<T>() {
+        /**
+         * Returns the next 'chunk'. The object returned is an Iterable with a
+         * size less or equals than chunk size.
+         * 
+         * @return Iterable that a chunk of the original iterable
+         */
+        public Iterable<T> next() {
+            return new Iterable<T>() {
 
-				public Iterator<T> iterator() {
+                public Iterator<T> iterator() {
 
-					return new Iterator<T>() {
-						int counter = 0;
+                    return new Iterator<T>() {
+                        int counter = 0;
 
-						public boolean hasNext() {
-							return iterator.hasNext() && counter < _chunkSize;
-						}
+                        public boolean hasNext() {
+                            return iterator.hasNext() && (counter < _chunkSize);
+                        }
 
-						public T next() {
-							counter++;
-							return iterator.next();
-						}
+                        public T next() {
+                            counter++;
+                            return iterator.next();
+                        }
 
-						public void remove() {
-							assert false : "Unsupported operation remove()";
+                        public void remove() {
+                            assert false : "Unsupported operation remove()";
 
-						}
+                        }
 
-					};
-				}
+                    };
+                }
 
-			};
+            };
 
-		}
+        }
 
-		/**
-		 * Not supported.
-		 */
-		public void remove() {
-			assert false : "Unsupported operation remove()";
-		}
-	}
+        /**
+         * Not supported.
+         */
+        public void remove() {
+            assert false : "Unsupported operation remove()";
+        }
+    }
 
-	public Iterator<Iterable<T>> iterator() {
-		return new ChunkedIterator(this._iterable.iterator());
-	}
+    public Iterator<Iterable<T>> iterator() {
+        return new ChunkedIterator(this._iterable.iterator());
+    }
 
-	public static void main(final String[] a) {
-		final Map<Integer, String> l = new TreeMap<Integer, String>();
-		for (int i = 0; i < 15; i++) {
-			l.put(i, String.valueOf(i));
-		}
-		int j = 0;
-		for (final Iterable<Entry<Integer, String>> i : new ChunkedIterable<Entry<Integer, String>>(
-				l.entrySet(), 10)) {
-			System.out.println(j);
-			for (final Entry<Integer, String> u : i) {
-				System.out.println(j + ":" + u);
-			}
-			j++;
-		}
-		// int j = 0;
-		for (final Iterable<Entry<Integer, String>> i : new ChunkedIterable<Entry<Integer, String>>(
-				l.entrySet(), 10)) {
-			System.out.println(j);
-			for (final Entry<Integer, String> u : i) {
-				System.out.println(j + ":" + u);
-			}
-			for (final Entry<Integer, String> u : i) {
-				System.out.println(j + ":" + u);
-			}
+    public static void main(final String[] a) {
+        final Map<Integer, String> l = new TreeMap<Integer, String>();
+        for (int i = 0; i < 15; i++) {
+            l.put(i, String.valueOf(i));
+        }
+        int j = 0;
+        for (final Iterable<Entry<Integer, String>> i : new ChunkedIterable<Entry<Integer, String>>(
+                l.entrySet(), 10)) {
+            System.out.println(j);
+            for (final Entry<Integer, String> u : i) {
+                System.out.println(j + ":" + u);
+            }
+            j++;
+        }
+        // int j = 0;
+        for (final Iterable<Entry<Integer, String>> i : new ChunkedIterable<Entry<Integer, String>>(
+                l.entrySet(), 10)) {
+            System.out.println(j);
+            for (final Entry<Integer, String> u : i) {
+                System.out.println(j + ":" + u);
+            }
+            for (final Entry<Integer, String> u : i) {
+                System.out.println(j + ":" + u);
+            }
 
-			j++;
-		}
+            j++;
+        }
 
-	}
+    }
 
-	public static void main2(final String[] a) {
-		final List<Integer> l = new LinkedList<Integer>();
-		for (int i = 0; i < 100; i++) {
-			l.add(i);
-		}
-		int j = 0;
-		for (final Iterable<Integer> i : new ChunkedIterable<Integer>(l, 10)) {
-			System.out.println(j);
-			for (final Integer u : i) {
-				System.out.println(j + ":" + u);
-			}
-			j++;
-		}
-	}
+    public static void main2(final String[] a) {
+        final List<Integer> l = new LinkedList<Integer>();
+        for (int i = 0; i < 100; i++) {
+            l.add(i);
+        }
+        int j = 0;
+        for (final Iterable<Integer> i : new ChunkedIterable<Integer>(l, 10)) {
+            System.out.println(j);
+            for (final Integer u : i) {
+                System.out.println(j + ":" + u);
+            }
+            j++;
+        }
+    }
 
 }
