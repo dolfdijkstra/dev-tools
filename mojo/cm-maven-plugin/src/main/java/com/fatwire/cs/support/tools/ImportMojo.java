@@ -16,6 +16,8 @@ import org.apache.maven.plugin.MojoFailureException;
 import com.fatwire.cs.catalogmover.mover.CatalogMover;
 import com.fatwire.cs.catalogmover.mover.IProgressMonitor;
 import com.fatwire.cs.catalogmover.mover.LocalCatalog;
+import com.fatwire.cs.catalogmover.mover.StdOutProgressMonitor;
+import com.fatwire.cs.catalogmover.mover.commands.MoveCatalogCommand;
 
 /**
  * 
@@ -32,7 +34,8 @@ public class ImportMojo extends AbstractMojo {
     public ImportMojo() {
         super();
     }
-    void initLog4J(){
+
+    void initLog4J() {
         AppenderSkeleton appender = new AppenderSkeleton() {
 
             @Override
@@ -43,7 +46,7 @@ public class ImportMojo extends AbstractMojo {
                 if (level == Level.TRACE_INT) {
                     ImportMojo.this.getLog().debug(
                             String.valueOf(event.getMessage()));
-                    
+
                 } else if (level == Level.DEBUG_INT) {
                     ImportMojo.this.getLog().debug(
                             String.valueOf(event.getMessage()));
@@ -63,8 +66,9 @@ public class ImportMojo extends AbstractMojo {
                     ImportMojo.this.getLog().info(
                             String.valueOf(event.getMessage()));
                 }
-                if (event.getThrowableInformation()!=null){
-                    ImportMojo.this.getLog().info(event.getThrowableInformation().getThrowable());
+                if (event.getThrowableInformation() != null) {
+                    ImportMojo.this.getLog().info(
+                            event.getThrowableInformation().getThrowable());
                 }
             }
 
@@ -84,12 +88,29 @@ public class ImportMojo extends AbstractMojo {
         appender.setName("maven-appender");
         appender.activateOptions();
         Logger.getRootLogger().addAppender(appender);
-        Logger.getRootLogger().setLevel(Level.INFO);
-        Logger.getLogger("com.fatwire").setLevel(Level.TRACE);
+
+        if (getLog().isDebugEnabled()) {
+            Logger.getRootLogger().setLevel(Level.DEBUG);
+            Logger.getLogger("com.fatwire").setLevel(Level.TRACE);
+        } else if (getLog().isInfoEnabled()) {
+            Logger.getRootLogger().setLevel(Level.INFO);
+            Logger.getLogger("com.fatwire").setLevel(Level.INFO);
+        } else if (getLog().isWarnEnabled()) {
+            Logger.getRootLogger().setLevel(Level.WARN);
+            Logger.getLogger("com.fatwire").setLevel(Level.WARN);
+        } else if (getLog().isErrorEnabled()) {
+            Logger.getRootLogger().setLevel(Level.ERROR);
+            Logger.getLogger("com.fatwire").setLevel(Level.ERROR);
+        } else {
+            Logger.getRootLogger().setLevel(Level.OFF);
+            Logger.getLogger("com.fatwire").setLevel(Level.OFF);
+        }
 
     }
-    void shutdownLog4J(){
-        LogManager.shutdown();
+
+    void shutdownLog4J() {
+        LogManager.resetConfiguration();
+        //LogManager.shutdown();
     }
 
     /**
@@ -141,34 +162,37 @@ public class ImportMojo extends AbstractMojo {
 
                 final LocalCatalog ec = new LocalCatalog(f);
                 ec.refresh();
-                cm.setCatalog(ec);
+                MoveCatalogCommand command = new MoveCatalogCommand(cm, ec,
+                        new IProgressMonitor() {
+                            private String task;
 
-                cm.moveCatalog(new IProgressMonitor() {
-                    private String task;
+                            public void beginTask(final String string,
+                                    final int i) {
+                                task = string;
+                                getLog().info("Starting task " + string);
 
-                    public void beginTask(final String string, final int i) {
-                        task = string;
-                        getLog().info("Starting task " + string);
+                            }
 
-                    }
+                            public boolean isCanceled() {
+                                return false;
+                            }
 
-                    public boolean isCanceled() {
-                        return false;
-                    }
+                            public void subTask(final String string) {
+                                getLog().info(string);
+                            }
 
-                    public void subTask(final String string) {
-                        getLog().info(string);
-                    }
+                            public void worked(final int i) {
+                                getLog().info(
+                                        " task " + task + " has worked " + i);
+                            }
 
-                    public void worked(final int i) {
-                        getLog().info(" task " + task + " has worked " + i);
-                    }
-
-                });
+                        });
+                command.execute();
             }
+            
         } catch (final Exception e) {
             throw new MojoFailureException(this, e.getMessage(), e.getMessage());
-        }finally{
+        } finally {
             this.shutdownLog4J();
         }
 
