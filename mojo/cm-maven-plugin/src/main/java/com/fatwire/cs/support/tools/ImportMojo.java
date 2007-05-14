@@ -16,11 +16,10 @@ import org.apache.maven.plugin.MojoFailureException;
 import com.fatwire.cs.catalogmover.mover.CatalogMover;
 import com.fatwire.cs.catalogmover.mover.IProgressMonitor;
 import com.fatwire.cs.catalogmover.mover.LocalCatalog;
-import com.fatwire.cs.catalogmover.mover.StdOutProgressMonitor;
 import com.fatwire.cs.catalogmover.mover.commands.MoveCatalogCommand;
 
 /**
- * 
+ * Imports a catalog into ContentServer
  * 
  * @author Dolf.Dijkstra
  * @since 9-mei-2007
@@ -79,7 +78,6 @@ public class ImportMojo extends AbstractMojo {
 
             @Override
             public boolean requiresLayout() {
-                // TODO Auto-generated method stub
                 return false;
             }
 
@@ -110,7 +108,6 @@ public class ImportMojo extends AbstractMojo {
 
     void shutdownLog4J() {
         LogManager.resetConfiguration();
-        //LogManager.shutdown();
     }
 
     /**
@@ -143,7 +140,9 @@ public class ImportMojo extends AbstractMojo {
     private File populateDirectory;
 
     /**
-     * @parameter
+     * The list of catalog to be imported.
+     * 
+     * @parameter 
      * @required
      */
 
