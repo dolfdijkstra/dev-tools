@@ -180,11 +180,8 @@
 
         .footer {
            min-width: 1000px;
+           width:expression(document.body.clientWidth < 1000 ? "1000px" : "100%");
            margin: 0 1px 0 1px;
-        }
-
-        html>body .footer {
-           width: 100%;
         }
 
         .footer p, .footer a {

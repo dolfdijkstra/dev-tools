@@ -44,7 +44,9 @@ if (ics.GetVar("login") != null){
     </div>
     <div class="entry">                                        
         <p>Displays last few lines from futuretense log (does not tail the log). To get latest log entries refresh the page. <br/>
-               To get full log file add &full=yes at the end of url and refresh the page.</p>
+               To get full log file add &full=yes at the end of url and refresh the page. <br/>
+               To clear log file add &clearlog=true at the end of url and refresh the page.
+        </p>
     </div>
     <div class="entry-header">
         <h2><a href="ContentServer?pagename=Support/Verify/Files/go">JSP FileBrowser</a></h2>

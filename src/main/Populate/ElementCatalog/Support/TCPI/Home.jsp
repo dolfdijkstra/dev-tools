@@ -68,7 +68,7 @@ if (ics.GetVar("login") != null){
 	</div>
 	<div class="entry">
     	 <p>Forces Assets out of Publish Queue. If this tool is used you will need to use ApproveHeldAndChanged tool to bring back the forced assets into queue. 
-               Also assets that are forced out cannot be edited in the UI until they are brought back into the queue. This tool is useful when there are thousands of assets to publish and you want to publish them in chunks.
+               This tool is useful when there are thousands of assets to publish and you want to publish them in chunks.
                This tool will be removed once undoapprove in UI is implemented. Use this tool with extreme caution. 
          </p>
 	</div>
