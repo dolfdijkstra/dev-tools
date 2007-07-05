@@ -4,7 +4,7 @@
     <groupId>com.fatwire.cs.support.tools</groupId>
     <artifactId>tools-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1</version>
+    <version>3</version>
     <name>ContentServer Support Tools parent</name>
     <url>http://www.nl.fatwire.com/projects/${project.groupId}/${project.artifactId}/${project.version}</url>
     <inceptionYear>2007</inceptionYear>
@@ -63,7 +63,19 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>taglist-maven-plugin</artifactId>
             </plugin>
-        </plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>changelog-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jdepend-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+            </plugin>
+        </plugins> 
     </reporting>
     <build>
         <plugins>
@@ -74,9 +86,15 @@
                 <configuration>
                     <source>1.5</source>
                     <target>1.5</target>
-                    <!-- encoding>ISO-8859-1</encoding-->
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <tagBase>http://d670-1.nl.fatwire.com/svn/support/support-tools/tags</tagBase>
+                </configuration>
+            </plugin>
+            
         </plugins>
     </build>
     <distributionManagement>
