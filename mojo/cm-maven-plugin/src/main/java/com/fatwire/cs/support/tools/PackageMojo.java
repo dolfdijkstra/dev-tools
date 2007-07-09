@@ -14,7 +14,6 @@ import org.codehaus.plexus.archiver.ArchiverException;
 import org.codehaus.plexus.archiver.jar.ManifestException;
 import org.codehaus.plexus.archiver.zip.ZipArchiver;
 import org.codehaus.plexus.util.DirectoryScanner;
-import org.codehaus.plexus.util.FileUtils;
 
 /**
  * Zips up the Populate directory.
@@ -150,60 +149,7 @@ public class PackageMojo extends AbstractMojo {
         this.project = project;
     }
 
-    /**
-     * Copies webapp webResources from the specified directory.
-     * <p/>
-     * Note that the <tt>webXml</tt> parameter could be null and may
-     * specify a file which is not named <tt>web.xml<tt>. If the file
-     * exists, it will be copied to the <tt>META-INF</tt> directory and
-     * renamed accordingly.
-     *
-     * @param sourceDirectory the source directory
-     * @param webappDirectory the target directory
-     * @throws java.io.IOException if an error occured while copying webResources
-     */
-    public void copyResources(final File sourceDirectory,
-            final File webappDirectory) throws IOException {
-        if (!sourceDirectory.equals(webappDirectory)) {
-            getLog().info(
-                    "Copy webapp webResources to "
-                            + webappDirectory.getAbsolutePath());
-            if (sourceDirectory.exists()) {
-                final String[] fileNames = getSourceFiles(sourceDirectory);
-                for (int i = 0; i < fileNames.length; i++) {
-                    PackageMojo.copyFileIfModified(new File(sourceDirectory,
-                            fileNames[i]), new File(webappDirectory,
-                            fileNames[i]));
-                }
-            }
-        }
-    }
 
-    private static void copyFileIfModified(final File source,
-            final File destination) throws IOException {
-        if (destination.lastModified() < source.lastModified()) {
-            FileUtils.copyFile(source.getCanonicalFile(), destination);
-            // preserve timestamp
-            destination.setLastModified(source.lastModified());
-        }
-    }
-
-    /**
-     * Returns a list of filenames that should be copied
-     * over to the destination directory.
-     *
-     * @param sourceDir the directory to be scanned
-     * @return the array of filenames, relative to the sourceDir
-     */
-    private String[] getSourceFiles(final File sourceDir) {
-        final DirectoryScanner scanner = new DirectoryScanner();
-        scanner.setBasedir(sourceDir);
-        scanner.setExcludes(new String[0]);
-        scanner.addDefaultExcludes();
-        scanner.setIncludes(getIncludes());
-        scanner.scan();
-        return scanner.getIncludedFiles();
-    }
 
     private String[] getIncludes() {
         return new String[] { "**" };
