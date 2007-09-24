@@ -45,7 +45,7 @@
 <div class="footer gray">
      <table width="100%" style="border:none"><tr>
             <td width="25%" style="text-transform:none;border-bottom:none"><p>Copyright &copy;2006 FatWire Corporation.  All Rights Reserved.</p></td>
-	        <td width="25%" style="text-align:right;border-bottom:none"><p>Version 2.2</p></td>
+	        <td width="25%" style="text-align:right;border-bottom:none"><p>Version 2.3</p></td>
      </tr></table>     
 </div>
 </cs:ftcs>
