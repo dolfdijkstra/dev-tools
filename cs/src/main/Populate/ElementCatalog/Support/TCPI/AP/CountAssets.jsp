@@ -17,8 +17,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <h3>Count Assets per Site</h3>
 <ics:clearerrno/>
 <ics:sql sql="SELECT count(id) as num FROM Publication" table="Publication" listname="sites"/>
@@ -64,7 +63,6 @@ Number of sites: <b><ics:listget listname="sites" fieldname="num"/></b><br/>
 	</tr>
     </ics:listloop>
 </table>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

@@ -3,7 +3,7 @@
 		background: #4A525A;
 		margin: 0 10px; padding: 0;
 		text-align: center;
-		font:12px/16px Helvetica, Arial, Tahoma, Verdana, sans-serif; 
+		font:12px/16px Tahoma, Arial, Helvetica, Verdana, sans-serif; 
 		color: #333;
   }
 
@@ -87,14 +87,14 @@
   }
 
   h3 {
-		font-family: Helvetica, Arial, Tahoma, Verdana, sans-serif;
+		font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif;
 		font-size: 16px;
 		font-weight: bold;
 		color: #4A525A;
   }
 
   .entry-header h1, .entry-header h2, .entry-header h2 a {
-		font-family: Helvetica, Arial, Tahoma, Verdana, sans-serif;
+		font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif;
 		font-size: 15px;
 		color: #660000;
 		text-decoration: none;
@@ -106,14 +106,14 @@
   }   
 
   .entry-header h3, .entry-header h3 a {
-		font-family: Helvetica, Arial, Tahoma, Verdana, sans-serif;
+		font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif;
 		font-size: 10px;
 		font-weight: bold;
 		color: #4A525A;
   }
 
   .right-column h4 {
-		font-family: Helvetica, Arial, Tahoma, Verdana, sans-serif;
+		font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif;
 		font-size: 16px;
 		font-weight: bold;
 		color: #4A525A;
@@ -130,7 +130,7 @@
   }
 
   .right-column h5 {
-	  font-family: Helvetica, Arial, Tahoma, Verdana, sans-serif;
+	  font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif;
 	  font-size: 14px;
 	  background-color: white;
   }
@@ -176,7 +176,7 @@
   }
 
   .footer p, .footer a {
-	  font-family: Helvetica, Arial, Tahoma, Verdana, sans-serif;
+	  font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif;
 	  font-size: 11px;
 	  color: #737C85;
   }
@@ -242,7 +242,7 @@
 
   #nav a {
 	  display: block;
-	  font-family: Tahoma, Arial, Tahoma, Verdana, sans-serif;
+	  font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif;
 	  font-size: 10px;
 	  text-decoration: none;
 	  padding: 10px 0 0 0;
@@ -258,7 +258,7 @@
 
   #nav a:hover {
 	  display: block;
-	  font-family: Tahoma, Arial, Tahoma, Verdana, sans-serif;
+	  font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif;
 	  font-size: 10px;
 	  text-decoration: none;
 	  background-color: #BABBBF;
@@ -309,7 +309,7 @@
 	  width: 100%; 
 	  border-collapse: collapse; 
 	  border: 1px solid #ddd; 
-	  font-family: Tahoma, Arial, Tahoma, Verdana, sans-serif; 
+	  font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif; 
 	  font-size: 12px; 
 	  word-spacing: normal;
 	  overflow: hidden;

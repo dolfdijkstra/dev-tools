@@ -17,8 +17,7 @@
 <cs:ftcs>
 <ics:callelement element="Support/general"/>
 <div id="content">
-<ics:callelement element="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<ics:callelement element="Support/Topnav"/>
 <center><h4>Assets outside the approval process</h4></center>
 <% if (!Utilities.goodString(ics.GetVar("pubid"))){ %>
 <ics:sql sql="SELECT id, t2.name as name FROM Publication t2 ORDER BY t2.name" table="Publication" listname="sites" />
@@ -95,7 +94,6 @@
 	</ics:listloop>
 </table>
 <% }  %>
-</div>
 <ics:callelement element="Support/Footer"/>
 </div>
 </cs:ftcs>

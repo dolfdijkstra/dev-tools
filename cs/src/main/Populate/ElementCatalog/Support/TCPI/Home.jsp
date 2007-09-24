@@ -59,6 +59,12 @@
 	<div class="entry">
          <p>Force Publish Assets to a given Destination</p>
 	</div>
+	<div class="entry-header">	
+    	 <h2><a href='ContentServer?pagename=Support/TCPI/AP/DuplicatePubkeyFront'><b>RemoveDuplicatePubkeys</b></a></h2>
+	</div>
+	<div class="entry">
+         <p>Delete Duplicate Pubkeys for Static Publish Destinations</p>
+	</div>	
     <div class="entry-header">	
 	     <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CountAssetsReverse'><b>AssetPublicationReverse</b></a></h2>
 	</div>

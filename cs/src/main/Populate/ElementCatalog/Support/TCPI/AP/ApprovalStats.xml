@@ -136,7 +136,7 @@
 	<br/><br/>
     <TIME.SET NAME="uimodified"/>
     <SETVAR NAME="tablename" VALUE="ApprovedAssets" />
-    <EXECSQL SQL="SELECT aa.assettype, aa.assetid FROM ApprovedAssets aa, PubkeyTable pt WHERE aa.assetid=pt.assetid AND pt.newkey NOT IN ('N', 'I') AND aa.tstate='A' AND aa.lastassetdate IS NULL AND aa.targetid=Variables.targ" LIST="uimodifiedlist" TABLE="ApprovedAssets" />
+    <EXECSQL SQL="SELECT aa.assettype, aa.assetid FROM ApprovedAssets aa, PubkeyTable pt WHERE aa.assetid=pt.assetid AND pt.targetid=Variables.targ AND pt.newkey NOT IN ('N','I') AND aa.tstate='A' AND aa.lastassetdate IS NULL" LIST="uimodifiedlist" TABLE="ApprovedAssets" />
     <if COND="IsList.uimodifiedlist=true">
 	 <then>
 		List of UI Modified Assets (<CSVAR NAME="uimodifiedlist.#numRows"/>), listing not more than <CSVAR NAME="Variables.maxList"/> assets<br/>

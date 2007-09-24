@@ -10,8 +10,7 @@
 -->
 <CALLELEMENT NAME="Support/general"/>
 <div id="content">
-<CALLELEMENT NAME="Support/TCPI/LeftNav"/>
-<div class="right-column">
+<CALLELEMENT NAME="Support/Topnav"/>
 <h3>Force Approve Asset to all Approved Targets</h3>
 
 <IF COND="IsVariable.assetid=true">
@@ -66,7 +65,6 @@
 		No assetid found	
 </ELSE>
 </IF>
-</div>
 <CALLELEMENT NAME="Support/Footer"/>
 </div>
 </FTCS> 
