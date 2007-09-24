@@ -15,10 +15,11 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<satellite:tag>
-	 	 <satellite:parameter name='type' value='open'/>
-</satellite:tag>
-<h2><center>Assets with missing attributes</center></h2>
+<ics:callelement element="Support/general"/>
+<div id="content">
+<ics:callelement element="Support/Flex/LeftNav"/>
+<div class="right-column">
+<center><h4>Assets with missing attributes</h4></center>
 
 <ics:clearerrno/>
 <ics:sql sql='<%= ics.ResolveVariables("SELECT assettemplate, assetattr, \'flextemplateid\' as tid FROM FlexAssetTypes WHERE assettype=\'Variables.assettype\'") %>' table="FlexAssetTypes" listname="types"/>
@@ -28,7 +29,7 @@
 <%}
 %>
 <ics:clearerrno/>
-<ics:sql sql='<%= ics.ResolveVariables("SELECT id,name,status,createddate FROM Variables.assettype WHERE types.tid = Variables.templateid AND status!=\'VO\' AND NOT EXISTS (SELECT 1 FROM Variables.assettype_Mungo WHERE attrid = Variables.attributeid AND ownerid= Variables.assettype.id) ORDER BY name") %>' table='<%= ics.ResolveVariables("Variables.assettype_Mungo") %>' listname="assets"/>
+<ics:sql sql='<%= ics.ResolveVariables("SELECT id,name,status,createddate FROM Variables.assettype WHERE types.tid = Variables.templateid AND status!=\'VO\' AND NOT EXISTS (SELECT 1 FROM Variables.assettype_Mungo WHERE cs_attrid = Variables.attributeid AND cs_ownerid= Variables.assettype.id) ORDER BY name") %>' table='<%= ics.ResolveVariables("Variables.assettype_Mungo") %>' listname="assets"/>
 <p><ics:getvar name="assettype"/> for template &quot;<ics:getvar name="templatename"/>&quot; and attribute &quot;<ics:getvar name="attributename"/>&quot; <br/></p>
 
 <table class="altClass">
@@ -56,7 +57,7 @@
 	</tr>
 </ics:listloop>
 </table>
-<satellite:tag>
-	 	 <satellite:parameter name='type' value='closed'/>
-</satellite:tag>
+</div>
+<ics:callelement element="Support/Footer"/>
+</div>
 </cs:ftcs>

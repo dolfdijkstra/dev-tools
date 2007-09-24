@@ -21,10 +21,21 @@
 </THEN>
 </IF>
 <SETVAR NAME="tablename" VALUE="Variables.assettype"/>
-<EXECSQL SQL="SELECT id, name FROM Variables.assettype where status!='VO' ORDER by id" LIST="atype"/>
+<IF COND="IsVariable.assetid=false">
+<THEN>
+	<EXECSQL SQL="SELECT id, name FROM Variables.assettype where status!='VO' ORDER by id" LIST="atype"/>
+</THEN>
+<ELSE>
+	<EXECSQL SQL="SELECT id, name FROM Variables.assettype where status!='VO' AND id=Variables.assetid" LIST="atype"/>
+</ELSE>
+</IF>
 <if COND="IsList.atype=true">
 <then>
-    Total Number of Assets (<CSVAR NAME="atype.#numRows"/>), listing not more than <CSVAR NAME="Variables.maxList"/> assets<br/>
+	<IF COND="IsVariable.assetid=false">
+	<THEN>
+    	Total Number of Assets (<CSVAR NAME="atype.#numRows"/>), listing not more than <CSVAR NAME="Variables.maxList"/> assets<br/>
+    </THEN>
+    </IF>
     <LOOP LIST="atype">
         <ASSET.LOAD NAME="myGroup" TYPE="Variables.assettype" OBJECTID="atype.id"/>
         <IF COND="Variables.errno=0">

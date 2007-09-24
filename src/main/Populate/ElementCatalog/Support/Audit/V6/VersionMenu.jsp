@@ -61,12 +61,17 @@ return "<a href=\"ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd="
 <div class="entry">                                             
     <p>Displays count of assets approved and published so far to any destination and recursively deletes all data.</p>
 </div>
-<!-- experimental 
+<!-- experimental -->
 <div class="entry-header">
      <h2><%= buildMenuUrl("Publishing/CleanPubhistoryFront") %>Clean Publish History</a></h2>
 </div>
 <div class="entry">                                             
     <p>Displays publish history per destination and gives options to delete publish history.</p>
 </div>
--->
+<div class="entry-header">
+     <h2><%= buildMenuUrl("RevTrack/historyFront") %>Clean RevTrack History</a></h2>
+</div>
+<div class="entry">                                             
+    <p>Gives option to delete revision tracking history or reduce the number of revisions proactively cleaning up necessary data.</p>
+</div>
 </cs:ftcs>

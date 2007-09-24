@@ -28,6 +28,8 @@
 	<TIME.GET NAME="loadTime" OUTPUT="elapsedLoadTime" />
 	<TIME.SET NAME="approveTime"/>
 
+        <MIRRORKEY.CREATE OBJVARNAME="mirrorkey" ASSET="a1"/>
+        <APPROVEDASSETS.RECORDKEY TARGET="Variables.target" KEY="mirrorkey"/>
 		<APPROVEDASSETS.APPROVEASSET TARGET="Variables.target" ASSET="a1" TEMPLATEDEPS="true"/>
 
 		<if COND="Variables.errno!=0">

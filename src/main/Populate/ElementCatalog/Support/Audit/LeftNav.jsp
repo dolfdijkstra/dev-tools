@@ -52,7 +52,8 @@ return "<a href=\"ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd="
      <li><%= buildMenuUrl("Publishing/ClearAssetPubList") %>Clear AssetPublishList</a></li>
      <li><%= buildMenuUrl("Publishing/ClearPubApprovalTarget") %>Clear PubHistoryPerTarget</a></li>
      <li><%= buildMenuUrl("Publishing/ClearPubApproval") %>Clear EntirePubhistory</a></li>
-     <!-- <li><%= buildMenuUrl("Publishing/CleanPubhistoryFront") %>Clean Publish History</a></li> -->
+     <li><%= buildMenuUrl("Publishing/CleanPubhistoryFront") %>Clean Publish History</a></li>
+     <li><%= buildMenuUrl("RevTrack/historyFront") %>Clean RevTrack History</a></li>
   </ul>
 </div>
 </cs:ftcs>

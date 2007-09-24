@@ -29,6 +29,7 @@
 	 <li><a href='ContentServer?pagename=Support/TCPI/AP/ApprovalStats'>Approve HeldAndChanged</a></li>
   	 <li><a href='ContentServer?pagename=Support/TCPI/AP/UndoApprove'>UndoApprove</a></li>
   	 <li><a href='ContentServer?pagename=Support/TCPI/AP/ForcePublish'>ForcePublishAssets</a></li>
+  	 <li><a href='ContentServer?pagename=Support/TCPI/AP/DuplicatePubkeyFront'>RemoveDuplicatePubkeys</a></li>
   </ul>
   <h2>Approval Tables</h2>  	 
   <ul class="subnav divider">

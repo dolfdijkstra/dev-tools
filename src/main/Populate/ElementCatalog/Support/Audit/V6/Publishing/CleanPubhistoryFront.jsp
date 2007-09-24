@@ -2,7 +2,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Audit/Default/cleanTempTables
+// Support/Audit/V6/Publishing/cleanPubhistoryFront
 //
 // INPUT
 //
@@ -55,7 +55,7 @@
         }
         %>
     </table>
-    <br/> Delete by date <br/>
+    <br/> Delete by Date <br/>
     <FORM action="ContentServer" method="post">
         <INPUT type="text" name="var">&nbsp;yyyy-mm-dd hh:mm:ss
         <input type="hidden" name="pagename" value="Support/Audit/DispatcherFront">
@@ -63,5 +63,6 @@
         &nbsp;<INPUT type="submit" value="Send">&nbsp;<INPUT type="reset">
     </FORM>
     <br/>
-    <a href="ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd=Publishing/CleanPubhistory&#38;var=all">Delete all</a>    
+    <a href="ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd=Publishing/CleanPubhistory&#38;var=all">DeleteAll</a>    
 </cs:ftcs>
+
