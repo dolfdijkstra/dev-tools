@@ -15,9 +15,10 @@
 <%@ page import="COM.FutureTense.Interfaces.Utilities" %>
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
-<cs:ftcs>
+<cs:ftcs><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
 <ics:callelement element="Support/general"/>
-<div id="content">
+<body>
 <ics:callelement element="Support/Topnav"/>
 <% if (!ics.UserIsMember("SiteGod")){ %>
     <div class="left-column">
@@ -48,5 +49,6 @@
         <ics:callelement element="Support/Audit/Menu" />   
 <% } %>
 <ics:callelement element="Support/Footer" />
-</div>
+</body>
+</html>
 </cs:ftcs> 

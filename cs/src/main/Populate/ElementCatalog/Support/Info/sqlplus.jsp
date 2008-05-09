@@ -42,13 +42,13 @@
         out.print("Executing: " + sSQL);
         out.print("<br>");      
         Statement s3 = connection.createStatement(); 
-        if((null!=sUpdate) && (sUpdate.equals("on")))
+        if(sSQL.toLowerCase().trim().startsWith("select"))
         {
-        	execute(sSQL, s3, out);
+        	getResult(sSQL, s3, out);	
         }
         else
         {
-        	getResult(sSQL, s3, out);
+        	execute(sSQL, s3, out);
         }
         s3.close();
     }

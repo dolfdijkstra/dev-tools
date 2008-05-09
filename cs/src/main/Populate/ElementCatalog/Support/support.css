@@ -1,10 +1,9 @@
-<style type="text/css">
   body {
-		background: #4A525A;
+		/*background: #4A525A; */
 		margin: 0 10px; padding: 0;
 		text-align: center;
-		font:12px/16px Tahoma, Arial, Helvetica, Verdana, sans-serif; 
-		color: #333;
+		font-family:Verdana,geneva;
+		font-size:10px
   }
 
   * {
@@ -33,27 +32,43 @@
 		padding: 0px 0px 2px 5px;
   }
 
-  #content {
+  div#content {
 		width: 100%;
 		min-width: 1000px;
-		width:expression(document.body.clientWidth < 1000 ? "1000px" : "100%");
 		margin: 0px auto;
 		text-align: left;
 		background-color: #FFFFFF;
-		word-wrap: break-word;
   }
 
-  #logo{
+  div#logo{
 		position: relative;           
 		margin: 1px 1px 1px 1px;
 		padding: 10px 0 5px 0; 
 		overflow: hidden; 
 		display: block; 
 		color: #00FF00;
-		background: #4A525A;
+		background-color:#666699;
 		text-decoration: none;
-		text-align: center; 
   }
+  
+  div#logo table {
+    border:none;
+  }
+  
+  div#logo td {
+    border:none;
+    color: white;
+    font-size: 12px;
+  	border-bottom:none;
+  	font-weight: bold;
+  }
+  div#logo td p {
+	text-align: center; 
+	font-size: 16px;
+	color: yellow;
+
+  }
+
 
   .spacer {
 		clear: both;
@@ -87,18 +102,22 @@
   }
 
   h3 {
-		font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif;
+	
 		font-size: 16px;
 		font-weight: bold;
 		color: #4A525A;
   }
-
+div.entry-header {
+		color: #00FF00;
+		background-color:#666699;
+}
   .entry-header h1, .entry-header h2, .entry-header h2 a {
-		font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif;
+
 		font-size: 15px;
-		color: #660000;
+		color: white;
 		text-decoration: none;
 		margin: 7px 2px 3px 0;
+		text-align: center;
   }
 
   .entry-header h2 a:hover {
@@ -106,14 +125,14 @@
   }   
 
   .entry-header h3, .entry-header h3 a {
-		font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif;
+		
 		font-size: 10px;
 		font-weight: bold;
 		color: #4A525A;
   }
 
   .right-column h4 {
-		font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif;
+		
 		font-size: 16px;
 		font-weight: bold;
 		color: #4A525A;
@@ -130,7 +149,7 @@
   }
 
   .right-column h5 {
-	  font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif;
+	  
 	  font-size: 14px;
 	  background-color: white;
   }
@@ -150,6 +169,7 @@
 
   .entry {
 	  margin: 15px 20px 20px 31px;
+	  text-align: left;
   }
 
   blockquote	{
@@ -171,12 +191,11 @@
 
   .footer {
      min-width: 1000px;
-     width:expression(document.body.clientWidth < 1000 ? "1000px" : "100%");
      margin: 0 1px 0 1px;
   }
 
   .footer p, .footer a {
-	  font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif;
+	  
 	  font-size: 11px;
 	  color: #737C85;
   }
@@ -242,7 +261,7 @@
 
   #nav a {
 	  display: block;
-	  font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif;
+	  
 	  font-size: 10px;
 	  text-decoration: none;
 	  padding: 10px 0 0 0;
@@ -258,7 +277,7 @@
 
   #nav a:hover {
 	  display: block;
-	  font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif;
+	  
 	  font-size: 10px;
 	  text-decoration: none;
 	  background-color: #BABBBF;
@@ -305,22 +324,24 @@
 
   table { 
 	  padding: 0px; 
-	  margin-left, margin-right: 0px; 
+	  margin-left: 0px;
+	  margin-right: 0px; 
 	  width: 100%; 
 	  border-collapse: collapse; 
 	  border: 1px solid #ddd; 
-	  font-family: Tahoma, Arial, Helvetica, Verdana, sans-serif; 
-	  font-size: 12px; 
 	  word-spacing: normal;
 	  overflow: hidden;
-	  word-wrap: break-word;
+	  font-size:10px
   }
 
   table th { 
-	  text-transform: capitalize; 
 	  color: #ffffff; 
-	  background-color: #737C85; 
 	  text-align: left; 
+	  background-color:#666699;
+	  border-bottom:1px solid #333366;
+	  color:#FFFFFF;
+	  font-size:16px;
+	  font-weight:bold;
   }
 
   table td { 
@@ -332,6 +353,24 @@
 
   table td, table th { 
 	  padding: 4px; 
-	  vertical-align: center;
+	  vertical-align: middle;
+	  font-size:10px;
+	  white-space:pre;
   }
-</style>
+tr.even{
+    background-color: #FFFFFF;
+
+}
+tr.odd{
+    background-color: #EDEDED;
+
+}
+tr.sectionTitle td { 
+	  color: #ffffff; 
+	  text-align: left; 
+	  background-color:#666699;
+	  border-bottom:1px solid #333366;
+	  color:#FFFFFF;
+	  font-size:14px;
+	  font-weight:bold;
+  }

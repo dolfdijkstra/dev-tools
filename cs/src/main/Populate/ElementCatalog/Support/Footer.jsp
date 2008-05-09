@@ -16,36 +16,36 @@
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
 <script language="JavaScript">
-    var clsName = 'altClass';
-    var rowcolor1 = '#FFFFFF';
-    var rowcolor2 = '#EDEDED';
-    var rows, arow;
-    var tables = document.getElementsByTagName("table");
-    var rowCount = 0;
-    for(var i=0;i<tables.length;i++) {
-        if(tables.item(i).className == clsName) {
-            atable = tables.item(i);
-            rows = atable.getElementsByTagName("tr");
-            for(var j=0;j<rows.length;j++) {
-                arow = rows.item(j);
-                if(arow.nodeName == "TR") {
-                    if(rowCount % 2) {
-                        arow.style.backgroundColor = rowcolor1;
-                    } else {
-                        arow.style.backgroundColor = rowcolor2;
-                    }
-                    rowCount++;
-                }
-            }
-            rowCount = 0;
-        }
-    }
+
+var clsName = 'altClass';
+var tables = document.getElementsByTagName("table");
+for(var t=0;t<tables.length;t++) {
+	if(tables[t].className == clsName) {
+
+		var tableBodies = tables[t].getElementsByTagName("tbody");
+		// Loop through these tbodies
+		for (var i = 0; i < tableBodies.length; i++) {
+			// Take the tbody, and get all it's rows
+			var tableRows = tableBodies[i].getElementsByTagName("tr");
+			// Loop through these rows
+			// Start at 1 because we want to leave the heading row untouched
+			for (var j = 1; j < tableRows.length; j++) {
+				// Check if j is even, and apply classes for both possible results
+				if ( (j % 2) == 0  ) {
+					tableRows[j].className += " even";
+				} else {
+					tableRows[j].className += " odd";
+				}
+			}
+		}
+	}
+}
 </script>
 <div class="spacer">&nbsp;</div>
 <div class="footer gray">
      <table width="100%" style="border:none"><tr>
-            <td width="25%" style="text-transform:none;border-bottom:none"><p>Copyright &copy;2006 FatWire Corporation.  All Rights Reserved.</p></td>
-	        <td width="25%" style="text-align:right;border-bottom:none"><p>Version 3.2</p></td>
+            <td width="25%" style="text-transform:none;border-bottom:none"><p>Copyright &copy;2008 FatWire Corporation.  All Rights Reserved.</p></td>
+	        <td width="25%" style="text-align:right;border-bottom:none"><p>Version 3.3</p></td>
      </tr></table>     
 </div>
 </cs:ftcs>

@@ -1,32 +1,32 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" %>
-<%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
-<%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
-<%//
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
+%><%//
 // Support/Audit/Menu
 //
 // INPUT
 //
 // OUTPUT
 //%>
-<%@ page import="COM.FutureTense.Interfaces.FTValList" %>
-<%@ page import="COM.FutureTense.Interfaces.ICS" %>
-<%@ page import="COM.FutureTense.Interfaces.IList" %>
-<%@ page import="COM.FutureTense.Interfaces.Utilities" %>
-<%@ page import="COM.FutureTense.Util.ftErrors" %>
-<%@ page import="COM.FutureTense.Util.ftMessage"%>
-<%!
+<%@ page import="COM.FutureTense.Interfaces.FTValList" 
+%><%@ page import="COM.FutureTense.Interfaces.ICS" 
+%><%@ page import="COM.FutureTense.Interfaces.IList" 
+%><%@ page import="COM.FutureTense.Interfaces.Utilities" 
+%><%@ page import="COM.FutureTense.Util.ftErrors" 
+%><%@ page import="COM.FutureTense.Util.ftMessage"
+%><%!
 String buildMenuUrl(String cmd){
 return "<a href=\"ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd=" + cmd + "\">";
 }
 %>
 <cs:ftcs>
 <div class="entry-header">
-     <h2><%= buildMenuUrl("Versions") %>Version Check</a></h2>
+     <h2><a href="ContentServer?pagename=Support/Info/collectInfo">Version Check</a></h2>
 </div>
 <div class="entry">
      <p>Useful to check build date and buid version number to make sure the latest release is installed.<br/>
             Displays following information: 
-                <ul style="margin-left=20px;">
+                <ul style="margin-left: 20px;">
                     <li>Displays CPU information of the machine hosting CS</li>
                     <li>Displays JVM information of the CS running appserver</li>
                     <li>Recursively looks for all CS jars deployed in webapp displaying the build number and created date.</li>
@@ -64,7 +64,7 @@ return "<a href=\"ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd="
 <div class="entry">                    
     <p>Counts rows for all tables in Systeminfo grouped by systable column. Useful for a general system audit.<br/>
         Other usages: 
-        <ul style="margin-left=20px;">
+        <ul style="margin-left:20px;">
             <li>Useful for database caching entries in the configuration file (futuretense.ini)</li>
             <li>Url columns of tables other than elementcatalog can be verified (if file exists on disk or not)</li>
         </ul>
@@ -76,7 +76,7 @@ return "<a href=\"ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd="
 <div class="entry">                    
     <p>Counts rows for all tables in Systeminfo grouped by Content Server's subsystem (namely assetframework, approval, publish, workflow, engage, etc.,). Useful for a general system audit.<br/>
         Other usages: 
-        <ul style="margin-left=20px;">
+        <ul style="margin-left:20px;">
             <li>Useful for database caching entries in the configuration file (futuretense.ini)</li>
             <li>Url columns of tables other than elementcatalog can be verified (if file exists on disk or not)</li>
         </ul>
