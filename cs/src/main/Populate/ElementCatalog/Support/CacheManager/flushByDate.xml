@@ -8,10 +8,6 @@
 - OUTPUT
 -
 -->
-<satellite.tag type="open"/>
-<CALLELEMENT NAME="Support/general"/>
-<div id="content">
-<CALLELEMENT NAME="Support/Topnav"/>
 <h3>Flush Pages by Date</h3>
 <P>This tool allows you to flush pages from cache based on the expiration date of pages or the date of items on the page.</P>
 <FORM METHOD="POST" ACTION="ContentServer">
@@ -33,7 +29,4 @@
 	<INPUT TYPE="checkbox" NAME="ss"/>Flush pages from all Satellite engines<br /><br />
 	<INPUT TYPE="Submit" NAME="Submit" VALUE="Submit"/>
 </FORM>
-<CALLELEMENT NAME="Support/Footer"/>
-</div>
-<satellite.tag type="close"/>
 </FTCS>

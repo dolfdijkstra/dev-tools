@@ -22,8 +22,8 @@ if (ics.GetVar("redir") !=null){
 }
 if (!ics.UserIsMember("SiteGod")){
 %>
-    <ics:callelement element="Support/Home"/>
+    <html><head><meta http-equiv="refresh" content='5;URL=ContentServer?pagename=<%= redir %>'></head><body>Login Failed.</body></html>
 <% } else { %>
-    <meta http-equiv="refresh" content='0;URL=ContentServer?pagename=<%= redir %>'>
+    <html><head><meta http-equiv="refresh" content='0;URL=ContentServer?pagename=<%= redir %>'></head><body></body></html>
 <% } %>
 </cs:ftcs>

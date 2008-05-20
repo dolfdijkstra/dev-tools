@@ -1,32 +1,26 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" %>
-<%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
-<%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
-<%//
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
+%><%
+//
 // Support/Log4J/Log4J
 //
 // INPUT
 //
 // OUTPUT
 //%>
-<%@ page import="COM.FutureTense.Interfaces.FTValList" %>
-<%@ page import="COM.FutureTense.Interfaces.ICS" %>
-<%@ page import="COM.FutureTense.Interfaces.IList" %>
-<%@ page import="COM.FutureTense.Interfaces.Utilities" %>
-<%@ page import="COM.FutureTense.Util.ftErrors" %>
-<%@ page import="COM.FutureTense.Util.ftMessage"%>
-<%@ page import="org.apache.log4j.*" %>
-<%@ page import="org.apache.log4j.spi.*" %>
-<%@ page import="java.util.*" %>
-<%!
+<%@ page import="COM.FutureTense.Interfaces.FTValList" 
+%><%@ page import="COM.FutureTense.Interfaces.ICS" 
+%><%@ page import="COM.FutureTense.Interfaces.IList" 
+%><%@ page import="COM.FutureTense.Interfaces.Utilities" 
+%><%@ page import="COM.FutureTense.Util.ftErrors" 
+%><%@ page import="COM.FutureTense.Util.ftMessage"
+%><%@ page import="org.apache.log4j.*" 
+%><%@ page import="org.apache.log4j.spi.*" 
+%><%@ page import="java.util.*" 
+%><%!
     private String[] levels = "TRACE,DEBUG,INFO,WARN,ERROR,OFF".split(",");
-%><cs:ftcs><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<ics:callelement element="Support/general"/>
-<body>
-<ics:callelement element="Support/Topnav"/>
-<div class="content">
-
-<h1>Dynamic Log4J Control</h1>
+%><cs:ftcs><h1>Dynamic Log4J Control</h1>
 <%  String logName=ics.GetVar("log");
     if (null!=logName) {
         Logger log=("root".equals(logName) ?
@@ -47,8 +41,8 @@
 <th>Set New Level</th>
 </tr>
 <tr>
-<td>0</td><td><%= rootLogger.getLevel() %></td><td><%= rootLogger.getName() %></td><td>
-<% for (int i=0; i< levels.length;i++){ 
+<td>0</td><td><%= rootLogger.getLevel() %></td><td><%= rootLogger.getName() %></td>
+<td><% for (int i=0; i< levels.length;i++){ 
         %><a href='ContentServer?pagename=<%= ics.GetVar("pagename") %>&log=root&level=<%=levels[i] %>'><%=levels[i] %></a> <%
         }
 %></td>
@@ -89,8 +83,4 @@ for (Iterator loggers = loggerNameSet.iterator(); loggers.hasNext();){
 Show <a href='ContentServer?pagename=<%= ics.GetVar("pagename") %>&showAll=true'>all known loggers</a> -
 Show <a href='ContentServer?pagename=<%= ics.GetVar("pagename") %>'>show configured loggers</a><br/>
 Show <a href='ContentServer?pagename=<%= ics.GetVar("pagename") +"Config" %>'>show current logger levels as xml config.</a>
-</div>
-<ics:callelement element="Support/Footer"/>
-</body>
-</html>
 </cs:ftcs>

@@ -26,7 +26,7 @@ return "<a href=\"ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd="
 <div class="entry">
      <p>Useful to check build date and buid version number to make sure the latest release is installed.<br/>
             Displays following information: 
-                <ul style="margin-left: 20px;">
+                <ul>
                     <li>Displays CPU information of the machine hosting CS</li>
                     <li>Displays JVM information of the CS running appserver</li>
                     <li>Recursively looks for all CS jars deployed in webapp displaying the build number and created date.</li>
@@ -64,7 +64,7 @@ return "<a href=\"ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd="
 <div class="entry">                    
     <p>Counts rows for all tables in Systeminfo grouped by systable column. Useful for a general system audit.<br/>
         Other usages: 
-        <ul style="margin-left:20px;">
+        <ul>
             <li>Useful for database caching entries in the configuration file (futuretense.ini)</li>
             <li>Url columns of tables other than elementcatalog can be verified (if file exists on disk or not)</li>
         </ul>
@@ -76,7 +76,7 @@ return "<a href=\"ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd="
 <div class="entry">                    
     <p>Counts rows for all tables in Systeminfo grouped by Content Server's subsystem (namely assetframework, approval, publish, workflow, engage, etc.,). Useful for a general system audit.<br/>
         Other usages: 
-        <ul style="margin-left:20px;">
+        <ul>
             <li>Useful for database caching entries in the configuration file (futuretense.ini)</li>
             <li>Url columns of tables other than elementcatalog can be verified (if file exists on disk or not)</li>
         </ul>
@@ -86,7 +86,7 @@ return "<a href=\"ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd="
      <h2><%= buildMenuUrl("CountAssets") %>Count Assets per Site</a></h2>
 </div>
 <div class="entry">                    
-     <p>Counts the number of assets per Site per AssetType. Useful for a general system audit.</p>
+     <p>Counts the number of assets per Site per AssetType.</p>
 </div>
 <div class="entry-header">
      <h2><%= buildMenuUrl("AssetPub") %>AssetPublication Analyzer</a></h2>

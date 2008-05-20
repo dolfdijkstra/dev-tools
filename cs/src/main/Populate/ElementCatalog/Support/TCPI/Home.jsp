@@ -15,10 +15,6 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
-<% if (ics.UserIsMember("SiteGod")){ %>
 	<% String[] tables={"AssetPublication","ApprovedAssetDeps","ApprovedAssets","AssetExportData","AssetPublishList","PublishedAssets","ActiveList","CheckOutInfo"}; %>
     <div class="entry-header">	
 	     <h2><a href='ContentServer?pagename=Support/TCPI/AP/PubQueues'><b>ApprovalStats</b></a></h2>
@@ -145,56 +141,4 @@
 	<div class="entry">
 		<p>Lists, Enables, Disables and Destroys all available Events</p>
 	</div>
-    <div class="entry-header">	
-		<h2><a href='ContentServer?pagename=Support/TCPI/PubKeys/Install'><b>Install MovePubKeys</b></a></h2>
-	</div>
-	<div class="entry">
-		<p>Installs the MovePubKeys event</p>
-	</div>
-    <div class="entry-header">	
-	    <h2><a href='ContentServer?pagename=Support/TCPI/PubKeys/UpdateBatchUI'><b>MovePubKeys</b></a></h2>
-	</div>
-	<div class="entry">
-		<p>Moves some of the PubKeyTable entries in the pubkey folder to subdirectories.</p>
-	</div>
-    <div class="entry-header">	
-	     <h2><a href='ContentServer?pagename=Support/TCPI/Held/CreateEvents'><b>Install Held events</b></a></h2>
-	</div>
-	<div class="entry">
-		<p>Install the events to approve Held assets</p>
-	</div>
-    <div class="entry-header">	
-	     <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/Events/CreatePubKeyCleanUpEvents'><b>Install CleanPubKeys events</b></a></h2>
-	</div>
-	<div class="entry">
-		<p>Install the events to cleanup the PubKey table</p>
-	</div>
-<% } else { %>
-    <div class="left-column">
-      <h2>Categories</h2>
-      <ul class="subnav divider">
-        <li><a href="http://www.fatwire.com" class="Fatwire">Fatwire</a></li>								
-      </ul>
-      <h2>Recent Entries</h2>
-      <ul class="subnav divider">
-        <li><a href="http://www.fatwire.com/cs/Satellite/NewsITNewsPage_US.html">News</a></li>
-      </ul>
-      <h2>Fatwire Support</h2>
-      <ul class="subnav divider">
-        <li><a href="http://www.fatwire.com/support/">Support</a></li>
-      </ul>
-    </div>
-
-   <div class="right-column">      
-      <div class="entry">
-           <h3>General Information</h3> 
-           <p>The Content Server Support Tools are intended for use by experienced users with SiteGod privileges to assist in audit, cleanup, help diagnose and resolve problems. These tools can be customized by end users to their need.</p>      
-           <div class="entry-header">
-                <ics:callelement element="Support/Login"/>
-           </div>
-      </div>
-   </div>
-<% } %>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

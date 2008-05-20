@@ -17,9 +17,6 @@
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <%@ page import="java.io.*"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <script language="JavaScript">
 function checkall () {
     var obj = document.forms[0].elements[0];
@@ -207,6 +204,4 @@ Items (SystemItemCache) without a referenced parent (SystemPageCache): <ics:list
 </form> 
 
 SystemItemCache took <time:get name="itemtime"/> ms 
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

@@ -16,10 +16,6 @@
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <%@ page import="java.util.*"%>
 <cs:ftcs>
-
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <center><h3>Cached Pages</h3></center>
 <%!
 static class PageInfo {
@@ -122,7 +118,7 @@ private String reportExcess(PageInfo pd) {
 
     dupages = "<td>Found "+pd.count+" identical urlpage: <br/>"+"<a href='ContentServer?pagename=Support/CacheManager/listPagename&pname="+pinfo[0]+"&mode=detail'>"+pinfo[0]+"</a></td>";
     
-    dupages += "<td><table cellspacing=\"1px\" bgcolor=\"#CCFF99\" width=\"100%\">";
+    dupages += "<td><table cellspacing=\"1px\" bgcolor=\"#CCFF99\" width=\"100%\"  class=\"altClass\">";
     dupages += "<tr><th>pageid</th><th>pagelet</th><th>c</th><th>cid</th><th>p</th><th>context</th><th>rendermode</th><th>ft_ss</th><th>other params</th><th>seid</th><th>site</th><th>siteid</th>";
     int j = 1; 
     while(j<pinfo.length) {
@@ -139,7 +135,7 @@ private String reportExcess(PageInfo pd) {
 <%
 Map counter = new HashMap();
 StringBuffer errstr = new StringBuffer();
-String query = "select id, pagename, urlqry, urlpage from systempagecache order by pagename";
+String query = "select id, pagename, urlqry, urlpage from SystemPageCache order by pagename";
 IList results = ics.SQL("SystemPageCache", query, null, -1, true, errstr);
 int rows = results.numRows();
 
@@ -162,7 +158,7 @@ for (int i = 1; i <= rows; i++) {
 }
 
 Map sortall = sortMapByValue((HashMap)counter, false);
-out.print("<table class=\"altClass\">");
+out.print("<table>");
 out.print("<tr><th>DuplicatePages</th><th>PageID - QueryDetails</th></tr>");
 for (Iterator it = sortall.entrySet().iterator(); it.hasNext();) {
     Map.Entry me = (Map.Entry)it.next();
@@ -176,6 +172,4 @@ for (Iterator it = sortall.entrySet().iterator(); it.hasNext();) {
 out.print("</table>");
 counter.clear();
 %>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

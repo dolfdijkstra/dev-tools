@@ -10,22 +10,22 @@
 -->
 <SETVAR NAME="errno" VALUE="0"/>
 <h1>Login with SiteGod Privileges</h1>
-<form name="LoginForm" enctype="multipart/form-data" ACTION="ContentServer" METHOD="POST">
-<input TYPE="HIDDEN" NAME="pagename" VALUE="Support/LoginPost"/>
-<input TYPE="HIDDEN" NAME="redir" VALUE="Variables.pagename" REPLACEALL="Variables.pagename"/>
+<form name="LoginForm" enctype="multipart/form-data" action="ContentServer" method="POST">
+<input TYPE="hidden" name="pagename" value="Support/LoginPost"/>
+<input TYPE="hidden" name="redir" value="Variables.pagename" REPLACEALL="Variables.pagename"/>
 <table style="border:none">
-    <TR> 
-      <TD style="text-align:right; border:none"><b>User ID: </b></TD>
-      <TD style="border:none"><INPUT TYPE="TEXT" NAME="authusername" size="20"/></TD>
-    </TR>
-    <TR> 
-      <TD style="text-align:right; border:none"><b>Password: </b></TD>
-      <TD style="border:none"><INPUT TYPE="PASSWORD" NAME="authpassword" size="20"/></TD>
-    </TR>
-    <TR> 
-      <TD style="border:none">&nbsp;</TD>
-      <TD style="border:none"><INPUT TYPE="submit" VALUE="&nbsp;Login&nbsp;"/>&nbsp;<INPUT TYPE="reset" VALUE="&nbsp;Cancel&nbsp;"/></TD>
-    </TR>
+    <tr> 
+      <td style="text-align:right; border:none"><b>User ID: </b></td>
+      <td style="border:none"><INPUT TYPE="TEXT" NAME="authusername" size="20"/></td>
+    </tr>
+    <tr> 
+      <td style="text-align:right; border:none"><b>Password: </b></td>
+      <td style="border:none"><INPUT TYPE="PASSWORD" NAME="authpassword" size="20"/></td>
+    </tr>
+    <tr> 
+      <td style="border:none">&nbsp;</td>
+      <td style="border:none"><input type="submit" value="&nbsp;Login&nbsp;"/>&nbsp;<input type="reset" value="&nbsp;Cancel&nbsp;"/></td>
+    </tr>
   </table>
 </form>
 <script language="JavaScript">

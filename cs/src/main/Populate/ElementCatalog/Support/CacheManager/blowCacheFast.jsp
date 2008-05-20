@@ -18,9 +18,6 @@
 <%@ page import="COM.FutureTense.Cache.*"%>
 <%@ page import="java.util.*"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <h3><center>Delete System PageCache</center></h3>
 <%
 String thisPage = ics.GetVar("pagename");
@@ -65,6 +62,4 @@ Total <b><ics:listget listname="pagelist" fieldname="pagenum"/></b> SystemPageCa
 <b>Do you want to blow away all cache? </b>&nbsp;<input type="Submit" name="blowaway" value="BlowAway"><br/>
 </form> 
 <% } %>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

@@ -9,28 +9,21 @@
 <%@ page import="javax.sql.*" %>
 <%@ page import="COM.FutureTense.Interfaces.*" %>
 <cs:ftcs>
-<html>
-<head>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <%
-	String sSQL = request.getParameter("sql");
-	String sUpdate = request.getParameter("update");       
+	String sSQL = ics.GetVar("sql");
 	if(null==sSQL || "".equals(sSQL)) {
         sSQL = "SELECT tblname,acl FROM SystemInfo ORDER BY UPPER(tblname)";
 	}
 %>    
 
-<% if (ics.UserIsMember("SiteGod")){ %>    
-  <form action="ContentServer" name=sqlplus>
-  <input type='hidden' name='pagename' value='<%=ics.GetVar("pagename")%>'/>
-  <table style="border:none">
-    <tr><td width="10%" style="border:none;text-align:right"><b>Enter SQL :</b></td><td style="border:none"><textarea name="sql" cols="102" rows="10" ><%=sSQL%></textarea></td></tr>
-    <tr><td width="10%" style="border:none"></td><td style="border:none">&nbsp;<input type=submit value=Query name=button>&nbsp;<input type="checkbox" name=update>&nbsp;Select for <b>Insert/Update</b></td></tr>
-  </table>  
-  </form>
-  <hr/>
+<form action="ContentServer" name=sqlplus>
+<input type='hidden' name='pagename' value='<%=ics.GetVar("pagename")%>'/>
+<table style="border:none">
+	<tr><td width="10%" style="border:none;text-align:right"><b>Enter SQL :</b></td><td style="border:none"><textarea name="sql" cols="102" rows="10" ><%=sSQL%></textarea></td></tr>
+	<tr><td width="10%" style="border:none"></td><td style="border:none">&nbsp;<input type=submit value=Query name=button></td></tr>
+</table>  
+</form>
+<hr/>
 <time:set name="sqltime"/>  
 <%
     Connection connection =	null;
@@ -65,33 +58,7 @@
     }
 %>
 <br/><b>Took <font color="blue"><time:get name="sqltime"/></font> ms to execute</b>
-<% } else { %>
-    <div class="left-column">
-      <h2>Categories</h2>
-      <ul class="subnav divider">
-        <li><a href="http://www.fatwire.com" class="Fatwire">Fatwire</a></li>								
-      </ul>
-      <h2>Recent Entries</h2>
-      <ul class="subnav divider">
-        <li><a href="http://www.fatwire.com/cs/Satellite/NewsITNewsPage_US.html">News</a></li>
-      </ul>
-      <h2>Fatwire Support</h2>
-      <ul class="subnav divider">
-        <li><a href="http://www.fatwire.com/support/">Support</a></li>
-      </ul>
-    </div>
-
-   <div class="right-column">      
-      <div class="entry">
-           <h3>General Information</h3> 
-           <p>The Content Server Support Tools are intended for use by experienced users with SiteGod privileges to assist in audit, cleanup, help diagnose and resolve problems. These tools can be customized by end users to their need.</p>      
-           <div class="entry-header">
-                <ics:callelement element="Support/Login"/>
-           </div>
-      </div>
-   </div>
-<% } %>
-
+</cs:ftcs>
 <%! private static void getResult(String sSQL, Statement s1, JspWriter out) throws Exception
 {
     String sColName = "";
@@ -150,15 +117,12 @@
     out.print("</table>");
     out.print("<b>Total RowCount: "+ rowcount+"</b>"); 
 }   
-%>
 
-<%! private static void execute(String sSQL, Statement s1, JspWriter out) throws Exception
+private static void execute(String sSQL, Statement s1, JspWriter out) throws Exception
 {
        s1.execute(sSQL);
 }   
-%>
-
-<%! 
+ 
 private static DataSource ds=null;
 private synchronized static Connection getConnection(String connectString) throws Exception
 {
@@ -170,9 +134,7 @@ private synchronized static Connection getConnection(String connectString) throw
     connection = ds.getConnection();
     return connection;
 }   
-%>
-
-<%! private static void printMetaData(Connection connection, JspWriter out) throws Exception
+private static void printMetaData(Connection connection, JspWriter out) throws Exception
 {
     DatabaseMetaData dmd 	= 	connection.getMetaData();
     out.println("JDBC Driver URL\t:" + dmd.getURL());
@@ -186,6 +148,3 @@ private synchronized static Connection getConnection(String connectString) throw
 
 }  
 %>
-<ics:callelement element="Support/Footer"/>
-</div>
-</cs:ftcs>

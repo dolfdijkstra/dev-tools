@@ -20,14 +20,7 @@
 <%@ page import="COM.FutureTense.Cache.CacheManager"%>
 <%@ page import="COM.FutureTense.Cache.CacheHelper"%>
 <cs:ftcs>
-<satellite:tag>
-	<satellite:parameter name='type' value='open'/>
-</satellite:tag>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <h3>Flush Pages by Date</h3>
-
 <%
 String date = ics.GetVar("cmDate");
 String flushType = ics.GetVar("flushtype");
@@ -85,9 +78,4 @@ else
 <% if (ics.GetErrno() < 0) { %>
     Error: <%=errorMsg%>
 <% } %>
-<ics:callelement element="Support/Footer"/>
-</div>
-<satellite:tag>
-	<satellite:parameter name='type' value='close'/>
-</satellite:tag>
 </cs:ftcs>

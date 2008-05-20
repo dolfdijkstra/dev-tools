@@ -15,12 +15,8 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <center><h3>Unknowndeps Pages</h3></center>
-<ics:sql sql='select distinct sc.id as pagename, count(sp.pagename) as num from systempagecache sp, systemitemcache sc where sp.id = sc.page and sc.id like \'unknowndeps%\' group by sc.id order by num desc' listname='unknownlist' table='SystemItemCache'/>
+<ics:sql sql='select distinct sc.id as pagename, count(sp.pagename) as num from SystemPageCache sp, SystemItemCache sc where sp.id = sc.page and sc.id like \'unknowndeps%\' group by sc.id order by num desc' listname='unknownlist' table='SystemItemCache'/>
 <% int total = 0; %>
 <ics:listloop listname="unknownlist">
     <% total += Integer.parseInt(ics.ResolveVariables("unknownlist.num")); %>
@@ -42,6 +38,4 @@ There are total <%= total %> unknowdeps pages...
       </tr>
     </ics:listloop>
 </table>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

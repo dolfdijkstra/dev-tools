@@ -34,7 +34,6 @@ else {
 }
 
 if (ics.IsElement(defaultElementName)) {
-	System.out.println("using: " + defaultElementName);
 	ics.CallElement(defaultElementName,null);
 } else {
 	%>There is no element to display the indices on your database type (<%= dbType %>).<br><%

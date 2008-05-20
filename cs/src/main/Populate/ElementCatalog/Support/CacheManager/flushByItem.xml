@@ -8,10 +8,6 @@
 - OUTPUT
 -
 -->
-<satellite.tag type="open"/>
-<CALLELEMENT NAME="Support/general"/>
-<div id="content">
-<CALLELEMENT NAME="Support/Topnav"/>
 <h3>Flush Pages by Item</h3>
 <P>Please enter a comma-separated list of items to flush</P>
 <FORM METHOD="POST" ACTION="ContentServer">
@@ -23,6 +19,4 @@
 	<INPUT TYPE="Submit" NAME="Submit" VALUE="Submit"/>
 </FORM>
 <CALLELEMENT NAME="Support/Footer"/>
-</div>
-<satellite.tag type="close"/>
 </FTCS> 

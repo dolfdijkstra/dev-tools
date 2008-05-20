@@ -18,9 +18,6 @@
 <%@ page import="COM.FutureTense.Util.ftErrors"%>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <%
 // create the cache manager
 CacheManager cm = new CacheManager(ics);                 
@@ -49,6 +46,4 @@ if ("on".equals(ics.GetVar("cs"))) {
 
 	<h5><%=cm.getCSInventory(ics,CacheHelper.sBasic)%></h5>
 <% } %>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

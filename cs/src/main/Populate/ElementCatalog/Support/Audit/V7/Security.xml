@@ -126,7 +126,7 @@
 <tr>
 <td>cs.wrapper</td>
 <td>
-<IF COND="CS.Property.cs.wrapper=true">
+<IF COND="CS.Property.cs.wrapper=false">
 	<THEN>
 	<CSVAR NAME="CS.Property.cs.wrapper"/>
 	</THEN>
@@ -155,7 +155,7 @@
 </tr>
 
 <!-- current CS standard users and passwords
-	ContentServer	FutureTense
+	ContentServer	password
 	DefaultReader	SomeReader
 	xceleditor	xceleditor
 	admin		admin
@@ -177,7 +177,7 @@
 	</IF>
 
 <SETVAR NAME="errno" VALUE="0"/>
-<STRINGLIST NAME="CSPwds" STR="FutureTense,SomeReader,xceladmin,xceleditor,xceladmin,xceladmin,xceleditor,user,user,user,user,user,user,user,BFUser" DELIM=","/>
+<STRINGLIST NAME="CSPwds" STR="password,SomeReader,xceladmin,xceleditor,xceladmin,xceladmin,xceleditor,user,user,user,user,user,user,user,BFUser" DELIM=","/>
 	<IF COND="IsError.Variables.errno=true">
 	<THEN>
 	<br/>Oops, theres an error creating the list for CS users

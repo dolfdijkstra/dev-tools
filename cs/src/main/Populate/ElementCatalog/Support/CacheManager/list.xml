@@ -8,10 +8,6 @@
 - OUTPUT
 -
 -->
-<satellite.tag type="open"/>
-<CALLELEMENT NAME="Support/general"/>
-<div id="content">
-<CALLELEMENT NAME="Support/Topnav"/>
 <h3>List Pages in Cache</h3>
 <P>Page cache may contain thousands of rows.  Listing items can be slow.  If you are sure you want to continue, complete the form below.</P>
 <FORM METHOD="POST" ACTION="ContentServer">
@@ -20,7 +16,4 @@
 	<INPUT TYPE="checkbox" NAME="ss" /> List inventory for CS Satellite<br /><br/>
 	<INPUT TYPE="Submit" NAME="Submit" VALUE="Submit"/>
 </FORM>
-<CALLELEMENT NAME="Support/Footer"/>
-</div>
-<satellite.tag type="close"/>
 </FTCS> 

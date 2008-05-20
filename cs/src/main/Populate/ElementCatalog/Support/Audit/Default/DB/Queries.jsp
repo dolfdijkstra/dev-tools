@@ -24,7 +24,7 @@ String queryid = ics.GetVar("queryid");
 
 String query[][] = {
 {"SELECT pagename, rootelement FROM  SiteCatalog WHERE rootelement NOT IN (SELECT elementname FROM ElementCatalog)","SiteCatalog","Shows SiteCatalog entries without a rootelement"},
-{"SELECT s.* FROM  SiteCatalog s  WHERE LOWER(cscacheinfo) NOT IN ('false')","SiteCatalog","Shows SiteCatalog entries that do not have false set"},
+{"SELECT s.* FROM  SiteCatalog s  WHERE LOWER(cscacheinfo) NOT IN ('false')","SiteCatalog","Shows SiteCatalog entries that do not have false set for cscacheinfo"},
 {"SELECT s.* FROM  SiteCatalog s  WHERE acl IS Null","SiteCatalog","Shows SiteCatalog entries without an acl"},
 {"SELECT s.*, e.url FROM  SiteCatalog s, ElementCatalog e WHERE s.rootelement = e.elementname AND LOWER(s.cscacheinfo) NOT IN ('false')","SiteCatalog","Shows SiteCatalog enrties with PageCriteria defined"},
 {"SELECT DISTINCT acl FROM SiteCatalog s","SiteCatalog","Shows distinct acls FROM the SiteCatalog" },
@@ -32,7 +32,6 @@ String query[][] = {
 {"SELECT * FROM SiteCatalog s WHERE pagecriteria is not null  ORDER BY LOWER(cscacheinfo)","SiteCatalog","Shows SiteCatalog enrties with PageCriteria defined"},
 {"SELECT DISTINCT s.cscacheinfo  FROM  SiteCatalog s ORDER BY s.cscacheinfo","SiteCatalog","Shows SiteCatalog enrties with PageCriteria defined"},
 {"SELECT DISTINCT csstatus  FROM  SiteCatalog s ORDER BY s.csstatus","SiteCatalog","Shows distinct csstatusses FROM SiteCatalog"},
-{"SELECT elementname FROM ElementCatalog s WHERE LOWER(elementname) LIKE ('support/%' ) ORDER BY LOWER(elementname)","ElementCatalog","Shows element names starting with Support/"},
 {"SELECT elementname,url FROM ElementCatalog s WHERE url LIKE ('%/%' )ORDER BY LOWER(elementname)","ElementCatalog","Shows url columns (file name) that contain a forward slash"},
 {"SELECT SUBSTR(e.url,-4) as ext, COUNT(*)   FROM  ElementCatalog e GROUP BY SUBSTR(e.url,-4)","ElementCatalog","Displays number of elements with distinct extensions"},
 {"SELECT tblname,acl  FROM SystemInfo ORDER BY acl, tblname","SystemInfo","Shows acl's for tablenames"},
@@ -69,11 +68,6 @@ for (int i=0; i< query.length; i++){
 	<td><%= query[i][2] %></td>
 	</td>
 <% } %></table><%		
-///	} catch (Exception e){
-//		out.write(e.getMessage());
-//		e.printStackTrace();
-//		throw e;
-//	}
 
 %>
 </cs:ftcs>

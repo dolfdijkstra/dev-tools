@@ -36,9 +36,6 @@
     }
 %>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<ics:callelement element="Support/Topnav"/>
-<div id="content">
 <center><h3>Resultset Cache Profiler - Detail View</h3></center>
     <table class="altClass">
     <%
@@ -95,6 +92,4 @@
         }
          %>
     </table>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

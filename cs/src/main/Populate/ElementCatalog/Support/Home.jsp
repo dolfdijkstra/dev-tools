@@ -15,14 +15,7 @@
 %><%@ page import="COM.FutureTense.Interfaces.Utilities"
 %><%@ page import="COM.FutureTense.Util.ftErrors"
 %><%@ page import="COM.FutureTense.Util.ftMessage"
-%><cs:ftcs><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<ics:callelement element="Support/general"/>
-</head>
-<body>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
-
+%><cs:ftcs>
 <div class="left-column">
   <h2>Categories</h2>
   <ul class="subnav divider">
@@ -55,14 +48,10 @@
         <b>Cache:</b> Displays information about CacheManager subsystem.<br/>
         <b>Flex:</b> Shows the general layout of flex assets and find any missing data.<br/>
         <b>Misc:</b> Miscellaneous tools which include cluster tests, encoding tests and displays files from filesystem.<br/>
-        <b>LDAP:</b> Enable or disable LDAP in Content Server.<br/>
+        <b>Log4J:</b> Dynamically set logger levels if log4j is configured.<br/>
         <b>SQLPlus:</b> Helps connect to database and select/update data.<br/>
         </p>
 <% } %>
   </div>
 </div>
-<ics:callelement element="Support/Footer"/>
-</div>
-</body>
-</html>
 </cs:ftcs>

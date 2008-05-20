@@ -16,21 +16,6 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
-<%
-if (ics.GetVar("login") != null){
-	ics.RemoveSSVar("username");
-%>
-    <user:login username='<%= ics.GetVar("username") %>' password='<%= ics.GetVar("password") %>'/>
-<%
-	if (ics.GetErrno() == 0){
-		ics.SetSSVar("username",ics.GetVar("username"));
-	}
-}
-%>
-<% if (ics.UserIsMember("SiteGod")){ %>
     <div class="entry-header">
         <h2><a href="ContentServer?pagename=Support/Verify/Files/ftcslog">FutureTense Log</a></h2>
     </div>
@@ -39,12 +24,6 @@ if (ics.GetVar("login") != null){
                To get full log file add &full=yes at the end of url and refresh the page. <br/>
                To clear log file add &clearlog=true at the end of url and refresh the page.
         </p>
-    </div>
-    <div class="entry-header">
-        <h2><a href="ContentServer?pagename=Support/Verify/Files/go">JSP FileBrowser</a></h2>
-    </div>
-    <div class="entry">                                        
-        <p>Displays the file/folder structure of the webapp CS is running in. A bunch of operations can be peformed which are self-explanatory when the form is displayed.</p>
     </div>
     <div class="entry-header">
          <h2><a href="ContentServer?pagename=Support/Verify/xml/tablelist">TableList</a></h2>
@@ -152,32 +131,4 @@ if (ics.GetVar("login") != null){
     <div class="entry">                                                
         <p>Check the display of different Unicode characters</p>
     </div>        
-<% } else { %>
-    <div class="left-column">
-      <h2>Categories</h2>
-      <ul class="subnav divider">
-        <li><a href="http://www.fatwire.com" class="Fatwire">Fatwire</a></li>								
-      </ul>
-      <h2>Recent Entries</h2>
-      <ul class="subnav divider">
-        <li><a href="http://www.fatwire.com/cs/Satellite/NewsITNewsPage_US.html">News</a></li>
-      </ul>
-      <h2>Fatwire Support</h2>
-      <ul class="subnav divider">
-        <li><a href="http://www.fatwire.com/support/">Support</a></li>
-      </ul>
-    </div>
-
-   <div class="right-column">      
-      <div class="entry">
-           <h3>General Information</h3> 
-           <p>The Content Server Support Tools are intended for use by experienced users with SiteGod privileges to assist in audit, cleanup, help diagnose and resolve problems. These tools can be customized by end users to their need.</p>      
-           <div class="entry-header">
-                <ics:callelement element="Support/Login"/>
-           </div>
-      </div>
-   </div>
-<% } %>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

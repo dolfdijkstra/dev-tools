@@ -16,12 +16,9 @@
 %><%@ page import="COM.FutureTense.Util.ftErrors"
 %><%@ page import="COM.FutureTense.Util.ftMessage"
 %><cs:ftcs><%
-%><ics:callelement element="Support/general"/><%
-%><div id="content"><%
-%><ics:callelement element="Support/Topnav"/><%
 %><h3><center>SystemItemCache vs SystemPageCache</center></h3><%
 %><time:set name='pagetime'/><%
-%><ics:sql sql='select distinct id as assetid from systemitemcache order by id' listname='idlist' table='SystemItemCache'/>
+%><ics:sql sql='select distinct id as assetid from SystemItemCache order by id' listname='idlist' table='SystemItemCache'/>
 <table class='altClass'>
     <tr><th>Nr</th><th>pagename</th><th>pages</th></tr>        
         <ics:listloop listname="idlist">
@@ -30,7 +27,7 @@
     <tr><td colspan="3" style="color:red"><%= ics.GetVar("totalassets")%> assets are cached...</td></tr>
     <ics:listloop listname='idlist'>
         <tr><th colspan="2" style="text-transform:none"><ics:listget listname='idlist' fieldname='assetid'/></th>
-        <ics:sql sql='<%= "select spage.pagename as pagename, count(*) as pages from systempagecache spage, systemitemcache sitem where spage.id = sitem.page and sitem.id = \'"+ics.ResolveVariables("idlist.assetid")+"\' group by spage.pagename order by pages desc"%>' listname='pagelist' table='SystemPageCache'/>
+			<ics:sql sql='<%= "select spage.pagename as pagename, count(*) as pages from SystemPagecache spage, SystemItemCache sitem where spage.id = sitem.page and sitem.id = \'"+ics.ResolveVariables("idlist.assetid")+"\' group by spage.pagename order by pages desc"%>' listname='pagelist' table='SystemPageCache'/>
         <% int total = 0; %>
         <ics:listloop listname="pagelist">
             <% total += Integer.parseInt(ics.ResolveVariables("pagelist.pages")); %>
@@ -53,6 +50,4 @@
     </ics:listloop>
 </table>
 It took <time:get name='pagetime'/> Millisecs to calculate..
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

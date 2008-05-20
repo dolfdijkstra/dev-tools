@@ -129,7 +129,7 @@ private static boolean delete() {
 %>
 <cs:ftcs>
     <%    
-    String inipath = Utilities.osSafeSpec(ics.getIServlet().getServlet().getServletConfig().getInitParameter("inipath"))+"/";   //ft.ini path
+    String inipath = Utilities.osSafeSpec(getServletContext().getInitParameter("inipath"))+"/";   //ft.ini path
     String tmpdir=System.getProperty("java.io.tmpdir");
     String s1, s2, s3;
     

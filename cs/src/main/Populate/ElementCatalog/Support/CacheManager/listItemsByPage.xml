@@ -8,9 +8,6 @@
 - OUTPUT
 -
 -->
-<CALLELEMENT NAME="Support/general"/>
-<div id="content">
-<CALLELEMENT NAME="Support/Topnav"/>
 <Script Language="Javascript">
 function gotoPreview(F, dict)
 {
@@ -83,6 +80,4 @@ function showPreview(pURL)
 		</CALLELEMENT>		
 	</ELSE></IF>
 </ELSE></IF>
-<CALLELEMENT NAME="Support/Footer"/>
-</div>
 </FTCS>
