@@ -417,6 +417,8 @@ static class View {
 		printTableRow( "Max Memory", formatter.format( rt.maxMemory()) + " bytes"); 
 		printTableRow( "Total Memory", formatter.format(rt.totalMemory()) + " bytes"); 
 		printTableRow( "Free Memory", formatter.format( rt.freeMemory()) + " bytes"); 
+		printTableRow( "Number of Processors", Integer.toString(rt.availableProcessors())); 
+		
 	}  
 	void printCurrentDate() throws IOException
 	{
@@ -806,6 +808,8 @@ private static class ProductInfo {
 			collectVersion();
 		} catch(ClassNotFoundException e){
 			//ignore
+		} catch(NoClassDefFoundError e){
+		    //ignore
 		} catch(Exception e){
 			e.printStackTrace();
 		}
