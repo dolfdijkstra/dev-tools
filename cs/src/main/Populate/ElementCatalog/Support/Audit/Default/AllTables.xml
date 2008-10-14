@@ -24,7 +24,7 @@
 	<LOOP LIST="A">
 	<table class="altClass">
 		<SETVAR NAME="errno" VALUE="0"/>
-
+		<SETVAR NAME="tablename" VALUE="SystemInfo"/>
         <EXECSQL SQL="SELECT tblname FROM SystemInfo WHERE systable = 'A.systable' AND tblname NOT IN ('SystemAssets') ORDER BY LOWER(tblname) ASC" LIST="B"/>
         <b>Total <CSVAR NAME="B.#numRows"/> tables of type: <CSVAR NAME="A.systable"/></b><br/>
         <tr><th>Tablename</th><th>Number of Rows</th><th>CSz</th><th>Timeout</th><th>Abs</th><th>Time to Run SQL</th><th>Special TableKey</th></tr>
@@ -32,6 +32,7 @@
 		<LOOP LIST="B">
 		<tr><td><a href="ContentServer?pagename=Support/Audit/Default/BodyCheck&#38;tblname=B.tblname" REPLACEALL="B.tblname"><CSVAR NAME="B.tblname"/></a></td>
 		<SETVAR NAME="errno" VALUE="0"/>
+		<SETVAR NAME="tablename" VALUE="B.tblname"/>
 		<TIME.SET NAME="mytabletime" />
 		<EXECSQL SQL="SELECT COUNT(*) as cnt FROM B.tblname" LIST="C"/>
 		<IF COND="Variables.errno=0">
