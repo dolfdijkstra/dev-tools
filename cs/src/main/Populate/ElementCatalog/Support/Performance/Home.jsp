@@ -77,11 +77,6 @@
 	</satellite:link>
 <a href='<ics:getvar name="referURL"/>'>CPUIntensive</a>
 </td></tr>
-
-<!-- 
-<tr><td><a href="ContentServer?pagename=Support/Performance/DBIntensive">Database intensive</a></td></tr>
-<tr><td><a href="ContentServer?pagename=Support/Performance/IOIntensive">I/O Intensive</a></td></tr>
--->
 </table>
 </div>
 <ics:callelement element="Support/Footer"/>

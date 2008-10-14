@@ -18,10 +18,6 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<satellite:tag>
-    <satellite:parameter name="type" value ="open"/>
-</satellite:tag>
-
 <time:set name="mystamp" />
 <%
 boolean cached = "true".equals(ics.GetVar("cached"));
@@ -32,13 +28,8 @@ for (int i=0;i<Integer.parseInt(ics.GetVar("number"));i++){
 %>
 <satellite:page>
 	 	 <satellite:parameter name='pagename' value='<%= pagename %>'/>
-	 	 <satellite:parameter name='cachecontrol' value='never'/>
 </satellite:page>
 <%}%>
 <br><br>
 <time:get name="mystamp" /> ms<br>
-<satellite:tag>
-    <satellite:parameter name="type" value ="closed"/>
-</satellite:tag>
-
 </cs:ftcs>

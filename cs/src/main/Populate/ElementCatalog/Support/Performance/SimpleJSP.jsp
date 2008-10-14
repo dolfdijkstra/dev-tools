@@ -9,10 +9,6 @@
 // OUTPUT
 //%>
 <cs:ftcs>
-<satellite:tag>
-    <satellite:parameter name="type" value ="open"/>
-</satellite:tag>
-
 <html>
 <head>
 <title>Simple performance test</title>
@@ -21,8 +17,4 @@
 This is a simple jsp page
 </body>
 </html>
-<satellite:tag>
-    <satellite:parameter name="type" value ="closed"/>
-</satellite:tag>
-
 </cs:ftcs>

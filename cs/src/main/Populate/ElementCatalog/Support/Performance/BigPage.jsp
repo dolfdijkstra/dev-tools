@@ -16,10 +16,6 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<satellite:tag>
-    <satellite:parameter name="type" value ="open"/>
-</satellite:tag>
-
 <html>
 <head>
 <title>Performance Big Page</title>
@@ -55,8 +51,4 @@ You should cache as many componants as you can.</p>
 %>
 </body>
 </html>
-<satellite:tag>
-    <satellite:parameter name="type" value ="closed"/>
-</satellite:tag>
-
 </cs:ftcs>
