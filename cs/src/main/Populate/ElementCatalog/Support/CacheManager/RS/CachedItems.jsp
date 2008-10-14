@@ -81,8 +81,13 @@
             %><td style="text-align:right"><%= stats.hasINotifyObjects() %></td><%
 
             int i=1;
+            Set<String> keySet = new TreeSet<String>();
             for (Enumeration keys = ht.keys(); keys.hasMoreElements();){
                 String itemkey = (String)keys.nextElement();
+                keySet.add(itemkey);
+            }  
+
+            for (String itemkey : keySet){
                 %><tr><td><%= Integer.toString(i++) %></td><%
                 %><td colspan="14"><%= itemkey %></td><%
                 %></tr>
