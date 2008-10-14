@@ -18,5 +18,4 @@
 	<INPUT TYPE="checkbox" NAME="ss"/>Flush pages from all Satellite engines<br/><br/>
 	<INPUT TYPE="Submit" NAME="Submit" VALUE="Submit"/>
 </FORM>
-<CALLELEMENT NAME="Support/Footer"/>
 </FTCS> 
