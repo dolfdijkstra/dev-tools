@@ -30,7 +30,7 @@ private org.apache.commons.logging.Log log = org.apache.commons.logging.LogFacto
                 <ul>
                     <li><a href="ContentServer?pagename=Support/Home">HOME</a></li>
                     <% if (ics.UserIsMember("SiteGod")){
-						%><li><a href="ContentServer?pagename=Support/Info/collectInfo">INFO</a></li>
+						%><li><a href="ContentServer?pagename=Support/Info/Home">INFO</a></li>
 						<li><a href="ContentServer?pagename=Support/Audit/Home">SYSTEM</a></li>
 						<li><a href="ContentServer?pagename=Support/TCPI/Home">APPROVAL</a></li>
 						<li><a href="ContentServer?pagename=Support/CacheManager/Home">CACHE</a></li>

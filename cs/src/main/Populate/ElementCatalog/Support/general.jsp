@@ -6,7 +6,7 @@
 Support/general
 */
 %><cs:ftcs><head>
-<meta http-equiv="Pragma" content="No-cache"/>
+<meta http-equiv="Pragma" content="no-cache"/>
 <style type="text/css">
 <ics:callelement element="Support/css"/>
 </style>
