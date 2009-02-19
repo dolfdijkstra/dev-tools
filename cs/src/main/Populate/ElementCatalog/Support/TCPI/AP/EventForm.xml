@@ -8,9 +8,6 @@
 - OUTPUT
 -
 -->
-<CALLELEMENT NAME="Support/general"/>
-<div id="content">
-<CALLELEMENT NAME="Support/Topnav"/>
 <SCRIPT LANGUAGE="JavaScript">
 <![CDATA[
 function checkall () {
@@ -111,6 +108,4 @@ function checkall () {
     <a href="ContentServer?pagename=Variables.pagename&#38;cmd=EventForm&#38;enabled=true" REPLACEALL="Variables.pagename">List Enabled Events</a><br/>
 </else>
 </if>
-<CALLELEMENT NAME="Support/Footer"/>
-</div>
 </ftcs>

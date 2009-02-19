@@ -15,9 +15,6 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <h3><center>Detail View - Asset Dependents</center></h3>
 <% if (ics.GetVar("assetid")!=null) { %>
 <%//<b>Assetid: <ics:getvar name="assetid" /></b><hr/> %>
@@ -39,10 +36,10 @@ status = <ics:listget listname="thisAsset" fieldname="status" /><BR/>
 updatedby = <ics:listget listname="thisAsset" fieldname="updatedby" /><BR/>
 updateddate = <ics:listget listname="thisAsset" fieldname="updateddate" /><BR/>
 sites = <ics:listloop listname="sites">
-		<ics:listget listname="sites" fieldname="value" output="pubid"/>
-		<ics:sql sql='<%= ics.ResolveVariables("SELECT name as value FROM Publication WHERE id=Variables.pubid") %>' table='Publication' listname="sitename"/>
-		<ics:listget listname="sitename" fieldname="value"/>,
-	</ics:listloop><BR/>
+        <ics:listget listname="sites" fieldname="value" output="pubid"/>
+        <ics:sql sql='<%= ics.ResolveVariables("SELECT name as value FROM Publication WHERE id=Variables.pubid") %>' table='Publication' listname="sitename"/>
+        <ics:listget listname="sitename" fieldname="value"/>,
+    </ics:listloop><BR/>
 </h5>
 
 <%// ********************* RENDER PUBKEY TABLE RECORDS ********************* %>
@@ -55,23 +52,23 @@ DEBUG: SQL errno = <ics:geterrno/>
 <table class="altClass">
 <tr><th colspan="6" style="background-color:#58a">PubKeyTable</th></tr>
 <tr>
-	<th>#</th>
-	<th>id</th>
-	<th>targetid</th>
-	<th>newkey</th>
-	<th>localkey</th>
-	<th>permanent</th>
+    <th>#</th>
+    <th>id</th>
+    <th>targetid</th>
+    <th>newkey</th>
+    <th>localkey</th>
+    <th>permanent</th>
 </tr>
 
 <ics:listloop listname="keys">
-	<tr align="center">
-		<td><ics:listget listname="keys" fieldname="#curRow"/></td>
-		<td><ics:listget listname="keys" fieldname="id"/></td>
-		<td><ics:listget listname="keys" fieldname="targetid"/></td>
-		<td><ics:listget listname="keys" fieldname="newkey" /></td>
-		<td><ics:listget listname="keys" fieldname="localkey"/></td>
-		<td><ics:listget listname="keys" fieldname="ispermanent"/></td>
-	</tr>
+    <tr align="center">
+        <td><ics:listget listname="keys" fieldname="#curRow"/></td>
+        <td><ics:listget listname="keys" fieldname="id"/></td>
+        <td><ics:listget listname="keys" fieldname="targetid"/></td>
+        <td><ics:listget listname="keys" fieldname="newkey" /></td>
+        <td><ics:listget listname="keys" fieldname="localkey"/></td>
+        <td><ics:listget listname="keys" fieldname="ispermanent"/></td>
+    </tr>
 </ics:listloop>
 </table>
 Legend:<br/>
@@ -81,25 +78,25 @@ Legend:<br/>
 
 <%// ********************* RENDER APPROVEDASSETS RECORDS FOR THE CURRENT ASSET ********************* %>
 <table class="altClass">
-	<tr><th colspan="12" style="background-color:#58a">ApprovedAssets</th></tr>
-	<tr>
-		<th>#</th>
-		<th>id</th>
-		<%//th>assetid</th%>
-		<%//th>asset type</th%>
-		<th>targetid</th>
-		<th>state</th>
-		<th>tstate</th>
-		<th>reason</th>
-		<th>treason</th>
-		<th nowrap="true">voided status <br/>(approved)</th>
-		<th nowrap="true">voided status<br/> @last publish</th>
-		<th nowrap="true">updateddate <br/>(if state = A, M or H)</th>
-		<th nowrap="true">updateddate <br/>@last publish</th>
-		<%//th>asset version</th%>
-		<%//th>last asset version</th%>
-		<th nowrap="true">locked <br/>(being modified)</th>
-	</tr>
+    <tr><th colspan="12" style="background-color:#58a">ApprovedAssets</th></tr>
+    <tr>
+        <th>#</th>
+        <th>id</th>
+        <%//th>assetid</th%>
+        <%//th>asset type</th%>
+        <th>targetid</th>
+        <th>state</th>
+        <th>tstate</th>
+        <th>reason</th>
+        <th>treason</th>
+        <th nowrap="true">voided status <br/>(approved)</th>
+        <th nowrap="true">voided status<br/> @last publish</th>
+        <th nowrap="true">updateddate <br/>(if state = A, M or H)</th>
+        <th nowrap="true">updateddate <br/>@last publish</th>
+        <%//th>asset version</th%>
+        <%//th>last asset version</th%>
+        <th nowrap="true">locked <br/>(being modified)</th>
+    </tr>
 
     <ics:listloop listname="apps">
     <tr>
@@ -157,23 +154,23 @@ Errno: <b><ics:geterrno/></b>, Targets: <b><ics:listget listname="deptotals" fie
 DEBUG: SQL errno = <ics:geterrno/>
 <% if (ics.GetErrno() ==0) { %>
     <h4>Broken Refs found for this asset</h4>
-	<table class="altClass">
-		<tr><th colspan="9" style="background-color:#58a">ApprovedAssetDeps (broken refs)</th></tr>
-		<tr>
-			<th>#</th>
-			<th>id</th>
-			<th>targetid</th>
-			<th>ownerid</th>
-			<th>assettype</th>
-			<th>assetid</th>
-			<th>assetdeptype</th>
-			<th>currentDep</th>
-			<th>depmode</th>
-			<th>lastpub</th>
-			<th nowrap="true">assetdate <br/>(only if exact)</th>
-			<%//th>assetversion</th%>
-		</tr>
-		<ics:listloop listname="brokenrefs">
+    <table class="altClass">
+        <tr><th colspan="9" style="background-color:#58a">ApprovedAssetDeps (broken refs)</th></tr>
+        <tr>
+            <th>#</th>
+            <th>id</th>
+            <th>targetid</th>
+            <th>ownerid</th>
+            <th>assettype</th>
+            <th>assetid</th>
+            <th>assetdeptype</th>
+            <th>currentDep</th>
+            <th>depmode</th>
+            <th>lastpub</th>
+            <th nowrap="true">assetdate <br/>(only if exact)</th>
+            <%//th>assetversion</th%>
+        </tr>
+        <ics:listloop listname="brokenrefs">
         <tr align="center">
             <td><ics:listget listname="brokenrefs" fieldname="#curRow"/></td>
             <td><ics:listget listname="brokenrefs" fieldname="id"  /></td>
@@ -194,8 +191,8 @@ DEBUG: SQL errno = <ics:geterrno/>
             <td><ics:listget listname="brokenrefs" fieldname="lastpub"  /></td>
             <td><ics:listget listname="brokenrefs" fieldname="assetdate" /></td>
         </tr>
-		</ics:listloop>
-	</table>
+        </ics:listloop>
+    </table>
     Legend:<br/>
     <li>depmode: F=fundamental, T=template, R=reference<br/>
     <li>currentdep: F=dep changed or not calculated yet due to edit/change in asset, T=dep exists as of last publish<br/>
@@ -209,59 +206,59 @@ DEBUG: SQL errno = <ics:geterrno/>
 <%// ********************* RENDER APPROVEDASSETDEP CHILDREN TABLE RECORDS ********************* %>
 <h4>List of all Child Dependents (per target)</h4>
 <ics:listloop listname="deptotals">
-	<ics:listget listname="deptotals" fieldname="targetid" output="targetid" />
-	<ics:sql sql='<%= ics.ResolveVariables("SELECT name as value FROM PubTarget WHERE id=Variables.targetid")  %>' table="PubTarget" listname="PubTargetName"/>
-	<ics:sql sql='<%= ics.ResolveVariables("SELECT * FROM ApprovedAssetDeps WHERE ownerid IN (SELECT id FROM ApprovedAssets WHERE assetid=Variables.assetid) AND targetid=Variables.targetid ORDER BY assettype, assetid")  %>' table="ApprovedAssetDeps" listname="deps"/>
-	DEBUG: SQL errno = <ics:geterrno/>
+    <ics:listget listname="deptotals" fieldname="targetid" output="targetid" />
+    <ics:sql sql='<%= ics.ResolveVariables("SELECT name as value FROM PubTarget WHERE id=Variables.targetid")  %>' table="PubTarget" listname="PubTargetName"/>
+    <ics:sql sql='<%= ics.ResolveVariables("SELECT * FROM ApprovedAssetDeps WHERE ownerid IN (SELECT id FROM ApprovedAssets WHERE assetid=Variables.assetid) AND targetid=Variables.targetid ORDER BY assettype, assetid")  %>' table="ApprovedAssetDeps" listname="deps"/>
+    DEBUG: SQL errno = <ics:geterrno/>
         <% if (ics.GetErrno()==0) { %>
         <h5>Listing not more than 100 records</h5>
-	<table class="altClass">
-		<tr><th colspan="12" style="background-color:#58a">ApprovedAssetDeps - Child Dependencies for <font color="black"><ics:listget listname="PubTargetName" fieldname="value" /></font></th></tr>
-		<tr>
-			<th>#</th>
-			<th>id</th>
-			<%//th>targetid</th%>
-			<th>ownerid</th>
-			<th>assettype</th>
-			<th>assetid</th>
-			<th>assetdeptype</th>
-			<th>currentDep</th>
-			<th>depmode</th>
-			<th>lastpub</th>
-			<th nowrap="true">assetdate <br/>(only if exact)</th>
-			<%//th>assetversion</th%>
-			<th>Child Status</th>
-			<th>Child state/tstate</th>
-		</tr>
-		<ics:listloop listname="deps" maxrows="100">
-		<tr>
-			<td align="right"><ics:listget listname="deps" fieldname="#curRow"/></td>
-			<td><ics:listget listname="deps" fieldname="id"  /></td>
-			<%//td><ics:listget listname="deps" fieldname="targetid"  /></td%>
-			<td><ics:listget listname="deps" fieldname="ownerid"  /></td>
-			<td><ics:listget listname="deps" fieldname="assettype"  /></td>
-			<td>
-			    <ics:listget listname="deps" fieldname="assetid" output="assetid2" />
-          		<ics:clearerrno/>
-     			<ics:sql sql='<%= ics.ResolveVariables("SELECT assetid, assettype FROM ApprovedAssets WHERE assetid=Variables.assetid2") %>' table="ApprovedAssets" listname="child"/>
+    <table class="altClass">
+        <tr><th colspan="12" style="background-color:#58a">ApprovedAssetDeps - Child Dependencies for <font color="black"><ics:listget listname="PubTargetName" fieldname="value" /></font></th></tr>
+        <tr>
+            <th>#</th>
+            <th>id</th>
+            <%//th>targetid</th%>
+            <th>ownerid</th>
+            <th>assettype</th>
+            <th>assetid</th>
+            <th>assetdeptype</th>
+            <th>currentDep</th>
+            <th>depmode</th>
+            <th>lastpub</th>
+            <th nowrap="true">assetdate <br/>(only if exact)</th>
+            <%//th>assetversion</th%>
+            <th>Child Status</th>
+            <th>Child state/tstate</th>
+        </tr>
+        <ics:listloop listname="deps" maxrows="100">
+        <tr>
+            <td align="right"><ics:listget listname="deps" fieldname="#curRow"/></td>
+            <td><ics:listget listname="deps" fieldname="id"  /></td>
+            <%//td><ics:listget listname="deps" fieldname="targetid"  /></td%>
+            <td><ics:listget listname="deps" fieldname="ownerid"  /></td>
+            <td><ics:listget listname="deps" fieldname="assettype"  /></td>
+            <td>
+                <ics:listget listname="deps" fieldname="assetid" output="assetid2" />
+                <ics:clearerrno/>
+                <ics:sql sql='<%= ics.ResolveVariables("SELECT assetid, assettype FROM ApprovedAssets WHERE assetid=Variables.assetid2") %>' table="ApprovedAssets" listname="child"/>
                         <% if (ics.GetErrno()==0) { %>
                             <a href='ContentServer?pagename=Support/TCPI/AP/ShowHeld&assetid=<ics:listget listname="deps" fieldname="assetid" />'>
                                 <ics:getvar name="assetid2"  />
-			    </a>
+                </a>
                         <% } else { %>
                                    <font color="red">no assetid = <ics:getvar name="assetid2"  /> in ApprovedAssets (i.e. needs to be approved)</font>
-           		<% } %>
-			</td>
-			<td><ics:listget listname="deps" fieldname="assetdeptype"  /></td>
-			<td><ics:listget listname="deps" fieldname="currentdep"  /></td>
-			<td><ics:listget listname="deps" fieldname="depmode"  /></td>
-			<td><ics:listget listname="deps" fieldname="lastpub"  /></td>
-			<td nowrap="true"><ics:listget listname="deps" fieldname="assetdate" /></td>
-			<%//td><ics:listget listname="deps" fieldname="assetversion"  /></td%>
+                <% } %>
+            </td>
+            <td><ics:listget listname="deps" fieldname="assetdeptype"  /></td>
+            <td><ics:listget listname="deps" fieldname="currentdep"  /></td>
+            <td><ics:listget listname="deps" fieldname="depmode"  /></td>
+            <td><ics:listget listname="deps" fieldname="lastpub"  /></td>
+            <td nowrap="true"><ics:listget listname="deps" fieldname="assetdate" /></td>
+            <%//td><ics:listget listname="deps" fieldname="assetversion"  /></td%>
                         <td>
                             <ics:clearerrno/>
                             <ics:sql sql='<%= ics.ResolveVariables("SELECT id,status,updateddate,updatedby FROM deps.assettype WHERE id=deps.assetid") %>' table='<%= ics.ResolveVariables("deps.assettype") %>' listname="assets"/>
-                            <% if (ics.GetErrno()==0) { %>            
+                            <% if (ics.GetErrno()==0) { %>
                             <table cellspacing="1px" bgcolor="#CCFF99">
                                 <tr><td width="10%"><ics:listget listname="assets" fieldname="status"/></td>
                                 <td><ics:listget listname="assets" fieldname="updatedby"/></td></tr>
@@ -275,7 +272,7 @@ DEBUG: SQL errno = <ics:geterrno/>
                         </td>
                         <ics:clearerrno/>
                         <ics:sql sql='<%= ics.ResolveVariables("SELECT state, tstate FROM ApprovedAssets WHERE assetid=deps.assetid AND targetid=deps.targetid ORDER BY targetid") %>' table="ApprovedAssets" listname="deps2"/>
-                        <% if (ics.GetErrno()==0) { %>            
+                        <% if (ics.GetErrno()==0) { %>
                         <ics:listloop listname="deps2">
                             <td>
                                      <ics:listget listname="deps2" fieldname="state" output="Cstate"/>
@@ -290,9 +287,9 @@ DEBUG: SQL errno = <ics:geterrno/>
                         <% } else { %>
                             <td>error number: <ics:geterrno/></td>
                         <% } %>
-		 </tr>
-		 </ics:listloop>
-	</table>
+         </tr>
+         </ics:listloop>
+    </table>
     Legend:<br/>
     <li>depmode: F=fundamental, T=template, R=reference<br/>
     <li>currentdep: F=dep changed or not calculated yet due to edit/change in asset, T=dep exists as of last publish<br/>
@@ -311,19 +308,19 @@ DEBUG: SQL errno = <ics:geterrno/>
 <table class="altClass">
     <tr><th colspan="11" style="background-color:#58a">ApprovedAssetDeps - Parents of Current Asset</th></tr>
     <tr>
-    	<th>#</th>
-    	<th>id</th>
-    	<th>targetid</th>
-    	<th>ownerid (assettype)</th>
-    	<th>assetdeptype</th>
-    	<th>currentdep</th>
-    	<th>depmode</th>
-    	<th>lastpub</th>
-    	<th nowrap="true">assetdate <br/>(only if exact)</th>
-    	<th>Parent Status</th>
-    	<th nowrap="true">Parent tstate <br/>per destination</th>
+        <th>#</th>
+        <th>id</th>
+        <th>targetid</th>
+        <th>ownerid (assettype)</th>
+        <th>assetdeptype</th>
+        <th>currentdep</th>
+        <th>depmode</th>
+        <th>lastpub</th>
+        <th nowrap="true">assetdate <br/>(only if exact)</th>
+        <th>Parent Status</th>
+        <th nowrap="true">Parent tstate <br/>per destination</th>
     </tr>
-    
+
     <ics:listloop listname="deps3" maxrows="100">
     <tr align="center">
         <td><ics:listget listname="deps3" fieldname="#curRow"/></td>
@@ -339,7 +336,7 @@ DEBUG: SQL errno = <ics:geterrno/>
                 </a>
                 (<ics:listget listname="owner" fieldname="assettype" />)
             <% } else { %>
-					<font color="red">Broken Parent Ref (i.e. no id=<ics:getvar name="ownerid"  />)</font>
+                    <font color="red">Broken Parent Ref (i.e. no id=<ics:getvar name="ownerid"  />)</font>
             <% } %>
         </td>
         <td><ics:listget listname="deps3" fieldname="assetdeptype" /></td>
@@ -372,7 +369,7 @@ DEBUG: SQL errno = <ics:geterrno/>
         </ics:listloop>
         </table>
         </td>
-	</tr>
+    </tr>
     </ics:listloop>
 </table>
 Legend:<br/>
@@ -383,8 +380,6 @@ Legend:<br/>
 <% } else { %>
     <form method="POST" action='ContentServer?pagename=<%= ics.GetVar("pagename") %>'>
     <b>Any Assetid: </b><input type="text" name="assetid" value=""/></b>&nbsp;<input type="Submit" name="showheld" value="ShowHeld"><br/>
-    </form> 
+    </form>
 <% } %>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

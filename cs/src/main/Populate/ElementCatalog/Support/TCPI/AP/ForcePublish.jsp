@@ -16,9 +16,6 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <center><h3>Force Publish to a Destination</h3></center>
 
 <ics:if condition='<%= ics.GetVar("forcepub")!=null %>'>
@@ -53,7 +50,7 @@
     <form method="POST" action='ContentServer?pagename=<%= ics.GetVar("pagename") %>&targ=<%= ics.GetVar("targ") %>&tname=<%= ics.GetVar("tname") %>'>
     <b>Do you want to force publish all assets published to <ics:getvar name="tname"/>? <br/>
     </b>&nbsp;<input type="Submit" name="forcepub" value="ForcePublish"><br/>
-    </form> 
+    </form>
 </ics:then>
 <ics:else>
     <%
@@ -81,6 +78,4 @@
     </ics:if>
 </ics:else>
 </ics:if>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

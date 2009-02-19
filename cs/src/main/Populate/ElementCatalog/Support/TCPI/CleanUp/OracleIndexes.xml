@@ -9,9 +9,6 @@
 -
 -->
 <html>
-<CALLELEMENT NAME="Support/TCPI/HtmlHead"/>
-<body>
-<CALLELEMENT NAME="Support/TCPI/Header"/>
 <h2><CSVAR NAME="Variables.tblname "/></h2>
 <SETVAR NAME="tablename" VALUE="SystemInfo"/>	
 <h3>columns</h3>
@@ -109,59 +106,4 @@
 	</LOOP>
 </table>
 <FLUSH LIST="IND_NAME"/>	
-</body>
-</html>
-<!--
-from user_INDEXES
-
-INDEX_NAME 
- 
-INDEX_TYPE 
- 
- 
-TABLE_NAME 
- 
-TABLE_TYPE 
- 
-UNIQUENESS 
- 
-COMPRESSION 
- 
- 
-TABLESPACE_NAME 
- 
- 
-INCLUDE_COLUMN 
- 
-LOGGING 
- 
-BLEVEL 
- 
-DISTINCT_KEYS 
- 
-STATUS 
- 
-NUM_ROWS 
- 
-SAMPLE_SIZE 
- 
-LAST_ANALYZED 
- 
-DEGREE 
- 
-INSTANCES 
- 
-PARTITIONED 
- 
-TEMPORARY 
- 
-GENERATED 
- 
-SECONDARY 
- 
-BUFFER_POOL 
- 
- 
--->
-
 </FTCS> 

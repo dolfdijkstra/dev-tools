@@ -1,6 +1,6 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
-%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
-%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
 // Support/TCPI/CleanUp/CountHeldWithoutChildren
 //
@@ -8,16 +8,13 @@
 //
 // OUTPUT
 //
-%><%@ page import="COM.FutureTense.Interfaces.FTValList" 
-%><%@ page import="COM.FutureTense.Interfaces.ICS" 
-%><%@ page import="COM.FutureTense.Interfaces.IList" 
-%><%@ page import="COM.FutureTense.Interfaces.Utilities" 
-%><%@ page import="COM.FutureTense.Util.ftErrors" 
+%><%@ page import="COM.FutureTense.Interfaces.FTValList"
+%><%@ page import="COM.FutureTense.Interfaces.ICS"
+%><%@ page import="COM.FutureTense.Interfaces.IList"
+%><%@ page import="COM.FutureTense.Interfaces.Utilities"
+%><%@ page import="COM.FutureTense.Util.ftErrors"
 %><%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <h3><center>Count Held Assets with/without Children</center></h3>
 <b>Number of held assets per target and assettype</b>
 <ics:sql sql="SELECT COUNT(DISTINCT assetid) AS num, pt.name as name, assettype FROM ApprovedAssets aa, PubTarget pt WHERE pt.id= aa.targetid AND  tstate IN ('C') GROUP BY pt.name, assettype ORDER BY pt.name, assettype" table="ApprovedAssetDeps" listname="aa" />
@@ -27,13 +24,13 @@
         <th>AssetType</th>
         <th>Total</th>
     </tr>
-	<ics:listloop listname="aa">
+    <ics:listloop listname="aa">
     <tr>
         <td><ics:listget listname="aa" fieldname="name" /></td>
         <td><ics:listget listname="aa" fieldname="assettype" /></td>
         <td><ics:listget listname="aa" fieldname="num" /></td>
     </tr>
-	</ics:listloop>
+    </ics:listloop>
 </table>
 
 <br/><b>Number of held assets per target and assettype without children in same target</b>
@@ -44,13 +41,13 @@
         <th>AssetType</th>
         <th>Total</th>
     </tr>
-	<ics:listloop listname="aa">
+    <ics:listloop listname="aa">
     <tr>
         <td><ics:listget listname="aa" fieldname="name" /></td>
         <td><ics:listget listname="aa" fieldname="assettype" /></td>
         <td><ics:listget listname="aa" fieldname="num" /></td>
     </tr>
-	</ics:listloop>
+    </ics:listloop>
 </table>
 
 <br/><b>Number of held assets per target and assettype with children in same target</b>
@@ -61,13 +58,13 @@
         <th>AssetType</th>
         <th>Total</th>
     </tr>
-	<ics:listloop listname="aa">
+    <ics:listloop listname="aa">
     <tr>
         <td><ics:listget listname="aa" fieldname="name" /></td>
         <td><ics:listget listname="aa" fieldname="assettype" /></td>
         <td><ics:listget listname="aa" fieldname="num" /></td>
     </tr>
-	</ics:listloop>
+    </ics:listloop>
 </table>
 
 <br/><b>Number of dependancies for held assets per target and assettype where children are for the same target</b>
@@ -78,15 +75,13 @@
         <th>AssetType</th>
         <th>Total</th>
     </tr>
-	<ics:listloop listname="aa">
+    <ics:listloop listname="aa">
     <tr>
         <td><ics:listget listname="aa" fieldname="name" /></td>
         <td><ics:listget listname="aa" fieldname="assettype" /></td>
         <td><ics:listget listname="aa" fieldname="num" /></td>
     </tr>
-	</ics:listloop>
+    </ics:listloop>
 </table>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>
 

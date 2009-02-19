@@ -19,9 +19,6 @@
 <%@ page import="java.io.FileOutputStream" %>
 <%@ page import="java.util.Date" %>
 <cs:ftcs>
- <ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <h4>Test timstamps of files in sync dir</h4>
 <div>It is now: <%= new java.util.Date() %></div><br><%
 String syncDir = ics.GetProperty("ft.usedisksync");
@@ -31,8 +28,8 @@ if (syncDir == null || syncDir.length() ==0) {
     String filename = null;
     filename = "synctest";
     String syncFileName = syncDir + File.separatorChar + "event" + File.separatorChar + filename;
-	File syncFile = new File(syncFileName);
-	if (syncFile.exists()){
+    File syncFile = new File(syncFileName);
+    if (syncFile.exists()){
         long lastTouched = 0L;
         try {
             lastTouched = syncFile.lastModified();
@@ -40,14 +37,14 @@ if (syncDir == null || syncDir.length() ==0) {
             %>Last checked time for [<%= syncFileName %>]:<%= date.toString() %><br><%
         }  catch(Exception e)  {
             lastTouched = 0L;
-       	    %>IOException checking last modified time for [<%= syncFileName %>]: <%= e.getMessage() %><br><%
+            %>IOException checking last modified time for [<%= syncFileName %>]: <%= e.getMessage() %><br><%
         }
     }
     try  {
         FileOutputStream stream = new FileOutputStream(syncFile);
         stream.write(32);
         stream.close();
-	    %>Updated last modified time for [<%= syncFileName %>].<br><%
+        %>Updated last modified time for [<%= syncFileName %>].<br><%
     } catch(Exception e) {
         %>IOException updating last modified time for [<%= syncFileName %>]: <%= e.getMessage() %><br><%
     }
@@ -56,14 +53,12 @@ if (syncDir == null || syncDir.length() ==0) {
         try {
             lastTouched = syncFile.lastModified();
             Date date = new Date(lastTouched);
-           	%>Last checked time for [<%= syncFileName %>]:<%= date.toString() %><br><%
+            %>Last checked time for [<%= syncFileName %>]:<%= date.toString() %><br><%
         }  catch(Exception e)  {
             lastTouched = 0L;
-       	    %>IOException checking last modified time for [<%= syncFileName %>]: <%= e.getMessage() %><br><%
+            %>IOException checking last modified time for [<%= syncFileName %>]: <%= e.getMessage() %><br><%
         }
     }
 }
 %>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

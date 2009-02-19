@@ -1,6 +1,6 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
-%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
-%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
 // Support/TCPI/CleanUp/CheckDates
 //
@@ -8,16 +8,13 @@
 //
 // OUTPUT
 //
-%><%@ page import="COM.FutureTense.Interfaces.FTValList" 
-%><%@ page import="COM.FutureTense.Interfaces.ICS" 
-%><%@ page import="COM.FutureTense.Interfaces.IList" 
-%><%@ page import="COM.FutureTense.Interfaces.Utilities" 
-%><%@ page import="COM.FutureTense.Util.ftErrors" 
+%><%@ page import="COM.FutureTense.Interfaces.FTValList"
+%><%@ page import="COM.FutureTense.Interfaces.ICS"
+%><%@ page import="COM.FutureTense.Interfaces.IList"
+%><%@ page import="COM.FutureTense.Interfaces.Utilities"
+%><%@ page import="COM.FutureTense.Util.ftErrors"
 %><%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <h3>Validate Dates in ApprovedAssets and ApprovedAssetDeps Tables</h3>
 <%
   String assetType = ics.GetVar("assettype");
@@ -37,8 +34,8 @@
                 AND aa.treason = 'P'
                 AND ((aad.assetdeptype = 'V' AND aad.assetdate <> aa.assetdate)
                 OR (aad.assetdeptype = 'G' AND aad.assetdate > aa.assetdate) )
-                GROUP BY pt.name, pt.id, aa.assettype" 
-         table="ApprovedAssets,ApprovedAssetDeps,PubTarget" 
+                GROUP BY pt.name, pt.id, aa.assettype"
+         table="ApprovedAssets,ApprovedAssetDeps,PubTarget"
          listname="aList" />
     <% if (ics.GetErrno() == -101) {  %>
         No Disagreeing Dates Found.<br/>
@@ -65,18 +62,18 @@
     <ics:sql sql='<%= ics.ResolveVariables("SELECT aa.id as aaid, aad.id as aadid, aad.ownerid as ownerid, aa.assetid as assetid, aa.assetdate as assetdate, aad.assetdate as assetdepdate "+
                       "FROM ApprovedAssets aa, ApprovedAssetDeps aad "+
                       "WHERE aad.targetid = Variables.targetid "+
-                      "AND aad.assettype = \'Variables.assettype\' "+ 
+                      "AND aad.assettype = \'Variables.assettype\' "+
                       "AND aad.currentdep = \'T\' "+
                       "AND aad.depmode in (\'T\', \'R\') "+
                       "AND aad.assetdeptype in (\'V\', \'G\') "+
                       "AND aa.assetid = aad.assetid "+
-                      "AND aa.targetid = aad.targetid "+ 
+                      "AND aa.targetid = aad.targetid "+
                       "AND aa.tstate = \'H\' "+
                       "AND aa.treason = \'P\' "+
                       "AND ((aad.assetdeptype = \'V\' AND aad.assetdate <> aa.assetdate) "+
                       "OR (aad.assetdeptype = \'G\' AND aad.assetdate > aa.assetdate)) "+
-                      "ORDER BY aa.assetid") %>' 
-             table="ApprovedAssets,ApprovedAssetDeps" 
+                      "ORDER BY aa.assetid") %>'
+             table="ApprovedAssets,ApprovedAssetDeps"
              listname="aList" />
     <% if (ics.GetErrno() == -101) { %>
         No Disagreeing Dates Found.<br/>
@@ -122,8 +119,8 @@
                     <% } %>
                         <ics:clearerrno/>
                 <% } else { %>
-                    <ics:sql sql='<%= ics.ResolveVariables("SELECT updateddate FROM Variables.assettype WHERE id = aList.assetid") %>' 
-                             table="ApprovedAssets" 
+                    <ics:sql sql='<%= ics.ResolveVariables("SELECT updateddate FROM Variables.assettype WHERE id = aList.assetid") %>'
+                             table="ApprovedAssets"
                              listname="anAsset" />
                     <ics:listget listname="anAsset" fieldname="updateddate"/>
                 <% } %>
@@ -142,13 +139,11 @@
         <ics:flushcatalog catalog="ApprovedAssetDeps"/>
         <ics:flushcatalog catalog="ApprovedAssets"/>
         <ics:flushcatalog catalog='<%= ics.ResolveVariables("Variables.assettype") %>'/>
-      <% } %> 
+      <% } %>
       <a href='ContentServer?pagename=<ics:getvar name="pagename"/>'>Back to list</a>
       <% if(!fix) { %>
         <br><a href='ContentServer?pagename=<ics:getvar name="pagename"/>&targetid=<ics:getvar name="targetid"/>&assettype=<ics:getvar name="assettype"/>&fix=true'>Fix these</a>
-      <% } %> 
+      <% } %>
     <% } %>
 <% } %>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

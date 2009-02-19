@@ -16,9 +16,6 @@
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <%@ page import="java.util.*"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <center><h3>HttpSession</h3></center>
 <%
 java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -29,6 +26,4 @@ java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 <tr><td nowrap>getMaxInactiveInterval</td><td><%= session.getMaxInactiveInterval()  %></td><td>Returns the maximum time interval, in seconds, that the servlet container will keep this session open between client accesses. </td></tr>
 <tr><td nowrap>isNew</td><td><%= session.isNew()  %></td><td>Returns true if the client does not yet know about the session or if the client chooses not to join the session.</td></tr>
 </table>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

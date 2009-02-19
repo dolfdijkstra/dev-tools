@@ -8,10 +8,6 @@
 - OUTPUT
 -
 -->
-<CALLELEMENT NAME="Support/TCPI/general"/>
-<div id="content">
-<CALLELEMENT NAME="Support/TCPI/LeftNav"/>
-<div class="right-column">
 <h3>Output of user_tables (Oracle)</h3>
 <SETVAR NAME="tablename" VALUE="SystemInfo"/>
 <TIME.SET NAME="tabletime" />
@@ -49,7 +45,4 @@
 </table><br/>
 <br/>Time to get data: <TIME.GET NAME="tabletime" /> ms<br/>
 <FLUSH LIST="usertables"/>
-</div>
-<ics:callelement element="Support/Footer"/>
-</div>
 </FTCS> 

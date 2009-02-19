@@ -19,21 +19,18 @@
 <cs:ftcs>
 <script language="JavaScript">
 function checkall () {
-	var obj = document.forms[0].elements[0];
-	var formCnt = obj.form.elements.length;
-	for (i=0; i<formCnt; i++) {
+    var obj = document.forms[0].elements[0];
+    var formCnt = obj.form.elements.length;
+    for (i=0; i<formCnt; i++) {
       if (obj.form.elements[i].name == "apprundo")  {
          if (obj.form.elements[i].checked)
-    		    obj.form.elements[i].checked=false;
+                obj.form.elements[i].checked=false;
          else
             obj.form.elements[i].checked=true;
       }
-	}
+    }
 }
 </script>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <center><h3>Overview of Publishable Assets</h3></center>
 <%
   String thisPage = ics.GetVar("pagename");
@@ -70,7 +67,7 @@ function checkall () {
         java.util.StringTokenizer tz = new java.util.StringTokenizer(upassets,";");
         while (tz.hasMoreTokens()) {
             String token = tz.nextToken();
-            ics.SetVar("uid", token.substring(0,token.lastIndexOf(",")));            
+            ics.SetVar("uid", token.substring(0,token.lastIndexOf(",")));
     %>
             <ics:sql sql='<%= ics.ResolveVariables("update ApprovedAssets set tstate=\'C\' where assetid=Variables.uid and assettype=\'Variables.atype\' and targetid=Variables.ptid")%>' table="ApprovedAssets" listname="uplist1"/>
             <ics:flushcatalog catalog="ApprovedAssets"/>
@@ -81,7 +78,7 @@ function checkall () {
             <ics:clearerrno/>
         <% } %>
     <% } %>
-    <h3><%= ics.GetVar("ptname")%></h3><br/>    
+    <h3><%= ics.GetVar("ptname")%></h3><br/>
     <ics:flushcatalog catalog="ApprovedAssets"/>
     <ics:flushcatalog catalog="PubKeyTable"/>
     <ics:flushcatalog catalog="PublishedAssets"/>
@@ -136,6 +133,4 @@ function checkall () {
         </form>
     <% } %>
 <% } %>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

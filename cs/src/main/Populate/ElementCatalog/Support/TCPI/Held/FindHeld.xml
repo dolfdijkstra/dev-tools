@@ -8,10 +8,6 @@
 - OUTPUT
 -
 -->
-<CALLELEMENT NAME="Support/general"/>
-<div id="content">
-<CALLELEMENT NAME="Support/TCPI/Header"/>
-<div class="right-column">
 <h3>Held Assets</h3>
 
 <CATALOGMANAGER>
@@ -133,7 +129,4 @@
 	</if>
 </ELSE>
 </IF>
-</div>
-<CALLELEMENT NAME="Support/Footer">
-</div>
 </FTCS>

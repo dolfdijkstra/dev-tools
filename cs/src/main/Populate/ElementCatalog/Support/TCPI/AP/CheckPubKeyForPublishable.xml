@@ -8,9 +8,6 @@
 - OUTPUT
 -
 -->
-<CALLELEMENT NAME="Support/general"/>
-<div id="content">
-<CALLELEMENT NAME="Support/Topnav"/>
 <SCRIPT LANGUAGE="JavaScript">
 <![CDATA[
 function checkall () {
@@ -149,7 +146,5 @@ function checkall () {
 	</IF>
 </ELSE>
 </IF>
-<CALLELEMENT NAME="Support/Footer"/>
 <SETVAR NAME="errno" VALUE="0"/>
-</div>
 </FTCS>

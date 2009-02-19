@@ -16,9 +16,6 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <h3>File Lock test</h3>
 <%
 if (Utilities.fileLockLoadOK()) {
@@ -61,7 +58,5 @@ out.write("<br>");
 
 }
 %>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>
 

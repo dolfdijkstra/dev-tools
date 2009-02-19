@@ -1,6 +1,6 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
-%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
-%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
 // Support/TCPI/AP/PubQueues
 //
@@ -8,7 +8,7 @@
 //
 // OUTPUT
 //
-%><%@ page import="COM.FutureTense.Interfaces.ICS" 
+%><%@ page import="COM.FutureTense.Interfaces.ICS"
 %><%!
 static String sqlA="SELECT count(id) as num FROM ApprovedAssets WHERE assettype='assettypes.assettype' AND targetid=targets.id AND tstate='A'";
 static String sqlH="SELECT count(id) as num FROM ApprovedAssets WHERE assettype='assettypes.assettype' AND targetid=targets.id AND tstate='H'";
@@ -31,9 +31,6 @@ static String sqlCTA="SELECT count(id) as num FROM ApprovedAssets WHERE tstate='
 static String sqlTTA="SELECT count(id) as num FROM ApprovedAssets";
 %>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <center><h3>Overview of ApprovedAssets</h3></center>
 <% if ("true".equals(ics.GetVar("detail")) ){
 %><ics:callelement element="Support/TCPI/AP/PubDestTotalsDetail"/><%
@@ -41,6 +38,4 @@ static String sqlTTA="SELECT count(id) as num FROM ApprovedAssets";
 %><ics:callelement element="Support/TCPI/AP/PubDestTotals"/><%
 }
 %>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

@@ -21,7 +21,7 @@
 <h3><center>Delete System PageCache</center></h3>
 <%
 String thisPage = ics.GetVar("pagename");
-if (ics.GetVar("blowaway")!=null) { 
+if (ics.GetVar("blowaway")!=null) {
 %>
 <br/>
 <ics:sql sql="DELETE FROM SystemPageCache" listname="blowlist" table="SystemPageCache"/>
@@ -37,18 +37,18 @@ SystemItemCache Errno: <ics:geterrno/> (-502 is ok)<br>
 <b><ics:resolvevariables name='<%= ics.GetVar("xdefdir") %>' output="defdir" delimited="true"/></b><br>
 Defdir: <b><ics:getvar name="defdir"/></b><br>
 <table class="altClass">
-    <tr><th width="90%">Filename</th><th width="10%">Delete?</th></tr>
-<%
+    <tr><th width="90%">Filename</th><th width="10%">Type</th></tr>
+<% //spagehashkey
   if (Utilities.isFolder(ics.GetVar("defdir"))==0){
-  	java.util.Vector dirList = Utilities.directoryList(ics.GetVar("defdir"),"*",true, -1);
-  	Enumeration enum1 = dirList.elements();
-  	while(enum1.hasMoreElements()){
-  		String fileName= (String)enum1.nextElement();
-  		%><tr><td><%= fileName %></td><td><%= Utilities.isFile(fileName) ==0 %></td></tr><%
-  		if (Utilities.isFile(fileName) ==0) {
-  			Utilities.deleteFile(fileName);
-  		}
-  	}
+    java.util.Vector dirList = Utilities.directoryList(ics.GetVar("defdir"),"*",true, -1);
+    Enumeration enum1 = dirList.elements();
+    while(enum1.hasMoreElements()){
+        String fileName= (String)enum1.nextElement();
+        %><tr><td><%= fileName %></td><td><%= (Utilities.isFile(fileName) ==0 ? "file" :"directory") %></td></tr><%
+        if (Utilities.isFile(fileName) ==0) {
+            Utilities.deleteFile(fileName);
+        }
+    }
   }
 %>
 </table>
@@ -60,6 +60,6 @@ Total <b><ics:listget listname="itemlist" fieldname="itemnum"/></b> SystemItemCa
 Total <b><ics:listget listname="pagelist" fieldname="pagenum"/></b> SystemPageCache (with filesystem data) will be deleted.
 <form method="POST" action='ContentServer?pagename=<%=thisPage %>'>
 <b>Do you want to blow away all cache? </b>&nbsp;<input type="Submit" name="blowaway" value="BlowAway"><br/>
-</form> 
+</form>
 <% } %>
 </cs:ftcs>

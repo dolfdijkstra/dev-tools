@@ -15,13 +15,10 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <%
    int numOfNodes;
    if (ics.GetVar("numofnodes")!=null) {
-      numOfNodes=Integer.parseInt(ics.GetVar("numofnodes")); 
+      numOfNodes=Integer.parseInt(ics.GetVar("numofnodes"));
    } else {
        numOfNodes=4;
    }
@@ -33,10 +30,10 @@
 <table class="altClass" style="width:50%">
 <% for (int i=0; i<numOfNodes; i++){ %>
     <tr><td colspan="2">
-	<ics:callelement element="Support/Verify/Cluster/clusternodeEdit" >
-		<ics:argument name="node" value="<%= Integer.toString(i) %>"/> 
-	</ics:callelement>
-	</td></tr>
+    <ics:callelement element="Support/Verify/Cluster/clusternodeEdit" >
+        <ics:argument name="node" value="<%= Integer.toString(i) %>"/>
+    </ics:callelement>
+    </td></tr>
 <% } %>
 <tr>
   <td><input type="submit" value="Sumit" name="Submit">
@@ -45,6 +42,4 @@
 </tr>
 </table>
 </form>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

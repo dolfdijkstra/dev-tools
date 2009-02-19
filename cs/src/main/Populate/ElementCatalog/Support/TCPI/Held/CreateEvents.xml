@@ -8,9 +8,6 @@
 - OUTPUT
 -
 -->
-<CALLELEMENT NAME="Support/general"/>
-<div id="content">
-<CALLELEMENT NAME="Support/Topnav"/>
 <setvar NAME="errno" VALUE="0"/>
 <selectto LIST="uiPubTgts" WHAT="id,name,description,type" FROM="PubTarget"/>
 <if COND="IsError.Variables.errno=false">
@@ -35,6 +32,4 @@
 Problem finding pubtargets <CSVAR NAME="Variables.errno"/><br/>
 </else>
 </if>
-<CALLELEMENT NAME="Support/Footer"/>
-</div>
 </FTCS> 

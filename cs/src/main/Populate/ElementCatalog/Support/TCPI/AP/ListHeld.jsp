@@ -1,6 +1,6 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
-%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
-%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
 // Support/TCPI/AP/ListHeld
 //
@@ -8,65 +8,62 @@
 //
 // OUTPUT
 //
-%><%@ page import="COM.FutureTense.Interfaces.FTValList" 
-%><%@ page import="COM.FutureTense.Interfaces.ICS" 
-%><%@ page import="COM.FutureTense.Interfaces.IList" 
-%><%@ page import="COM.FutureTense.Interfaces.Utilities" 
-%><%@ page import="COM.FutureTense.Util.ftErrors" 
+%><%@ page import="COM.FutureTense.Interfaces.FTValList"
+%><%@ page import="COM.FutureTense.Interfaces.ICS"
+%><%@ page import="COM.FutureTense.Interfaces.IList"
+%><%@ page import="COM.FutureTense.Interfaces.Utilities"
+%><%@ page import="COM.FutureTense.Util.ftErrors"
 %><%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <center><h3>Held Assets</h3></center>
 
 <h4>Held Assets per AssetType per Target</h4>
 <ics:clearerrno/>
 <ics:sql sql="SELECT pt.name as name, aps.assettype as assettype , count(aps.id) as num FROM ApprovedAssets aps, PubTarget pt WHERE aps.tstate IN('H') AND pt.id=aps.targetid GROUP BY pt.name, aps.assettype ORDER BY name, assettype" table="ApprovedAssets" listname="yyy" />
 <% if (ics.GetErrno() == -101) { %>
-	There are no assets in held state.<br/> 
+    There are no assets in held state.<br/>
 <% } else if (ics.GetErrno() == 0){ %>
-	<table class="altClass">
-		<tr>
-			<th>Target</th>
-			<th>AssetType</th>
-			<th>Number held</th>
-			<th>Number missing assets</th>
-			<th>Number of assets</th>
-		</tr>
+    <table class="altClass">
+        <tr>
+            <th>Target</th>
+            <th>AssetType</th>
+            <th>Number held</th>
+            <th>Number missing assets</th>
+            <th>Number of assets</th>
+        </tr>
         <ics:listloop listname="yyy">
-       	<tr>
-    		<td><ics:listget listname="yyy" fieldname="name"/></td>
-    		<td><ics:listget listname="yyy" fieldname="assettype"/></td>
-    		<td align="right"><ics:listget listname="yyy" fieldname="num"/><br/></td>
-    		<ics:clearerrno/>
-    		<ics:sql sql='<%= ics.ResolveVariables("SELECT count(assetid) as num FROM AssetPublication WHERE assettype=\'yyy.assettype\' AND assetid not in (SELECT id FROM yyy.assettype)") %>' table="AssetPublication" listname="assetpubs"/>
-    		<% if (ics.GetErrno() ==0) { %>
-    			<td align="right"><ics:listget listname="assetpubs" fieldname="num"/></td>
-    		<% } %>
-    		<ics:clearerrno/>
-    		<ics:sql sql='<%= ics.ResolveVariables("SELECT count(id) as num FROM yyy.assettype") %>' table="AssetPublication" listname="assetpubs"/>
-    		<% if (ics.GetErrno() ==0) { %>
-    			<td align="right"><ics:listget listname="assetpubs" fieldname="num"/></td>
-    		<% } %>
-    
-    	</tr>
-	    </ics:listloop>
-	</table>
+        <tr>
+            <td><ics:listget listname="yyy" fieldname="name"/></td>
+            <td><ics:listget listname="yyy" fieldname="assettype"/></td>
+            <td align="right"><ics:listget listname="yyy" fieldname="num"/><br/></td>
+            <ics:clearerrno/>
+            <ics:sql sql='<%= ics.ResolveVariables("SELECT count(assetid) as num FROM AssetPublication WHERE assettype=\'yyy.assettype\' AND assetid not in (SELECT id FROM yyy.assettype)") %>' table="AssetPublication" listname="assetpubs"/>
+            <% if (ics.GetErrno() ==0) { %>
+                <td align="right"><ics:listget listname="assetpubs" fieldname="num"/></td>
+            <% } %>
+            <ics:clearerrno/>
+            <ics:sql sql='<%= ics.ResolveVariables("SELECT count(id) as num FROM yyy.assettype") %>' table="AssetPublication" listname="assetpubs"/>
+            <% if (ics.GetErrno() ==0) { %>
+                <td align="right"><ics:listget listname="assetpubs" fieldname="num"/></td>
+            <% } %>
+
+        </tr>
+        </ics:listloop>
+    </table>
   <br/>
-  
-	<h4>Held Assets List</h4>
-	<ics:clearerrno/>
-	<ics:sql sql="SELECT name, assetid, assettype FROM ApprovedAssets, PubTarget WHERE tstate IN ('H') AND ApprovedAssets.targetid=PubTarget.id ORDER BY name,assettype,assetid" table="ApprovedAssets" listname="helds" limit='<%= ics.GetVar("limit") %>'/>
-	<table class="altClass">
-		<tr>
-			<th>Nr</th>
-			<th>Target</th>
-			<th>AssetType</th>
-			<th>Assetid</th>
-			<th colspan="3">Asset Status</th>
-		</tr>
-		<ics:listloop listname="helds">
+
+    <h4>Held Assets List</h4>
+    <ics:clearerrno/>
+    <ics:sql sql="SELECT name, assetid, assettype FROM ApprovedAssets, PubTarget WHERE tstate IN ('H') AND ApprovedAssets.targetid=PubTarget.id ORDER BY name,assettype,assetid" table="ApprovedAssets" listname="helds" limit='<%= ics.GetVar("limit") %>'/>
+    <table class="altClass">
+        <tr>
+            <th>Nr</th>
+            <th>Target</th>
+            <th>AssetType</th>
+            <th>Assetid</th>
+            <th colspan="3">Asset Status</th>
+        </tr>
+        <ics:listloop listname="helds">
         <tr>
             <td><ics:listget listname="helds" fieldname="#curRow"/></td>
 
@@ -83,9 +80,7 @@
                 <td align="right" colspan="3"><font color="red">Missing</font></td>
             <% } %>
         </tr>
-		</ics:listloop>
-	</table>
+        </ics:listloop>
+    </table>
 <% } %>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

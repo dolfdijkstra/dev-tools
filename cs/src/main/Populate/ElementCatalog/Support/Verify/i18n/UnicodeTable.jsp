@@ -16,23 +16,20 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <%!
 class Chart {
-	int start=0;
-	int end=0;
-	String name;
-	Chart(int start, int end, String name){
-		this.start=start;
-		this.end=end;
-		this.name=name;
-	}
+    int start=0;
+    int end=0;
+    String name;
+    Chart(int start, int end, String name){
+        this.start=start;
+        this.end=end;
+        this.name=name;
+    }
 }
 
 static java.util.TreeMap list;
- 
+
 void buildList(){
 // original is at http://www.unicode.org/Public/UNIDATA/Blocks.txt
 
@@ -150,15 +147,15 @@ list.put(new Integer(1048576) ,new Chart(1048576,1114111, "Supplementary Private
 }
 
 Chart nextChart(int end){
-	java.util.SortedMap tail = list.tailMap(new Integer(end));
-	if (tail.isEmpty()) {
-		return null;
-	} else {
-		Integer firstKey = (Integer)tail.firstKey();
-		Chart chart = (Chart)tail.get(firstKey);
-		return chart;
-		//return ((Integer)tail.first()).intValue();
-	}
+    java.util.SortedMap tail = list.tailMap(new Integer(end));
+    if (tail.isEmpty()) {
+        return null;
+    } else {
+        Integer firstKey = (Integer)tail.firstKey();
+        Chart chart = (Chart)tail.get(firstKey);
+        return chart;
+        //return ((Integer)tail.first()).intValue();
+    }
 }
 
 %><%
@@ -169,8 +166,8 @@ String font ="Arial Unicode MS";
 <style type="text/css">
 <!--
 td {
-	font-family: "<%= font %>";
-	font-size: 16px;
+    font-family: "<%= font %>";
+    font-size: 16px;
 }
 -->
 </style>
@@ -182,7 +179,7 @@ boolean unicodeEscaped="true".equals(request.getParameter("esc"));
 int step=20;
 int start=0;
 try {
-	start = Integer.parseInt(request.getParameter("start"),16);
+    start = Integer.parseInt(request.getParameter("start"),16);
 } catch(Exception e){
 
 }
@@ -197,35 +194,35 @@ From <%= start %> (<%= Integer.toHexString(start).toUpperCase() %>) till <%= end
 <table class="altClass" style="font-family: <%= font %>;font-size: 16px;">
 <tr heigth="30" ><th width="30">&nbsp;</th><%
 for (int j=0; j< step ; j++){
-	%><th width="30"><%= j %></th><%
+    %><th width="30"><%= j %></th><%
 }
 %></tr><%
 
 for (int i=start; i< end ; i=i+step){
 %>
 <tr heigth="30"><td><b><%=i%></b></td><%
-	for (int j=0; j< step ; j++){
-		int code = (i+j);
-		// Character.getNumericValue(str.charAt(i));
-		char c = (char)code;
-		//String strCode = "x" + Integer.toHexString(code).toUpperCase();
-		String strCode = Integer.toString(code).toUpperCase();
+    for (int j=0; j< step ; j++){
+        int code = (i+j);
+        // Character.getNumericValue(str.charAt(i));
+        char c = (char)code;
+        //String strCode = "x" + Integer.toHexString(code).toUpperCase();
+        String strCode = Integer.toString(code).toUpperCase();
 
-		%><td><%
-		if (code < end){
-			if (Character.isDefined(c)){// &&!Character.isISOControl(c) ) {
-				if (unicodeEscaped)
-					out.write("&#" + strCode + ";"); 
-				else 
-					out.write(c);
-			} else {
-				%>*<%
-			}
-		} else {
-			%>&nbsp;<%
-		}
-		%></td><%
-	}
+        %><td><%
+        if (code < end){
+            if (Character.isDefined(c)){// &&!Character.isISOControl(c) ) {
+                if (unicodeEscaped)
+                    out.write("&#" + strCode + ";");
+                else
+                    out.write(c);
+            } else {
+                %>*<%
+            }
+        } else {
+            %>&nbsp;<%
+        }
+        %></td><%
+    }
 %></tr>
 <% } %>
 </table>
@@ -237,6 +234,4 @@ for (int i=start; i< end ; i=i+step){
 See also <a href="http://www.w3.org/TR/charmod/" target="_new">Character Model for the World Wide Web 1.0</a><br>
 See also <a href="http://www.alanwood.net/unicode/index.html" target="_new">Alan Wood's site</a><br>
 See also <a href="http://www.unicode.org/iuc/iuc10/x-utf8.html" target="_new">UTF-8 sample</a><br>
-<ics:callelement element="Support/Footer"/>
-</div>        
 </cs:ftcs>

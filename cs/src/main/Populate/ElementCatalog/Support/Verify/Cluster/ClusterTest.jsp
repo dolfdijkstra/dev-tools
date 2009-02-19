@@ -12,9 +12,6 @@
 <%@ page import="COM.FutureTense.Interfaces.Utilities" %>
 <%@ page import="java.util.*"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <center><h3>Basic Cluster test</h3></center>
 <table class="altClass">
 <tr><th>runtime hashCode</th><th>Current thread</th><th>Session id</th></tr>
@@ -23,20 +20,18 @@
 <hr/>
 <table class="altClass">
 <tr><th>Unique ID</th><th>Session counter</th></tr>
-<% 
+<%
 String tmp="";
 for (int i=0; i<60; i++) {
-	String current = ics.GetSSVar("sessionCounter");
-	if (current == null) {
-		ics.SetSSVar("sessionCounter","0");
-		current = ics.GetSSVar("sessionCounter");
-	}
-	int curVal = new Integer(current).intValue();
-	ics.SetSSVar("sessionCounter", new String("" + (++curVal)));
-	%><td><%= Utilities.genID(ics) %></td><td><%= ics.GetSSVar("sessionCounter") %></td></tr><%
+    String current = ics.GetSSVar("sessionCounter");
+    if (current == null) {
+        ics.SetSSVar("sessionCounter","0");
+        current = ics.GetSSVar("sessionCounter");
+    }
+    int curVal = new Integer(current).intValue();
+    ics.SetSSVar("sessionCounter", new String("" + (++curVal)));
+    %><td><%= Utilities.genID(ics) %></td><td><%= ics.GetSSVar("sessionCounter") %></td></tr><%
 }
 %>
 </table>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

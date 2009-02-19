@@ -1,7 +1,5 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
-%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
-%><%@ taglib prefix="user" uri="futuretense_cs/user.tld"
 %><%//
 // Support/Home
 //
@@ -9,21 +7,11 @@
 //
 // OUTPUT
 //
-%><%@ page import="COM.FutureTense.Interfaces.FTValList"
-%><%@ page import="COM.FutureTense.Interfaces.ICS"
-%><%@ page import="COM.FutureTense.Interfaces.IList"
-%><%@ page import="COM.FutureTense.Interfaces.Utilities"
-%><%@ page import="COM.FutureTense.Util.ftErrors"
-%><%@ page import="COM.FutureTense.Util.ftMessage"
 %><cs:ftcs>
 <div class="left-column">
   <h2>Categories</h2>
   <ul class="subnav divider">
     <li><a href="http://www.fatwire.com" class="Fatwire">Fatwire</a></li>
-  </ul>
-  <h2>Recent Entries</h2>
-  <ul class="subnav divider">
-    <li><a href="http://www.fatwire.com/cs/Satellite/NewsITNewsPage_US.html">News</a></li>
   </ul>
   <h2>Fatwire Support</h2>
   <ul class="subnav divider">
@@ -46,6 +34,7 @@
         <b>System:</b> Helps general audit of the system and miscellaneous cleanup tools.<br/>
         <b>Approval:</b> Displays information about approval subsystem, approval affected tables and events.<br/>
         <b>Cache:</b> Displays information about CacheManager subsystem.<br/>
+        <b>Assets:</b> Displays information about assets.<br/>
         <b>Flex:</b> Shows the general layout of flex assets and find any missing data.<br/>
         <b>Misc:</b> Miscellaneous tools which include cluster tests, encoding tests and displays files from filesystem.<br/>
         <b>Log4J:</b> Dynamically set logger levels if log4j is configured.<br/>

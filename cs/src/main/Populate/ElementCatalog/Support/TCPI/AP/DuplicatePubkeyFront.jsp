@@ -17,9 +17,6 @@
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <center><h4>Overview of Duplicate Pubkeys</h4></center>
 <%
   String ptid = ics.GetVar("ptid");
@@ -49,39 +46,39 @@
     </ics:if>
 <% } else { %>
     <h3><%= ics.GetVar("ptname")%></h3><br/>
-    <% if(ics.GetVar("pubkeyid")!=null) { %>	
-		<% String query1="DELETE FROM PubKeyTable WHERE id=Variables.pubkeyid AND newkey='N' AND EXISTS (SELECT 1 FROM PubKeyTable B WHERE PubKeyTable.localkey = B.localkey AND PubKeyTable.targetid = B.targetid AND B.newkey='D')"; %>
+    <% if(ics.GetVar("pubkeyid")!=null) { %>
+        <% String query1="DELETE FROM PubKeyTable WHERE id=Variables.pubkeyid AND newkey='N' AND EXISTS (SELECT 1 FROM PubKeyTable B WHERE PubKeyTable.localkey = B.localkey AND PubKeyTable.targetid = B.targetid AND B.newkey='D')"; %>
 
-		<ics:sql sql="<%=ics.ResolveVariables(query1)%>" listname="duplist1" table="PubKeyTable"/>
+        <ics:sql sql="<%=ics.ResolveVariables(query1)%>" listname="duplist1" table="PubKeyTable"/>
 
-		<ics:catalogmanager>
-		   <ics:argument name="ftcmd" value="flushcatalog" />
-		   <ics:argument name="tablename" value="PubKeyTable" />
-		</ics:catalogmanager> 
-        
+        <ics:catalogmanager>
+           <ics:argument name="ftcmd" value="flushcatalog" />
+           <ics:argument name="tablename" value="PubKeyTable" />
+        </ics:catalogmanager>
+
         <% if (ics.GetErrno()!=0) { %>
             Error: <ics:geterrno/><BR>
         <% } %>
     <% } %>
-    
-	<% String query= "SELECT id, newkey, localkey, assetid FROM PubKeyTable A WHERE A.targetid=Variables.ptid AND A.newkey='N' AND EXISTS (SELECT 1 FROM PubKeyTable B WHERE A.localkey = B.localkey AND A.targetid = B.targetid AND B.newkey='D')"; %>
 
- 	<ics:sql sql="<%=ics.ResolveVariables(query)%>" listname="duplist" table="PubKeyTable"/>
+    <% String query= "SELECT id, newkey, localkey, assetid FROM PubKeyTable A WHERE A.targetid=Variables.ptid AND A.newkey='N' AND EXISTS (SELECT 1 FROM PubKeyTable B WHERE A.localkey = B.localkey AND A.targetid = B.targetid AND B.newkey='D')"; %>
 
- 	<%
-	 IList list=ics.GetList("duplist");
-	 int i = 1;
-	 int counter = list.numRows();
-	
-	 if (counter<=0) { 
-	%>
-	   There are no duplicate keys.
-	<% } else { %>
-   	    <table class='altClass'>      
-   	    <tr><th>pubid</th><th>targetid</th><th>assetid</th><th>localkey</th><th>delete?</th></tr>
-   	    <%
-       	while(i <= counter)
-       	{
+    <ics:sql sql="<%=ics.ResolveVariables(query)%>" listname="duplist" table="PubKeyTable"/>
+
+    <%
+     IList list=ics.GetList("duplist");
+     int i = 1;
+     int counter = list.numRows();
+
+     if (counter<=0) {
+    %>
+       There are no duplicate keys.
+    <% } else { %>
+        <table class='altClass'>
+        <tr><th>pubid</th><th>targetid</th><th>assetid</th><th>localkey</th><th>delete?</th></tr>
+        <%
+        while(i <= counter)
+        {
           list.moveTo(i);
           i++;
           String id=list.getValue("id");
@@ -97,9 +94,7 @@
               <td><a href='ContentServer?pagename=Support/TCPI/Ap/DuplicatePubkeyFront&pubkeyid=<%=id%>&delete=true'>fixme</a></td>
           </tr>
         <% } %>
-  	    </table>    
+        </table>
     <% } %>
 <% } %>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

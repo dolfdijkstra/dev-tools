@@ -16,9 +16,6 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
 <p>Please fill in number of ClusterNodes in your environment</p>
 <form method="POST" action="ContentServer">
   Number of Nodes: <input type="text" name="numofnodes" size="20"></p>
@@ -26,6 +23,4 @@
      <input type="reset" value="Reset" name="B2"></p>
   <input type="hidden" value="Support/Verify/Cluster/nodeselect" name="pagename">
 </form>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>
