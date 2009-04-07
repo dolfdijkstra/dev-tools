@@ -40,7 +40,7 @@ for(var t=0;t<tables.length;t++) {
 <div class="footer gray">
      <table width="100%" style="border:none"><tr>
             <td width="25%" style="text-transform:none;border-bottom:none"><p>Copyright &copy;2009 FatWire Corporation.  All Rights Reserved.</p></td>
-            <td width="25%" style="text-align:right;border-bottom:none"><p>Version 3.4</p></td>
+            <td width="25%" style="text-align:right;border-bottom:none"><p>Version 3.5</p></td>
      </tr></table>
 </div>
 </cs:ftcs>
