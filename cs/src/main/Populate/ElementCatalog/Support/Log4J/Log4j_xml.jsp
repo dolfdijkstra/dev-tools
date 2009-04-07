@@ -1,6 +1,6 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
-%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
-%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%
 //
 // Support/Log4J/Log4j_xml
@@ -9,19 +9,19 @@
 //
 // OUTPUT
 //
-%><%@ page import="COM.FutureTense.Interfaces.ICS" 
+%><%@ page import="COM.FutureTense.Interfaces.ICS"
 %><cs:ftcs><?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/docs/api/org/apache/log4j/xml/log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
-	<appender name="console" class="org.apache.log4j.ConsoleAppender">
-		<param name="Target" value="System.out" />
-		<param name="Threshold" value="info" />
-		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m%n" />
-		</layout>
-	</appender>
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out" />
+        <param name="Threshold" value="info" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m%n" />
+        </layout>
+    </appender>
     <appender name="file" class="org.apache.log4j.RollingFileAppender">
-        <param name="file" value="<%= COM.FutureTense.Interfaces.Utilities.osSafeSpec(getServletContext().getInitParameter("inipath") +"/futuretense.txt") %>"/>
+        <param name="file" value="<%= COM.FutureTense.Interfaces.Utilities.osSafeSpec(getServletConfig().getServletContext().getInitParameter("inipath") +"/futuretense.txt") %>"/>
         <param name="MaxFileSize" value="50MB"/>
         <param name="MaxBackupIndex" value="15"/>
         <param name="append" value="true"/>
@@ -32,9 +32,9 @@
         </layout>
     </appender>
 
-	<logger name="com.fatwire">
-		<level value="info"></level>
-	</logger>
+    <logger name="com.fatwire">
+        <level value="info"></level>
+    </logger>
     <logger name="com.fatwire.logging.cs.auth">
         <level value="info"/>
     </logger>
@@ -144,10 +144,10 @@
         <level value="warn"/>
     </logger>
 
-	<!-- Setup the Root category -->
-	<root>
-		<priority value="info" />
-		<appender-ref ref="file" />
-	</root>
+    <!-- Setup the Root category -->
+    <root>
+        <priority value="info" />
+        <appender-ref ref="file" />
+    </root>
 </log4j:configuration>
 </cs:ftcs>

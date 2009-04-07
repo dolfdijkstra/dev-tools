@@ -32,7 +32,7 @@
         }
     }
 %><cs:ftcs><%
-String resource = getServletContext().getRealPath("/WEB-INF/classes/commons-logging.properties");
+String resource = getServletConfig().getServletContext().getRealPath("/WEB-INF/classes/commons-logging.properties");
 if (resource !=null && new File(resource).exists()){
 
     Properties props = new Properties();

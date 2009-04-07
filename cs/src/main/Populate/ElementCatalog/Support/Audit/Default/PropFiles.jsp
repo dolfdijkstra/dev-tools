@@ -47,7 +47,7 @@ class IniFileFilter implements java.io.FileFilter {
 <cs:ftcs>
 <h3>Content Server Property Files</h3>
 <%
-    String inipath = Utilities.osSafeSpec(getServletContext().getInitParameter("inipath"));
+    String inipath = Utilities.osSafeSpec(getServletConfig().getServletContext().getInitParameter("inipath"));
     File[] inifiles = new File(inipath).listFiles(new IniFileFilter());
     java.util.Arrays.sort(inifiles);
 %>
@@ -61,17 +61,17 @@ class IniFileFilter implements java.io.FileFilter {
 </table>
 
 <%
-   String root = request.getRequestURI();	
+   String root = request.getRequestURI();
    String croot1 = root.substring(root.indexOf("/"));
    String croot2 = root.substring(root.lastIndexOf("/"));
    String contextroot = null;
-   if (croot1.equals(croot2)) 
-      contextroot = "/";   
-   else 
+   if (croot1.equals(croot2))
+      contextroot = "/";
+   else
       contextroot = root.substring(root.indexOf("/"), root.lastIndexOf("/"));
-   String realpath = request.getRealPath(contextroot);      
+   String realpath = request.getRealPath(contextroot);
    String resources = realpath.substring(0, realpath.lastIndexOf(Utilities.osSafeSpec("/"))) + "/WEB-INF/classes";
-   String proppath = Utilities.osSafeSpec(resources);   
+   String proppath = Utilities.osSafeSpec(resources);
    File[] propfiles = new File(proppath).listFiles(new IniFileFilter());
    java.util.Arrays.sort(propfiles);
 %>

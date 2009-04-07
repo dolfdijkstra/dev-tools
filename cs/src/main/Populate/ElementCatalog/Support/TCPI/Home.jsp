@@ -136,6 +136,13 @@
         <p>Checks for leftover rows in the tempory publish tables. <br/>There should only be data in these tables when there are not pubsessions running.</p>
     </div>
     <div class="entry-header">
+        <h2><a href='ContentServer?pagename=Support/TCPI/AP/NotePublish'><b>Mark as Published</b></a></h2>
+    </div>
+    <div class="entry">
+        <p>Mark assets ready for publish as already published to a destination.</p>
+    </div>
+
+    <div class="entry-header">
         <h2><a href='ContentServer?pagename=Support/TCPI/AP/EventForm'><b>Current Events</b></a></h2>
     </div>
     <div class="entry">

@@ -1,6 +1,6 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
-%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
-%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%
 //
 // Support/Log4J/Info
@@ -66,7 +66,7 @@ It turned out that commons-logging-1.1 has a nice feature if multiple commons-lo
 If you set in the property priority=100 in commons-logging.properties file JCL will use this property to decide that file to use. A higher priority takes precedent over a lower priority file.
 <br/>
 <br/>
-Set in <%= getServletContext().getRealPath("/WEB-INF/classes/commons-logging.properties") %><br/>
+Set in <%= getServletConfig().getServletContext().getRealPath("/WEB-INF/classes/commons-logging.properties") %><br/>
 <br/>
 <code>
 priority=100<br/>
