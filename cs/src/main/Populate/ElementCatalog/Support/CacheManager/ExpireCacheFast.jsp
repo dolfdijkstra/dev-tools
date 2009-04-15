@@ -27,7 +27,7 @@ if (ics.GetVar("expire")!=null) {
 <ics:sql sql="UPDATE SystemPageCache SET etime = {d '1999-01-01'}" listname="blowlist" table="SystemPageCache"/>
 SystemPageCache Errno: <ics:geterrno/> (-502 is ok)<br>
 <ics:flushcatalog catalog="SystemPageCache"/>
-
+<ics:clearerrno/>
 <ics:sql sql="DELETE FROM SystemItemCache" listname="blowlist" table="SystemItemCache"/>
 SystemItemCache Errno: <ics:geterrno/> (-502 is ok)<br>
 <ics:flushcatalog catalog="SystemItemCache"/>
