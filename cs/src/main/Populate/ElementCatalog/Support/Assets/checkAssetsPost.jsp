@@ -138,7 +138,12 @@ private String ecDefDir = "", mbDefDir = "";
           }
           else {
             try {
-              iniSize = Integer.parseInt(propvalue.substring(propvalue.indexOf("(") + 1, propvalue.indexOf(")")));
+              if (propvalue.indexOf("(") != -1 && propvalue.indexOf(")") != -1) {
+                iniSize = Integer.parseInt(propvalue.substring(propvalue.indexOf("(") + 1, propvalue.indexOf(")")));
+              }
+              else { //no size defined in ini file, assume match
+                iniSize = dbSize;
+              }
             }
             catch (NumberFormatException e) {
               badprop = (ics.GetProperty("cs.dbtype").equalsIgnoreCase("Oracle"));
@@ -168,8 +173,14 @@ private String ecDefDir = "", mbDefDir = "";
           else {
             iniSize = dbSize;
             try {
-              if (propvalue.indexOf("(") !=-1 && propvalue.indexOf(",") !=-1){
-                 iniSize = Integer.parseInt(propvalue.substring(propvalue.indexOf("(") + 1, propvalue.indexOf(",")));
+              if (propvalue.indexOf("(") !=-1 && propvalue.indexOf(",") != -1) {
+                iniSize = Integer.parseInt(propvalue.substring(propvalue.indexOf("(") + 1, propvalue.indexOf(",")));
+              }
+              else if (propvalue.indexOf("(") != -1 && propvalue.indexOf(")") != -1) {
+                iniSize = Integer.parseInt(propvalue.substring(propvalue.indexOf("(") + 1, propvalue.indexOf(")")));
+              }
+              else { //no size defined in ini file, assume match
+                iniSize = dbSize;
               }
             }
             catch (Exception e) {
@@ -191,7 +202,12 @@ private String ecDefDir = "", mbDefDir = "";
           }
           else {
             try {
-              iniSize = Integer.parseInt(propvalue.substring(propvalue.indexOf("(") + 1, propvalue.indexOf(")")));
+              if (propvalue.indexOf("(") != -1 && propvalue.indexOf(")") != -1) {
+                iniSize = Integer.parseInt(propvalue.substring(propvalue.indexOf("(") + 1, propvalue.indexOf(")")));
+              }
+              else { //no size defined in ini file, assume match
+                iniSize = dbSize;
+              }
             }
             catch (NumberFormatException e) {
               badprop = (ics.GetProperty("cs.dbtype").equalsIgnoreCase("Oracle"));
