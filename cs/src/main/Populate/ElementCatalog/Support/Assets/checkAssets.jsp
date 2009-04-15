@@ -70,15 +70,15 @@ if (theTypes == null) { %>
           <div id='<%= currTable + "-results-table" %>'>
           <table style="border: 0">
             <tr id='<%= currTable + "-wrong-tr" %>' style="display: none">
-          <td style="width:18px; border:0;text-align: left; vertical-align: top;"><div class="nodeLink" name="togglehide" href="javascript:void(0);" onclick='toggleHide(this, null);' id='<%= currTable + "-wrong-a" %>'>+</div></td>
-          <td style="border:0;text-align: left">
+            <td style="width:18px; border:0;text-align: left; vertical-align: top;"><div class="nodeLink" name="togglehide" href="javascript:void(0);" onclick='toggleHide(this, null);' id='<%= currTable + "-wrong-a" %>'>+</div></td>
+            <td style="border:0;text-align: left">
             <div class="bad">Invalid Asset(s) - <span id='<%= currTable + "-numwrong"%>'></span></div>
             <div id='<%= currTable + "-wrong" %>' style="display: none"></div>
           </td>
         </tr>
             <tr id='<%= currTable + "-correct-tr" %>' style="display: none">
-          <td style="width:18px; border:0;text-align: left; vertical-align: top;"><div class="nodeLink" name="togglehide" href="javascript:void(0);" onclick='toggleHide(this, null);' id='<%= currTable + "-correct-a" %>'>+</div></td>
-          <td style="border:0;text-align: left">
+            <td style="width:18px; border:0;text-align: left; vertical-align: top;"><div class="nodeLink" name="togglehide" href="javascript:void(0);" onclick='toggleHide(this, null);' id='<%= currTable + "-correct-a" %>'>+</div></td>
+            <td style="border:0;text-align: left">
             <div class="good">Valid Asset(s) - <span id='<%= currTable + "-numcorrect"%>'></span></div>
             <div id='<%= currTable + "-correct" %>' style="display: none"></div>
           </td>
