@@ -32,27 +32,27 @@ web.xml should be changed to have <a href="http://static.springframework.org/spr
 <br/>
 Web.xml<br/>
 <code>
-    &lt;context-param&gt:<br/>
-        &lt;param-name&gt:log4jConfigLocation&lt;/param-name&gt:<br/>
-        &lt;param-value&gt:/WEB-INF/log4j.xml&lt;/param-value&gt:<br/>
-    &lt;/context-param&gt:<br/>
+    &lt;context-param&gt;<br/>
+        &lt;param-name&gt;log4jConfigLocation&lt;/param-name&gt;<br/>
+        &lt;param-value&gt;/WEB-INF/log4j.xml&lt;/param-value&gt;<br/>
+    &lt;/context-param&gt;<br/>
 [...]<br/>
-    &lt;!-- log4j should be the first listener --&gt:<br/>
-    &lt;listener&gt:<br/>
-        &lt;listener-class&gt:org.springframework.web.util.Log4jConfigListener&lt;/listener-class&gt:<br/>
-    &lt;/listener&gt:<br/>
-    &lt;listener&gt:<br/>
-        &lt;listener-class&gt:org.springframework.web.util.IntrospectorCleanupListener&lt;/listener-class&gt:<br/>
-    &lt;/listener&gt:<br/>
-    &lt;listener&gt:<br/>
-        &lt;listener-class&gt:org.apache.commons.logging.impl.ServletContextCleaner&lt;/listener-class&gt:<br/>
-    &lt;/listener&gt:<br/>
-    &lt;listener&gt:<br/>
-        &lt;listener-class&gt:org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt:<br/>
-    &lt;/listener&gt:<br/>
-    &lt;listener&gt:<br/>
-        &lt;listener-class&gt:org.apache.myfaces.webapp.StartupServletContextListener&lt;/listener-class&gt:<br/>
-    &lt;/listener&gt:
+    &lt;!-- log4j should be the first listener --&gt;<br/>
+    &lt;listener&gt;<br/>
+        &lt;listener-class&gt;org.springframework.web.util.Log4jConfigListener&lt;/listener-class&gt;<br/>
+    &lt;/listener&gt;<br/>
+    &lt;listener&gt;<br/>
+        &lt;listener-class&gt;org.springframework.web.util.IntrospectorCleanupListener&lt;/listener-class&gt;<br/>
+    &lt;/listener&gt;<br/>
+    &lt;listener&gt;<br/>
+        &lt;listener-class&gt;org.apache.commons.logging.impl.ServletContextCleaner&lt;/listener-class&gt;<br/>
+    &lt;/listener&gt;<br/>
+    &lt;listener&gt;<br/>
+        &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;<br/>
+    &lt;/listener&gt;<br/>
+    &lt;listener&gt;<br/>
+        &lt;listener-class&gt;org.apache.myfaces.webapp.StartupServletContextListener&lt;/listener-class&gt;<br/>
+    &lt;/listener&gt;
 </code>
 <br/>
 </p>
