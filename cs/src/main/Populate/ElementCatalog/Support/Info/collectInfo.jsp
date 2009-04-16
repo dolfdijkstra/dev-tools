@@ -57,7 +57,7 @@
   view.printAddresses();
   view.printLicense();
   view.printServletRequestPropertyFile();
-  view.printAllIniFiles(Utilities.osSafeSpec(getServletContext().getInitParameter("inipath")));
+  view.printAllIniFiles(Utilities.osSafeSpec(context.getInitParameter("inipath")));
   view.printWebXml(context);
   view.printWebInfLib(context);
   view.printTableClose();
