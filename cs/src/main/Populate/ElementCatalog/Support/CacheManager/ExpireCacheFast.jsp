@@ -36,7 +36,7 @@ SystemItemCache Errno: <ics:geterrno/> (-502 is ok)<br>
 <br/>
 <ics:sql sql="SELECT count(*) as itemnum FROM SystemItemCache" listname="itemlist" table="SystemItemCache"/>
 Total <b><ics:listget listname="itemlist" fieldname="itemnum"/></b> SystemItemCache rows will be deleted.<br/>
-<ics:sql sql="<%= "SELECT count(*) as pagenum FROM SystemPageCache WHERE etime > {d '"+ Calendar.getInstance().get(Calendar.YEAR) +"-01-01'}" %>" listname="pagelist" table="SystemPageCache"/>
+<ics:sql sql="<%= "SELECT count(*) as pagenum FROM SystemPageCache WHERE etime > {d \'"+ Calendar.getInstance().get(Calendar.YEAR) +"-01-01\'}" %>" listname="pagelist" table="SystemPageCache"/>
 Total <b><ics:listget listname="pagelist" fieldname="pagenum"/></b> SystemPageCache (with filesystem data) will be expired.
 <form method="POST" action='ContentServer?pagename=<%=thisPage %>'>
 <b>Do you want to expire all cache? </b>&nbsp;<input type="Submit" name="expire" value="Expire"><br/>
