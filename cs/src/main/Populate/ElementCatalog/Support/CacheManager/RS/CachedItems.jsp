@@ -1,6 +1,6 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
-%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
-%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
 // Support/CacheManager/RS/CachedItems
 //
@@ -8,17 +8,17 @@
 //
 // OUTPUT
 //%>
-<%@ page import="COM.FutureTense.Interfaces.FTValList" 
-%><%@ page import="COM.FutureTense.Interfaces.ICS" 
-%><%@ page import="COM.FutureTense.Interfaces.IList" 
-%><%@ page import="COM.FutureTense.Interfaces.Utilities" 
-%><%@ page import="COM.FutureTense.Util.ftErrors" 
+<%@ page import="COM.FutureTense.Interfaces.FTValList"
+%><%@ page import="COM.FutureTense.Interfaces.ICS"
+%><%@ page import="COM.FutureTense.Interfaces.IList"
+%><%@ page import="COM.FutureTense.Interfaces.Utilities"
+%><%@ page import="COM.FutureTense.Util.ftErrors"
 %><%@ page import="COM.FutureTense.Util.ftMessage"
 %><%@ page import="COM.FutureTense.Util.ftTimedHashtable"
-%><%@ page import="com.fatwire.cs.core.cache.RuntimeCacheStats" 
+%><%@ page import="com.fatwire.cs.core.cache.RuntimeCacheStats"
 %><%@ page import="java.util.*"
 %><%@ page import="java.text.*"
-%><%! 
+%><%!
     String getTimeDiff(Date first, Date last){
         if (first == null || last == null) return "unknown";
         return getTimeDiff(first.getTime(),last);
@@ -82,16 +82,17 @@
 
             int i=1;
             Set<String> keySet = new TreeSet<String>();
-            for (Enumeration keys = ht.keys(); keys.hasMoreElements();){
+            for (Enumeration keys = ht.keys(); keys.hasMoreElements() && i < 1500;){
                 String itemkey = (String)keys.nextElement();
                 keySet.add(itemkey);
-            }  
-
+                i++;
+            }
+            i=1;
             for (String itemkey : keySet){
                 %><tr><td><%= Integer.toString(i++) %></td><%
                 %><td colspan="14"><%= itemkey %></td><%
                 %></tr>
-            <% }  
+            <% }
         } else {
             %><tr><td colspan="16"><%= key %> not found</td></tr><%
         }
