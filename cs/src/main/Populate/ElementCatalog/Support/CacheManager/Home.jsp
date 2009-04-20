@@ -102,7 +102,7 @@
     </div>
     <div class="entry-header">
         <satellite:link>
-            <satellite:parameter name='pagename' value='Support/CacheManager/RS/Cache'/>
+            <satellite:parameter name='pagename' value='Support/CacheManager/RS/CacheVisualizationTable'/>
         </satellite:link>
         <h2><a href='<%= ics.GetVar("referURL") %>'><b>Resultset Cache Profiler</b></a></h2>
     </div>

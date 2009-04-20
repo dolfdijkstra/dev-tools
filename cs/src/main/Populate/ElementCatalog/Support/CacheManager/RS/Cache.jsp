@@ -76,8 +76,8 @@
               String fill_ratio_s = ht.getCapacity() < 1 ? "NA" : pctFormat.format(ht.size() / max);
 
 
-              %><td style="text-align:center; padding:0px"><img src="http://chart.apis.google.com/chart?chs=200x75&cht=gom&chd=t:<%= hit_ratio%>&chl=<%= hit_ratio_s %>" alt="hit ratio" title="hit ratio: <%= hit_ratio_s %>"/></td><%
-              %><td style="text-align:center; padding:0px"><img src="http://chart.apis.google.com/chart?chs=200x75&chco=00FF00,FF0000&cht=gom&chd=t:<%= fill_ratio%>&chl=<%= fill_ratio_s %>" alt="fill ratio" title="fill ratio: <%= fill_ratio_s %>"/></td><%
+              %><td style="text-align:center; white-space: nowrap"><%= hit_ratio_s %></td><%
+              %><td style="text-align:center; white-space: nowrap"><%= fill_ratio_s %></td><%
               %><td style="text-align:right;white-space: nowrap"><%= ht.size() %></td><%
               %><td style="text-align:right;white-space: nowrap"><%= ht.getCapacity() %></td><%
               %><td style="text-align:right;white-space: nowrap"><%= stats.getHits()%></td><%
