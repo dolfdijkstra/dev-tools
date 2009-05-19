@@ -51,9 +51,11 @@
        var data = response.getDataTable();
 
 
+       var formatterReverse = new google.visualization.TableBarFormat({width: 80 ,base: 100, colorNegative: 'blue'});
+
+       formatterReverse.format(data, 3);
 
        var formatter = new google.visualization.TableBarFormat({width: 80 });
-       formatter.format(data, 3);
        formatter.format(data, 6);
 
        var date_formatter = new google.visualization.TableDateFormat({pattern: 'MM-dd HH:mm:ss'});
