@@ -69,8 +69,14 @@
     <IF COND="Variables.errno=1"> 
 		 <THEN></THEN>
 		 <ELSE>
-		 	<SETVAR NAME="hasError" VALUE="true"/>
-		 	Target type is not of type Mirror: <CSVAR NAME="Variables.pubdt:name"/>. Not performing FakePublish.<br/>
+			<BEGINS STR="Variables.pubdt:name" WHAT="RealTime"/> 
+		    <IF COND="Variables.errno=1"> 
+			  <THEN></THEN>
+			  <ELSE>
+			 	<SETVAR NAME="hasError" VALUE="true"/>
+			 	Target type is not of type Mirror or RealTime: <CSVAR NAME="Variables.pubdt:name"/>. Not performing FakePublish.<br/>
+		 	  </ELSE>
+			</IF>
 		 </ELSE>
 	</IF>
 </THEN>

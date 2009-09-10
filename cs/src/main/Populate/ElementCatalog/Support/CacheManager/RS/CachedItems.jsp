@@ -1,5 +1,6 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="render" uri="futuretense_cs/render.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
 // Support/CacheManager/RS/CachedItems
@@ -89,10 +90,19 @@
             }
             i=1;
             for (String itemkey : keySet){
+                %>
+                <render:getpageurl
+                    outstr="detailsLink"
+                    pagename="Support/CacheManager/RS/CachedItemList">
+                    <render:argument name="key" value='<%=key%>'/>
+                    <render:argument name="item" value='<%=itemkey%>'/>
+                </render:getpageurl>
+                <%
                 %><tr><td><%= Integer.toString(i++) %></td><%
-                %><td colspan="14"><%= itemkey %></td><%
+            %><td colspan="14"><a href='<%=ics.GetVar("detailsLink")%>'><%= itemkey %></a></td><%
                 %></tr>
             <% }
+
         } else {
             %><tr><td colspan="16"><%= key %> not found</td></tr><%
         }

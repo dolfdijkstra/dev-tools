@@ -41,17 +41,17 @@
             </tr>
             <%
             int i=1;
-            for (Enumeration e = ht.elements(); e.hasMoreElements() && i < 1000;){
+            for (Enumeration e = ht.elements(); e.hasMoreElements() && i < 1500;){
                 Object item = e.nextElement();
                 %><tr><td><%= Integer.toString(i++) %></td><%
                 if (item ==null) {
                     %><td colspan="6">null</td><%
                 }else {
-                    %><td colspan="1"><%= item.getClass().getName()%></td><%
+                    %><td colspan="1"><%= (item instanceof IList) ? "IList" : item.getClass().getName() %></td><%
                     %><td colspan="1"><%= (item instanceof IList) ? ((IList)item).hasData() :"" %></td><%
                     %><td colspan="1"><%= (item instanceof IList) ? ((IList)item).numRows() :"" %></td><%
                     %><td colspan="1"><%= (item instanceof IList) ? ((IList)item).numColumns() :"" %></td><%
-                    %><td colspan="1"><%= item%></td><%
+                    %><td colspan="1"><%= (item instanceof IList) ? "" : item%></td><%
                 }
                 %></tr>
             <% }

@@ -34,19 +34,20 @@ function checkVoided() {
   var formCnt = obj.form.elements.length;
   var cont = true;
   var deletions = "";
-
+  var countDel=0;
   //loops for all checkboxes with id set to "VO"
   for (i=0; i<formCnt; i++) {
 
     if (obj.form.elements[i].name == "remPub")  {
-      if (obj.form.elements[i].checked && obj.form.elements[i].id == "VO")
+      if (obj.form.elements[i].checked && obj.form.elements[i].className == "VO"){
           deletions = deletions + obj.form.elements[i].value + "\n";
+          countDel++;
+      }
     }
   }
 
   if (deletions != "")
-      cont = (prompt("WARNING!\n\n" + "The following assets are asset deletions:\n\n" + deletions + "\nYou will not be able to publish this deletion if you remove it from the publish queue.\n\nPlease type in \"YES\" if you are absolutely sure you would like to proceed with this:") == "YES");
-
+      cont = (prompt("WARNING!\n\nThe following assets are asset deletions:\n\n" + (countDel < 25 ? deletions :"\n\nToo many assets (" + countDel + "), not shown here\n\n") + "\nYou will only be able to publish this deletion again if you approve these assets via the Bulk Approve function.\nAssets that are unapproved are written to the log file.\n\nPlease type in \"YES\" if you are absolutely sure you would like to proceed with this:") == "YES");
   return cont;
 
 }
@@ -86,13 +87,15 @@ function checkVoided() {
     <% if (removePub!=null) { %>
 
       <%
-        java.util.StringTokenizer tz = new java.util.StringTokenizer(removePub,";");
+        String[] tz = removePub.split(";");
         int counter=1000;
-        while (tz.hasMoreTokens()) {
-          String token = tz.nextToken();
-          ics.SetVar("atype", token.substring(0, token.indexOf(":")));
-          ics.SetVar("uid", token.substring(token.indexOf(":")+1));
+        for(String token : tz) {
+          String[] parts = token.split(":");
+          String atype = parts[0];
+          String uid = parts[1];
+          String status = parts[2];
           counter++;
+          ics.LogMsg("UnApproving "+ status +" "+ atype +"-"+ uid);
       %>
 
       <%-- Inserts a row into the ApprovalQueue table for the particular asset to be removed --%>
@@ -100,8 +103,8 @@ function checkVoided() {
                   <ics:argument name="ftcmd" value="addrow"/>
                   <ics:argument name="tablename" value="ApprovalQueue"/>
                   <ics:argument name="cs_ordinal" value='<%= Integer.toString(counter) %>'/>
-                  <ics:argument name="cs_assettype" value='<%= ics.GetVar("atype") %>'/>
-                  <ics:argument name="cs_assetid" value='<%= ics.GetVar("uid") %>'/>
+                  <ics:argument name="cs_assettype" value='<%= atype %>'/>
+                  <ics:argument name="cs_assetid" value='<%= uid %>'/>
                   <ics:argument name="cs_optype" value='C'/>
                   <ics:argument name="cs_voided" value='F'/>
       </ics:catalogmanager>
@@ -144,7 +147,7 @@ function checkVoided() {
     Total number of assets ready for publish: <%= ics.GetList("tlist").numRows() %><br/>
     <br/>
     <table class="altClass" sytle="width:50%">
-        <tr><th>Remove <input type="checkbox" onclick="return checkall()"/></th><th>State</th><th>Asset ID</th><th>Asset Type</th><th>Asset Name</th><th>Asset Description</th></tr>
+        <tr><th>Remove <input type="checkbox" onclick="return checkall()"/></th><th>State</th><th>Status</th><th>Asset ID</th><th>Asset Type</th><th>Asset Name</th><th>Asset Description</th></tr>
 
         <ics:listloop listname="tlist">
 
@@ -157,7 +160,7 @@ function checkVoided() {
 
           <ics:listget listname="anamelist" fieldname="name" output="assetName" />
           <ics:listget listname="anamelist" fieldname="description" output="assetDesc" />
-
+          <ics:listget listname="anamelist" fieldname="status" output="assetStatus" />
           <%-- counts the number of held assets and approved assets --%>
           <%
           if (ics.GetVar("state").equals("H"))
@@ -167,8 +170,9 @@ function checkVoided() {
           %>
 
           <tr>
-            <td><input type="checkbox" name="remPub" value='<%= ics.GetVar("assetType") + ":" + ics.GetVar("assetID") %>' id='<ics:listget listname="anamelist" fieldname="status" />' /></td>
+            <td><input type="checkbox" name="remPub" value='<%= ics.GetVar("assetType") + ":" + ics.GetVar("assetID") + ":" + ics.GetVar("assetStatus") %>' class='<ics:getvar name="assetStatus" />' <%= "VO".equals(ics.GetVar("assetStatus"))  || ics.GetVar("state").equals("H") ? "": "checked=\"checked\"" %> /></td>
             <td><%= ics.GetVar("state") %></td>
+            <td><ics:listget listname="anamelist" fieldname="status" /></td>
             <td><%= ics.GetVar("assetID") %></td>
             <td><%= ics.GetVar("assetType") %></td>
             <td><%= ics.GetVar("assetName") %></td>
