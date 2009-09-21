@@ -75,23 +75,23 @@
        There are no duplicate keys.
     <% } else { %>
         <table class='altClass'>
-        <tr><th>pubid</th><th>targetid</th><th>assetid</th><th>localkey</th><th>delete?</th></tr>
+        <tr><th>pubid</th><th>newkey</th><th>assetid</th><th>localkey</th><th>delete?</th></tr>
         <%
         while(i <= counter)
         {
           list.moveTo(i);
           i++;
           String id=list.getValue("id");
-          String targetid=list.getValue("targetid");
+          String newkey=list.getValue("newkey");
           String assetid=list.getValue("assetid");
           String localkey=list.getValue("localkey");
         %>
           <tr>
               <td><%=id%></td>
-              <td><%=targetid%></td>
+              <td><%=newkey%></td>
               <td><%=assetid%></td>
               <td><%=localkey%></td>
-              <td><a href='ContentServer?pagename=Support/TCPI/Ap/DuplicatePubkeyFront&pubkeyid=<%=id%>&delete=true'>fixme</a></td>
+          <td><a href='ContentServer?pagename=<ics:getvar name="pagename"/>&ptid=<%=ptid%>&ptname=<%=ptname%>&pubkeyid=<%=id%>&delete=true'>fixme</a></td>
           </tr>
         <% } %>
         </table>
