@@ -11,6 +11,15 @@
 //
 %><%@ page import="COM.FutureTense.Interfaces.FTValList"
 %><%@ page import="java.util.*"
+%><%!
+
+String hostname="unknown";
+public void jspInit(){
+    try {
+       hostname = java.net.InetAddress.getLocalHost().getHostName();
+    } catch (java.net.UnknownHostException e){}
+}
+
 %><cs:ftcs><satellite:link pagename="Support/prototype" satellite="true" /><%
 %><script type="text/javascript" src='<%=ics.GetVar("referURL")%>'></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
@@ -21,10 +30,17 @@
 <script type="text/javascript">if (typeof google == 'undefined'){  $('visualization').remove();}</script>
 
 <table id="resultsTable" style="visibility: hidden"><tr><th>Environment</th><th colspan="4">Current</th><th colspan="4">FatWire Lab</th></tr><tr><th>Test</th><th>min</th><th>max</th><th>average</th><th>total</th><th>min</th><th>max</th><th>average</th><th>total</th></tr></table>
-<div id="labelInstruction" style='display: none'><p>The letters in the labels on the graph or table mean the following: <ul><li>t: number of concurrent threads</li><li>f: number of files created,read and deleted</li><li>s: the size of each file in bytes</li><li>r: the number of times a file is read.</li></ul>
+<div id="labelInstruction" style='display: none'><p>The letters in the labels on the graph or table mean the following: <ul><li>t: number of concurrent threads</li><li>f: number of files created,read and deleted</li><li>s: the size of each file in bytes</li><li>r: the number of times a file is read.</li><li>-typer: the type of the folder.</li></ul>
 </p>
-<p>t10-f100-s1024-r100, means that 10 threads each create 100 files of 1024 bytes, read those files 100 times and then detele the files.
+<p>t10-f100-s1024-r100-data, means that 10 threads each create 100 files of 1024 bytes, read those files 100 times and then delete the files from the 'data' folder.
 The Average time reported is the average time that a thread takes to complete the operation of 100 files creating, reading 100 times, and then deleting.
+The different folder types are:
+<ul>
+<li>local: the servlet context temp folder.</li>
+<li>sync: usedisksync folder from futuretense.ini.</li>
+<li>data: the MungoBlobs or ccurl folder.</li>
+<li>spc: the SystemPageCache folder.</li>
+</ul>
 </p>
 </div>
 <script type="text/javascript">
@@ -32,9 +48,9 @@ var sampleResult = [
 {"thread":10,"files":10,"size":100,"reads":1,"min":15,"max":95,"avg":27,"total":278},
 {"thread":10,"files":10,"size":100,"reads":10,"min":17,"max":29,"avg":19,"total":190},
 {"thread":10,"files":10,"size":1024,"reads":1,"min":11,"max":12,"avg":11,"total":114},
-{"thread":10,"files":10,"size":1024,"reads":10,"min":18,"max":30,"avg":19,"total":197},
-
-
+{"thread":10,"files":10,"size":1024,"reads":10,"min":18,"max":30,"avg":19,"total":197}
+];
+/*
 {"thread":10,"files":10,"size":102400,"reads":1,"min":69,"max":74,"avg":71,"total":710},
 {"thread":10,"files":10,"size":102400,"reads":10,"min":82,"max":89,"avg":84,"total":844},
 
@@ -55,9 +71,9 @@ var sampleResult = [
 {"thread":50,"files":10,"size":1024,"reads":1,"min":10,"max":23,"avg":11,"total":579},
 {"thread":100,"files":10,"size":1024,"reads":1,"min":10,"max":21,"avg":11,"total":1164},
 {"thread":50,"files":10,"size":1024,"reads":10,"min":18,"max":29,"avg":19,"total":958},
-{"thread":100,"files":10,"size":1024,"reads":10,"min":18,"max":35,"avg":19,"total":1914},
+{"thread":100,"files":10,"size":1024,"reads":10,"min":18,"max":35,"avg":19,"total":1914}
 ];
-/*
+
 {"thread":10,"files":100,"size":1024,"reads":10,"min":176,"max":200,"avg":184,"total":1847},
 {"thread":10,"files":100,"size":100,"reads":1,"min":103,"max":144,"avg":111,"total":1114},
 {"thread":25,"files":100,"size":1024,"reads":10,"min":175,"max":204,"avg":182,"total":4563},
@@ -111,15 +127,22 @@ var sampleResult = [
 */
 var state=0;
 var data;
-var results= new Array();
-var chart;
+var test = {
+    version:'1.0',
+    timestamp: new Date(),
+    hostname:'<%=hostname %>',
+    session: window.session,
+    cs_environment: window.csEnv,
+    results: []
+};
 
+var chart;
+var folderTypes = ['local','data','spc','sync'];
 if (typeof google != 'undefined'){
     google.load('visualization', '1', {packages: ['columnchart']});
     google.setOnLoadCallback(drawChart);
 } else {
     state=1;
-    //submitTest();
 }
 
 function drawChart() {
@@ -130,8 +153,6 @@ function drawChart() {
     data.addColumn('string', 'Test','test');
     data.addColumn('number', 'Average','avg');
     data.addColumn('number', 'Lab Average','avg-lab');
-
-    //submitTest();
 }
 
 
@@ -145,6 +166,7 @@ function stopTest(){
 }
 function submitTest(){
     if (state !=1) return;
+    test.timestamp = new Date();
     state=2;
     if (typeof google != 'undefined'){
         $('visualization').style.width='90%'
@@ -156,38 +178,39 @@ function submitTest(){
     $('labelInstruction').style.display='block';
 
     var button = $('controlButton');
-    button.value="Stop File System Test"
+    button.value="Stop File System Test";
     button.onclick=stopTest;
 
-    runTest(0);
-
-    function runTest(i){
+    runTest(0,0);
+    return true;
+    function runTest(i,j){
         if (state!=2) return;
-        var test = sampleResult[i];
-        var label= 't' + test.thread +'-f'+test.files + '-s' + test.size + '-r'+test.reads;
+        var mytest = sampleResult[i];
+        var label= 't' + mytest.thread +'-f'+mytest.files + '-s' + mytest.size + '-r'+mytest.reads +'-'+folderTypes[j];
 
-        $('messageText').firstChild.textContent='Running File System Test ('+ i + ' of ' +sampleResult.length +'): ' +label +'. Please wait...';
+        $('messageText').firstChild.textContent='Running File System Test ('+ (i + (j * sampleResult.length) )  + ' of ' + (sampleResult.length * folderTypes.length) +'): ' +label +'. Please wait...';
 
         $('message').style.visibility='visible';
         $('resultsTable').style.visibility='visible';
         new Ajax.Request('ContentServer', {
           method: 'get',
-          parameters: {pagename:'Support/Verify/Cluster/FileSystemTest',numThreads: test.thread, numFiles: test.files,fileSize: test.size,numReads:test.reads},
+          parameters: {pagename:'Support/Verify/Cluster/FileSystemTest',numThreads: mytest.thread, numFiles: mytest.files,fileSize: mytest.size,numReads:mytest.reads,type:folderTypes[j]},
           onSuccess: function(response){
                var result = response.responseText.evalJSON();
-               results[i]=result;
+               test.results[test.results.length]=result;
 
 
                var row= [{v: label},
-               {v: result.averageTime}, {v: test.avg}];
+               {v: result.averageTime}, {v: mytest.avg}];
                if (typeof data != 'undefined'){
                     data.addRow(row);
                     // Draw the visualization.
                     chart.draw(data, null);
                }
-               addTableRow(i,label,test,result);
+               addTableRow(i,label,mytest,result);
                i++;
-               if (i< sampleResult.length) {runTest(i);} else{ state=3;$('message').style.display='none'; $('controlButton').style.display='none';}
+               if (i >= sampleResult.length) {i=0;++j;}
+               if (j < folderTypes.length) {runTest(i,j);} else { finishTest();}
 
           },
           onFailure: function(){ alert('Something went wrong...') }
@@ -195,23 +218,44 @@ function submitTest(){
         });
     }
 
-    function addTableRow(rownum,label,test,result){
-        var tr = $('resultsTable').insertRow(rownum+2);
+    function finishTest(){
+        state=3;
+        $('message').style.display='none';
+        //$('controlButton').style.display='none';
+        $('controlButton').value="Upload test results to the SupportTools web site for data collection and comparision.";
+        $('controlButton').onclick = upload;
+        function upload(){
+            //$('controlButton').disabled=true;//onclick=null;
+            var form = document.createElement('form');
+            form.action=location.protocol +'//fwsupporttools.appspot.com/upload/fstest';
+            form.enctype='application/x-www-form-urlencoded';
+            form.method='post';
+            var inputelement = document.createElement('input');
+            inputelement.type='hidden';
+            inputelement.name='payload';
+            inputelement.value=Object.toJSON(test);
+            form.appendChild(inputelement);
+            $('controlButton').parentNode.appendChild(form);
+            form.submit();
+            //alert (Object.toJSON(test)); all we need is to send this to supporttools website
+        }
+
+    }
+    function addTableRow(rownum,label,mytest,result){
+        var tr = $('resultsTable').insertRow($('resultsTable').firstChild.rows.length);
         tr.insertCell(0).appendChild( document.createTextNode(label) );
         tr.insertCell(1).appendChild( document.createTextNode('' + result.minTime));
         tr.insertCell(2).appendChild( document.createTextNode('' + result.maxTime));
         tr.insertCell(3).appendChild( document.createTextNode('' + result.averageTime));
         tr.insertCell(4).appendChild( document.createTextNode('' + result.totalTime));
-        tr.insertCell(5).appendChild( document.createTextNode('' + test.min));
-        tr.insertCell(6).appendChild( document.createTextNode('' + test.max));
-        tr.insertCell(7).appendChild( document.createTextNode('' + test.avg));
-        tr.insertCell(8).appendChild( document.createTextNode('' + test.total));
+        tr.insertCell(5).appendChild( document.createTextNode('' + mytest.min));
+        tr.insertCell(6).appendChild( document.createTextNode('' + mytest.max));
+        tr.insertCell(7).appendChild( document.createTextNode('' + mytest.avg));
+        tr.insertCell(8).appendChild( document.createTextNode('' + mytest.total));
 
     }
 
 }
 
 </script>
-
-
 </cs:ftcs>

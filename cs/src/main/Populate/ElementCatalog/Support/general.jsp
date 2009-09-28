@@ -56,7 +56,7 @@ var session={<%
 
 
 function hitLoadSensor(){
-  var pl = 'l=' + escape(self.location) + '&t=' + ((new Date()).getTime() - began_loading);
+  var pl = 'l=' + escape(self.location) + '&t=' + ((new Date()).getTime() - began_loading) + '&e=' + window.elapsed;
   <% if(ics.GetSSVar("supporttools.beacon") ==null){
       ics.SetSSVar("supporttools.beacon","1");
       %>pl +='&n.os='+navigator.oscpu;
@@ -88,6 +88,7 @@ function hitLoadSensor(){
   var sensor = new Image();
   sensor.onerror = loadError;
   sensor.src = location.protocol +'//fwsupporttools.appspot.com/beacon/load?pl=' + escape(pl) +'&oid=<%=ics.GetVar("pagename")%>';
+  //sensor.src = location.protocol +'//localhost:8080/beacon/load?pl=' + escape(pl) +'&oid=<%=ics.GetVar("pagename")%>';
   /*in case the image fails, we should shut off the sensor app */
   function loadError(msg,url,line)
   {

@@ -34,8 +34,8 @@ class TestFS
 
     public long[] runTest()
     {
-        System.out.println("Testing File System with " + this.numThreads + " threads, " + this.numFiles + " files, "
-                            + this.fileSize + " bytes of data/file, " + this.numReads + " reads/file." );
+        //System.out.println("Testing File System with " + this.numThreads + " threads, " + this.numFiles + " files, "
+        //                    + this.fileSize + " bytes of data/file, " + this.numReads + " reads/file." );
 
         // Create a subDir in path to be deleted at end
 
@@ -112,12 +112,14 @@ class TestFS
         //Get average time
         long averageTime = totalTime / ( runs == 0 ? 1:runs );
         long runTime = System.currentTimeMillis() - startTime;
+        /*
         System.out.println( "" );
         System.out.println( "Run time " + ( runTime) );
         System.out.println( "Total time " + ( totalTime ) );
         System.out.println( "Shortest time " + ( minTime ) );
         System.out.println( "Longest time " + ( maxTime ) );
         System.out.println( "Average time " + ( averageTime ) );
+        */
         long[] results = { minTime,maxTime,averageTime,totalTime,runTime };
 
         return results;
@@ -206,7 +208,7 @@ class TestFS
             }
 
             long runTime = System.currentTimeMillis() - startTime;
-            System.out.println( s + " time=" + ( runTime )  );
+            //System.out.println( s + " time=" + ( runTime )  );
 
             return runTime;
         }
@@ -217,17 +219,31 @@ int numThreads = Integer.parseInt(ics.GetVar("numThreads"));
 int numFiles = Integer.parseInt(ics.GetVar("numFiles"));
 int fileSize = Integer.parseInt(ics.GetVar("fileSize"));
 int numReads = Integer.parseInt(ics.GetVar("numReads"));
+String where = ics.GetVar("type") ==null?"local":ics.GetVar("type");
 
-String syncDir = ics.GetProperty("ft.usedisksync");
-if (syncDir == null || syncDir.length() ==0) {
-    %> boohoo, no synchdir <%
+//File dir = new File("/tmp");
+
+String dir= ((File)(getServletConfig().getServletContext().getAttribute("javax.servlet.context.tempdir"))).toString();
+
+if ("sync".equals(where)){
+    dir = ics.GetProperty("ft.usedisksync");
+} else if ("spc".equals(where)){
+    dir = ics.ResolveVariables("CS.CatalogDir.SystemPageCache");
+} else if ("data".equals(where)){
+    dir = ics.ResolveVariables("CS.CatalogDir.MungoBlobs");
+}
+
+
+if (dir == null || dir.length()==0 ) {
+    %>boohoo, no dir <%
 }else {
-    final File path = new File(syncDir, "TestFS-can-be-removed");
+    final File path = new File(dir, "TestFS-can-be-removed");
 
     TestFS testFS = new TestFS(numThreads, path, numFiles, fileSize, numReads);
     long[] results = testFS.runTest();
     ics.SetObj("testFSresults",results);
-    %>{minTime:<%=Long.toString(results[0])%>,
+    %>{where:'<%=where%>',
+    minTime:<%=Long.toString(results[0])%>,
     maxTime:<%=Long.toString(results[1])%>,
     averageTime:<%=Long.toString(results[2])%>,
     totalTime:<%=Long.toString(results[3])%>,
