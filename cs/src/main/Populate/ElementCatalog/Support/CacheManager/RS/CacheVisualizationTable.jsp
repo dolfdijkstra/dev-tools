@@ -18,14 +18,18 @@
 <a href="ContentServer?pagename=Support/CacheManager/RS/CacheDetailed">Detailed View</a><br/>
 <center><h3>Resultset Cache Profiler</h3></center>
 
-    <input type='button' value='Refresh' onclick='return getCacheData()' />
-    <div id="table_div"></div>
+<input type='button' value='Refresh' onclick='return getCacheData()' />
+<div id="table_div"></div>
 
-    <script type="text/javascript">
-     var table ;
-     var sort;
-     google.load("visualization", "1", {packages:["table"]});
-      google.setOnLoadCallback(drawTable2);
+<script type="text/javascript">
+var table ;
+var sort;
+if (typeof google != 'undefined'){
+    google.load("visualization", "1", {packages:["table"]});
+    google.setOnLoadCallback(drawTable2);
+}else {
+    document.location="ContentServer?pagename=Support/CacheManager/RS/CacheDetailed";
+}
       function drawTable2() {
         table = new google.visualization.Table(document.getElementById('table_div'));
         google.visualization.events.addListener(table, 'sort',

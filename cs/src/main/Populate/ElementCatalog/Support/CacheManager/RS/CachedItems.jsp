@@ -19,6 +19,7 @@
 %><%@ page import="com.fatwire.cs.core.cache.RuntimeCacheStats"
 %><%@ page import="java.util.*"
 %><%@ page import="java.text.*"
+%><%@ page import="org.apache.commons.lang.StringEscapeUtils"
 %><%!
     String getTimeDiff(Date first, Date last){
         if (first == null || last == null) return "unknown";
@@ -38,6 +39,7 @@
 %>
 <cs:ftcs>
 <center><h3>Resultset Cache Profiler - Detail View</h3></center>
+<div id="hoverbox" style="position: absolute; visibility: hidden; width: 100%; background: #FFF;"></div>
     <table class="altClass">
     <%
         DateFormat df = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
@@ -90,16 +92,17 @@
             }
             i=1;
             for (String itemkey : keySet){
-                %>
-                <render:getpageurl
-                    outstr="detailsLink"
+                %><render:getpageurl outstr="detailsLink"
                     pagename="Support/CacheManager/RS/CachedItemList">
                     <render:argument name="key" value='<%=key%>'/>
                     <render:argument name="item" value='<%=itemkey%>'/>
-                </render:getpageurl>
-                <%
+                </render:getpageurl><render:getpageurl outstr="detailsLink2"
+                    pagename="Support/CacheManager/RS/CachedItemListRow">
+                    <render:argument name="key" value='<%=key%>'/>
+                    <render:argument name="item" value='<%=itemkey%>'/>
+                </render:getpageurl><%
                 %><tr><td><%= Integer.toString(i++) %></td><%
-            %><td colspan="14"><a href='<%=ics.GetVar("detailsLink")%>'><%= itemkey %></a></td><%
+            %><td colspan="14"><a href='<%=ics.GetVar("detailsLink")%>' onmouseover="div_show(this,'<%= StringEscapeUtils.escapeJavaScript(key) %>','<%=StringEscapeUtils.escapeJavaScript(itemkey) %>')" onmouseout="div_hide()"><%= itemkey %></a></td><%
                 %></tr>
             <% }
 
@@ -108,4 +111,35 @@
         }
          %>
     </table>
+<satellite:link pagename="Support/prototype" satellite="true" /><%
+%><script type="text/javascript" src='<%=ics.GetVar("referURL")%>'></script>
+<script type="text/javascript">
+function div_show(obj,key,item){
+    new Ajax.Request('ContentServer', {
+      method: 'get',
+      parameters: {pagename:'Support/CacheManager/RS/CachedItemListRow',key: key, item: item},
+      onSuccess: function(response){
+            var result = response.responseText;
+            var div= $('hoverbox');
+            div.innerHTML=result;
+            var oTop  = 0;
+            var oLeft = 0;
+            // find object position on the page
+            do {oLeft+=obj.offsetLeft; oTop+=obj.offsetTop} while (obj=obj.offsetParent);
+            // set the position of invisible div
+            document.status=oTop +' ' + oLeft;
+            div.style.top  = (oTop  + 20) + 'px';
+            div.style.left = (oLeft + 20) + 'px';
+            div.style.visibility = 'visible';
+      },
+      onFailure: function(){ alert('Something went wrong...') }
+    });
+
+}
+    function div_hide(){
+        //div.style.visibility = 'hidden';
+}
+
+</script>
+
 </cs:ftcs>

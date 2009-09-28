@@ -14,8 +14,7 @@
 %><%@ page import="COM.FutureTense.Interfaces.Utilities"
 %><%@ page import="COM.FutureTense.Util.ftErrors"
 %><%@ page import="COM.FutureTense.Util.ftMessage"
-%><cs:ftcs>
-<center><h3>Unknowndeps Pages</h3></center>
+%><cs:ftcs><center><h3>Unknowndeps Pages</h3></center>
 <ics:sql sql='select sc.id as pagename, count(sc.page) as num from SystemItemCache sc where sc.id like \'unknowndeps%\' group by sc.id order by num desc' listname='unknownlist' table='SystemItemCache'/>
 <% int total = 0; %>
 <ics:listloop listname="unknownlist">
@@ -28,14 +27,13 @@ There are total <%= total %> unknowdeps pages...
     <ics:listloop listname='unknownlist'>
       <tr>
         <td><%= i++ %></td>
-        <td>
-        <satellite:link>
-          <satellite:parameter name='pagename' value='Support/CacheManager/listByItemPost'/>
-          <satellite:parameter name='idlist' value='<%=ics.ResolveVariables("unknownlist.pagename") %>'/>
-        </satellite:link>
-        <a href='<%= ics.GetVar("referURL") %>'><ics:resolvevariables name="unknownlist.pagename"/></a>
-        </td>
-        <td><ics:listget listname='unknownlist' fieldname='num'/></td>
+        <td><satellite:link><%
+            %><satellite:parameter name='pagename' value='Support/CacheManager/listByItemPost'/><%
+            %><satellite:parameter name='idlist' value='<%=ics.ResolveVariables("unknownlist.pagename") %>'/><%
+        %></satellite:link><%
+        %><a href='<%= ics.GetVar("referURL") %>'><ics:resolvevariables name="unknownlist.pagename"/></a><%
+        %></td><%
+        %><td><ics:listget listname='unknownlist' fieldname='num'/></td>
       </tr>
     </ics:listloop>
 </table>

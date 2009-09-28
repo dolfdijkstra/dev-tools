@@ -102,15 +102,6 @@
     </div>
     <div class="entry-header">
         <satellite:link>
-            <satellite:parameter name='pagename' value='Support/CacheManager/RS/CacheVisualizationTable'/>
-        </satellite:link>
-        <h2><a href='<%= ics.GetVar("referURL") %>'><b>Resultset Cache Profiler</b></a></h2>
-    </div>
-    <div class="entry">
-        <p>Provides detailed information about the resultcaches (memory based cache), when created, how many times a cache is accessed or removed, last time checked and other details</p>
-    </div>
-    <div class="entry-header">
-        <satellite:link>
             <satellite:parameter name='pagename' value='Support/CacheManager/ShowDuplicate'/>
         </satellite:link>
         <h2><a href='<%= ics.GetVar("referURL") %>'><b>Show Duplicate Pages</b></a></h2>
@@ -138,4 +129,24 @@
     <div class="entry">
         <p>expires all permanent cache in SystemPageCache and SystemItemCache tables. Total number of rows in both tables is displayed to user before proceeding furthur with confirmation.</p>
     </div>
+    <div class="entry-header">
+        <satellite:link>
+            <satellite:parameter name='pagename' value='Support/CacheManager/PageCacheSummary'/>
+        </satellite:link>
+        <h2><a href='<%= ics.GetVar("referURL") %>'><b>PageCacheSummary</b></a></h2>
+    </div>
+    <div class="entry">
+        <p>Provides some graphs on page cache, like time to live and when pages where initially cached.</p>
+    </div>
+    <div class="entry-header">
+        <satellite:link>
+            <satellite:parameter name='pagename' value='Support/CacheManager/RS/CacheVisualizationTable'/>
+        </satellite:link>
+        <h2><a href='<%= ics.GetVar("referURL") %>'><b>Resultset Cache Profiler</b></a></h2>
+    </div>
+    <div class="entry">
+        <p>Provides detailed information about the resultcaches (memory based cache), when created, how many times a cache is accessed or removed, last time checked and other details</p>
+    </div>
+
+
 </cs:ftcs>
