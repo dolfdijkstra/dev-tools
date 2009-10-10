@@ -35,7 +35,7 @@ public void jspInit(){
 }
 %><cs:ftcs><head>
 <meta http-equiv="Pragma" content="no-cache"/><%
-%><satellite:link pagename="Support/css" satellite="true" /><%
+%><satellite:link pagename="Support/css" satellite="true"><satellite:argument name="v" value='<%= ics.GetVar("v") %>'/></satellite:link><%
 %><link rel="stylesheet" href='<%=ics.GetVar("referURL")%>' type="text/css" media="screen"/>
 <title><ics:getvar name="pagename"/></title>
 <script type="text/javascript">
@@ -88,7 +88,6 @@ function hitLoadSensor(){
   var sensor = new Image();
   sensor.onerror = loadError;
   sensor.src = location.protocol +'//fwsupporttools.appspot.com/beacon/load?pl=' + escape(pl) +'&oid=<%=ics.GetVar("pagename")%>';
-  //sensor.src = location.protocol +'//localhost:8080/beacon/load?pl=' + escape(pl) +'&oid=<%=ics.GetVar("pagename")%>';
   /*in case the image fails, we should shut off the sensor app */
   function loadError(msg,url,line)
   {
@@ -118,4 +117,4 @@ function addEvent(obj, evType, fn){
 addEvent(window, 'load', hitLoadSensor);
 //addEvent(window, 'unload', hitUnLoadSensor);
 </script>
-</head></cs:ftcs>
+</head><% ics.RemoveVar("referURL");%></cs:ftcs>

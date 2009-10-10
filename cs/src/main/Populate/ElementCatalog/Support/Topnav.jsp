@@ -42,6 +42,7 @@ private org.apache.commons.logging.Log log = org.apache.commons.logging.LogFacto
                         <%} else {%>
                         <li><a href="ContentServer?pagename=Support/Log4J/Info">LOG4J</a></li>
                         <%}%>
+                        <li><a href="ContentServer?pagename=Support/Performance/Home">PERFORMANCE</a></li>
                         <li><a href="ContentServer?pagename=Support/Logout">LOGOUT</a></li>
                         <%
                         }
@@ -49,5 +50,4 @@ private org.apache.commons.logging.Log log = org.apache.commons.logging.LogFacto
                 </ul>
         </div>
     </div>
-    <div class="spacer">&nbsp;</div><br/>
 </cs:ftcs>

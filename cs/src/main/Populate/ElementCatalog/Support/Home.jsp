@@ -8,18 +8,7 @@
 // OUTPUT
 //
 %><cs:ftcs>
-<div class="left-column">
-  <h2>Categories</h2>
-  <ul class="subnav divider">
-    <li><a href="http://www.fatwire.com" class="Fatwire">Fatwire</a></li>
-  </ul>
-  <h2>Fatwire Support</h2>
-  <ul class="subnav divider">
-    <li><a href="http://support.fatwire.com/">Support</a></li>
-  </ul>
-</div>
 
-<div class="right-column">
   <div class="entry">
     <h3>General Information</h3>
         <p>The Content Server Support Tools are intended for use by experienced users with SiteGod privileges to assist in audit, cleanup, help diagnose and resolve problems. These tools can be customized by end users to their need.</p>
@@ -38,9 +27,9 @@
         <b>Flex:</b> Shows the general layout of flex assets and find any missing data.<br/>
         <b>Misc:</b> Miscellaneous tools which include cluster tests, encoding tests and displays files from filesystem.<br/>
         <b>Log4J:</b> Dynamically set logger levels if log4j is configured.<br/>
-        <b>SQLPlus:</b> Helps connect to database and select/update data.<br/>
+        <b>Performance:</b>Some basic simple pages for baseline performance testing.<br/>
         </p>
 <% } %>
   </div>
-</div>
+
 </cs:ftcs>
