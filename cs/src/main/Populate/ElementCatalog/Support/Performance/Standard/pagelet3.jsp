@@ -16,5 +16,4 @@ for (int i=a; i<=max && level > 1;i++){
       %><satellite:parameter name="level" value='<%= Integer.toString(nextLevel) %>'/><%
     %></satellite:page><%
 }
-
 %></cs:ftcs>

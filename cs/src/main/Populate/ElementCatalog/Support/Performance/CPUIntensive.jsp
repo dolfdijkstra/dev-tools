@@ -39,15 +39,6 @@ void runDoubleTests(Writer out, long repeat)  throws IOException  {
         final double numNoReport = 0;
         double sum=0;
 
-        //test using doubles
-
-        // Dry run first
-        //sum = 0.0;
-        //for(double i=0;i<numIterations;i++) {
-        //    sum += staticDoubleTest(d1, d2);
-        //}
-
-        // Now, time it
         for(double k=0;k<numRepeatedTests;k++) {
             long time = System.currentTimeMillis();
             sum = 0.0;
@@ -65,19 +56,9 @@ void runDoubleTests(Writer out, long repeat)  throws IOException  {
 
 %>
 <cs:ftcs>
-<satellite:tag>
-    <satellite:parameter name="type" value ="open"/>
-</satellite:tag>
-
 <%
-        long time = System.currentTimeMillis();
-
-        runDoubleTests(out,3);
-        out.write("Whole test took "+((System.currentTimeMillis() - time)/1000.0f) + " secs\n");
-
+long time = System.currentTimeMillis();
+runDoubleTests(out,3);
+out.write("Whole test took "+((System.currentTimeMillis() - time)/1000.0f) + " secs\n");
 %>
-<satellite:tag>
-    <satellite:parameter name="type" value ="closed"/>
-</satellite:tag>
-
 </cs:ftcs>

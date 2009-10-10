@@ -11,19 +11,14 @@
 //
 // OUTPUT
 //%>
-<cs:ftcs>
-<time:set name="mystamp" />
-<%
+<cs:ftcs><time:set name="mystamp" /><%
 boolean cached = "true".equals(ics.GetVar("cached"));
 String pagename="Support/Performance/SimplePageToCall";
 if (cached) pagename="Support/Performance/SimpleCachedPageToCall";
 
 for (int i=0;i<Integer.parseInt(ics.GetVar("number"));i++){
+%><satellite:page pagename="<%= pagename %>"/><%
+}
 %>
-<satellite:page>
-         <satellite:parameter name='pagename' value='<%= pagename %>'/>
-</satellite:page>
-<%}%>
-<br><br>
 <time:get name="mystamp" /> ms<br>
 </cs:ftcs>

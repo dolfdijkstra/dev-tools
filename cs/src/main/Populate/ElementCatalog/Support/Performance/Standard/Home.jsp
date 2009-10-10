@@ -1,0 +1,88 @@
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
+%><%@ page import="COM.FutureTense.Interfaces.FTValList"
+%><%@ page import="COM.FutureTense.Interfaces.ICS"
+%><%@ page import="COM.FutureTense.Interfaces.IList"
+%><%@ page import="COM.FutureTense.Interfaces.Utilities"
+%><%@ page import="COM.FutureTense.Util.ftErrors"
+%><%@ page import="COM.FutureTense.Util.ftMessage"
+%><cs:ftcs>
+<center><h4>Standard Performance Test Pages</h4></center>
+<p>The idea of these sets of pages is to present to baseline testing, in a comparable way. So that it is possible to compare this install against another in your environment, to compare yourself with other customers.
+
+The script below, is a simple pagelet to test the performance of Content Server and Satellite Server in full caching mode, over different page sizes.
+The script can also be <satellite:link pagename="Support/Performance/Standard/script"/><a href='<ics:getvar name="referURL"/>'>downloaded</a>.</p>
+<p>The prerequisites of the script are:
+<ul><li>UNIX with bash shell</li>
+<li>Apache ab, part of Apache httpd server</li>
+<li>wget</li>
+<li>gnuplot, version 3.7 or later</li>
+<li>The path to Satellite is /cs/Satellite, it is easy to change this in the script.</li>
+<ul>
+</p>
+<br/><br/>
+<pre style="background-color: #CCCCCC">
+<% org.apache.commons.lang.StringEscapeUtils.escapeHtml(out,ics.ReadPage("Support/Performance/Standard/script",new FTValList())); %>
+</pre>
+<table>
+<tr>
+<th>link</th>
+<th>default arguments</th>
+<th>description</th>
+</tr>
+<tr>
+<td><satellite:link pagename="Support/Performance/Standard/lorem"/><a href='<ics:getvar name="referURL"/>'>lorem</a></td>
+    <td>size=8196&cb=1</td>
+    <td>fully cached page, 1 pagelet, takes attribute 'size' for size of the page in bytes</td>
+</tr>
+
+<td><satellite:link pagename="Support/Performance/Standard/wrapper"/><a href='<ics:getvar name="referURL"/>'>wrapper</a></td>
+    <td>items=1&innerstyle=pagelet&layoutstyle=pagelet&cb=1&rendermode=live</td>
+    <td>Tradional uncached wrapper, with cached layout style. Has option to call layout via various render:calltemplate styles</td>
+</tr>
+<tr>
+<td><satellite:link pagename="Support/Performance/Standard/cachedWrapper"/><a href='<ics:getvar name="referURL"/>'>cachedWrapper</a></td>
+    <td>items=1&innerstyle=pagelet&layoutstyle=pagelet&cb=1&rendermode=live</td>
+    <td>Same as above, but now the wrapper is cached too</td>
+</tr>
+<tr>
+    <td><satellite:link pagename="Support/Performance/Standard/cacheControl"/><a href='<ics:getvar name="referURL"/>'>cacheControl</a></td>
+    <td>a=1&max=5&level=3</td>
+    <td>Showcase for setting Cache-Control: max-age via an xml element</td>
+</tr>
+<tr>
+    <td><satellite:link pagename="Support/Performance/Standard/inner"/><a href='<ics:getvar name="referURL"/>'>inner</a></td>
+    <td>a=1&max=5&level=3</td>
+</tr>
+<tr>
+<td><satellite:link pagename="Support/Performance/Standard/outer"/><a href='<ics:getvar name="referURL"/>'>outer</a></td>
+    <td>rendermode=live&style=element</td>
+</tr>
+<tr>
+    <td><satellite:link pagename="Support/Performance/Standard/outerCached"/><a href='<ics:getvar name="referURL"/>'>outerCached</a></td>
+    <td>rendermode=live&style=element</td>
+
+</tr>
+<tr>
+<td><satellite:link pagename="Support/Performance/Standard/pagelet"/><a href='<ics:getvar name="referURL"/>'>pagelet</a></td>
+    <td>a=1&max=5&level=3</td>
+
+</tr>
+<tr>
+<td><satellite:link pagename="Support/Performance/Standard/pagelet2"/><a href='<ics:getvar name="referURL"/>'>pagelet2</a></td>
+    <td>a=1&max=50&level=3</td>
+</tr>
+<tr>
+<td><satellite:link pagename="Support/Performance/Standard/pagelet3"/><a href='<ics:getvar name="referURL"/>'>pagelet3</a></td>
+    <td>a=1&max=50&level=3</td>
+
+</tr>
+<tr>
+<td><satellite:link pagename="Support/Performance/Standard/simple"/><a href='<ics:getvar name="referURL"/>'>simple</a></td>
+    <td>id=1&cb=1&rendermode=live</td>
+    <td>Very simple pagelet, logging one compositional dependancy against id value</td>
+</tr>
+<tr>
+</table>
+</cs:ftcs>

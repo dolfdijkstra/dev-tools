@@ -20,7 +20,6 @@ if (ics.GetVar("items") !=null){
   <render:argument name="layoutstyle" value="<%= layoutstyle %>"/>
   <render:argument name="cb" value="<%= Integer.toString(cb) %>"/>
   <render:argument name="items" value="<%= Integer.toString(items) %>"/>
-
 </render:getpageurl>
 <a href='<%=ics.GetVar("theURL")%>'>reload</a><br/>
 
@@ -35,7 +34,6 @@ if (ics.GetVar("items") !=null){
 <render:getpageurl  pagename='<%=ics.GetVar("pagename")%>' outstr="theURL">
   <render:argument name="innerstyle" value="element"/>
   <render:argument name="layoutstyle" value="<%= layoutstyle %>"/>
-
   <render:argument name="cb" value="<%= Integer.toString(cb) %>"/>
   <render:argument name="items" value="<%= Integer.toString(items) %>"/>
 </render:getpageurl>
