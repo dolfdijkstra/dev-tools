@@ -37,11 +37,5 @@ function decorateTables(){
 }
 decorateTables();
 </script>
-<div class="spacer">&nbsp;</div>
-<div class="footer gray">
-     <table width="100%" style="border:none"><tr>
-            <td width="25%" style="text-transform:none;border-bottom:none"><p>Copyright &copy;2009 FatWire Corporation.  All Rights Reserved.</p></td>
-            <td width="25%" style="text-align:right;border-bottom:none"><p>Version 3.7</p></td>
-     </tr></table>
-</div>
+<div class="footer gray"><p style="text-align:right">Copyright &copy;2009 FatWire Corporation.  All Rights Reserved. Version 3.7</p></div>
 </cs:ftcs>
