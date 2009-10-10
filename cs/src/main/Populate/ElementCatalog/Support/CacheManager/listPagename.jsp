@@ -1,24 +1,23 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"%>
-<%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"%>
-<%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"%>
-<%//
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
+%><%//
 // Support/CacheManager/listPagename
 //
 // INPUT
 //
 // OUTPUT
 //
-%>
-<%@ page import="COM.FutureTense.Interfaces.FTValList"%>
-<%@ page import="COM.FutureTense.Interfaces.ICS"%>
-<%@ page import="COM.FutureTense.Interfaces.IList"%>
-<%@ page import="COM.FutureTense.Interfaces.Utilities"%>
-<%@ page import="COM.FutureTense.Util.ftErrors"%>
-<%@ page import="COM.FutureTense.Util.ftMessage"%>
-<%@ page import="java.util.Map"%>
-<%@ page import="java.util.Date"%>
-<%@ page import="com.fatwire.cs.core.db.Util"%>
-<%!
+%><%@ page import="COM.FutureTense.Interfaces.FTValList"
+%><%@ page import="COM.FutureTense.Interfaces.ICS"
+%><%@ page import="COM.FutureTense.Interfaces.IList"
+%><%@ page import="COM.FutureTense.Interfaces.Utilities"
+%><%@ page import="COM.FutureTense.Util.ftErrors"
+%><%@ page import="COM.FutureTense.Util.ftMessage"
+%><%@ page import="java.util.Map"
+%><%@ page import="java.util.Date"
+%><%@ page import="com.fatwire.cs.core.db.Util"
+%><%!
 static String getRenderMode(String qs){
     Map map = Utilities.getParams(qs);
     String rm = (String)map.get("rendermode");
@@ -43,8 +42,7 @@ static String getQSStripped(String qs){
     map.remove("pagename");
     return Utilities.stringFromValList(map);
 }
-%>
-<cs:ftcs><% Date now = new Date(); %>
+%><cs:ftcs><% Date now = new Date(); %>
 <h3>Detail Inventory of ContentServer Cache</h3>
 <% if ("full".equals(ics.GetVar("mode"))) { %>
 <table class="altClass">
@@ -98,6 +96,7 @@ static String getQSStripped(String qs){
 </table>
 <% } else { %>
 <ics:sql sql='<%= ics.ResolveVariables("SELECT * FROM SystemPageCache WHERE pagename=\'Variables.pname\' ORDER BY etime") %>' table="SystemPageCache" listname="pages"/>
+<div id="hoverbox" style="position: absolute; visibility: hidden; width: 90%; background: #FFF;"></div>
 <table class="altClass">
     <tr>
         <th width="5%">Nr</th>
@@ -112,8 +111,10 @@ static String getQSStripped(String qs){
     <ics:listloop listname="pages">
     <tr <%= now.after(Util.parseJdbcDate(ics.ResolveVariables("pages.etime"))) ? "style='background-color:red'":"" %>>
         <td><%= k++ %></td>
-        <% String qs = ics.ResolveVariables("pages.@urlqry"); %>
-        <td><a href='ContentServer?pagename=Support/CacheManager/listItemsByPage&pid=<ics:resolvevariables name="pages.id"/>'><%= getPagename(qs) %></a></td>
+        <% String qs = ics.ResolveVariables("pages.@urlqry");
+        String pid = ics.ResolveVariables("pages.id");
+        %>
+        <td><a href='ContentServer?pagename=Support/CacheManager/listItemsByPage&pid=<%= pid %>' onmouseover="div_show(this,'<%= pid %>')" onmouseout="div_hide()"><%= getPagename(qs) %></a></td>
         <td><%= getRenderMode(qs) %></td>
         <td><%= isSS(qs) %></td>
         <td><%= getQSStripped(qs) %></td>
@@ -123,4 +124,32 @@ static String getQSStripped(String qs){
     </ics:listloop>
 </table>
 <% } %>
+<satellite:link pagename="Support/prototype" satellite="true" /><%
+%><script type="text/javascript" src='<%=ics.GetVar("referURL")%>'></script>
+<script type="text/javascript">
+function div_show(obj,key){
+    new Ajax.Request('ContentServer', {
+      method: 'get',
+      parameters: {pagename:'Support/CacheManager/ShowCachedPageEscaped',pid: key},
+      onSuccess: function(response){
+            var result = response.responseText;
+            var div= $('hoverbox');
+            div.innerHTML=result;
+            var oTop  = 0;
+            var oLeft = 0;
+            // find object position on the page
+            do {oLeft+=obj.offsetLeft; oTop+=obj.offsetTop} while (obj=obj.offsetParent);
+            // set the position of invisible div
+            div.style.top  = (oTop  + 20) + 'px';
+            div.style.left = (oLeft + 20) + 'px';
+            div.style.visibility = 'visible';
+      },
+      onFailure: function(){ alert('Something went wrong...') }
+    });
+
+}
+    function div_hide(){
+        //div.style.visibility = 'hidden';
+}
+</script>
 </cs:ftcs>
