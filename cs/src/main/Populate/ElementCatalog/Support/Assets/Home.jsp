@@ -29,7 +29,12 @@
          <li>Checks for corresponding MungoBlob row (or _Mungo)</li>
          <li>Checks for missing files</li>
          </ul>
-
+    </div>
+    <div class="entry-header">
+         <h2><a href='ContentServer?pagename=Support/Assets/ScatterAsset'><b>ScatterAsset</b></a></h2>
+    </div>
+    <div class="entry">
+         <p>Loads and scatters an asset for inspection.</p>
     </div>
 
 
