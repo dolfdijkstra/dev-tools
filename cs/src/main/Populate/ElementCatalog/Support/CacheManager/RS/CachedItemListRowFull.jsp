@@ -15,7 +15,7 @@
 %><%@ page import="java.util.*"
 %><%@ page import="java.text.*"
 %><cs:ftcs><html><head><%
-%><satellite:link pagename="Support/css" satellite="true" /><%
+%><satellite:link pagename="Support/css" satellite="true"><satellite:argument name="v" value='<%= ics.GetVar("v") %>'/></satellite:link><%
 %><link rel="stylesheet" href='<%=ics.GetVar("referURL")%>' type="text/css" media="screen"/></head><body><%
 String key = ics.GetVar("key");
 String item = ics.GetVar("item");
