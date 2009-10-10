@@ -3,8 +3,8 @@
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><cs:ftcs><%
 int max = Integer.parseInt(ics.GetVar("max"));
-%>a:<%= ics.GetVar("a") %>,level:<%= ics.GetVar("level") %>, max:<%= ics.GetVar("max") %><br/>
-<%
+%>a:<%= ics.GetVar("a") %>,level:<%= ics.GetVar("level") %>, max:<%= ics.GetVar("max") %><br/><%
+
 int a = Integer.parseInt(ics.GetVar("a"));
 int level = Integer.parseInt(ics.GetVar("level"));
 int nextLevel = level-1;

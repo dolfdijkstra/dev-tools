@@ -1,7 +1,7 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="render" uri="futuretense_cs/render.tld"
-%><cs:ftcs><ics:getvar name="pagename"/> ft_ss=<ics:getvar name="ft_ss"/><br/><%
+%><cs:ftcs><html><head><title>Wrapper for <ics:getvar name="pagename"/>, layoutstyle=<ics:getvar name="layoutstyle"/>, innerstyle=<ics:getvar name="innerstyle"/>, items=<ics:getvar name="items"/> ft_ss=<ics:getvar name="ft_ss"/></title></head><body><%
 String style=ics.GetVar("innerstyle");
 String layoutstyle=ics.GetVar("layoutstyle");
 
@@ -9,7 +9,7 @@ int cb = Long.valueOf(System.currentTimeMillis()%5).intValue();
 if (ics.GetVar("cb") !=null){
     cb= Integer.parseInt(ics.GetVar("cb"));
 }
-int items=1000;
+int items=10;
 if (ics.GetVar("items") !=null){
     items= Integer.parseInt(ics.GetVar("items"));
 }
@@ -51,7 +51,6 @@ if (ics.GetVar("items") !=null){
   <render:argument name="cb" value="<%= Integer.toString(cb) %>"/>
   <render:argument name="items" value="<%= Integer.toString(items) %>"/>
 </render:getpageurl>
-
 <a href='<%=ics.GetVar("theURL")%>'>pagelet style</a><br/>
 <%
 if ("element".equals(layoutstyle)){
@@ -61,4 +60,4 @@ if ("element".equals(layoutstyle)){
 }else {
         %><render:satellitepage pagename="Support/Performance/Standard/layout"><render:argument name="style" value="<%= style %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/><render:argument name="items" value="<%= Integer.toString(items) %>"/></render:satellitepage><br/><%
 }
-%></cs:ftcs>
+%></body></html></cs:ftcs>

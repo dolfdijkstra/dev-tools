@@ -27,59 +27,50 @@ The script can also be <satellite:link pagename="Support/Performance/Standard/sc
 </pre>
 <table>
 <tr>
-<th>link</th>
+<th>ContentServer</th>
+<th>Satellite</th>
 <th>default arguments</th>
 <th>description</th>
 </tr>
 <tr>
 <td><satellite:link pagename="Support/Performance/Standard/lorem"/><a href='<ics:getvar name="referURL"/>'>lorem</a></td>
+<td><satellite:link pagename="Support/Performance/Standard/lorem" satellite="true"/><a href='<ics:getvar name="referURL"/>'>lorem</a></td>
     <td>size=8196&cb=1</td>
-    <td>fully cached page, 1 pagelet, takes attribute 'size' for size of the page in bytes</td>
+    <td>fully cached page, 1 pagelet, takes attribute 'size' for size of the page in bytes. The parameter cb stands for cache buster and is intended to replicate the same page content under different urls.</td>
 </tr>
-
+<tr>
 <td><satellite:link pagename="Support/Performance/Standard/wrapper"/><a href='<ics:getvar name="referURL"/>'>wrapper</a></td>
+<td><satellite:link pagename="Support/Performance/Standard/wrapper" satellite="true"/><a href='<ics:getvar name="referURL"/>'>wrapper</a></td>
     <td>items=1&innerstyle=pagelet&layoutstyle=pagelet&cb=1&rendermode=live</td>
     <td>Tradional uncached wrapper, with cached layout style. Has option to call layout via various render:calltemplate styles</td>
 </tr>
 <tr>
 <td><satellite:link pagename="Support/Performance/Standard/cachedWrapper"/><a href='<ics:getvar name="referURL"/>'>cachedWrapper</a></td>
+<td><satellite:link pagename="Support/Performance/Standard/cachedWrapper" satellite="true"/><a href='<ics:getvar name="referURL"/>'>cachedWrapper</a></td>
     <td>items=1&innerstyle=pagelet&layoutstyle=pagelet&cb=1&rendermode=live</td>
     <td>Same as above, but now the wrapper is cached too</td>
 </tr>
 <tr>
     <td><satellite:link pagename="Support/Performance/Standard/cacheControl"/><a href='<ics:getvar name="referURL"/>'>cacheControl</a></td>
+    <td><satellite:link pagename="Support/Performance/Standard/cacheControl" satellite="true"/><a href='<ics:getvar name="referURL"/>'>cacheControl</a></td>
     <td>a=1&max=5&level=3</td>
     <td>Showcase for setting Cache-Control: max-age via an xml element</td>
 </tr>
 <tr>
-    <td><satellite:link pagename="Support/Performance/Standard/inner"/><a href='<ics:getvar name="referURL"/>'>inner</a></td>
-    <td>a=1&max=5&level=3</td>
-</tr>
-<tr>
-<td><satellite:link pagename="Support/Performance/Standard/outer"/><a href='<ics:getvar name="referURL"/>'>outer</a></td>
-    <td>rendermode=live&style=element</td>
-</tr>
-<tr>
-    <td><satellite:link pagename="Support/Performance/Standard/outerCached"/><a href='<ics:getvar name="referURL"/>'>outerCached</a></td>
-    <td>rendermode=live&style=element</td>
-
-</tr>
-<tr>
 <td><satellite:link pagename="Support/Performance/Standard/pagelet"/><a href='<ics:getvar name="referURL"/>'>pagelet</a></td>
+<td><satellite:link pagename="Support/Performance/Standard/pagelet" satellite="true"/><a href='<ics:getvar name="referURL"/>'>pagelet</a></td>
     <td>a=1&max=5&level=3</td>
-
+    <td>Nesting pagelet, the number of nested pagelets is from 'a' to 'max', and from 'level' to 1.</td>
 </tr>
 <tr>
 <td><satellite:link pagename="Support/Performance/Standard/pagelet2"/><a href='<ics:getvar name="referURL"/>'>pagelet2</a></td>
-    <td>a=1&max=50&level=3</td>
-</tr>
-<tr>
-<td><satellite:link pagename="Support/Performance/Standard/pagelet3"/><a href='<ics:getvar name="referURL"/>'>pagelet3</a></td>
-    <td>a=1&max=50&level=3</td>
+<td><satellite:link pagename="Support/Performance/Standard/pagelet2" satellite="true"/><a href='<ics:getvar name="referURL"/>'>pagelet2</a></td>
 
+    <td>a=1&max=50&level=2</td>
+    <td>Flat innner pagelets, the number of nested pagelets is from 'a' to 'max'.</td>
 </tr>
-<tr>
 <td><satellite:link pagename="Support/Performance/Standard/simple"/><a href='<ics:getvar name="referURL"/>'>simple</a></td>
+<td><satellite:link pagename="Support/Performance/Standard/simple" satellite="true"/><a href='<ics:getvar name="referURL"/>'>simple</a></td>
     <td>id=1&cb=1&rendermode=live</td>
     <td>Very simple pagelet, logging one compositional dependancy against id value</td>
 </tr>
