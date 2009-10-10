@@ -101,6 +101,13 @@
         <p>Wipes out all resultset cache (memory cache) for a particular table (multiple tables can be selected for flush)</p>
     </div>
     <div class="entry-header">
+        <satellite:link pagename='Support/CacheManager/FlushCaches'/>
+        <h2><a href='<%= ics.GetVar("referURL") %>'><b>Flush Caches</b></a></h2>
+    </div>
+    <div class="entry">
+        <p>Wipes out a memory cache. This is different than the FlushTables function in two ways. FlushCached function is not cluster aware, it only flushed caches on this JVM. I can flush other caches than the onces for a database table.</p>
+    </div>
+    <div class="entry-header">
         <satellite:link>
             <satellite:parameter name='pagename' value='Support/CacheManager/ShowDuplicate'/>
         </satellite:link>
@@ -129,6 +136,16 @@
     <div class="entry">
         <p>expires all permanent cache in SystemPageCache and SystemItemCache tables. Total number of rows in both tables is displayed to user before proceeding furthur with confirmation.</p>
     </div>
+    <div class="entry-header">
+        <satellite:link>
+            <satellite:parameter name='pagename' value='Support/CacheManager/SSFlush'/>
+        </satellite:link>
+        <h2><a href='<%= ics.GetVar("referURL") %>'><b>SSFlush</b></a></h2>
+    </div>
+    <div class="entry">
+        <p>Flush cache from all registered Satellite Servers.</p>
+    </div>
+
     <div class="entry-header">
         <satellite:link>
             <satellite:parameter name='pagename' value='Support/CacheManager/PageCacheSummary'/>
