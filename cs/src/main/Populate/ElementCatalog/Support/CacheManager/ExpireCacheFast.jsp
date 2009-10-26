@@ -31,7 +31,7 @@ SystemPageCache Errno: <ics:geterrno/> (-502 is ok)<br>
 <ics:sql sql="DELETE FROM SystemItemCache" listname="blowlist" table="SystemItemCache"/>
 SystemItemCache Errno: <ics:geterrno/> (-502 is ok)<br>
 <ics:flushcatalog catalog="SystemItemCache"/>
-<a href="CacheServer">Cleanup expired files<a/><br/>
+<a href="CacheServer">Cleanup expired files</a><br/>
 <%} else { %>
 <br/>
 <ics:sql sql="SELECT count(*) as itemnum FROM SystemItemCache" listname="itemlist" table="SystemItemCache"/>
