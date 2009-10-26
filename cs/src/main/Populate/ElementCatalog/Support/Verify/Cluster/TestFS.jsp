@@ -48,9 +48,7 @@ var sampleResult = [
 {"thread":10,"files":10,"size":100,"reads":1,"min":15,"max":95,"avg":27,"total":278},
 {"thread":10,"files":10,"size":100,"reads":10,"min":17,"max":29,"avg":19,"total":190},
 {"thread":10,"files":10,"size":1024,"reads":1,"min":11,"max":12,"avg":11,"total":114},
-{"thread":10,"files":10,"size":1024,"reads":10,"min":18,"max":30,"avg":19,"total":197}
-];
-/*
+{"thread":10,"files":10,"size":1024,"reads":10,"min":18,"max":30,"avg":19,"total":197},
 {"thread":10,"files":10,"size":102400,"reads":1,"min":69,"max":74,"avg":71,"total":710},
 {"thread":10,"files":10,"size":102400,"reads":10,"min":82,"max":89,"avg":84,"total":844},
 
@@ -73,7 +71,7 @@ var sampleResult = [
 {"thread":50,"files":10,"size":1024,"reads":10,"min":18,"max":29,"avg":19,"total":958},
 {"thread":100,"files":10,"size":1024,"reads":10,"min":18,"max":35,"avg":19,"total":1914}
 ];
-
+/*
 {"thread":10,"files":100,"size":1024,"reads":10,"min":176,"max":200,"avg":184,"total":1847},
 {"thread":10,"files":100,"size":100,"reads":1,"min":103,"max":144,"avg":111,"total":1114},
 {"thread":25,"files":100,"size":1024,"reads":10,"min":175,"max":204,"avg":182,"total":4563},
