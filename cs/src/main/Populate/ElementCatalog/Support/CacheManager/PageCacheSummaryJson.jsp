@@ -130,7 +130,7 @@ if (Utilities.goodString(tq)){
         } else {
             datediff = "DATEDIFF('hh',CURRENT_TIMESTAMP,etime)";
         }
-        sql="SELECT ttl, count(id) as pages FROM (SELECT "+datediff+" ttl, id FROM SystemPageCache WHERE etime > SYSTIMESTAMP) GROUP BY ttl  ORDER BY ttl";
+        sql="SELECT ttl, count(id) as pages FROM (SELECT "+datediff+" ttl, id FROM SystemPageCache WHERE etime > CURRENT_TIMESTAMP) GROUP BY ttl  ORDER BY ttl";
         colsmeta="cols: [{id: 'ttl', label: 'Time to Live in hours', type: 'string'},{id: 'pages', label: 'Number of pages', type: 'number'}]";
         cols = new String[]{"ttl","pages"};
         formatter=hoursFormatter;
@@ -143,7 +143,7 @@ if (Utilities.goodString(tq)){
             datediff = "DATEDIFF('hh',mtime,CURRENT_TIMESTAMP)";
         }
 
-        sql="SELECT age, count(id) AS pages FROM (SELECT "+datediff+" age, id FROM SystemPageCache WHERE etime > SYSTIMESTAMP) GROUP BY age  ORDER BY age DESC";
+        sql="SELECT age, count(id) AS pages FROM (SELECT "+datediff+" age, id FROM SystemPageCache WHERE etime > CURRENT_TIMESTAMP) GROUP BY age  ORDER BY age DESC";
         colsmeta="cols: [{id: 'age', label: 'Age in hours', type: 'string'},{id: 'pages', label: 'Number of pages', type: 'number'}]";
         cols = new String[]{"age","pages"};
         formatter=hoursFormatter;
