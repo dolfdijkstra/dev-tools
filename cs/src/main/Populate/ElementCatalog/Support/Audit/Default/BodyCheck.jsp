@@ -13,8 +13,8 @@
 %><%@ page import="COM.FutureTense.Interfaces.Utilities"
 %><%@ page import="COM.FutureTense.Util.ftErrors"
 %><%@ page import="COM.FutureTense.Util.ftMessage"
-%><%@ page import="java.io.*"%>
-<%!
+%><%@ page import="java.io.*"
+%><%!
 private void fileRollup(JspWriter out, String urlfile, String path, String tblname, String limit, String column, String key, String start) {
     try {
 
@@ -63,8 +63,7 @@ private void fileRollup(JspWriter out, String urlfile, String path, String tblna
         //out.println(e.printStackTrace());
     }
 }
-%>
-<cs:ftcs>
+%><cs:ftcs>
 <div class="right-column"><%
 
     String tblName = ics.GetVar("tblname");
@@ -178,7 +177,7 @@ private void fileRollup(JspWriter out, String urlfile, String path, String tblna
     Total Rows without upload data: <b><%= badrows%></b><br/>
     <% } %>
     <% if (rows_to_be_done - numrows > 0) { %>
-    <a href='ContentServer?pagename=<ics:getvar name="pagename"/>&tblname=<ics:getvar name="tblname"/>&limit=<ics:getvar name="limit"/>&col=<ics:getvar name="col"/>&start=<ics:resolvevariables name="bodies.akey" />'<b>==>><ics:getvar name="col"/></b> column - Next <ics:getvar name="limit"/> Rows</a><br/>
+    <a href='ContentServer?pagename=<ics:getvar name="pagename"/>&tblname=<ics:getvar name="tblname"/>&limit=<ics:getvar name="limit"/>&col=<ics:getvar name="col"/>&start=<ics:resolvevariables name="bodies.akey" />'><b>==&gt;&gt;<ics:getvar name="col"/></b> column - Next <ics:getvar name="limit"/> Rows</a><br/>
     <% } %>
     <%
     if (numrows > 0 && !foundBad){
