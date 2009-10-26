@@ -1,26 +1,15 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
-%><%@ taglib prefix="user" uri="futuretense_cs/user.tld"%>
-<%//
-// Support/Flex/Home
-//
-// INPUT
-//
-// OUTPUT
-//
-%>
-<%@ page import="COM.FutureTense.Interfaces.FTValList"%>
-<%@ page import="COM.FutureTense.Interfaces.ICS"%>
-<%@ page import="COM.FutureTense.Interfaces.IList"%>
-<%@ page import="COM.FutureTense.Interfaces.Utilities"%>
-<%@ page import="COM.FutureTense.Util.ftErrors"%>
-<%@ page import="COM.FutureTense.Util.ftMessage"%>
-<cs:ftcs>
+%><%@ page import="COM.FutureTense.Interfaces.FTValList"
+%><%@ page import="COM.FutureTense.Interfaces.ICS"
+%><%@ page import="COM.FutureTense.Interfaces.IList"
+%><%@ page import="COM.FutureTense.Interfaces.Utilities"
+%><%@ page import="COM.FutureTense.Util.ftErrors"
+%><%@ page import="COM.FutureTense.Util.ftMessage"
+%><cs:ftcs>
     <div class="entry-header">
-        <satellite:link>
-            <satellite:parameter name='pagename' value='Support/CacheManager/list'/>
-        </satellite:link>
+        <satellite:link pagename="Support/CacheManager/list"/>
         <h2><a href='<%= ics.GetVar("referURL") %>'><b>List Pages in ContentServer and CSSatellite Caches</b></a></h2>
     </div>
     <div class="entry">
@@ -28,9 +17,7 @@
         May take long time to list if too many number of pages are cached.</p>
     </div>
     <div class="entry-header">
-        <satellite:link>
-            <satellite:parameter name='pagename' value='Support/CacheManager/listPagename'/>
-        </satellite:link>
+        <satellite:link pagename="Support/CacheManager/listPagename"/>
         <h2><a href='<%= ics.GetVar("referURL") %>'><b>Detail Inventory View of ContentServer Cache</b></a></h2>
     </div>
     <div class="entry">
@@ -43,27 +30,21 @@
         </p>
     </div>
     <div class="entry-header">
-        <satellite:link>
-            <satellite:parameter name='pagename' value='Support/CacheManager/SelectItems'/>
-        </satellite:link>
+        <satellite:link pagename="Support/CacheManager/SelectItems"/>
         <h2><a href='<%= ics.GetVar("referURL") %>'><b>Find which Pages an Asset is Referenced</b></a></h2>
     </div>
     <div class="entry">
         <p>Find Content Server cached pages where a particular asset is referenced. Cached pages can be listed for either flushing or navigation into pages for furthur investigation.</p>
     </div>
     <div class="entry-header">
-        <satellite:link>
-            <satellite:parameter name='pagename' value='Support/CacheManager/ShowUnknowndeps'/>
-        </satellite:link>
+        <satellite:link pagename="Support/CacheManager/ShowUnknowndeps"/>
         <h2><a href='<%= ics.GetVar("referURL") %>'><b>Show Unkowndeps Pages</b></a></h2>
     </div>
     <div class="entry">
         <p>Displays all unkowndeps from all cached pages in Content Server (listed in descending order based on pagename). Navigation into pages is available for furthur investigation.</p>
     </div>
     <div class="entry-header">
-        <satellite:link>
-            <satellite:parameter name='pagename' value='Support/CacheManager/flushByItem'/>
-        </satellite:link>
+        <satellite:link pagename="Support/CacheManager/flushByItem"/>
         <h2><a href='<%= ics.GetVar("referURL") %>'><b>Flush Pages by Item</b></a></h2>
     </div>
     <div class="entry">
@@ -72,9 +53,7 @@
         </p>
     </div>
     <div class="entry-header">
-        <satellite:link>
-            <satellite:parameter name='pagename' value='Support/CacheManager/flushByArg'/>
-        </satellite:link>
+        <satellite:link pagename="Support/CacheManager/flushByArg"/>
         <h2><a href='<%= ics.GetVar("referURL") %>'><b>Flush Pages by Name-Value Pair</b></a></h2>
     </div>
     <div class="entry">
@@ -83,18 +62,14 @@
         </p>
     </div>
     <div class="entry-header">
-        <satellite:link>
-            <satellite:parameter name='pagename' value='Support/CacheManager/flushByDate'/>
-        </satellite:link>
+        <satellite:link pagename="Support/CacheManager/flushByDate"/>
         <h2><a href='<%= ics.GetVar("referURL") %>'><b>Flush Pages by Date of Page/Item</b></a></h2>
     </div>
     <div class="entry">
         <p>Flush cache from Content Server and Satellite Server/s based on cached date (depends on the choices selected).</p>
     </div>
     <div class="entry-header">
-        <satellite:link>
-            <satellite:parameter name='pagename' value='Support/CacheManager/FlushTables'/>
-        </satellite:link>
+        <satellite:link pagename="Support/CacheManager/FlushTables"/>
         <h2><a href='<%= ics.GetVar("referURL") %>'><b>Flush Tables</b></a></h2>
     </div>
     <div class="entry">
@@ -108,18 +83,14 @@
         <p>Wipes out a memory cache. This is different than the FlushTables function in two ways. FlushCached function is not cluster aware, it only flushed caches on this JVM. I can flush other caches than the onces for a database table.</p>
     </div>
     <div class="entry-header">
-        <satellite:link>
-            <satellite:parameter name='pagename' value='Support/CacheManager/ShowDuplicate'/>
-        </satellite:link>
+        <satellite:link pagename="Support/CacheManager/ShowDuplicate"/>
         <h2><a href='<%= ics.GetVar("referURL") %>'><b>Show Duplicate Pages</b></a></h2>
     </div>
     <div class="entry">
         <p>For a given pagename, if multiple pages are cached a hash of each page is compared against same name page and displayed as duplicates. Pages displayed may not necessarily be duplicates they might vary in query string params which needs to be investigated.</p>
     </div>
     <div class="entry-header">
-        <satellite:link>
-            <satellite:parameter name='pagename' value='Support/Audit/Default/SystemPageCacheCheck'/>
-        </satellite:link>
+        <satellite:link pagename="Support/Audit/Default/SystemPageCacheCheck"/>
         <h2><a href='<%= ics.GetVar("referURL") %>'><b>PageCache Tables</b></a></h2>
     </div>
     <div class="entry">
@@ -128,18 +99,14 @@
         </p>
     </div>
     <div class="entry-header">
-        <satellite:link>
-            <satellite:parameter name='pagename' value='Support/CacheManager/ExpireCacheFast'/>
-        </satellite:link>
+        <satellite:link pagename="Support/CacheManager/ExpireCacheFast"/>
         <h2><a href='<%= ics.GetVar("referURL") %>'><b>Expire All Cache</b></a></h2>
     </div>
     <div class="entry">
         <p>expires all permanent cache in SystemPageCache and SystemItemCache tables. Total number of rows in both tables is displayed to user before proceeding furthur with confirmation.</p>
     </div>
     <div class="entry-header">
-        <satellite:link>
-            <satellite:parameter name='pagename' value='Support/CacheManager/SSFlush'/>
-        </satellite:link>
+        <satellite:link pagename="Support/CacheManager/SSFlush"/>
         <h2><a href='<%= ics.GetVar("referURL") %>'><b>SSFlush</b></a></h2>
     </div>
     <div class="entry">
@@ -147,18 +114,14 @@
     </div>
 
     <div class="entry-header">
-        <satellite:link>
-            <satellite:parameter name='pagename' value='Support/CacheManager/PageCacheSummary'/>
-        </satellite:link>
+        <satellite:link pagename="Support/CacheManager/PageCacheSummary"/>
         <h2><a href='<%= ics.GetVar("referURL") %>'><b>PageCacheSummary</b></a></h2>
     </div>
     <div class="entry">
         <p>Provides some graphs on page cache, like time to live and when pages where initially cached.</p>
     </div>
     <div class="entry-header">
-        <satellite:link>
-            <satellite:parameter name='pagename' value='Support/CacheManager/RS/CacheVisualizationTable'/>
-        </satellite:link>
+        <satellite:link pagename="Support/CacheManager/RS/CacheVisualizationTable"/>
         <h2><a href='<%= ics.GetVar("referURL") %>'><b>Resultset Cache Profiler</b></a></h2>
     </div>
     <div class="entry">
