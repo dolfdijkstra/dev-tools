@@ -730,55 +730,53 @@ static class VersionView{
     private void init() throws Exception {
         if (!productInfo.isEmpty()) return;
 
-        productInfo.add(new ProductInfo("Content Server", "cs.jar","COM.FutureTense.Util.FBuild"));
-        //productInfo.add(new ProductInfo("cs.jar","COM.fatwire.cs.util.FBuild"));
+productInfo.add(new ProductInfo("ContentServer","cs.jar","COM.FutureTense.Util.FBuild"));
+productInfo.add(new ProductInfo("cs-core.jar","com.fatwire.cs.core.util.FBuild"));
 
 
-        productInfo.add(new ProductInfo("cs-core.jar", "com.fatwire.cs.core.util.FBuild"));
-        productInfo.add(new ProductInfo("sseed.jar", "com.fatwire.sseed.util.FBuild"));
-        productInfo.add(new ProductInfo("FTLDAP.jar", "COM.fatwire.ftldap.util.FBuild"));
-        productInfo.add(new ProductInfo("framework.jar", "com.openmarket.framework.util.FBuild"));
-        productInfo.add(new ProductInfo("ftcsntsecurity.jar",
-                "COM.fatwire.ftcsntsecurity.util.FBuild"));
+productInfo.add(new ProductInfo("Satellite","sseed.jar","com.fatwire.sseed.util.FBuild"));
+productInfo.add(new ProductInfo("sserve.jar","com.fatwire.sserve.util.FBuild"));
+productInfo.add(new ProductInfo("Tools","systemtoolsclient.jar","com.fatwire.sysinfo.util.FBuild"));
 
-        productInfo.add(new ProductInfo("batch.jar", "com.fatwire.batch.util.FBuild"));
-        productInfo.add(new ProductInfo("ics.jar", "com.fatwire.ics.util.FBuild"));
-        productInfo.add(new ProductInfo("directory.jar", "com.fatwire.directory.util.FBuild"));
-        productInfo.add(new ProductInfo("logging.jar", "com.fatwire.logging.util.FBuild"));
-        productInfo.add(new ProductInfo("transformer.jar",
-                "com.fatwire.transformer.util.FBuild"));
-        productInfo.add(new ProductInfo("CS-Direct", "xcelerate.jar",
-                "com.openmarket.xcelerate.util.FBuild"));
-        productInfo.add(new ProductInfo("assetmaker.jar",
-                "com.openmarket.assetmaker.util.FBuild"));
-        productInfo.add(new ProductInfo("basic.jar", "com.openmarket.basic.util.FBuild"));
-        productInfo.add(new ProductInfo("sampleasset.jar",
-                "com.openmarket.sampleasset.util.FBuild"));
-        productInfo.add(new ProductInfo("gator.jar", "com.openmarket.gator.util.FBuild"));
-        productInfo.add(new ProductInfo("gatorbulk.jar", "com.openmarket.gatorbulk.util.FBuild"));
-        productInfo.add(new ProductInfo("visitor.jar", "com.openmarket.visitor.util.FBuild"));
-        productInfo.add(new ProductInfo("assetframework.jar",
-                "com.openmarket.assetframework.util.FBuild"));
-        productInfo.add(new ProductInfo("basic.jar", "com.openmarket.basic.util.FBuild"));
-        productInfo.add(new ProductInfo("cscommerce.jar",
-                "com.openmarket.cscommerce.util.FBuild"));
-        productInfo.add(new ProductInfo("Engage", "rules.jar",
-                "com.openmarket.rules.util.FBuild"));
-        productInfo.add(new ProductInfo("catalog.jar", "com.openmarket.catalog.util.FBuild"));
-        productInfo.add(new ProductInfo("Analysis Connector", "commercedata.jar",
-                "com.openmarket.commercedata.util.FBuild"));
-        productInfo.add(new ProductInfo("Database Loader", "commercedata.jar",
-                "com.openmarket.commercedata.util.FBuild"));
-        productInfo.add(new ProductInfo("Queue", "commercedata.jar",
-                "com.openmarket.commercedata.util.FBuild"));
-        productInfo.add(new ProductInfo("XML Exchange", "xmles.jar",
-                "com.openmarket.ic.webcomm.util.FBuild"));
-        productInfo.add(new ProductInfo("icutilities.jar", "com.openmarket.ic.util.FBuild"));
-        productInfo.add(new ProductInfo("wl6special.jar", "com.divine.wl6special.util.Build"));
-        productInfo.add(new ProductInfo("verityse.jar",
-                "COM.FutureTense.Search.Verity.Util.FBuildVeritySE"));
-        productInfo.add(new ProductInfo("Satellite Server", "sserve.jar",
-                "com.fatwire.sserve.util.FBuild"));
+productInfo.add(new ProductInfo("directory.jar","com.fatwire.directory.util.FBuild"));
+productInfo.add(new ProductInfo("ftcsntsecurity.jar","COM.fatwire.ftcsntsecurity.util.FBuild"));
+productInfo.add(new ProductInfo("ics.jar","com.fatwire.ics.util.FBuild"));
+productInfo.add(new ProductInfo("logging.jar","com.fatwire.logging.util.FBuild"));
+
+
+productInfo.add(new ProductInfo("CS-Direct","alloyui.jar","com.fatwire.cs.ui.util.FBuild"));
+productInfo.add(new ProductInfo("analyticscs.jar","com.fatwire.analytics.tools.util.FBuild"));
+productInfo.add(new ProductInfo("assetapi.jar","com.fatwire.assetapi.util.FBuild"));
+productInfo.add(new ProductInfo("assetapi-impl.jar","com.fatwire.assetapi.util.FBuild"));
+productInfo.add(new ProductInfo("assetframework.jar","com.openmarket.assetframework.util.FBuild"));
+productInfo.add(new ProductInfo("assetmaker.jar","com.openmarket.assetmaker.util.FBuild"));
+productInfo.add(new ProductInfo("basic.jar","com.openmarket.basic.util.FBuild"));
+productInfo.add(new ProductInfo("batch.jar","com.fatwire.batch.util.FBuild"));
+productInfo.add(new ProductInfo("catalog.jar","com.openmarket.catalog.util.FBuild"));
+productInfo.add(new ProductInfo("commercedata.jar","com.openmarket.commercedata.util.FBuild"));
+productInfo.add(new ProductInfo("cscommerce.jar","com.openmarket.cscommerce.util.FBuild"));
+productInfo.add(new ProductInfo("cs-portlet.jar","com.fatwire.cs.portlet.util.FBuild"));
+productInfo.add(new ProductInfo("firstsite-filter.jar","com.fatwire.firstsite.filter.util.FBuild"));
+productInfo.add(new ProductInfo("firstsite-uri.jar","com.fatwire.firstsite.uri.util.FBuild"));
+productInfo.add(new ProductInfo("flame.jar","com.fatwire.flame.util.FBuild"));
+productInfo.add(new ProductInfo("framework.jar","com.openmarket.framework.util.FBuild"));
+productInfo.add(new ProductInfo("gator.jar","com.openmarket.gator.util.FBuild"));
+productInfo.add(new ProductInfo("gatorbulk.jar","com.openmarket.gatorbulk.util.FBuild"));
+productInfo.add(new ProductInfo("icutilities.jar","com.fatwire.icutilities.util.FBuild"));
+productInfo.add(new ProductInfo("lucene-search.jar","com.fatwire.search.lucene.util.FBuild"));
+productInfo.add(new ProductInfo("rules.jar","com.openmarket.rules.util.FBuild"));
+productInfo.add(new ProductInfo("sampleasset.jar","com.openmarket.sampleasset.util.FBuild"));
+productInfo.add(new ProductInfo("spark.jar","com.fatwire.spark.util.FBuild"));
+productInfo.add(new ProductInfo("sparksample.jar","com.fatwire.sparksample.util.FBuild"));
+
+productInfo.add(new ProductInfo("transformer.jar","com.fatwire.transformer.util.FBuild"));
+productInfo.add(new ProductInfo("visitor.jar","com.openmarket.visitor.util.FBuild"));
+
+productInfo.add(new ProductInfo("wl6special.jar","com.fatwire.wl6special.util.FBuild"));
+
+productInfo.add(new ProductInfo("xcelerate.jar","com.openmarket.xcelerate.util.FBuild"));
+
+productInfo.add(new ProductInfo("xmles.jar","com.fatwire.xmles.util.FBuild"));
 
     }
 }
