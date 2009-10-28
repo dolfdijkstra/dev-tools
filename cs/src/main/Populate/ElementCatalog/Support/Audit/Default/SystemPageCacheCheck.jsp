@@ -14,9 +14,7 @@
 %><%@ page import="COM.FutureTense.Util.ftErrors"
 %><%@ page import="COM.FutureTense.Util.ftMessage"
 %><%@ page import="java.io.*"
-%><cs:ftcs>
-<ics:getvar name="id"/><br/>
-<div class="right-column"><%
+%><cs:ftcs><div class="content"><%
 
     String tblName = "SystemPageCache";
     String defdir=null;
