@@ -32,14 +32,12 @@ Number of assets in AssetRelationTree without a valid entry in AssetPublication:
 </table>
 <% try {
     if (doDelete && Integer.parseInt(ics.ResolveVariables("art.#numRows")) > 0){
-%>
-            <ics:clearerrno/>
-            <% String sql = ics.ResolveVariables("DELETE FROM AssetRelationTree WHERE  oid NOT IN (SELECT assetid FROM AssetPublication)"); ics.LogMsg(sql); %>
-            <ics:sql sql="<%= sql %>" table="AssetRelationTree" listname="xxx"/>
-            Errno after sql: <ics:geterrno/><br/>
-            <ics:flushcatalog catalog="AssetRelationTree"/>
-            <ics:clearerrno/>
-        <%
+       %><ics:clearerrno/>
+        <% String sql = ics.ResolveVariables("DELETE FROM AssetRelationTree WHERE  oid NOT IN (SELECT assetid FROM AssetPublication)"); ics.LogMsg(sql); %>
+        <ics:sql sql="<%= sql %>" table="AssetRelationTree" listname="xxx"/>
+        Errno after sql: <ics:geterrno/><br/>
+        <ics:flushcatalog catalog="AssetRelationTree"/>
+        <ics:clearerrno/><%
     }
 } catch (Exception e){
     %><%= e.getMessage() %><br/><%
@@ -47,7 +45,7 @@ Number of assets in AssetRelationTree without a valid entry in AssetPublication:
 %>
 <br/><b>This cannot be fixed by this tool.</b><br/>
 
-<ics:sql sql="SELECT art.nparentid as nparentid, art.nid as nid ,art.oid as assetid, art.otype as type FROM AssetRelationTree art WHERE art.nparentid <> 0 AND art.nparentid NOT IN (SELECT nid FROM AssetRelationTree)" table="AssetRelationTree" listname="art"/>
+<ics:sql sql='<%="SELECT art.nparentid as nparentid, art.nid as nid ,art.oid as assetid, art.otype as type FROM AssetRelationTree art WHERE art.nparentid <> 0 AND art.nparentid NOT IN (SELECT nid FROM AssetRelationTree)"%>' table="AssetRelationTree" listname="art"/>
 Number of assets in AssetRelationTree without a valid parent: <b><ics:listget listname="art" fieldname="#numRows"/></b>
 <table class="altClass">
     <tr><th>assettype</th><th>assetid</th><th>nid</th><th>nparentid</th></tr>
