@@ -63,8 +63,7 @@ private void fileRollup(JspWriter out, String urlfile, String path, String tblna
         //out.println(e.printStackTrace());
     }
 }
-%><cs:ftcs>
-<div class="right-column"><%
+%><cs:ftcs><%
 
     String tblName = ics.GetVar("tblname");
     String url="";
@@ -213,5 +212,4 @@ private void fileRollup(JspWriter out, String urlfile, String path, String tblna
             </tr>
         </ics:listloop>
     </table>
-</div>
 </cs:ftcs>
