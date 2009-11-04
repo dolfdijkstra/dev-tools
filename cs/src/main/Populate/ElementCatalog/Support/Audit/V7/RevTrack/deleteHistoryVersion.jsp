@@ -38,15 +38,11 @@
 			try {
 				File file = new File(filename);
 				if(file.exists()) {
-					file.delete();
+					deleteFailed=file.delete();
 				} else {
 					deleteFailed = true;
 					%> not found.<%
 				}
-			} catch(IOException ioe) {
-				deleteFailed = true;
-				ioe.printStackTrace();
-				%> Failed to delete (<%=ioe.getMessage()%>).<%
 			} catch(SecurityException se) {
 				deleteFailed = true;
 				se.printStackTrace();
