@@ -21,13 +21,12 @@
         <h2><a href='<%= ics.GetVar("referURL") %>'><b>Detail Inventory View of ContentServer Cache</b></a></h2>
     </div>
     <div class="entry">
-        <p>Lists all Content Server cache based on pagename (displayed as count(pagename) desc.) <br/>
+        Lists all Content Server cache based on pagename (displayed as count(pagename) desc.) <br/>
             Other Usages:
             <ul>
                 <li>Navigation into each cached page and listing all pages based on same pagename (query string differs)</li>
                 <li>Find if duplicate pages are cached</li>
             </ul>
-        </p>
     </div>
     <div class="entry-header">
         <satellite:link pagename="Support/CacheManager/SelectItems"/>
