@@ -16,14 +16,11 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<satellite:tag>
-    <satellite:parameter name="type" value ="open"/>
-</satellite:tag>
 <html>
 <head>
 <title>Long running performance test</title>
 </head>
-</body>
+<body>
 <%
 String waitTimeStr = ics.GetVar("waitTime");
 long waitTime = 500L;
@@ -44,7 +41,4 @@ try {
 End!
 </body>
 </html>
-<satellite:tag>
-    <satellite:parameter name="type" value ="closed"/>
-</satellite:tag>
 </cs:ftcs>
