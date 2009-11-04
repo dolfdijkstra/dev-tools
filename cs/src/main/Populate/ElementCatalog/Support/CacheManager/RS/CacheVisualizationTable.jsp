@@ -54,12 +54,10 @@ if (typeof google != 'undefined'){
 
        var data = response.getDataTable();
 
-
-       var formatterReverse = new google.visualization.TableBarFormat({width: 80 ,base: 100, colorNegative: 'blue'});
-
+       var formatterReverse = new google.visualization.TableBarFormat({width: 80,base: 0,min:0,max:100, colorPositive: 'red'});
        formatterReverse.format(data, 3);
 
-       var formatter = new google.visualization.TableBarFormat({width: 80 });
+       var formatter = new google.visualization.TableBarFormat({width: 80,base: 0,min:0,max:100});
        formatter.format(data, 6);
 
        var date_formatter = new google.visualization.TableDateFormat({pattern: 'MM-dd HH:mm:ss'});
