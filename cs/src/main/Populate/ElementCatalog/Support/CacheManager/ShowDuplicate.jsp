@@ -1,22 +1,21 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" %>
-<%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
-<%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
-<%//
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
+%><%//
 // Support/CacheManager/ShowDuplicate
 //
 // INPUT
 //
 // OUTPUT
-//%>
-<%@ page import="COM.FutureTense.Interfaces.FTValList" %>
-<%@ page import="COM.FutureTense.Interfaces.ICS" %>
-<%@ page import="COM.FutureTense.Interfaces.IList" %>
-<%@ page import="COM.FutureTense.Interfaces.Utilities" %>
-<%@ page import="COM.FutureTense.Util.ftErrors" %>
-<%@ page import="COM.FutureTense.Util.ftMessage"%>
-<%@ page import="java.util.*"%>
-<cs:ftcs>
-<center><h3>Cached Pages</h3></center>
+//
+%><%@ page import="COM.FutureTense.Interfaces.FTValList"
+%><%@ page import="COM.FutureTense.Interfaces.ICS"
+%><%@ page import="COM.FutureTense.Interfaces.IList"
+%><%@ page import="COM.FutureTense.Interfaces.Utilities"
+%><%@ page import="COM.FutureTense.Util.ftErrors"
+%><%@ page import="COM.FutureTense.Util.ftMessage"
+%><%@ page import="java.util.*"
+%><cs:ftcs><center><h3>Cached Pages</h3></center>
 <%!
 static class PageInfo {
     int count = 0;
@@ -30,23 +29,23 @@ static class PageInfo {
 static class Rearrange implements Comparator {
     public int compare(Object obj1, Object obj2) {
         PageInfo pi1 = (PageInfo)obj1;
-	PageInfo pi2 = (PageInfo)obj2;
-	Integer a = new Integer(pi1.count);
-	Integer b = new Integer(pi2.count);
-	return a.compareTo(b);
+    PageInfo pi2 = (PageInfo)obj2;
+    Integer a = new Integer(pi1.count);
+    Integer b = new Integer(pi2.count);
+    return a.compareTo(b);
    }
 }
 
 private LinkedHashMap sortMapByValue(HashMap tosort, boolean asc) {
     List mapKeys = new ArrayList(tosort.keySet());
     List mapValues = new ArrayList(tosort.values());
-    
+
     Collections.sort(mapValues, new Rearrange());
     Collections.sort(mapKeys);
 
-    if (!asc) 
-	Collections.reverse(mapValues);
-    
+    if (!asc)
+    Collections.reverse(mapValues);
+
     LinkedHashMap sorted = new LinkedHashMap();
     Iterator valueIt = mapValues.iterator();
     while (valueIt.hasNext()) {
@@ -67,31 +66,33 @@ private LinkedHashMap sortMapByValue(HashMap tosort, boolean asc) {
 
 private String parseQuery(String qry) {
     Map conqry = new HashMap();
-    conqry.put("pagename", "--");	
+    conqry.put("pagename", "--");
     conqry.put("c", "--");
     conqry.put("cid", "--");
     conqry.put("p", "--");
     conqry.put("context", "--");
     conqry.put("rendermode", "--");
     conqry.put("ft_ss", "--");
-    conqry.put("other", "--");    
-    conqry.put("seid", "--");    
-    conqry.put("site", "--");    
-    conqry.put("siteid", "--");    
+    conqry.put("other", "--");
+    conqry.put("seid", "--");
+    conqry.put("site", "--");
+    conqry.put("siteid", "--");
 
-        
+
     String[] parsed = qry.split("&");
     for (int j=0; j<parsed.length; j++) {
         String[] cparse = parsed[j].split("=");
-	if (cparse[0].equals("pagename") || cparse[0].equals("c") || cparse[0].equals("cid") || cparse[0].equals("p") || cparse[0].equals("context") || cparse[0].equals("rendermode") || cparse[0].equals("ft_ss") || cparse[0].equals("seid") || cparse[0].equals("site") || cparse[0].equals("siteid"))
-	    conqry.put(cparse[0], cparse[1]);
-	else {
-	    String op = (String)conqry.get("other");
-	    if(op!="--")	
-	    	conqry.put("other", op+"&"+cparse[0]+"="+cparse[1]);
-	    else 
-		conqry.put("other", cparse[0]+"="+cparse[1]);
-	}    
+        if (cparse.length >1){
+            if (cparse[0].equals("pagename") || cparse[0].equals("c") || cparse[0].equals("cid") || cparse[0].equals("p") || cparse[0].equals("context") || cparse[0].equals("rendermode") || cparse[0].equals("ft_ss") || cparse[0].equals("seid") || cparse[0].equals("site") || cparse[0].equals("siteid"))
+              conqry.put(cparse[0], cparse[1]);
+            else {
+              String op = (String)conqry.get("other");
+              if(op!="--")
+                conqry.put("other", op+"&"+cparse[0]+"="+cparse[1]);
+              else
+                conqry.put("other", cparse[0]+"="+cparse[1]);
+            }
+        }
     }
 
     String qrystring = "<b>";
@@ -108,7 +109,7 @@ private String parseQuery(String qry) {
     qrystring += "<td width=\"5%\" nowrap=\"true\">"+conqry.get("siteid")+"</td>";
     qrystring += "</b>";
     conqry.clear();
-    
+
     return qrystring;
 }
 
@@ -117,13 +118,13 @@ private String reportExcess(PageInfo pd) {
     String[] pinfo = pd.qrystr.split(",");
 
     dupages = "<td>Found "+pd.count+" identical urlpage: <br/>"+"<a href='ContentServer?pagename=Support/CacheManager/listPagename&pname="+pinfo[0]+"&mode=detail'>"+pinfo[0]+"</a></td>";
-    
+
     dupages += "<td><table cellspacing=\"1px\" bgcolor=\"#CCFF99\" width=\"100%\"  class=\"altClass\">";
     dupages += "<tr><th>pageid</th><th>pagelet</th><th>c</th><th>cid</th><th>p</th><th>context</th><th>rendermode</th><th>ft_ss</th><th>other params</th><th>seid</th><th>site</th><th>siteid</th>";
-    int j = 1; 
+    int j = 1;
     while(j<pinfo.length) {
         dupages += "<tr><td width=\"10%\"><a href='ContentServer?pagename=Support/CacheManager/listItemsByPage&pid="+pinfo[j]+"'>"+pinfo[j]+"</a></td>";
-        j += 1; 
+        j += 1;
         dupages += parseQuery(pinfo[j])+"</tr>";
         j += 1;
     }
@@ -171,5 +172,4 @@ for (Iterator it = sortall.entrySet().iterator(); it.hasNext();) {
 }
 out.print("</table>");
 counter.clear();
-%>
-</cs:ftcs>
+%></cs:ftcs>
