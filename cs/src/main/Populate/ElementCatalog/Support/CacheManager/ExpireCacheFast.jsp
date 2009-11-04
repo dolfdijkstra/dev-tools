@@ -1,7 +1,7 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" %>
-<%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
-<%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
-<%//
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
+%><%//
 // Support/CacheManager/blowCacheFast
 //
 // INPUT
@@ -18,7 +18,7 @@
 <%@ page import="COM.FutureTense.Cache.*"%>
 <%@ page import="java.util.*"%>
 <cs:ftcs>
-<h3><center>Expire System PageCache</center></h3>
+<h3>Expire System PageCache</h3>
 <%
 String thisPage = ics.GetVar("pagename");
 if (ics.GetVar("expire")!=null) {
@@ -36,7 +36,7 @@ SystemItemCache Errno: <ics:geterrno/> (-502 is ok)<br>
 <br/>
 <ics:sql sql="SELECT count(*) as itemnum FROM SystemItemCache" listname="itemlist" table="SystemItemCache"/>
 Total <b><ics:listget listname="itemlist" fieldname="itemnum"/></b> SystemItemCache rows will be deleted.<br/>
-<ics:sql sql="<%= "SELECT count(*) as pagenum FROM SystemPageCache WHERE etime > {d \'"+ Calendar.getInstance().get(Calendar.YEAR) +"-01-01\'}" %>" listname="pagelist" table="SystemPageCache"/>
+<ics:sql sql='<%= "SELECT count(*) as pagenum FROM SystemPageCache WHERE etime > {d \'"+ Calendar.getInstance().get(Calendar.YEAR) +"-01-01\'}" %>' listname="pagelist" table="SystemPageCache"/>
 Total <b><ics:listget listname="pagelist" fieldname="pagenum"/></b> SystemPageCache (with filesystem data) will be expired.
 <form method="POST" action='ContentServer?pagename=<%=thisPage %>'>
 <b>Do you want to expire all cache? </b>&nbsp;<input type="Submit" name="expire" value="Expire"><br/>
