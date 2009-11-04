@@ -9,16 +9,14 @@
 // OUTPUT
 //
 %><%@ page import="COM.FutureTense.Interfaces.Utilities" 
-%><%@ page import="java.util.*"%>
-
-<cs:ftcs>
+%><%@ page import="java.util.*"
+%><cs:ftcs>
 prompt delete Duplicates from <ics:getvar name="tablename"/> ON <ics:getvar name="keys"/>
 timing start del_time
 select 'current time is ' || to_char(sysdate,'YYYY-MM-DD HH24:MI:SS') as cur from dual;
 <%
 StringBuffer sql= new StringBuffer("SELECT min(id) as minid, ");
 sql.append(Utilities.replaceAll(ics.GetVar("keys"),";",","));
-tz = new StringTokenizer(ics.GetVar("keys"),";");
 sql.append(" FROM ");
 sql.append(ics.GetVar("tablename"));
 sql.append(" WHERE ");
