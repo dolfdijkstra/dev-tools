@@ -18,7 +18,7 @@
 <cs:ftcs>
 <p>Please fill in number of ClusterNodes in your environment</p>
 <form method="POST" action="ContentServer">
-  Number of Nodes: <input type="text" name="numofnodes" size="20"></p>
+  <p>Number of Nodes: <input type="text" name="numofnodes" size="20"></p>
   <p><input type="submit" value="Submit" name="B1">
      <input type="reset" value="Reset" name="B2"></p>
   <input type="hidden" value="Support/Verify/Cluster/nodeselect" name="pagename">
