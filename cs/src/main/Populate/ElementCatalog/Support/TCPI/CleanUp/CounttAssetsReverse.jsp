@@ -90,7 +90,6 @@ if (bContinue) {
                         %><tr><td>insert failed with errno:<ics:geterrno/></td></tr><%
                     }
                     %>
-                </tr>
                 </ics:listloop>
                 </table>
                 </td>

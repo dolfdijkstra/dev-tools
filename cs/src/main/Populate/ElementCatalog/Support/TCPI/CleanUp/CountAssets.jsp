@@ -31,7 +31,7 @@ if (bContinue) {
     boolean delete = "true".equals(ics.GetVar("delete"));
 %>
 
-    <h3>Check <i><ics:getvar name="tname"/></i> for Missing Assets</center></h3><br/>
+    <h3>Check <i><ics:getvar name="tname"/></i> for Missing Assets</h3><br/>
     <ics:clearerrno />
 
     <ics:sql sql='<%= ics.ResolveVariables("SELECT count(*) as num FROM Variables.tname") %>' table='<%= ics.GetVar("tname") %>' listname="tcount"/>
