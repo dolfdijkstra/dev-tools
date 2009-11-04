@@ -30,17 +30,15 @@ boolean delete = "true".equals(ics.GetVar("delete"));
 
     <ics:listloop listname="pubkeys">
         <% try {
-            if (lockManager == null) lockManager = LockManagerFactory.make(TC.make(ics));
+            if (lockManager == null) lockManager = LockManagerFactory.make(ics);
             lockManager.enterWriteLock("ApprovedAssets");
-            %>
-            <ics:clearerrno />
+            %><ics:clearerrno />
             <!-- id is <ics:listget listname="pubkeys" fieldname="id"/></br>
             urlkey is <ics:listget listname="pubkeys" fieldname="urlkey"/></br>
             @urlkey is <ics:listget listname="pubkeys" fieldname="@urlkey"/></br>
             <ics:geterrno />
             -->
-            <% StringBuffer buffy = new StringBuffer(ics.ResolveVariables("pubkeys.id")).insert(3,'/').insert(7,'/').insert(11,'/');//.insert(15,'/');
-            %>
+            <% StringBuffer buffy = new StringBuffer(ics.ResolveVariables("pubkeys.id")).insert(3,'/').insert(7,'/').insert(11,'/');  %>
             urlkey_folder is <%= buffy.toString() %></br>
             <!-- check if urlkey is empty -->
             <% if (!ics.ResolveVariables("pubkeys.@urlkey").startsWith("<!--File not found")){ %>
