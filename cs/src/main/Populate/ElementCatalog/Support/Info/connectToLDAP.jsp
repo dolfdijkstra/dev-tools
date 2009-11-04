@@ -20,7 +20,7 @@
 <%@ page import="javax.naming.NameClassPair" %>
 <%@ page import="javax.naming.directory.*" %>
 <%@ page import="java.util.Hashtable" %>
-<%@ page import="java.util.Collection" %>
+<%@ page import="java.util.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="netscape.ldap.*" %>
 
