@@ -85,7 +85,7 @@
             <h2><a href="ContentServer?pagename=Support/Verify/i18n/encoding">Unicode Form Post</a></h2>
         </div>
         <div class="entry">
-            <p>Post some unicode(UTF-8) chars to a CS table. Test creates a table jsp01 (if not exist) and posts unicode characters into the table and retreives it back from the table.
+            Post some unicode(UTF-8) chars to a CS table. Test creates a table jsp01 (if not exist) and posts unicode characters into the table and retrieves it back from the table.
                    If the characters posted are grabled on retreival then UTF-8 settings either on CS/Appserver/OS might be wrong. <br/>
                    Unicode chars used for test (can be changed by user) are latin1, latinA, greek, arabic and japanese. Following methods are employed during post:
                    <ul style="margin-left=20px;">
@@ -93,7 +93,6 @@
                        <li> method=post enctype=application/x-www-form-urlencoded </li>
                        <li> method=post enctype=multipart/form-data </li>
                    </ul>
-            </p>
         </div>
         <div class="entry-header">
             <h2><a href="ContentServer?pagename=Support/Verify/i18n/UnicodeChart">Unicode Chart</a></h2>
