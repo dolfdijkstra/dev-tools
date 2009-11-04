@@ -1,24 +1,22 @@
-<%@ page contentType="text/html; charset=utf-8" %>
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" %>
-<%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
-<%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
-<%//
+<%@ page contentType="text/html; charset=utf-8" 
+%><%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
+%><%//
 // Support/DB/Queries
 //
 // INPUT
 //
 // OUTPUT
-//%>
-<%@ page import="COM.FutureTense.Interfaces.FTValList" %>
-<%@ page import="COM.FutureTense.Interfaces.ICS" %>
-<%@ page import="COM.FutureTense.Interfaces.IList" %>
-<%@ page import="COM.FutureTense.Interfaces.Utilities" %>
-<%@ page import="COM.FutureTense.Util.ftErrors" %>
-<%@ page import="COM.FutureTense.Util.ftMessage"%>
-<cs:ftcs>
-
+//
+%><%@ page import="COM.FutureTense.Interfaces.FTValList" 
+%><%@ page import="COM.FutureTense.Interfaces.ICS" 
+%><%@ page import="COM.FutureTense.Interfaces.IList" 
+%><%@ page import="COM.FutureTense.Interfaces.Utilities" 
+%><%@ page import="COM.FutureTense.Util.ftErrors" 
+%><%@ page import="COM.FutureTense.Util.ftMessage"
+%><cs:ftcs>
 <center><h3>Content Server Queries</h3></center>
-
 <%
 String queryid = ics.GetVar("queryid");
 
@@ -66,7 +64,7 @@ for (int i=0; i< query.length; i++){
 	%><tr>
 	<td><a href='ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd=DB/Queries&#38;queryid=<%=i %>'>Query <%= i %></a></td>
 	<td><%= query[i][2] %></td>
-	</td>
+	</tr>
 <% } %></table><%		
 
 %>

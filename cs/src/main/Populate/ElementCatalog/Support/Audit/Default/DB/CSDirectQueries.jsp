@@ -70,7 +70,7 @@ for (int i=0; i< query.length; i++){
 	%><tr>
 	<td><a href='ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd=<%= ics.GetVar("cmd") %>&#38;queryid=<%=i %>'>Query <%= i %></a></td>
 	<td><%= query[i][2] %></td>
-	</td>
+	</tr>
 <%
 }
 %></table><%		
