@@ -23,16 +23,17 @@ public void jspInit(){
 %><cs:ftcs><satellite:link pagename="Support/prototype" satellite="true" /><%
 %><script type="text/javascript" src='<%=ics.GetVar("referURL")%>'></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-<h3>File System Test</h3><p>This tool tests the performance of the shared file systems and compares the results against FatWire lab tests. The results of the tests will give an indication of the relative performance of the shared file system. This is most usefull when tuning various NFS settings.</p>
+<h3>File System Test</h3>
+<p>This tool tests the performance of the shared file systems and compares the results against FatWire lab tests. The results of the tests will give an indication of the relative performance of the shared file system. This is most useful when tuning various NFS settings.</p>
 <div id="message" style="display: none"><img src="js/dojox/image/resources/images/loading.gif"/><b id="messageText">Running File System Tests. Please wait...</b></div>
 <div id="controlPanel"><input id="controlButton" type="button" value="Start FileSystemTest" onClick="submitTest();"/></div>
 <div id="visualization"></div>
 <script type="text/javascript">if (typeof google == 'undefined'){  $('visualization').remove();}</script>
 
 <table id="resultsTable" style="visibility: hidden"><tr><th>Environment</th><th colspan="4">Current</th><th colspan="4">FatWire Lab</th></tr><tr><th>Test</th><th>min</th><th>max</th><th>average</th><th>total</th><th>min</th><th>max</th><th>average</th><th>total</th></tr></table>
-<div id="labelInstruction" style='display: none'><p>The letters in the labels on the graph or table mean the following: <ul><li>t: number of concurrent threads</li><li>f: number of files created,read and deleted</li><li>s: the size of each file in bytes</li><li>r: the number of times a file is read.</li><li>-typer: the type of the folder.</li></ul>
-</p>
-<p>t10-f100-s1024-r100-data, means that 10 threads each create 100 files of 1024 bytes, read those files 100 times and then delete the files from the 'data' folder.
+<div id="labelInstruction" style='display: none'>
+The letters in the labels on the graph or table mean the following: <ul><li>t: number of concurrent threads</li><li>f: number of files created,read and deleted</li><li>s: the size of each file in bytes</li><li>r: the number of times a file is read.</li><li>-typer: the type of the folder.</li></ul>
+t10-f100-s1024-r100-data, means that 10 threads each create 100 files of 1024 bytes, read those files 100 times and then delete the files from the 'data' folder.
 The Average time reported is the average time that a thread takes to complete the operation of 100 files creating, reading 100 times, and then deleting.
 The different folder types are:
 <ul>
@@ -41,7 +42,6 @@ The different folder types are:
 <li>data: the MungoBlobs or ccurl folder.</li>
 <li>spc: the SystemPageCache folder.</li>
 </ul>
-</p>
 </div>
 <script type="text/javascript">
 var sampleResult = [
