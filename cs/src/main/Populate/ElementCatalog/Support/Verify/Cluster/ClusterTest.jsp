@@ -30,7 +30,7 @@ for (int i=0; i<60; i++) {
     }
     int curVal = new Integer(current).intValue();
     ics.SetSSVar("sessionCounter", new String("" + (++curVal)));
-    %><td><%= Utilities.genID(ics) %></td><td><%= ics.GetSSVar("sessionCounter") %></td></tr><%
+    %><tr><td><%= Utilities.genID(ics) %></td><td><%= ics.GetSSVar("sessionCounter") %></td></tr><%
 }
 %>
 </table>
