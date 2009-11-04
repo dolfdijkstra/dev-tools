@@ -133,11 +133,13 @@ function checkVoided() {
       <h3><%= ics.ResolveVariables("pubTgts.name (Variables.dname)")%></h3><br/>
       </ics:then>
     </ics:if>
-    <ics:flushcatalog catalog="ApprovalQueue"/>
-    <ics:flushcatalog catalog="PubKeyTable"/>
-    <ics:flushcatalog catalog="PublishedAssets"/>
-    <ics:flushcatalog catalog="ApprovedAssets"/>
-    <ics:sql sql='<%= ics.ResolveVariables("SELECT DISTINCT PublishedAssets.assetid AS assetid, PublishedAssets.assettype AS assettype, ApprovedAssets.tstate AS tstate FROM PubKeyTable,PublishedAssets,ApprovedAssets WHERE PubKeyTable.id=PublishedAssets.pubkeyid AND PubKeyTable.targetid=Variables.targetid AND ApprovedAssets.assetid=PublishedAssets.assetid AND ApprovedAssets.targetid=Variables.targetid AND EXISTS (SELECT 'x' FROM ApprovedAssets t0 WHERE PublishedAssets.assetid=t0.assetid AND t0.targetid=Variables.targetid AND (PublishedAssets.assetversion!=t0.assetversion OR PublishedAssets.assetdate<t0.assetdate)) AND EXISTS (SELECT 'x' FROM ApprovedAssets t1 WHERE PubKeyTable.assetid=t1.assetid AND t1.targetid=Variables.targetid AND t1.tstate='A' AND t1.locked='F') UNION SELECT t2.assetid AS assetid, t2.assettype AS assettype, t2.tstate AS tstate FROM PubKeyTable,ApprovedAssets t2 WHERE newkey!='D' AND t2.targetid=Variables.targetid AND (t2.tstate='A' OR t2.tstate='H') AND t2.locked='F' AND PubKeyTable.assetid=t2.assetid AND PubKeyTable.targetid=Variables.targetid")%>' table='PubKeyTable' listname='tlist'/>
+    <%
+    ics.FlushCatalog("ApprovalQueue");
+    ics.FlushCatalog("PubKeyTable");
+    ics.FlushCatalog("PublishedAssets");
+    ics.FlushCatalog("ApprovedAssets");
+    String sql=ics.ResolveVariables("SELECT DISTINCT PublishedAssets.assetid AS assetid, PublishedAssets.assettype AS assettype, ApprovedAssets.tstate AS tstate FROM PubKeyTable,PublishedAssets,ApprovedAssets WHERE PubKeyTable.id=PublishedAssets.pubkeyid AND PubKeyTable.targetid=Variables.targetid AND ApprovedAssets.assetid=PublishedAssets.assetid AND ApprovedAssets.targetid=Variables.targetid AND EXISTS (SELECT 'x' FROM ApprovedAssets t0 WHERE PublishedAssets.assetid=t0.assetid AND t0.targetid=Variables.targetid AND (PublishedAssets.assetversion!=t0.assetversion OR PublishedAssets.assetdate<t0.assetdate)) AND EXISTS (SELECT 'x' FROM ApprovedAssets t1 WHERE PubKeyTable.assetid=t1.assetid AND t1.targetid=Variables.targetid AND t1.tstate='A' AND t1.locked='F') UNION SELECT t2.assetid AS assetid, t2.assettype AS assettype, t2.tstate AS tstate FROM PubKeyTable,ApprovedAssets t2 WHERE newkey!='D' AND t2.targetid=Variables.targetid AND (t2.tstate='A' OR t2.tstate='H') AND t2.locked='F' AND PubKeyTable.assetid=t2.assetid AND PubKeyTable.targetid=Variables.targetid");
+    %> <ics:sql sql='<%= sql%>' table='PubKeyTable' listname='tlist'/>
 
     <form method="POST" action='ContentServer?pagename=<%=thisPage %>&targetid=<%=ics.GetVar("targetid")%>' onsubmit="return checkVoided();">
     <%
@@ -146,7 +148,7 @@ function checkVoided() {
 
     Total number of assets ready for publish: <%= ics.GetList("tlist").numRows() %><br/>
     <br/>
-    <table class="altClass" sytle="width:50%">
+    <table class="altClass" style="width:50%">
         <tr><th>Remove <input type="checkbox" onclick="return checkall()"/></th><th>State</th><th>Status</th><th>Asset ID</th><th>Asset Type</th><th>Asset Name</th><th>Asset Description</th></tr>
 
         <ics:listloop listname="tlist">
