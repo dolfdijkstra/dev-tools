@@ -67,7 +67,7 @@ try {
 	<% String sql = "select distinct tblname from SystemInfo where tblname not in (\'SystemAssets\') order by tblname asc"; %>
 	<ics:sql sql='<%= sql %>' listname='B' table='SystemInfo' />
 		<ics:listloop listname="B">
-		<tr><td colspan="8"><font color="blue"><b><ics:listget listname="B" fieldname="tblname" /></b></font></th></tr>
+		<tr><td colspan="8"><font color="blue"><b><ics:listget listname="B" fieldname="tblname" /></b></font></td></tr>
 	<%
 	//
 		String tableName = ics.GetList("B", false).getValue("tblname");
