@@ -19,10 +19,10 @@
 <ics:sql sql="SELECT count(aad.id) AS num, aa.assetid as assetid, aa.assettype as assettype FROM ApprovedAssetDeps aad, ApprovedAssets aa WHERE aad.ownerid = aa.id GROUP BY aa.assetid, aa.assettype ORDER BY num DESC, assettype, assetid" table="ApprovedAssetDeps" limit='<%= ics.GetVar("showmax") %>' listname="aad" />
 <table class="altClass">
     <tr>
-        <th>assettype</td>
-        <th>assetid</td>
-        <th>num of dependancies</td>
-        <th>Force Approve</td>
+        <th>assettype</th>
+        <th>assetid</th>
+        <th>num of dependancies</th>
+        <th>Force Approve</th>
     </tr>
     <ics:listloop listname="aad">
     <tr>

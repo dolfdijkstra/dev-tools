@@ -72,8 +72,10 @@ DEBUG: SQL errno = <ics:geterrno/>
 </ics:listloop>
 </table>
 Legend:<br/>
-<li>newkey: N=new, never published, D=published, comp deps specified, I=comp deps are unknown<br/>
-<li>permanent: Y=yes (a publish point)<br/>
+<ul>
+<li>newkey: N=new, never published, D=published, comp deps specified, I=comp deps are unknown</li>
+<li>permanent: Y=yes (a publish point)</li>
+</ul>
 <br/>
 
 <%// ********************* RENDER APPROVEDASSETS RECORDS FOR THE CURRENT ASSET ********************* %>
@@ -299,7 +301,8 @@ DEBUG: SQL errno = <ics:geterrno/>
 </ics:listloop>
 <br/>
 
-<%// ********************* RENDER APPROVEDASSETDEP PARENT TABLE RECORDS ********************* %>
+<%-- ********************* RENDER APPROVEDASSETDEP PARENT TABLE RECORDS ********************* --%> 
+
 <ics:clearerrno/>
 <ics:sql sql='<%= ics.ResolveVariables("SELECT * FROM ApprovedAssetDeps WHERE assetid=Variables.assetid ORDER BY ownerid, assetdeptype")  %>'  table="ApprovedAssetDeps" listname="deps3"/>
 <h4>Approved Parent Dependencies for this asset (all targets)</h4>
@@ -373,13 +376,15 @@ DEBUG: SQL errno = <ics:geterrno/>
     </ics:listloop>
 </table>
 Legend:<br/>
-<li>depmode: F=fundamental, T=template, R=reference<br/>
-<li>currentdep: F=dep changed or not calculated yet due to edit/change in asset, T=dep exists as of last publish<br/>
-<li>assetdeptype: E=exists, V=exact, G=greater<br/>
-<li>lastpub (dep existed @ last pub): T=true, F=false<br/>
+<ol>
+<li>depmode: F=fundamental, T=template, R=reference</li>
+<li>currentdep: F=dep changed or not calculated yet due to edit/change in asset, T=dep exists as of last publish</li>
+<li>assetdeptype: E=exists, V=exact, G=greater</li>
+<li>lastpub (dep existed @ last pub): T=true, F=false</li>
+</ol>
 <% } else { %>
     <form method="POST" action='ContentServer?pagename=<%= ics.GetVar("pagename") %>'>
-    <b>Any Assetid: </b><input type="text" name="assetid" value=""/></b>&nbsp;<input type="Submit" name="showheld" value="ShowHeld"><br/>
+    <b>Any Assetid: </b><input type="text" name="assetid" value=""/>&nbsp;<input type="Submit" name="showheld" value="ShowHeld"><br/>
     </form>
 <% } %>
 </cs:ftcs>
