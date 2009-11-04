@@ -1,12 +1,5 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
-%><%//
-// Support/Audit/Default/BodyCheck
-//
-// INPUT
-//
-// OUTPUT
-//
 %><%@ page import="COM.FutureTense.Interfaces.FTValList"
 %><%@ page import="COM.FutureTense.Interfaces.ICS"
 %><%@ page import="COM.FutureTense.Interfaces.IList"
@@ -39,7 +32,6 @@
 
     String sqlCountStatement="SELECT COUNT(id) AS num FROM SystemPageCache";
 
-
     ics.ClearErrno();
 
     if(Utilities.goodString(ics.GetVar("id"))) {
@@ -47,15 +39,15 @@
             String delStatement = "UPDATE SystemPageCache SET etime = {d '1999-01-01'} WHERE id = " +i;
             %><ics:sql sql='<%= delStatement %>' table='SystemPageCache' listname="deleteme"/><%
         }
+        %>Make sure that after you have delete files from ContentServer cache, also flush the Satellite Servers as they will not be flushed by this tool.<%
     }
     %>
 
-    <h3>Are all SystemPageCache files present on Disk?</h3>
+    <h3>Are all SystemPageCache files present on disk?</h3>
     <br/>Defdir: <b><%= defdir %></b><br/>
 
     <ics:sql sql='<%= ics.ResolveVariables(sqlCountStatement) %>' table='<%= tblName %>' listname="totalcount" />
     <ics:clearerrno/>
-
 
     <%
     if (Utilities.goodString(ics.GetVar("start"))) {
@@ -79,14 +71,13 @@
             boolean[] p = new boolean[3];
             //urlqry, qryhead, urlpage
 
-            p[0]=Utilities.goodString(ics.ResolveVariables("bodies.urlqry")) && Utilities.fileExists(defdir + ics.ResolveVariables("bodies.urlqry"));
+            p[0]=Utilities.goodString(ics.ResolveVariables("bodies.urlqry")) && Utilities.fileExists(defdir + ics.ResolveVariables("bodies.urlqry")) && new File(defdir,ics.ResolveVariables("bodies.urlqry")).length()>0;
             p[1]=Utilities.goodString(ics.ResolveVariables("bodies.urlhead")) && Utilities.fileExists(defdir + ics.ResolveVariables("bodies.urlhead"));
-            p[2]=Utilities.goodString(ics.ResolveVariables("bodies.urlpage")) && Utilities.fileExists(defdir + ics.ResolveVariables("bodies.urlpage"));
+            p[2]=Utilities.goodString(ics.ResolveVariables("bodies.urlpage")) && Utilities.fileExists(defdir + ics.ResolveVariables("bodies.urlpage"))&& new File(defdir,ics.ResolveVariables("bodies.urlpage")).length()>0;
             if (p[0] == false || p[1]==false || p[2]==false){
                 foundBad=true; badrows++;
-
-                if (badrows==1) { %>
-                    <tr>
+                if (badrows==1) { 
+                %><tr>
                         <th>Nr</th>
                         <th>id</th>
                         <th>pagename</th>
@@ -115,13 +106,12 @@
     <% if (badrows>0) { %>
       <br/><input type="submit" name="command" value="Expire Selected Rows"/>
     <% } %>
-
     </form>
     <% if (badrows>0) { %>
       Total Rows with missing files: <b><%= badrows%></b><br/>
     <% } %>
     <% if (rows_to_be_done - numrows > 0) { %>
-    <a href='ContentServer?pagename=<ics:getvar name="pagename"/>&limit=<ics:getvar name="limit"/>&start=<ics:resolvevariables name="bodies.akey" />'<b>==>><ics:getvar name="col"/></b> column - Next <ics:getvar name="limit"/> Rows</a><br/>
+    <a href='ContentServer?pagename=<ics:getvar name="pagename"/>&limit=<ics:getvar name="limit"/>&start=<ics:resolvevariables name="bodies.akey" />'><b>==&gt;&gt;<ics:getvar name="col"/></b> column - Next <ics:getvar name="limit"/> Rows</a><br/>
     <% } %>
     <%
     if (numrows > 0 && !foundBad){
@@ -145,5 +135,4 @@ function checkall (bool,form,name) {
     }
 }
 </script>
-
 </cs:ftcs>
