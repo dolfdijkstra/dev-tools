@@ -68,7 +68,7 @@ if ("true".equals(ics.GetVar("deletepub"))){
 			ics.FlushCatalog(tables[i]);
 		}
 	 } else {
-		%>the check string was not <i>&quot;<%= checkString %>&quot;</i><br><br>but: &quot;<%= ics.GetVar("check") %>&quot;</i><br>Purging did not take place<br><%
+		%>the check string was not <i>&quot;<%= checkString %>&quot;</i><br><br>but: <i>&quot;<%= ics.GetVar("check") %>&quot;</i><br>Purging did not take place<br><%
 	}
 } else {
 %>
