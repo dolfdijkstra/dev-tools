@@ -141,6 +141,12 @@
     <div class="entry">
         <p>Mark assets ready for publish as already published to a destination.</p>
     </div>
+    <div class="entry-header">
+        <h2><a href='ContentServer?pagename=Support/TCPI/AP/PublishPerformance'><b>Publish Performance</b></a></h2>
+    </div>
+    <div class="entry">
+        <p>Get info on the performance of publishes of type MirrorPublishing if VERBOSE=true is set as a publish argument.</p>
+    </div>
 
     <div class="entry-header">
         <h2><a href='ContentServer?pagename=Support/TCPI/AP/EventForm'><b>Current Events</b></a></h2>
