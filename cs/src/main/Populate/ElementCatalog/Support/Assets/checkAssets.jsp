@@ -2,14 +2,11 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="render" uri="futuretense_cs/render.tld"
 %><%@ page import="COM.FutureTense.Interfaces.*,
-                   COM.FutureTense.Util.ftMessage,
-                   COM.FutureTense.Util.ftErrors,
                    java.util.StringTokenizer"
 %><cs:ftcs>
 <script type="text/javascript" src="ContentServer?pagename=Support/Assets/checkAssetsScript"></script>
 <link rel="stylesheet" type="text/css" href="ContentServer?pagename=Support/Assets/checkAssetsCSS" />
-<center><h3 id="title">Check Assets</h3></center>
-
+<h3 id="title">Check Assets</h3>
 <%
 String theTypes = ics.GetVar("types");
 StringBuffer errstr = new StringBuffer(128);
@@ -20,7 +17,7 @@ if (theTypes == null) { %>
     <input type="hidden" name="pagename" value='<%= ics.GetVar("pagename") %>'/>
     <input type="Submit" value="Submit"/>
     <table class="altClass" style="width:50%">
-      <tr><th><input type="checkbox" style="border: 0" onclick="checkall();" id="cAll"/></th><th>Asset Type</th></tr>
+      <tr><th><input type="checkbox" style="border: 0" onclick="checkall();" id="cAll"/></th><th colspan="2">Asset Type</th></tr>
 
     <%
         IList typeList = ics.SQL("AssetType", "SELECT assettype, description FROM AssetType ORDER BY description", null, -1, true, errstr);

@@ -7,14 +7,8 @@
 // INPUT
 //
 // OUTPUT
-//%>
-<%@ page import="COM.FutureTense.Interfaces.FTValList" %>
-<%@ page import="COM.FutureTense.Interfaces.ICS" %>
-<%@ page import="COM.FutureTense.Interfaces.IList" %>
-<%@ page import="COM.FutureTense.Interfaces.Utilities" %>
-<%@ page import="COM.FutureTense.Util.ftErrors" %>
-<%@ page import="COM.FutureTense.Util.ftMessage"%>
-<cs:ftcs>
+//
+%><cs:ftcs>
     <% String[] tables={"AssetPublication","ApprovedAssetDeps","ApprovedAssets","AssetExportData","AssetPublishList","PublishedAssets","ActiveList","CheckOutInfo"}; %>
     <div class="entry-header">
          <h2><a href='ContentServer?pagename=Support/TCPI/AP/PubQueues'><b>ApprovalStats</b></a></h2>
@@ -44,10 +38,7 @@
          <h2><a href='ContentServer?pagename=Support/TCPI/AP/UnApprove'><b>UnApprove</b></a></h2>
     </div>
     <div class="entry">
-         <p>Forces Assets out of Publish Queue. If this tool is used you will need to use ApproveHeldAndChanged tool to bring back the forced assets into queue.
-               This tool is useful when there are thousands of assets to publish and you want to publish them in chunks.
-               This tool will be removed once undoapprove in UI is implemented. Use this tool with extreme caution.
-         </p>
+         <p>Forces Assets out of Publish Queue.</p>
     </div>
     <div class="entry-header">
          <h2><a href='ContentServer?pagename=Support/TCPI/AP/ForcePublish'><b>ForcePublishAssets</b></a></h2>

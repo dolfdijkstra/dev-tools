@@ -34,5 +34,11 @@
     <div class="entry">                                        
         <p>Prints out a thread dump (without object lock information.</p>
     </div>
+    <div class="entry-header">
+        <h2><a href="ContentServer?pagename=Support/Info/SendEmail">Send Email</a></h2>
+    </div>
+    <div class="entry">                                        
+        <p>Test program to send a email.</p>
+    </div>
 
 </cs:ftcs>

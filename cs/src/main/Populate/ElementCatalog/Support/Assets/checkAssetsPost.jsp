@@ -36,7 +36,7 @@ private String ecDefDir = "", mbDefDir = "";
 
     IList catDef = ics.CatalogDef(tableName, null, errstr);
 
-    Hashtable field_length = new Hashtable();
+    Map<String,String> field_length = new HashMap<String,String>();
 
     if (catDef.numRows() > 0) {
       do {
@@ -44,8 +44,6 @@ private String ecDefDir = "", mbDefDir = "";
       }
       while (catDef.moveToRow(IList.next, 0));
     }
-
-    FTValList resultVals = new FTValList();
 
     String propList = com.openmarket.assetmaker.asset.AMAsset.GenPropertyList(ics, com.openmarket.assetmaker.asset.AMAsset.LoadDescriptorFile(ics, tableName), "storage");
 
@@ -75,7 +73,7 @@ private String ecDefDir = "", mbDefDir = "";
 
   private String checkFlexDBLength(ICS ics, String tableName, StringBuffer errstr) throws NoSuchFieldException {
 
-    if (ics.GetCatalogType(tableName + "_Mungo") == ics.NoSuchCatalog) {
+    if (ics.GetCatalogType(tableName + "_Mungo") == ICS.NoSuchCatalog) {
       return "";
     }
 
@@ -87,7 +85,7 @@ private String ecDefDir = "", mbDefDir = "";
 
     IList catDef = ics.CatalogDef(tableName + "_Mungo", null, errstr);
 
-    Map field_length = new HashMap();
+    Map<String,String> field_length = new HashMap<String,String>();
 
     if (catDef.numRows() > 0) {
       do {
@@ -316,7 +314,7 @@ MAIN LOGIC
 
   String currTable = ics.GetVar("assettype");
 
-  if (currTable ==null || (ics.GetCatalogType(currTable) == ics.NoSuchCatalog)) {
+  if (currTable ==null || (ics.GetCatalogType(currTable) == ICS.NoSuchCatalog)) {
     out.println("<result numerr='1'>");
     out.println("  <dbmismatch>no such table found!</dbmismatch>");
     out.println("  <invalid num='0'></invalid>");

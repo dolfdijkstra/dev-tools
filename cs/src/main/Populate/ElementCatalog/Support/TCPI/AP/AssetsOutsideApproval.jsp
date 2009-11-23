@@ -1,6 +1,5 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
-%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
 %><%//
 // Support/TCPI/AP/AssetsOutsideApproval
 //
@@ -8,17 +7,9 @@
 //
 // OUTPUT
 //
-%><%@ page import="COM.FutureTense.Interfaces.FTValList" 
-%><%@ page import="COM.FutureTense.Interfaces.ICS" 
-%><%@ page import="COM.FutureTense.Interfaces.IList" 
 %><%@ page import="COM.FutureTense.Interfaces.Utilities" 
-%><%@ page import="COM.FutureTense.Util.ftErrors" 
-%><%@ page import="COM.FutureTense.Util.ftMessage"%>
-<cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
-<center><h4>Assets outside the approval process</h4></center>
+%><cs:ftcs>
+<h3>Assets outside the approval process</h3>
 <% if (!Utilities.goodString(ics.GetVar("pubid"))){ %>
 <ics:sql sql="SELECT id, t2.name as name FROM Publication t2 ORDER BY t2.name" table="Publication" listname="sites" />
 <br/><table class="altClass">
@@ -94,6 +85,4 @@
 	</ics:listloop>
 </table>
 <% }  %>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

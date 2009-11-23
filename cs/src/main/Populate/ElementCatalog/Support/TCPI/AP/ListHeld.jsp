@@ -1,6 +1,5 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
-%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
 // Support/TCPI/AP/ListHeld
 //
@@ -8,15 +7,8 @@
 //
 // OUTPUT
 //
-%><%@ page import="COM.FutureTense.Interfaces.FTValList"
-%><%@ page import="COM.FutureTense.Interfaces.ICS"
-%><%@ page import="COM.FutureTense.Interfaces.IList"
-%><%@ page import="COM.FutureTense.Interfaces.Utilities"
-%><%@ page import="COM.FutureTense.Util.ftErrors"
-%><%@ page import="COM.FutureTense.Util.ftMessage"%>
-<cs:ftcs>
-<center><h3>Held Assets</h3></center>
-
+%><cs:ftcs>
+<h3>Held Assets</h3>
 <h4>Held Assets per AssetType per Target</h4>
 <ics:clearerrno/>
 <ics:sql sql="SELECT pt.name as name, aps.assettype as assettype , count(aps.id) as num FROM ApprovedAssets aps, PubTarget pt WHERE aps.tstate IN('H') AND pt.id=aps.targetid GROUP BY pt.name, aps.assettype ORDER BY name, assettype" table="ApprovedAssets" listname="yyy" />
@@ -82,5 +74,4 @@
         </tr>
         </ics:listloop>
     </table>
-<% } %>
-</cs:ftcs>
+<% } %></cs:ftcs>

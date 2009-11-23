@@ -6,7 +6,7 @@ private String csVersion="unknown";
 private String csEnv="var csEnv ={";
 
 public void jspInit(){
-    super.jspInit();
+    //super.jspInit();
     try {
         final COM.FutureTense.Util.FBuild bb = new COM.FutureTense.Util.FBuild();
         String v = bb.version();
