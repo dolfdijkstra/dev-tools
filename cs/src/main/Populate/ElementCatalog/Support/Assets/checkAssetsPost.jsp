@@ -479,7 +479,7 @@ ecDefDir = getDefDir("ElementCatalog", ics);
 
       String badurl = "";
       String tempVars = "";
-      results += "Referenced file is missing in the following attribute or database column: ";
+
 
       Enumeration vars = ics.GetVars();
 
@@ -516,7 +516,7 @@ ecDefDir = getDefDir("ElementCatalog", ics);
           }
         }
       }
-
+      results += "Referenced file is missing in the following attribute or database column: ";
       results += (badurl.length() == 0) ? "<span class=\"good\">none</span>" : "<span class=\"bad\">" + badurl + "</span>";
 
 
