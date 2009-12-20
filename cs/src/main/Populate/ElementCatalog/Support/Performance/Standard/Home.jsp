@@ -16,10 +16,9 @@ The script can also be <satellite:link pagename="Support/Performance/Standard/sc
 <li>gnuplot, version 3.7 or later</li>
 <li>The path to Satellite is /cs/Satellite, it is easy to change this in the script.</li>
 </ul>
-
 <br/><br/>
 <pre style="background-color: #CCCCCC">
-<% org.apache.commons.lang.StringEscapeUtils.escapeHtml(out,ics.ReadPage("Support/Performance/Standard/script",new FTValList())); %>
+<%= org.apache.commons.lang.StringEscapeUtils.escapeHtml(ics.ReadPage("Support/Performance/Standard/script",new FTValList())) %>
 </pre>
 <table>
 <tr>
