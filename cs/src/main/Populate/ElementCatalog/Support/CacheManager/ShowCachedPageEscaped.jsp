@@ -11,7 +11,7 @@ if (ics.GetErrno() == 0){
     %><div class="pagelet-summary">length=<%= Integer.toString(count)%>, whitespace=<%= count >0?Integer.toString(whitecount*100/count) :"0"%>%. Hold mouse over pagelet to see it with whitespace.</div><%
     %><div class="pagelet-inner"><ics:callelement element="Support/CacheManager/listPageMarkers"><ics:argument name="pagebody" value="<%= text %>"/></ics:callelement></div><%
     %><div class="pagelet-body" onmouseover="this.style.whiteSpace='pre';" onmouseout="this.style.whiteSpace='normal';"><%=
-  org.apache.commons.lang.StringEscapeUtils.escapeHtml(text);
+  org.apache.commons.lang.StringEscapeUtils.escapeHtml(text)
   %></div><%
 } else {
     out.write("Not in cache");
