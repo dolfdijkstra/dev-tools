@@ -126,7 +126,7 @@ var sampleResult = [
 var state=0;
 var data;
 var test = {
-    version:'1.0',
+    version:'1.1',
     timestamp: new Date(),
     hostname:'<%=hostname %>',
     session: window.session,
@@ -186,7 +186,7 @@ function submitTest(){
         var mytest = sampleResult[i];
         var label= 't' + mytest.thread +'-f'+mytest.files + '-s' + mytest.size + '-r'+mytest.reads +'-'+folderTypes[j];
 
-        $('messageText').firstChild.textContent='Running File System Test ('+ (i + (j * sampleResult.length) )  + ' of ' + (sampleResult.length * folderTypes.length) +'): ' +label +'. Please wait...';
+        $('messageText').update('Running File System Test ('+ (i + (j * sampleResult.length) )  + ' of ' + (sampleResult.length * folderTypes.length) +'): ' +label +'. Please wait...');
 
         $('message').style.visibility='visible';
         $('resultsTable').style.visibility='visible';
@@ -198,8 +198,7 @@ function submitTest(){
                test.results[test.results.length]=result;
 
 
-               var row= [{v: label},
-               {v: result.averageTime}, {v: mytest.avg}];
+               var row= [{v: label},{v: result.averageTime}, {v: mytest.avg}];
                if (typeof data != 'undefined'){
                     data.addRow(row);
                     // Draw the visualization.
@@ -220,7 +219,7 @@ function submitTest(){
         state=3;
         $('message').style.display='none';
         //$('controlButton').style.display='none';
-        $('controlButton').value="Upload test results to the SupportTools web site for data collection and comparision.";
+        $('controlButton').value="Upload test results to the SupportTools web site for data collection and comparison.";
         $('controlButton').onclick = upload;
         function upload(){
             //$('controlButton').disabled=true;//onclick=null;
