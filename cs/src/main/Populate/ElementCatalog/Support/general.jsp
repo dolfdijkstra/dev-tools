@@ -53,7 +53,7 @@ var session={<%
     }
     }
 %>};
-var supporttools_version=<%= ics.GetVar("st_version") %>;
+
 
 function hitLoadSensor(){
   var pl = 'l=' + escape(self.location) + '&t=' + ((new Date()).getTime() - began_loading) + '&e=' + window.elapsed;
@@ -69,7 +69,7 @@ function hitLoadSensor(){
   }
   pl +='&s.cd='+ window.screen.colorDepth;
   pl +='&s.d='+ window.screen.height +','+window.screen.width;
-  pl +='&v=supportools_version';
+  pl +='&v=<%= ics.GetVar("st_version") %>';
   <%
     for (String s : new String[]{ "java.runtime.version","java.version","java.vm.version","os.arch","os.name","os.version"}){
         %>pl +='&<%=s %>=<%=java.net.URLEncoder.encode(System.getProperty(s))%>';
