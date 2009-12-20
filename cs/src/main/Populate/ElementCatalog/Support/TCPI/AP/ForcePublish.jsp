@@ -1,27 +1,26 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" %>
-<%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
-<%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
-<%@ taglib prefix="deliverytype" uri="futuretense_cs/deliverytype.tld" %>
-<%//
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
+%><%@ taglib prefix="deliverytype" uri="futuretense_cs/deliverytype.tld"
+%><%
+//
 // Support/TCPI/AP/ForcePublish
 //
 // INPUT
 //
 // OUTPUT
-//%>
-<%@ page import="COM.FutureTense.Interfaces.FTValList" %>
-<%@ page import="COM.FutureTense.Interfaces.ICS" %>
-<%@ page import="COM.FutureTense.Interfaces.IList" %>
-<%@ page import="COM.FutureTense.Interfaces.Utilities" %>
-<%@ page import="COM.FutureTense.Util.ftErrors" %>
-<%@ page import="COM.FutureTense.Util.ftMessage"%>
-<cs:ftcs>
-<center><h3>Force Publish to a Destination</h3></center>
-
+//
+%><%@ page import="COM.FutureTense.Interfaces.FTValList"
+%><%@ page import="COM.FutureTense.Interfaces.ICS"
+%><%@ page import="COM.FutureTense.Interfaces.IList"
+%><%@ page import="COM.FutureTense.Interfaces.Utilities"
+%><%@ page import="COM.FutureTense.Util.ftErrors"
+%><%@ page import="COM.FutureTense.Util.ftMessage"
+%><cs:ftcs><h3>Force Publish to a Destination</h3>
 <ics:if condition='<%= ics.GetVar("forcepub")!=null %>'>
 <ics:then>
     <h4><ics:getvar name="tname"/></h4>
-    <ics:sql sql='<%= "select id,assetid from pubkeytable where targetid="+ics.GetVar("targ")+" order by id"%>' listname="pktlist" table="PubKeyTable"/>
+    <ics:sql sql='<%= "select id,assetid from PubKeyTable where targetid="+ics.GetVar("targ")+" order by id"%>' listname="pktlist" table="PubKeyTable"/>
     <table class="altClass">
     <tr><th>assetid</th><th>PubkeyTable?</th><th>ApprovedAssets?</th><th>ApprovedAssetDeps?</th></tr>
     <ics:listloop listname="pktlist">
@@ -32,7 +31,7 @@
         <ics:sql sql='<%="UPDATE ApprovedAssets SET LASTASSETVERSION=NULL,LASTASSETVOIDED=NULL,LASTASSETDATE=NULL WHERE assetid="+ics.ResolveVariables("pktlist.assetid")%>' listname="aauplist" table="ApprovedAssets"/>
         <td><ics:geterrno/></td>
         <ics:sql sql='<%="SELECT id FROM ApprovedAssets WHERE assetid="+ics.ResolveVariables("pktlist.assetid")%>' listname="aaid" table="ApprovedAssets"/>
-        <ics:sql sql='<%="UPDATE ApprovedAssetdeps SET LASTPUB=\'F\' WHERE ownerid="+ics.ResolveVariables("aaid.id")%>' listname="aduplist" table="ApprovedAssetdeps"/>
+        <ics:sql sql='<%="UPDATE ApprovedAssetDeps SET LASTPUB=\'F\' WHERE ownerid="+ics.ResolveVariables("aaid.id")%>' listname="aduplist" table="ApprovedAssetDeps"/>
         <td><ics:geterrno/></td>
     </tr>
     </ics:listloop>
