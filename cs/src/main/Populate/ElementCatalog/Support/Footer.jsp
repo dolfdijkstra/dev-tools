@@ -17,14 +17,14 @@ function decorateTables(){
         if(tables[t].className == clsName) {
 
             var tableBodies = tables[t].getElementsByTagName("tbody");
-            // Loop through these tbodies
+            <%-- Loop through these tbodies --%>
             for (var i = 0; i < tableBodies.length; i++) {
-                // Take the tbody, and get all it's rows
+                <%-- Take the tbody, and get all it's rows --%>
                 var tableRows = tableBodies[i].getElementsByTagName("tr");
-                // Loop through these rows
-                // Start at 1 because we want to leave the heading row untouched
+                <%-- Loop through these rows
+                     Start at 1 because we want to leave the heading row untouched --%>
                 for (var j = 1; j < tableRows.length; j++) {
-                    // Check if j is even, and apply classes for both possible results
+                    <%-- Check if j is even, and apply classes for both possible results --%>
                     if ( (j % 2) == 0  ) {
                         tableRows[j].className += " even";
                     } else {
@@ -37,5 +37,5 @@ function decorateTables(){
 }
 decorateTables();
 </script>
-<div class="footer gray"><p style="text-align:right">Copyright &copy;2009 FatWire Corporation.  All Rights Reserved. Version 3.7</p></div>
+<div class="footer gray"><p style="text-align:right">Copyright &copy;2009 FatWire Corporation.  All Rights Reserved. Version 3.7-rc5</p></div>
 </cs:ftcs>
