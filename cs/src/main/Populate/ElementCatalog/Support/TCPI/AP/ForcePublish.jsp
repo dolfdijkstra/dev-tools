@@ -17,5 +17,5 @@
 %><%@ page import="COM.FutureTense.Util.ftErrors"
 %><%@ page import="COM.FutureTense.Util.ftMessage"
 %><cs:ftcs><h3>Force Publish to a Destination</h3>
-This tool was implemented correctly and is retracted until it is fixed.
+This tool was implemented incorrectly and is retracted until it is fixed.
 </cs:ftcs>
