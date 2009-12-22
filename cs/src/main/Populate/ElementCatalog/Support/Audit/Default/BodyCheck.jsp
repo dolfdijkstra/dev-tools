@@ -84,11 +84,12 @@ private void fileRollup(JspWriter out, String urlfile, String path, String tblna
         Utilities.writeFile(ics.GetVar("filepath"), content);
     }
 
-    if (ics.GetVar("start") == null) {ics.SetVar("start",0);}
+
     ics.SetVar("key", ics.ResolveVariables("Variables.tblname.KEY"));
     %><ics:catalogdef listname="table" table='<%= tblName %>'/><%
-
-    if (!"(integer)".equals(ics.ResolveVariables("table.COLTYPE"))) {
+    if (ics.GetVar("start") == null) {
+        nonidkey = "1 = 1";
+    } else if (!"(integer)".equals(ics.ResolveVariables("table.COLTYPE"))) {
         nonidkey = "table.KEY > 'Variables.start'";
     } else {
         nonidkey = "table.KEY > Variables.start";
