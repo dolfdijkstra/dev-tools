@@ -7,30 +7,32 @@
 // INPUT
 //
 // OUTPUT
-//%>
-<%@ page import="COM.FutureTense.Interfaces.FTValList"
+//
 %><%@ page import="COM.FutureTense.Interfaces.ICS"
-%><%@ page import="COM.FutureTense.Interfaces.IList"
-%><%@ page import="COM.FutureTense.Interfaces.Utilities"
-%><%@ page import="COM.FutureTense.Util.ftErrors"
-%><%@ page import="COM.FutureTense.Util.ftMessage"
 %><%@ page import="java.util.*"
 %><%@ page import="java.io.IOException"
 %><%@ page import="javax.servlet.jsp.JspWriter"
-%><%@ page import="javax.management.MBeanServer"
 %><%@ page import="javax.management.*"
 %><%@ page import="java.lang.management.ManagementFactory"
+%><%@ page import="javax.management.openmbean.CompositeData"
+%><%@ page import="javax.management.openmbean.TabularData"
+%><%@ page import="javax.management.openmbean.CompositeType"
 %><%!
 private MBeanServer mBeanServer = null;
-// --------------------------------------------------------- Public Methods
 
-
-/**
- * Initialize this servlet.
- */
 public void jspInit() {
     // Retrieve the MBean server
-    mBeanServer = ManagementFactory.getPlatformMBeanServer();
+      if( MBeanServerFactory.findMBeanServer(null).size() > 0 ) {
+         mBeanServer=(MBeanServer)MBeanServerFactory.findMBeanServer(null).get(0);
+      } else {
+         mBeanServer = ManagementFactory.getPlatformMBeanServer();
+      }
+
+}
+
+public void jspDestroy() {
+
+    mBeanServer = null;
 }
 
 void getAttribute(JspWriter writer, String onameStr, String att) throws IOException {
@@ -67,14 +69,14 @@ void listBeans( JspWriter writer, String qry , String pagename) throws IOExcepti
          }
        });
     n.addAll(names);
-    Iterator<ObjectName> it= n.iterator();
+
     int bid=0;
     boolean display= n.size() < 20;//!"*:*".equals(qry);
     writer.print("<ol style=\"margin-top:0\">");
-    while( it.hasNext()) {
+    for( Iterator<ObjectName> it= n.iterator(); it.hasNext();) {
         ObjectName oname=it.next();
         bid++;
-        writer.print("<li><a style=\"display:block\" href=\"ContentServer?pagename="+ pagename +"&qry=" + oname.toString() +"\"");
+        writer.print("<li><a style=\"display:block\" href=\"ContentServer?pagename="+ pagename +"&qry=" + java.net.URLEncoder.encode(oname.toString()) +"\"");
         if (!display) writer.print(" onmouseover=\"document.getElementById('bean"+bid+"').style.display='inline'\" onmouseout=\"document.getElementById('bean"+bid+"').style.display='none'\"");
         writer.print("><b>" + oname.toString() +"</b></a>");
         writer.println("<ul id=\"bean"+bid+"\" style=\"list-style-position:inside"+(!display? ";display:none": "")+"\">");
@@ -109,9 +111,9 @@ void listBeans( JspWriter writer, String qry , String pagename) throws IOExcepti
                     continue;
                 }
                 if( value==null ) continue;
-                String valueString=value.getClass().isArray() ? String.valueOf(Arrays.asList((Object[])value)) : value.toString();
-                writer.print("<li><i>"+attName + "</i>: <span style=\"white-space:pre\">" + escape(valueString));
-                writer.println("</span></li>");
+                writer.print("<li><i>"+attName + "</i>: ");
+                printValue(writer,value);
+                writer.println("</li>");
             }
         } catch (Exception e) {
             // Ignore
@@ -121,61 +123,103 @@ void listBeans( JspWriter writer, String qry , String pagename) throws IOExcepti
     writer.println("</ol>");
 
 }
+    private void printValue(JspWriter writer,Object value) throws IOException{
+        if (value==null) return;
+        if (value instanceof CompositeData) {
+            printComp(writer,(CompositeData) value);
+        } else if (value instanceof TabularData) {
+            printTab(writer,(TabularData) value);
+        } else if(value.getClass().isArray()){
+            if (CompositeData.class.isAssignableFrom(value.getClass().getComponentType()) || TabularData.class.isAssignableFrom(value.getClass().getComponentType())){
+                writer.print("<ul>" );
+                for (Object o: (Object[])value){
+                    writer.print("<li>");
+                    printValue(writer,o);
+                    writer.print("</li>");
+                }
+                writer.print("</ul>");
+            } else {
+                String valueString= String.valueOf(Arrays.asList((Object[])value)) ;
+                writer.print("<span style=\"white-space:pre\">");
+                writer.print(escape(valueString));
+                writer.print("</span>");
+            }
+        } else {
+            String valueString= value.toString();
+            writer.print("<span style=\"white-space:pre\">");
+            writer.print(escape(valueString));
+            writer.print("</span>");
+
+        }
+
+    }
+
+    private  void printTab(JspWriter writer,TabularData td) throws IOException {
+        Set<String> keys=td.getTabularType().getRowType().keySet();
+
+        writer.write("<table>");
+        writer.write("<tr>");
+        for (String key:keys){
+            writer.write("<th>");
+            writer.write(escape(key));
+            writer.write("</th>");
+        }
+        writer.write("</tr>");
+        for (Object o : td.values()) {
+            if (o instanceof CompositeData) {
+                CompositeData cd=(CompositeData) o;
+                writer.write("<tr>");
+                for (String key:keys){
+                    writer.write("<td>");
+                    printValue(writer,cd.get(key));
+                    writer.write("</td>");
+                }
+                writer.write("</tr>");
+            }
+        }
+        writer.write("</table>");
+    }
+
+    private void printComp(JspWriter writer,CompositeData cd) throws IOException {
+
+        CompositeType ct = cd.getCompositeType();
+        writer.print("<ul>");
+        for (String key : ct.keySet()) {
+            writer.print("<li><i>"+key + "</i>: ");
+            printValue(writer,cd.get(key));
+            writer.print("</li>");
+        }
+        writer.print("</ul>");
+    }
+
 
 String escape(String value){
-    return org.apache.commons.lang.StringEscapeUtils.escapeHtml(value);
+    return value==null?"":org.apache.commons.lang.StringEscapeUtils.escapeHtml(value);
 }
 
-String escapeX(String value) {
-    // The only invalid char is \n
-    // We also need to keep the string short and split it with \nSPACE
-    // XXX TODO
-    int idx=value.indexOf( "\n" );
-    if( idx < 0 ) return value;
-
-    int prev=0;
-    StringBuilder sb=new StringBuilder();
-    while( idx >= 0 ) {
-        appendHead(sb, value, prev, idx);
-
-        sb.append( "\\n\n ");
-        prev=idx+1;
-        if( idx==value.length() -1 ) break;
-        idx=value.indexOf('\n', idx+1);
-    }
-    if( prev < value.length() )
-        appendHead( sb, value, prev, value.length());
-    return sb.toString();
-}
-
-private void appendHead( StringBuilder sb, String value, int start, int end) {
-    if (end < 1) return;
-
-    int pos=start;
-    while( end-pos > 78 ) {
-        sb.append( value.substring(pos, pos+78));
-        sb.append( "\n ");
-        pos=pos+78;
-    }
-    sb.append( value.substring(pos,end));
-}
 
 boolean isSupported( String type ) {
     return true;
 }
 %><cs:ftcs><%
 
+    for (MBeanServer s: MBeanServerFactory.findMBeanServer(null)){
+        out.write(String.valueOf(s.getDefaultDomain()));
+        out.write("<br/>");
+    }
 
-%><div><form style="border:0; margin: 0;display:inline" name="query" action="ContentServer" method="GET"><input type="hidden" name="pagename" value='<ics:getvar name="pagename"/>'/>
+
+%><form style="border:0; margin: 0;display:inline" name="query" action="ContentServer" method="GET"><input type="hidden" name="pagename" value='<ics:getvar name="pagename"/>'/>
       Query: <input type="text" name="qry" size="50" value='<%= ics.GetVar("qry") !=null? ics.GetVar("qry"): "*:*" %>'/> (<a href='ContentServer?pagename=<ics:getvar name="pagename"/>'>'*:*'</a> for all jmx beans)
     </form><%
 if( mBeanServer==null ) {
     out.println("Error - No mbean server");
 
 }else {
+
     String[] domains = mBeanServer.getDomains();
     Arrays.sort(domains);
-    %>domains: <a href='ContentServer?pagename=<ics:getvar name="pagename"/>&qry=java.lang:*'>'java.lang:*'</a><%
+    %>domains: <%
     for (String domain : domains){
         %> <a href='ContentServer?pagename=<ics:getvar name="pagename"/>&qry=<%= domain %>:*'>'<%=domain%>:*'</a><%
     }
@@ -192,4 +236,4 @@ if( mBeanServer==null ) {
         listBeans( out, qry ,ics.GetVar("pagename"));
     }
 }
-%></div></cs:ftcs>
+%></cs:ftcs>
