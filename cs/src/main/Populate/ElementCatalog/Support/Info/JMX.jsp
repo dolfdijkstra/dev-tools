@@ -202,23 +202,19 @@ boolean isSupported( String type ) {
     return true;
 }
 %><cs:ftcs><%
-
-    for (MBeanServer s: MBeanServerFactory.findMBeanServer(null)){
-        out.write(String.valueOf(s.getDefaultDomain()));
-        out.write("<br/>");
-    }
-
-
-%><form style="border:0; margin: 0;display:inline" name="query" action="ContentServer" method="GET"><input type="hidden" name="pagename" value='<ics:getvar name="pagename"/>'/>
-      Query: <input type="text" name="qry" size="50" value='<%= ics.GetVar("qry") !=null? ics.GetVar("qry"): "*:*" %>'/> (<a href='ContentServer?pagename=<ics:getvar name="pagename"/>'>'*:*'</a> for all jmx beans)
-    </form><%
 if( mBeanServer==null ) {
     out.println("Error - No mbean server");
-
 }else {
 
-    String[] domains = mBeanServer.getDomains();
-    Arrays.sort(domains);
+    %><form style="border:0; margin: 0;display:inline" name="query" action="ContentServer" method="GET"><input type="hidden" name="pagename" value='<ics:getvar name="pagename"/>'/>
+      Query: <input type="text" name="qry" size="50" value='<%= ics.GetVar("qry") !=null? ics.GetVar("qry"): "*:*" %>'/> <a href='ContentServer?pagename=<ics:getvar name="pagename"/>'>all jmx beans</a>
+    </form><%
+
+
+    Set<String> domains = new TreeSet<String>();
+    domains.addAll(Arrays.asList(mBeanServer.getDomains()));
+    domains.add("java.lang");
+
     %>domains: <%
     for (String domain : domains){
         %> <a href='ContentServer?pagename=<ics:getvar name="pagename"/>&qry=<%= domain %>:*'>'<%=domain%>:*'</a><%
