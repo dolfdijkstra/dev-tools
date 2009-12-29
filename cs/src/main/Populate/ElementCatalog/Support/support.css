@@ -155,6 +155,7 @@ blockquote p {
 .footer {
    min-width: 1000px;
    margin: 0 1px 0 1px;
+   height:17px;
 }
 .footer p {
  font-size: 11px;
