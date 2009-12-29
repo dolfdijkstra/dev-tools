@@ -126,9 +126,9 @@ void listBeans( JspWriter writer, String qry , String pagename) throws IOExcepti
     private void printValue(JspWriter writer,Object value) throws IOException{
         if (value==null) return;
         if (value instanceof CompositeData) {
-            printComp(writer,(CompositeData) value);
+            printCompositeData(writer,(CompositeData) value);
         } else if (value instanceof TabularData) {
-            printTab(writer,(TabularData) value);
+            printTabularData(writer,(TabularData) value);
         } else if(value.getClass().isArray()){
             if (CompositeData.class.isAssignableFrom(value.getClass().getComponentType()) || TabularData.class.isAssignableFrom(value.getClass().getComponentType())){
                 writer.print("<ul>" );
@@ -154,7 +154,7 @@ void listBeans( JspWriter writer, String qry , String pagename) throws IOExcepti
 
     }
 
-    private  void printTab(JspWriter writer,TabularData td) throws IOException {
+    private  void printTabularData(JspWriter writer,TabularData td) throws IOException {
         Set<String> keys=td.getTabularType().getRowType().keySet();
 
         writer.write("<table>");
@@ -180,7 +180,7 @@ void listBeans( JspWriter writer, String qry , String pagename) throws IOExcepti
         writer.write("</table>");
     }
 
-    private void printComp(JspWriter writer,CompositeData cd) throws IOException {
+    private void printCompositeData(JspWriter writer,CompositeData cd) throws IOException {
 
         CompositeType ct = cd.getCompositeType();
         writer.print("<ul>");
