@@ -29,11 +29,11 @@ String[] types = {"Statistic","Clustered","Hashed","Other"};
 private Connection getConnection(String connectString) throws Exception
 {
     Connection connection = null;
-    InitialContext ic = new InitialContext();     
-	DataSource ds   =  (DataSource) ic.lookup(connectString);
-	connection   =  ds.getConnection();
+    InitialContext ic = new InitialContext();
+    DataSource ds   =  (DataSource) ic.lookup(connectString);
+    connection   =  ds.getConnection();
     return connection;
-}   
+}
 %>
 
 <%
@@ -41,64 +41,66 @@ Connection con = null;
 String sFormat = ics.GetProperty(ftMessage.propDBConnPicture);
 
 if (!Utilities.goodString(sFormat)) {
-	sFormat = "jdbc/$dsn";
+    sFormat = "jdbc/$dsn";
 }
 
 String connectString = Utilities.replaceAll(sFormat, ftMessage.connpicturesub, ics.GetProperty("cs.dsn"));
 
-try {    
+try {
     con  =  getConnection(connectString);
     boolean makeUpperCase = con.getMetaData().storesUpperCaseIdentifiers();
-	%><ics:setvar name="errno" value="0"/>
-	<h3><center>Overview of ContentServer Table Indices</center></h3>
+    ics.ClearErrno();
+    %><h3>Overview of ContentServer Table Indices</h3>
+    <table class="altClass">
+    <tr>
+        <th>INDEX_NAME</th>
+        <th>(ORDINAL_POSITION)<br/>COLUMN_NAME</th>
+        <th>TYPE</th>
+        <th>ASC_OR_DESC</th>
+        <th>CARDINALITY</th>
+        <th>PAGES</th>
+        <th>FILTER_CONDITION</th>
+        <th>NON_UNIQUE</th>
+    </tr><%
 
-	<table class="altClass">
-	<tr>
-		<th>INDEX_NAME</th>
-		<th>(ORDINAL_POSITION)<br/>COLUMN_NAME</th>
-		<th>TYPE</th>
-		<th>ASC_OR_DESC</th>
-		<th>CARDINALITY</th>
-		<th>PAGES</th>
-		<th>FILTER_CONDITION</th>
-		<th>NON_UNIQUE</th>
-	</tr>
-	<ics:setvar name="tablename" value="SystemInfo"/>
-	<% String sql = "select distinct tblname from SystemInfo where tblname not in (\'SystemAssets\') order by tblname asc"; %>
-	<ics:sql sql='<%= sql %>' listname='B' table='SystemInfo' />
-		<ics:listloop listname="B">
-		<tr><td colspan="8"><font color="blue"><b><ics:listget listname="B" fieldname="tblname" /></b></font></td></tr>
-	<%
-	//
-		String tableName = ics.GetList("B", false).getValue("tblname");
-		if (makeUpperCase) tableName= tableName.toUpperCase(); else tableName= tableName.toLowerCase();
-		try{
-			ResultSet rs= con.getMetaData().getIndexInfo(null, null, tableName, false, false);
-			int c=0;
-			%><tr><%
-			while (rs.next()) {
-				for (int i=0; i<indexNum; i++) {
-					if (indexes[i].equals("TYPE")) {
-						%><td><%= types[rs.getShort("TYPE")]%></td><%
-					} else if (indexes[i].equals("COLUMN_NAME")) {
-							%><td><%= "("+rs.getString("ORDINAL_POSITION")+") "+rs.getString(indexes[i])%></td><%
-					} else {
-							%><td><%= rs.getString(indexes[i])%></td><%
-					}
-				}
-				%></tr><%
-			}
-			rs.close();
-		} catch (SQLException e){
-			%><%= e.getMessage() %><%
-		}
-	%>
-		</ics:listloop>
-	</table>
-<% } finally {
-	if (con !=null){
-		con.close();
-	}
-}%>
+    String sql = "select distinct tblname from SystemInfo where tblname not in (\'SystemAssets\') order by lower(tblname) asc";
 
-</cs:ftcs>
+    IList list= ics.SQL("SystemInfo", sql,"B",-1,true,new StringBuffer());
+
+    if (list!=null){
+       for (IList row : new COM.FutureTense.Util.IterableIListWrapper(list)){
+            String tableName = row.getValue("tblname");
+
+            %><tr><td colspan="8"><span style="font-color:blue"><b><%= tableName %></b></span></td></tr><%
+
+            tableName= makeUpperCase? tableName.toUpperCase() : tableName.toLowerCase();
+            try{
+                ResultSet rs= con.getMetaData().getIndexInfo(null, null, tableName, false, false);
+                int c=0;
+                %><tr><%
+                while (rs.next()) {
+                    for (int i=0; i<indexNum; i++) {
+                        if (indexes[i].equals("TYPE")) {
+                            %><td><%= types[rs.getShort("TYPE")]%></td><%
+                        } else if (indexes[i].equals("COLUMN_NAME")) {
+                                %><td><%= "("+rs.getString("ORDINAL_POSITION")+") "+rs.getString(indexes[i])%></td><%
+                        } else {
+                                %><td><%= rs.getString(indexes[i])%></td><%
+                        }
+                    }
+                    %></tr><%
+                }
+                rs.close();
+            } catch (SQLException e){
+                %><%= e.getMessage() %><%
+            }
+        }
+    }
+    %></table><%
+} finally {
+    if (con !=null){
+        con.close();
+    }
+}
+
+%></cs:ftcs>
