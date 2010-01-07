@@ -6,7 +6,6 @@ private String csVersion="unknown";
 private String csEnv="var csEnv ={";
 
 public void jspInit(){
-    //super.jspInit();
     try {
         final COM.FutureTense.Util.FBuild bb = new COM.FutureTense.Util.FBuild();
         String v = bb.version();
@@ -34,12 +33,12 @@ public void jspInit(){
 
 }
 %><cs:ftcs><%
+ics.SetVar("st_version","3.7.0");
 %><satellite:link pagename='Support/css' satellite="true" outstring="cssURL" ><satellite:argument name="v" value="20"/></satellite:link><%
 %><satellite:link pagename='Support/prototype' satellite="true" outstring="prototypeURL" ><satellite:argument name="v" value="1.6.1"/></satellite:link><%
 %><head>
 <title><ics:getvar name="pagename"/></title>
 <meta http-equiv="Pragma" content="no-cache"/><%
-%><satellite:link pagename='<%= "Support/css" + ics.GetVar("cssversion") %>' satellite="true"></satellite:link><%
 %><link rel="stylesheet" href='<%=ics.GetVar("cssURL")%>' type="text/css" media="screen"/>
 </head>
 <script type="text/javascript">
