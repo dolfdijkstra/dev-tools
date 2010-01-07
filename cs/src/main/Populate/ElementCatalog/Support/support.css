@@ -29,7 +29,7 @@ div.content {
   text-align: left;
   background-color: white;
 }
-div#logo{
+#logo{
   position: relative;   
   margin: 1px 1px 1px 1px;
   padding: 10px 0 5px 0; 
@@ -39,45 +39,24 @@ div#logo{
   background-color:#666699;
   text-decoration: none;
 }
-div#logo table {
+table.logo {
   border:none;
 }
-div#logo td {
+td.logo {
   border:none;
   color: white;
   font-size: 12px;
   border-bottom:none;
   font-weight: bold;
 }
-div#logo td p {
+p.logo {
   text-align: center; 
   font-size: 16px;
   color: yellow;
 }
+
 .spacer {
   clear: both;
-}
-.left-column {
-  float: left;
-  width: 178px;
-  padding: 0 10px 0 16px;
-  width: 152px;
-}
-html>body .left-column {
-  width: 152px;
-}
-.right-column {
-  float: left;
-  width: 822px;
-  padding: 0 10px 0 16px;
-  width: 795px;
-}
-html>body .right-column {
-  width: 795px;
-}
-.right-column h1, h2, h3 {
-  font-size: 16px;
-  font-weight: bold;
 }
 h3 {
   font-size: 16px;
@@ -99,29 +78,6 @@ div.entry-header {
 .entry-header h2 a:hover {
   color: #A59D89;
 }   
-.entry-header h3, .entry-header h3 a {
-  font-size: 10px;
-  font-weight: bold;
-  color: #4A525A;
-}
-.right-column h4 {
-  font-size: 16px;
-  font-weight: bold;
-  color: #4A525A;
-  margin-bottom: 16px;
-  width: 535px;
-  height: 33px;
-  width: 489px;
-  height: 25px;
-}
-html>body .right-column h4 {
-  width: 489px;
-  height: 25px;
-}
-.right-column h5 {
-  font-size: 14px;
-  background-color: white;
-}
 .entry-header {
   margin-left: 18px;
   padding: 0 8px 0 11px; 
@@ -147,19 +103,10 @@ blockquote{
 blockquote p {
   font-size: 12px;
 }
-.left-column h2, .right-column h2 {
-  font-size: 12px;
-  font-weight: bold;
-  color: #737C85;
-}
 .footer {
    min-width: 1000px;
-   margin: 0 1px 0 1px;
+   margin-top: 12px;
    height:17px;
-}
-.footer p {
- font-size: 11px;
- color: #737C85;
 }
 form, fieldset{
   border: none;
@@ -246,11 +193,6 @@ html>body #nav a:hover {
 }
 ul.subnav {
   list-style: none;
-}
-.divider {
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #B8B09D;
 }
 ul.subnav li {
   padding: 0 0 3px 15px;
