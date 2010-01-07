@@ -90,6 +90,7 @@ private static String getFreeSpaceOnLinux(String path) throws Exception {
     p.waitFor();
     InputStream reader = new BufferedInputStream(p.getInputStream());
     StringBuffer buffer = new StringBuffer();
+
     for (; ; ) {
         int c = reader.read();
         if (c == -1){
@@ -100,22 +101,17 @@ private static String getFreeSpaceOnLinux(String path) throws Exception {
     String outputText = buffer.toString();
     reader.close();
 
-
+System.out.println(outputText);
     //take off the top line as we do not need it
-    StringTokenizer tokenizer = new StringTokenizer(outputText, "\n");
-    String token=tokenizer.nextToken();
-    String line2 = tokenizer.nextToken();
+    String[] tokenizer = outputText.split("\n");
+    String token=tokenizer[0];
+    String line2 = tokenizer.length>1? tokenizer[tokenizer.length-1]:"";
 
     // parse the output text for the bytes free info
-    StringTokenizer tokenizer2 = new StringTokenizer(line2, " ");
-
+    String[] tokenizer2 = line2.split(" ");
     //The amount of free space is the 4th variable
-    tokenizer2.nextToken();
-    tokenizer2.nextToken();
-    tokenizer2.nextToken();
-    token=tokenizer2.nextToken();
+    return tokenizer2.length > 3 ? tokenizer2[3]:"0";
 
-    return token;
 }
 
 //used for Windows.  This deletes the batch file from the io.tmpdir
@@ -133,30 +129,14 @@ private static boolean delete() {
     String tmpdir=System.getProperty("java.io.tmpdir");
     String s1, s2, s3;
 
-    Properties p = new Properties();
-    FileInputStream fis =  new FileInputStream(Utilities.osSafeSpec(inipath+"/futuretense_xcel.ini"));
-    p.load(fis);
-    fis.close();
-
-    String basefolder = p.getProperty("xcelerate.base");
-    int x1=Math.max(basefolder.indexOf("elements/"),basefolder.indexOf("elements\\"));   //this should be changed so it's not a static string to check on
-    basefolder=basefolder.substring(0,x1);
+    String basefolder = ics.ResolveVariables("CS.CatalogDir.ElementCatalog");
 
     if (System.getProperty("os.name").startsWith("Windows") || System.getProperty("os.name").startsWith("Linux") ) {
-        long toMegs;
-        if (System.getProperty("os.name").startsWith("Windows")) {
-            toMegs=1048576;  //1024^2 to convert to megs
-        } else {
-            toMegs=1024;     //linux already converted to K so we onlyneed to do this once
-        }
+        long toMegs=1048576;
 
-        String x=getFreeSpace(System.getProperty("java.io.tmpdir"));  //java.io.tmp val
-        String y=getFreeSpace(inipath);     //inipath val
-        String z=getFreeSpace(basefolder);  //shared dir val
-
-        float num1=Float.parseFloat(x)/toMegs;  //space free for temp dir
-        float num2=Float.parseFloat(y)/toMegs;  //space free for install dir
-        float num3=Float.parseFloat(z)/toMegs;  //space free for shared file sys dir
+        long num1=new File(tmpdir).getFreeSpace()/toMegs;  //space free for temp dir
+        long num2=new File(inipath).getFreeSpace()/toMegs;  //space free for install dir
+        long num3=new File(basefolder).getFreeSpace()/toMegs;  //space free for shared file sys dir
 
         s1="There is " + num1 + " MB free";
         s2="There is " + num2 + " MB free";
