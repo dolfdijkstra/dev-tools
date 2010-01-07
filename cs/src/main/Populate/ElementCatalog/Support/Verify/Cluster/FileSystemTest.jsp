@@ -12,6 +12,8 @@
 %><%@ page import="COM.FutureTense.Interfaces.Utilities"
 %><%@ page import="java.io.*"
 %><%@ page import="java.util.concurrent.*"
+%><%@ page import="java.nio.channels.FileChannel"
+%><%@ page import="java.nio.channels.FileLock"
 %><%!
 static class FileAccessCallable implements Callable<Long>
 {
@@ -19,14 +21,20 @@ static class FileAccessCallable implements Callable<Long>
     private int numFiles;
     private byte[] b;
     private int numReads;
+    private boolean lock;
+    private boolean fileAttr;
+    private String rafMode;
 
-    FileAccessCallable( File path, int numFiles, byte[] body, int numReads )
+    FileAccessCallable( File path, int numFiles, byte[] body, int numReads, boolean lock, boolean fileAttr, String rafMode )
     {
         this.path = path;
         this.numFiles = numFiles;
         this.b = new byte[body.length];
         System.arraycopy(body,0,b,0,b.length);
         this.numReads = numReads;
+        this.lock=lock;
+        this.rafMode=rafMode;
+        this.fileAttr=fileAttr;
     }
 
 
@@ -39,8 +47,7 @@ static class FileAccessCallable implements Callable<Long>
         dir.mkdirs();
         long startTime = System.nanoTime();
         // Create given # of files
-        for( int x = 0; x < numFiles; x++ )
-        {
+        for( int x = 0; x < numFiles; x++ ) {
             File f = new File( dir, x + ".lock" );
             f.createNewFile();
             FileOutputStream os = new FileOutputStream( f );
@@ -49,16 +56,28 @@ static class FileAccessCallable implements Callable<Long>
         }
 
         // read these files using a RandomAccessFile
-        for( int x = 0; x < numFiles; x++ )
-        {
+        for( int x = 0; x < numFiles; x++ ) {
+            File f = new File(dir , x + ".lock");
             // read them a given # of times
-            for( int i = 0; i < numReads; i++ )
-            {
-                RandomAccessFile ra = new RandomAccessFile( new File(dir , x + ".lock"), "rws" );
-                ra.readFully(b);
-                ra.close();
-                //System.out.println( s + " read " + ( x )  );
+            for( int i = 0; i < numReads; i++ ) {
+                if (fileAttr) { f.lastModified(); }
+                RandomAccessFile ra=null;
+                FileChannel channel= null;
+                FileLock fLock= null;
 
+                try {
+                    ra= new RandomAccessFile( f, rafMode );
+                    if (lock){
+                        channel= ra.getChannel();
+                        fLock= channel.tryLock();
+                    }
+                        ra.readFully(b);
+                    if (fLock !=null){
+                        fLock.release();
+                    }
+                } finally {
+                  if (ra !=null) ra.close();
+                }
             }
         }
 
@@ -73,9 +92,8 @@ static class FileAccessCallable implements Callable<Long>
                 delFile.delete();
             }
         }
-
-        long runTime = (System.nanoTime() - startTime)/1000000;
-        //System.out.println( s + " time=" + ( runTime )  );
+        long totalOperations = ((2+numReads)*numFiles);
+        long runTime = (System.nanoTime() - startTime)/(totalOperations*1000); //in microsecond per operation
         return runTime;
     }
 }
@@ -85,7 +103,10 @@ int numThreads = Integer.parseInt(ics.GetVar("numThreads"));
 int numFiles = Integer.parseInt(ics.GetVar("numFiles"));
 int fileSize = Integer.parseInt(ics.GetVar("fileSize"));
 int numReads = Integer.parseInt(ics.GetVar("numReads"));
+boolean fileLock = Boolean.parseBoolean(ics.GetVar("filelock"));
+boolean fileAttr = Boolean.parseBoolean(ics.GetVar("fileAttr"));
 String where = ics.GetVar("type") ==null?"local":ics.GetVar("type");
+String rafMode = ics.GetVar("rafMode") ==null?"rws":ics.GetVar("rafMode");
 
 String location= ((File)(getServletConfig().getServletContext().getAttribute("javax.servlet.context.tempdir"))).toString();
 
@@ -124,13 +145,13 @@ if (location == null || location.length()==0 ) {
 
 
     Future<Long>[] futures = new Future[numThreads];
-
-    for( int x = 0; x < numThreads; x++ )
-    {
-        //Get the threadTime returned from call()
-        futures[x] = service.submit( new FileAccessCallable( dir, numFiles, b, numReads ) );
-    }
     try {
+        for( int x = 0; x < numThreads; x++ )
+        {
+            //Get the threadTime returned from call()
+            futures[x] = service.submit( new FileAccessCallable( dir, numFiles, b, numReads,fileLock,fileAttr,rafMode ) );
+        }
+
         for( int x = 0; x < numThreads; x++ )
         {
             long threadTime = futures[x].get();
@@ -168,24 +189,19 @@ if (location == null || location.length()==0 ) {
         dir.delete();
     }
 
+
     //Get average time
     long averageTime = totalTime / ( runs == 0 ? 1:runs );
-    long runTime = (System.nanoTime() - startTime)/1000000;
-    /*
-    System.out.println( "" );
-    System.out.println( "Run time " + ( runTime) );
-    System.out.println( "Total time " + ( totalTime ) );
-    System.out.println( "Shortest time " + ( minTime ) );
-    System.out.println( "Longest time " + ( maxTime ) );
-    System.out.println( "Average time " + ( averageTime ) );
-    */
 
+    long runTime = (System.nanoTime() - startTime)/1000000;
 
     %>{where:'<%=where%>',<%
     %>numThreads:<%=Integer.toString(numThreads)%>,<%
     %>numFiles:<%=Integer.toString(numFiles)%>,<%
     %>fileSize:<%=Integer.toString(fileSize)%>,<%
     %>numReads:<%=Integer.toString(numReads)%>,<%
+    %>fileLock:<%=Boolean.toString(fileLock)%>,<%
+    %>fileAttr:<%=Boolean.toString(fileAttr)%>,<%
     %>minTime:<%=Long.toString(minTime)%>,<%
     %>maxTime:<%=Long.toString(maxTime)%>,<%
     %>averageTime:<%=Long.toString(averageTime)%>,<%
