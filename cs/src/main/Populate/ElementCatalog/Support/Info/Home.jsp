@@ -34,7 +34,14 @@
     <div class="entry">
         <p>Shows JMX beans and their attribute values</p>
     </div>
-
+    <% if (org.apache.commons.lang.SystemUtils.IS_OS_UNIX) {%>
+    <div class="entry-header">
+        <h2><a href="ContentServer?pagename=Support/Info/UNIX">UNIX</a></h2>
+    </div>
+    <div class="entry">
+        <p>Shows some low level UNIX info, like /proc/cpuinfo</p>
+    </div>
+    <%}%>
     <div class="entry-header">
         <h2><a href="ContentServer?pagename=Support/Info/SendEmail">Send Email</a></h2>
     </div>
