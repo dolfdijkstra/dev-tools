@@ -14,8 +14,7 @@
 %><%@ page import="COM.FutureTense.Interfaces.Utilities"
 %><%@ page import="COM.FutureTense.Util.ftErrors"
 %><%@ page import="COM.FutureTense.Util.ftMessage"
-%><cs:ftcs><satellite:link pagename="Support/prototype" satellite="true" /><%
-%><script type="text/javascript" src='<%=ics.GetVar("referURL")%>'></script>
+%><script type="text/javascript" src='<%=ics.GetVar("prototypeURL")%>'></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <center><h3>Page Cache Summary</h3></center>
 <div id="config"></div>

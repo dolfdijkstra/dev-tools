@@ -111,8 +111,8 @@
         }
          %>
     </table>
-<satellite:link pagename="Support/prototype" satellite="true" /><%
-%><script type="text/javascript" src='<%=ics.GetVar("referURL")%>'></script>
+
+<script type="text/javascript" src='<%=ics.GetVar("prototypeURL")%>'></script>
 <script type="text/javascript">
 function div_show(obj,key,item){
     new Ajax.Request('ContentServer', {
@@ -141,5 +141,4 @@ function div_show(obj,key,item){
 }
 
 </script>
-
 </cs:ftcs>
