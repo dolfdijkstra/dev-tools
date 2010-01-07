@@ -33,22 +33,26 @@ public void jspInit(){
 
 
 }
-%><cs:ftcs><head>
-<meta http-equiv="Pragma" content="no-cache"/><%
-%><satellite:link pagename="Support/css" satellite="true"><satellite:argument name="v" value='<%= ics.GetVar("v") %>'/></satellite:link><%
-%><link rel="stylesheet" href='<%=ics.GetVar("referURL")%>' type="text/css" media="screen"/>
+%><cs:ftcs><%
+%><satellite:link pagename='Support/css' satellite="true" outstring="cssURL" ><satellite:argument name="v" value="20"/></satellite:link><%
+%><satellite:link pagename='Support/prototype' satellite="true" outstring="prototypeURL" ><satellite:argument name="v" value="1.6.1"/></satellite:link><%
+%><head>
 <title><ics:getvar name="pagename"/></title>
+<meta http-equiv="Pragma" content="no-cache"/><%
+%><satellite:link pagename='<%= "Support/css" + ics.GetVar("cssversion") %>' satellite="true"></satellite:link><%
+%><link rel="stylesheet" href='<%=ics.GetVar("cssURL")%>' type="text/css" media="screen"/>
+</head>
 <script type="text/javascript">
 var began_loading = new Date().getTime();
 <%=csEnv %>
 var session={<%
     {
-    String[] names=new String[]{"username","currentACL"};
+    String[] names=new String[]{"username"};
     for (int i=0,j=0; i< names.length;i++ ){
       Object o = session.getAttribute(names[i]);
       if (o instanceof String || o instanceof Number){
         %><%= j++>0 ?",":""%><%
-        %><%= "'"+ names[i] +"': '"+session.getAttribute(names[i]) +"'" %><%
+        %><%= "'"+ names[i] +"': '"+ o +"'" %><%
       }
     }
     }
@@ -117,4 +121,4 @@ function addEvent(obj, evType, fn){
 addEvent(window, 'load', hitLoadSensor);
 //addEvent(window, 'unload', hitUnLoadSensor);
 </script>
-</head><% ics.RemoveVar("referURL");%></cs:ftcs>
+<% ics.RemoveVar("referURL");%></cs:ftcs>
