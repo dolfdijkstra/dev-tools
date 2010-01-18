@@ -26,7 +26,10 @@ public void jspInit(){
 <p>This tool tests the performance of the shared file systems and compares the results against FatWire lab tests. The results of the tests will give an indication of the relative performance of the shared file system. This is most useful when tuning various NFS settings.</p>
 <div id="message" style="display: none"><img id="loadingimg" src="js/dojox/image/resources/images/loading.gif" onerror="this.remove();"/><b id="messageText">Running File System Tests. Please wait...</b></div>
 <div id="controlPanel"><input id="controlButton" type="button" value="Start FileSystemTest" onclick="fsTest.submitTest();"/>
-<input type="radio" name="testsize" value="short" id="shorttest"/> Short test <input type="radio" name="testsize" value="extensive" checked="checked"/> Extensive test</div>
+<input type="radio" name="testsize" value="short" id="shorttest"/> Short test
+<input type="radio" name="testsize" value="medium" id="mediumtest" checked="checked"/> Medium test
+<input type="radio" name="testsize" value="extensive" id="exttest"/> Extensive test
+</div>
 <div id="visualization"></div>
 <script type="text/javascript">if (typeof google == 'undefined'){  $('visualization').remove();}</script>
 
@@ -122,15 +125,18 @@ var fsTest = {
 
     },
     submitTest: function(){
-        //console.log("submitTest "+ fsTest.state);
         if (fsTest.state !=1) return;
-        //fsTest.sampleResult=fsTest.addTests([10],[10],[100],[1],["local"]);
-        var shortTest=$('shorttest').checked;
-        if (shortTest){
-            fsTest.sampleResult=fsTest.addTests([10],[10,100],[100,10240],[10],["local","data","spc","sync"],[true,false],[true,false],["r","rws"]);
-        } else {
-            fsTest.sampleResult=fsTest.addTests([10,25],[10,100],[100,10240],[1,10,50],["local","data","spc","sync"],[true,false],[true],["r","rw","rws"]);
+
+        if ($('shorttest').checked){
+            fsTest.sampleResult=fsTest.addTests([10],[10,100],[100,10240],[10],["local","data","spc","sync"],[true],[false],["r"]);
+        } else if ($('mediumtest').checked){
+            fsTest.sampleResult=fsTest.addTests([10],[10,100],[100,10240],[1,50],["local","data","spc","sync"],[true,false],[true],["r"]);
+        }else {
+            fsTest.sampleResult=fsTest.addTests([10,25],[10,100],[100,10240],[1,10,50],["local","data","spc","sync"],[true,false],[true,false],["r","rw","rws"]);
         }
+        $('shorttest').disabled=true;
+        $('mediumtest').disabled=true;
+        $('exttest').disabled=true;
         fsTest.test.timestamp = new Date();
         fsTest.state=2;
         if (typeof google != 'undefined'){
