@@ -96,7 +96,6 @@ static String getQSStripped(String qs){
 </table>
 <% } else { %>
 <ics:sql sql='<%= ics.ResolveVariables("SELECT * FROM SystemPageCache WHERE pagename=\'Variables.pname\' ORDER BY etime") %>' table="SystemPageCache" listname="pages"/>
-<div id="hoverbox" style="position: absolute; visibility: hidden; width: 90%; background: #FFF;"></div>
 <table class="altClass">
     <tr>
         <th width="5%">Nr</th>
@@ -124,7 +123,8 @@ static String getQSStripped(String qs){
     </ics:listloop>
 </table>
 <% }
-%><script type="text/javascript" src='<%=ics.GetVar("prototypeURL")%>'></script>
+%><div id="hoverbox" style="position: absolute; visibility: hidden; width: 90%; background: #FFF;"></div>
+<script type="text/javascript" src='<%=ics.GetVar("prototypeURL")%>'></script>
 <script type="text/javascript">
 function div_show(obj,key){
     new Ajax.Request('ContentServer', {
@@ -132,23 +132,28 @@ function div_show(obj,key){
       parameters: {pagename:'Support/CacheManager/ShowCachedPageEscaped',pid: key},
       onSuccess: function(response){
             var result = response.responseText;
-            var div= $('hoverbox');
-            div.innerHTML=result;
-            var oTop  = 0;
-            var oLeft = 0;
-            // find object position on the page
-            do {oLeft+=obj.offsetLeft; oTop+=obj.offsetTop} while (obj=obj.offsetParent);
-            // set the position of invisible div
-            div.style.top  = (oTop  + 20) + 'px';
-            div.style.left = (oLeft + 20) + 'px';
-            div.style.visibility = 'visible';
+            showPagelet(obj,result);
       },
-      onFailure: function(){ alert('Something went wrong...') }
+      onFailure: function(){ showPagelet(obj,'Something went wrong...'); }
     });
 
 }
-    function div_hide(){
+function div_hide(){
         //div.style.visibility = 'hidden';
 }
+function showPagelet(obj,result){
+    var div= $('hoverbox');
+    div.innerHTML=result;
+    var oTop  = 0;
+    var oLeft = 0;
+    // find object position on the page
+    do {oLeft+=obj.offsetLeft; oTop+=obj.offsetTop} while (obj=obj.offsetParent);
+    // set the position of invisible div
+    div.style.top  = (oTop  + 20) + 'px';
+    div.style.left = (oLeft + 20) + 'px';
+    div.style.visibility = 'visible';
+}
+
+
 </script>
 </cs:ftcs>
