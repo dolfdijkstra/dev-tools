@@ -8,7 +8,7 @@
 - OUTPUT
 -
 -->
-<Script Language="Javascript">
+<script type="text/javascript">
 function gotoPreview(F, dict)
 {
     <PROPERTY.GET INIFILE="futuretense_xcel.ini" PARAM="xcelerate.previewhost" VARNAME="preview-host"/>
@@ -48,7 +48,7 @@ function showPreview(pURL)
     PreviewWindow = window.open(pURL, "PreviewContent", "width=640,height=480,scrollbars=yes,toolbar=yes,location=yes,status=yes,menubar=yes,resizable=yes,directories=yes");
     PreviewWindow.focus();
 }	
-</Script>
+</script>
 
 <h3>List Assets per Cached Pagelet</h3>
 <IF COND="IsVariable.pid=false"><THEN>
