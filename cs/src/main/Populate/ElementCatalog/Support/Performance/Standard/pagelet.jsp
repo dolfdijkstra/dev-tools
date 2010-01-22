@@ -32,8 +32,6 @@ headers: <b><%= ics.grabHeaders() %></b><br>
   %><satellite:parameter name="ft_ss" value='true'/><%
 %></satellite:link><%
 %><a href='<%= ics.GetVar("url_self") %>'>a=<%= ics.GetVar("a") %>, level=<%= ics.GetVar("level") %>(ft_ss=true)</a><br/>
-
-
 <%
 int a = Integer.parseInt(ics.GetVar("a"));
 int level = Integer.parseInt(ics.GetVar("level"));
@@ -47,5 +45,4 @@ for (int i=a; i<=max && level > 1;i++){
     %></satellite:page>
 <%
 }
-
 %></cs:ftcs>

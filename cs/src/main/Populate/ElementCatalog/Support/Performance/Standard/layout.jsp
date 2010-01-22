@@ -4,6 +4,7 @@
 %><cs:ftcs><ics:getvar name="pagename"/> ft_ss=<ics:getvar name="ft_ss"/> style=<ics:getvar name="style"/><br/><%
 String style=ics.GetVar("style");
 int cb = 0;
+
 if (ics.GetVar("cb") !=null){
     cb= Integer.parseInt(ics.GetVar("cb"));
 }else {
@@ -13,18 +14,18 @@ int items=1000;
 if (ics.GetVar("items") !=null){
     items= Integer.parseInt(ics.GetVar("items"));
 }
-
+String sleep= ics.GetVar("sleep");
 if ("element".equals(style)){
     for (int i=0; i< items; i++){
-        %><render:callelement elementname="Support/Performance/Standard/simple" scoped="local"><render:argument name="id" value="<%= Integer.toString(i) %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/></render:callelement><br/><%
+        %><render:callelement elementname="Support/Performance/Standard/simple" scoped="local"><render:argument name="id" value="<%= Integer.toString(i) %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/><render:argument name="sleep" value="<%= sleep %>"/><render:argument name="ft_ss" value='<%= ics.GetVar("ft_ss") %>'/></render:callelement><br/><%
     }
 } else if ("embedded".equals(style)){
     for (int i=0; i< items; i++){
-        %><render:contentserver pagename="Support/Performance/Standard/simple"><render:argument name="id" value="<%= Integer.toString(i) %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/></render:contentserver><br/><%
+        %><render:contentserver pagename="Support/Performance/Standard/simple"><render:argument name="id" value="<%= Integer.toString(i) %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/><render:argument name="sleep" value="<%= sleep %>"/></render:contentserver><br/><%
     }
 }else {
     for (int i=0; i< items; i++){
-        %><render:satellitepage pagename="Support/Performance/Standard/simple"><render:argument name="id" value="<%= Integer.toString(i) %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/></render:satellitepage><br/><%
+        %><render:satellitepage pagename="Support/Performance/Standard/simple"><render:argument name="id" value="<%= Integer.toString(i) %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/><render:argument name="sleep" value="<%= sleep %>"/></render:satellitepage><br/><%
     }
 }
 %></cs:ftcs>
