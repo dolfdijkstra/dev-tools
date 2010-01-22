@@ -136,53 +136,33 @@ label {
 #nav-bg {
   min-width: 1000px;
   height: 34px;
-  background: #ccc;
+  background-color: #ccc;
   border-bottom: 1px #666;
   margin: 0 1px 0 1px;
 }
 #nav {
-  min-width: 1000px;
-  height: 34px;
-  background-color: #ccc;
-  border-bottom: 1px #666;
   margin: 0 1px 0 1px;
-  list-style: none;
-  padding: 0;
-  text-align: center;
-  width: 100%;
 }
 #nav ul {
-  list-style: none;
-  line-height: 2;
-  padding: 0;
+  text-align: center;
   margin: 0 0 0 100px;
-  text-align: center;  
+  list-style-type: none;
 }
 #nav a {
   display: block;
   font-size: 10px;
-  text-decoration: none;
   padding: 10px 0 0 0;
   border-left: 1px solid #999;
-  margin: 0;
   color: #4A525A;
-  height: 34px;
-}
-html>body #nav a {
   height: 22px;
 }
 #nav a:hover {
   display: block;
-  
   font-size: 10px;
   text-decoration: none;
   background-color: #BABBBF;
   padding: 10px 0 0 0;
-  margin: 0;
   color: #4A525A;
-  height: 34px;
-}
-html>body #nav a:hover {
   height: 22px;
 }
 #nav li {
@@ -190,6 +170,11 @@ html>body #nav a:hover {
   padding: 0;
   margin: 0;
   width: 90px;  
+}
+#elapsed{
+ padding: 10px;
+ text-align: right;
+ color: white;
 }
 ul.subnav {
   list-style: none;
