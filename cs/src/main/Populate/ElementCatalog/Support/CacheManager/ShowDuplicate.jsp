@@ -18,17 +18,19 @@
 %><cs:ftcs><h3>Cached Pages</h3><%
 StringBuffer errstr = new StringBuffer();
 String query = "select pagename from SiteCatalog order by lower(pagename)";
-IList results = ics.SQL("SiteCatalog", query, null, -1, true, errstr);
+query="SELECT pagename, count(id) AS num FROM SystemPageCache GROUP BY pagename ORDER BY num desc";
+IList results = ics.SQL("SystemPageCache" /*"SiteCatalog"*/, query, null, -1, true, errstr);
 int rows = results.numRows();
 int x=0;
 for (int i = 1; i <= rows; i++) {
     results.moveTo(i);
     String pagename = results.getValue("pagename");
+    int num = Integer.parseInt(results.getValue("num"));
     if (ics.isCacheable(pagename)){ //assuming ss and cscacheinfo are both set the same
         String[] criteria = ics.pageCriteriaKeys(pagename); //no dups possible if
-        if (criteria.length > 0){
+        if (criteria.length > 0 && num >1){
             out.print("<a href=\"javascript:showDups(this,'"+pagename+"')\">" + pagename +"</a> | ");
-            if ( x++ % 4==0) out.print("<br/>");
+            if ( ++x % 4==0) out.print("<br/>");
         }
     }
 }
