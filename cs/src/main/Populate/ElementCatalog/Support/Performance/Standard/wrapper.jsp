@@ -24,7 +24,7 @@ String sleep = ics.GetVar("sleep");
   <render:argument name="items" value="<%= Integer.toString(items) %>"/>
   <render:argument name="sleep" value="<%= sleep %>"/>
 </render:getpageurl>
-<a href='<%=ics.GetVar("theURL")%>'>reload</a><br/>
+<a href=''>reload</a><br/>
 
 <render:getpageurl  pagename='<%=ics.GetVar("pagename")%>' outstr="theURL">
   <render:argument name="innerstyle" value='<%= style %>' />
