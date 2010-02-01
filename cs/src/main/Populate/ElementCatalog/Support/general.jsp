@@ -60,8 +60,8 @@ var session={<%
 
 function hitLoadSensor(){
   var elapsed_loading= new Date().getTime() - began_loading;
-  var server_elapsed = window.elapsed > 1000? window.elapsed +" us" : window.elapsed/1000 +" ms";
-  document.getElementById("elapsed").innerHTML = "loaded in " + server_elapsed + "/"+ dcl-began_loading+"ms/"+elapsed_loading +"ms";
+  var server_elapsed = parseInt(window.elapsed/1000);
+  document.getElementById("elapsed").innerHTML = "loaded in " + server_elapsed + "/"+ elapsed_loading +"ms";
   var pl = 'l=' + escape(self.location) + '&t=' + (elapsed) + '&e=' + window.elapsed;
   <% if(ics.GetSSVar("supporttools.beacon") ==null){
       ics.SetSSVar("supporttools.beacon","1");
@@ -122,7 +122,6 @@ function addEvent(obj, evType, fn){
 }
 
 addEvent(window, 'load', hitLoadSensor);
-addEvent(window, 'DOMContentLoaded ', function(){window.dcl= new Date().getTime();});
 
 //addEvent(window, 'unload', hitUnLoadSensor);
 </script>
