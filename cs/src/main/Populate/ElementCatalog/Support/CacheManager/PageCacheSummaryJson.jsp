@@ -61,7 +61,7 @@ if (Utilities.goodString(tqx)){
 
 
 //tq to hold the query
-String sql = "SELECT t.ttl, COUNT(t.id) AS pages FROM (SELECT DATEDIFF(mi,mtime,etime) ttl, id FROM SystemPageCache WHERE etime > CURRENT_TIMESTAMP) as t GROUP BY t.ttl ORDER BY ttl";
+String sql = "";
 String colsmeta="cols: [{id: 'ttl', label: 'Time to Live in minutes', type: 'string'},{id: 'pages', label: 'Number of pages', type: 'number'}]";
 String[] cols = new String[]{"ttl","pages"};
 Formatter minutesFormatter = new Formatter(){
@@ -119,6 +119,10 @@ if (Utilities.goodString(tq)){
     if("select config".equals(tq)){
         if (ics.GetProperty("cs.dbtype").toLowerCase().contains("oracle")){
             sql="SELECT ttl, COUNT(id) AS pages FROM (select  EXTRACT( HOUR FROM (etime-mtime)) *60 +  EXTRACT( DAY FROM (etime-mtime)) *24*60 + EXTRACT( MINUTE FROM (etime-mtime)) as ttl,id FROM SystemPageCache WHERE etime > CURRENT_TIMESTAMP) GROUP BY ttl ORDER BY ttl";
+        }else if (ics.GetProperty("cs.dbtype").toLowerCase().contains("hsqldb")){
+           sql = "SELECT t.ttl, COUNT(t.id) AS pages FROM (SELECT DATEDIFF('mi',mtime,etime) ttl, id FROM SystemPageCache WHERE etime > CURRENT_TIMESTAMP) as t GROUP BY t.ttl ORDER BY ttl";
+        }else {
+            sql = "SELECT t.ttl, COUNT(t.id) AS pages FROM (SELECT DATEDIFF(mi,mtime,etime) ttl, id FROM SystemPageCache WHERE etime > CURRENT_TIMESTAMP) as t GROUP BY t.ttl ORDER BY ttl";
         }
 
         colsmeta="cols: [{id: 'ttl', label: 'Time to Live in minutes', type: 'string'},{id: 'pages', label: 'Number of pages', type: 'number'}]";
@@ -127,6 +131,8 @@ if (Utilities.goodString(tq)){
         String datediff;
         if (ics.GetProperty("cs.dbtype").toLowerCase().contains("oracle")){
             datediff="EXTRACT( HOUR FROM (etime-SYSTIMESTAMP )) +  EXTRACT( DAY FROM (etime-SYSTIMESTAMP )) *24";
+        }else if (ics.GetProperty("cs.dbtype").toLowerCase().contains("hsqldb")){
+            datediff = "DATEDIFF('hh',CURRENT_TIMESTAMP,etime)";
         } else {
             datediff = "DATEDIFF(hh,CURRENT_TIMESTAMP,etime)";
         }
@@ -139,6 +145,8 @@ if (Utilities.goodString(tq)){
         String datediff;
         if (ics.GetProperty("cs.dbtype").toLowerCase().contains("oracle")){
             datediff="EXTRACT( HOUR FROM (SYSTIMESTAMP -mtime)) +  EXTRACT( DAY FROM (SYSTIMESTAMP -mtime)) *24";
+        } else if (ics.GetProperty("cs.dbtype").toLowerCase().contains("hsqldb")){
+           datediff = "DATEDIFF('hh',mtime,CURRENT_TIMESTAMP)";
         } else {
             datediff = "DATEDIFF(hh,mtime,CURRENT_TIMESTAMP)";
         }
