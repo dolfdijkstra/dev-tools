@@ -33,7 +33,7 @@ public void jspInit(){
 
 }
 %><cs:ftcs><%
-ics.SetVar("st_version","3.7.0");
+ics.SetVar("st_version","3.7.1");
 %><satellite:link pagename='Support/css' satellite="true" outstring="cssURL" ><satellite:argument name="v" value="22"/></satellite:link><%
 %><satellite:link pagename='Support/prototype' satellite="true" outstring="prototypeURL" ><satellite:argument name="v" value="1.6.1"/></satellite:link><%
 %><head>
@@ -59,8 +59,9 @@ var session={<%
 
 
 function hitLoadSensor(){
-  var elapsed= new Date().getTime() - began_loading;
-  document.getElementById("elapsed").innerHTML = "loaded in " + elapsed +" ms";
+  var elapsed_loading= new Date().getTime() - began_loading;
+  var server_elapsed = window.elapsed > 1000? window.elapsed +" us" : window.elapsed/1000 +" ms";
+  document.getElementById("elapsed").innerHTML = "loaded in " + server_elapsed + "/"+ dcl-began_loading+"ms/"+elapsed_loading +"ms";
   var pl = 'l=' + escape(self.location) + '&t=' + (elapsed) + '&e=' + window.elapsed;
   <% if(ics.GetSSVar("supporttools.beacon") ==null){
       ics.SetSSVar("supporttools.beacon","1");
@@ -119,7 +120,10 @@ function addEvent(obj, evType, fn){
    return false;
  }
 }
+
 addEvent(window, 'load', hitLoadSensor);
+addEvent(window, 'DOMContentLoaded ', function(){window.dcl= new Date().getTime();});
+
 //addEvent(window, 'unload', hitUnLoadSensor);
 </script>
 <% ics.RemoveVar("referURL");%></cs:ftcs>
