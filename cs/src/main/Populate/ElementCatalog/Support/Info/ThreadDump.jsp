@@ -93,6 +93,6 @@ if (COM.FutureTense.Interfaces.Utilities.goodString(m)){
 }
 StringBuilder str = new StringBuilder();
 str.append("Full Thread Dump at ").append(new java.util.Date()).append(NEW_LINE);
-createThreadDump(str,max,true);
+createThreadDump(str,max,runningOnly);
 out.write(str.toString());
 %></cs:ftcs>
