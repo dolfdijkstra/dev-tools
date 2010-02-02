@@ -1,7 +1,7 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" %>
-<%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
-<%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
-<%//
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
+%><%//
 // Support/CacheManager/RS/CacheVisualization
 //
 // INPUT
@@ -14,7 +14,6 @@
 %><%@ page import="java.util.*"
 %><%@ page import="java.text.*"
 %><cs:ftcs>
-
  <!--Load the AJAX API-->
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>
     <!--Div that will hold the pie chart-->

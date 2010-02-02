@@ -41,8 +41,12 @@
         }
     }
 %>
-<cs:ftcs><a href="ContentServer?pagename=Support/CacheManager/RS/Cache">Compact View</a>
-<center><h3>Resultset Cache Profiler</h3></center>
+<cs:ftcs>
+<a href="ContentServer?pagename=Support/CacheManager/RS/CacheVisualizationTable">Google Table View</a>&nbsp;|
+<a href="ContentServer?pagename=Support/CacheManager/RS/CacheDetailed">Detailed View</a>&nbsp;|
+<a href="ContentServer?pagename=Support/CacheManager/RS/CacheWarnings">Warnings View</a>&nbsp;|
+<a href="ContentServer?pagename=Support/CacheManager/RS/CacheText">Text View</a><br/>
+<h3>Resultset Cache Profiler</h3>
   <table class="altClass">
       <tr>
           <th>Nr</th>

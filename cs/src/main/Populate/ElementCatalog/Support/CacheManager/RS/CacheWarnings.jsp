@@ -44,16 +44,12 @@
 <a href="ContentServer?pagename=Support/CacheManager/RS/CacheWarnings">Warnings View</a>&nbsp;|
 <a href="ContentServer?pagename=Support/CacheManager/RS/CacheText">Text View</a><br/>
 <h3>Resultset Cache Profiler</h3>
-<table class="altClass">
+<table>
       <tr>
           <th>Nr</th>
           <th>Name</th>
-          <th>Hit ratio</th>
-          <th>Fill ratio</th>
-          <th>Size</th>
-          <th>Capacity</th>
-          <th>Hits</th>
-          <th>Misses</th>
+          <th colspan="2">Hit ratio</th>
+          <th colspan="2">Fill ratio</th>
           <th>Removed</th>
           <th>Cleared</th>
       </tr><%
@@ -66,25 +62,27 @@
           String key = (String)itor.next();
           ftTimedHashtable ht = ftTimedHashtable.findHash(key);
           if (ht != null) {
-              %><tr><td><%= Integer.toString(i++) %></td><%
-              %><td><%= key %></td><%
               RuntimeCacheStats stats = ht.getRuntimeStats();
               double total = stats.getHits() + stats.getMisses();
               double max = ht.getCapacity();
+
               int hit_ratio = total == 0 ? 0 : (int)((stats.getHits() / total)*100);
               String hit_ratio_s = total == 0 ? "NA" : pctFormat.format(stats.getHits() / total);
               int fill_ratio = ht.getCapacity() < 1 ? 0 : (int)((ht.size() / max)*100);
+
               String fill_ratio_s = ht.getCapacity() < 1 ? "NA" : pctFormat.format(ht.size() / max);
 
+              if ((fill_ratio > 90 || hit_ratio < 50) && (stats.getHits() >0 || stats.getMisses() >0)){
 
-              %><td style="text-align:center; white-space: nowrap"><%= hit_ratio_s %></td><%
-              %><td style="text-align:center; white-space: nowrap"><%= fill_ratio_s %></td><%
-              %><td style="text-align:right;white-space: nowrap"><%= ht.size() %></td><%
-              %><td style="text-align:right;white-space: nowrap"><%= ht.getCapacity() %></td><%
-              %><td style="text-align:right;white-space: nowrap"><%= stats.getHits()%></td><%
-              %><td style="text-align:right;white-space: nowrap"><%= stats.getMisses()%></td><%
-              %><td style="text-align:right;white-space: nowrap"><%= stats.getRemoveCount()%></td><%
-              %><td style="text-align:right;white-space: nowrap"><%= stats.getClearCount()%></td><%
+                  %><tr><td><%= Integer.toString(i++) %></td><%
+                  %><td><%= key %></td><%
+                  %><td style='text-align:right; white-space: nowrap; <%= hit_ratio < 50 ?"background-color:red":""%>'><%= hit_ratio_s %></td><%
+                  %><td style="text-align:right; white-space: nowrap"><%= stats.getHits()%>/<%= stats.getMisses()%></td><%
+                  %><td style='text-align:right; white-space: nowrap;<%= fill_ratio > 90 ?"background-color:red":""%>'><%= fill_ratio_s %></td><%
+                  %><td style="text-align:right; white-space: nowrap"><%= ht.size() %>/<%= ht.getCapacity() %></td><%
+                  %><td style="text-align:right;white-space: nowrap"><%= stats.getRemoveCount()%></td><%
+                  %><td style="text-align:right;white-space: nowrap"><%= stats.getClearCount()%></td><%
+              }
           }
           %></tr>
       <% }  %>

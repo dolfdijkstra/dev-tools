@@ -1,7 +1,7 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" %>
-<%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
-<%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
-<%//
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
+%><%//
 // Support/CacheManager/RS/CacheVisualization
 //
 // INPUT
@@ -14,9 +14,11 @@
 %><%@ page import="java.util.*"
 %><%@ page import="java.text.*"
 %><cs:ftcs><script type="text/javascript" src="http://www.google.com/jsapi"></script>
-<a href="ContentServer?pagename=Support/CacheManager/RS/Cache">Compact View</a>&nbsp;|
-<a href="ContentServer?pagename=Support/CacheManager/RS/CacheDetailed">Detailed View</a><br/>
-<center><h3>Resultset Cache Profiler</h3></center>
+<a href="ContentServer?pagename=Support/CacheManager/RS/CacheVisualizationTable">Google Table View</a>&nbsp;|
+<a href="ContentServer?pagename=Support/CacheManager/RS/CacheDetailed">Detailed View</a>&nbsp;|
+<a href="ContentServer?pagename=Support/CacheManager/RS/CacheWarnings">Warnings View</a>&nbsp;|
+<a href="ContentServer?pagename=Support/CacheManager/RS/CacheText">Text View</a><br/>
+<h3>Resultset Cache Profiler</h3>
 
 <input type='button' value='Refresh' onclick='return getCacheData()' />
 <div id="table_div"></div>
