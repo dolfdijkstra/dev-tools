@@ -15,16 +15,13 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
-<div id="content">
-<ics:callelement element="Support/Topnav"/>
-<center><h4>Assets with missing attributes</h4></center>
+<h3>Assets with missing attributes</h3>
 
 <ics:clearerrno/>
 <ics:sql sql='<%= ics.ResolveVariables("SELECT assettemplate, assetattr, \'flextemplateid\' as tid FROM FlexAssetTypes WHERE assettype=\'Variables.assettype\'") %>' table="FlexAssetTypes" listname="types"/>
 <% if (ics.GetErrno() ==-101){ %>
-	<ics:clearerrno/>
-	<ics:sql sql='<%= ics.ResolveVariables("SELECT assettemplate, assetattr, \'flexgrouptemplateid\' as tid FROM FlexGroupTypes WHERE assettype=\'Variables.assettype\'") %>' table="FlexGroupTypes" listname="types"/>
+    <ics:clearerrno/>
+    <ics:sql sql='<%= ics.ResolveVariables("SELECT assettemplate, assetattr, \'flexgrouptemplateid\' as tid FROM FlexGroupTypes WHERE assettype=\'Variables.assettype\'") %>' table="FlexGroupTypes" listname="types"/>
 <%}
 %>
 <ics:clearerrno/>
@@ -32,30 +29,28 @@
 <p><ics:getvar name="assettype"/> for template &quot;<ics:getvar name="templatename"/>&quot; and attribute &quot;<ics:getvar name="attributename"/>&quot; <br/></p>
 
 <table class="altClass">
-	<tr>
-		<th>Nr</th>
-		<th>id</th>
-		<th>name</th>
-		<th>status</th>
-		<th>createddate</th>
-	</tr>
+    <tr>
+        <th>Nr</th>
+        <th>id</th>
+        <th>name</th>
+        <th>status</th>
+        <th>createddate</th>
+    </tr>
 
 <ics:listloop listname="assets">
-	<tr>
-		<td><ics:resolvevariables name="assets.#curRow"/></td>
-		<td><ics:resolvevariables name="assets.id"/></td>
-		<satellite:link>
-			<satellite:parameter name="assettype" value='<%= ics.ResolveVariables("Variables.assettype")  %>'/>
-			<satellite:parameter name="assetid" value='<%= ics.ResolveVariables("assets.id") %>'/>
-			<satellite:parameter name="pagename" value="Support/Flex/Audit/Parents"/>
-			<satellite:parameter name="OUTSTRING" value="theURL"/>			
-		</satellite:link>
-		<td><a href='<%= ics.GetVar("theURL") %>'/><ics:resolvevariables name="assets.name"/></a></td>
-		<td><ics:resolvevariables name="assets.status"/></td>
-		<td><ics:resolvevariables name="assets.createddate"/></td>
-	</tr>
+    <tr>
+        <td><ics:resolvevariables name="assets.#curRow"/></td>
+        <td><ics:resolvevariables name="assets.id"/></td>
+        <satellite:link>
+            <satellite:parameter name="assettype" value='<%= ics.ResolveVariables("Variables.assettype")  %>'/>
+            <satellite:parameter name="assetid" value='<%= ics.ResolveVariables("assets.id") %>'/>
+            <satellite:parameter name="pagename" value="Support/Flex/Audit/Parents"/>
+            <satellite:parameter name="OUTSTRING" value="theURL"/>
+        </satellite:link>
+        <td><a href='<%= ics.GetVar("theURL") %>'/><ics:resolvevariables name="assets.name"/></a></td>
+        <td><ics:resolvevariables name="assets.status"/></td>
+        <td><ics:resolvevariables name="assets.createddate"/></td>
+    </tr>
 </ics:listloop>
 </table>
-<ics:callelement element="Support/Footer"/>
-</div>
 </cs:ftcs>

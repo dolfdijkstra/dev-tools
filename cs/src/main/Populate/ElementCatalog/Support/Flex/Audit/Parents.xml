@@ -8,11 +8,7 @@
 - OUTPUT
 -
 -->
-<CALLELEMENT NAME="Support/general"/>
-<div id="content">
-<CALLELEMENT NAME="Support/Topnav"/>
-<center><h3>Attributes and Parents</h3></center>
-<!--SETVAR NAME="assetid" VALUE="992972140421"/-->
+<h3>Attributes and Parents</h3>
 <setvar NAME="errno" VALUE="0"/>
 <IF COND="IsVariable.maxList=false">
 <THEN>
@@ -113,7 +109,4 @@
     </LOOP>
 </then>
 </if>
-<CALLELEMENT NAME="Support/Footer"/>
-</div>
-
 </FTCS> 
