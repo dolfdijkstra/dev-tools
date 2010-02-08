@@ -70,6 +70,7 @@ Set in <%= getServletConfig().getServletContext().getRealPath("/WEB-INF/classes/
 <br/>
 <code>
 priority=100<br/>
+logging.file=<%=org.apache.commons.logging.LogFactory.getFactory().getAttribute("logging.file") %><br/>
 </code>
 <br/>
 That is all that needs to be in this file.
