@@ -41,7 +41,7 @@ if (logfile instanceof String ){
         </form><%
         out.println("LogFile location: <b>"+ logfile+"</b><br/>");
         %><pre><%
-        RandomAccessFile file = new RandomAccessFile(logfile, "r");
+        RandomAccessFile file = new RandomAccessFile(logfile.toString(), "r");
         long filelength = file.length();
         long filepointer = filelength - Long.parseLong(ics.GetVar("dbytes"));
         if (filepointer <0) filepointer = 0;
