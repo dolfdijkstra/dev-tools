@@ -12,32 +12,6 @@
 %><%@ page import="com.fatwire.cs.core.cache.RuntimeCacheStats"
 %><%@ page import="java.util.*"
 %><%@ page import="java.text.*"
-%><%!
-    String getTimeDiff(Date first, Date last){
-        if (first == null || last == null) return "unknown";
-        return getTimeDiff(first.getTime(),last);
-    }
-    String getTimeDiff(long first, Date last){
-        if (last == null) return "unknown";
-        long diff = last.getTime() - first;
-        if (diff < 60000) {
-            int sec = (int)(diff/1000);
-            return Integer.toString(sec) +" sec";
-        } else {
-            int sec = (int)(diff/(1000*60));
-            return Integer.toString(sec) +" min";
-        }
-    }
-    String getLengthString(long time){
-        if (time < 0) return "eternal";
-        if (time < 1000) {
-            return Long.toString(time)+" ms";
-        } else if (time < 60000) {
-            return Long.toString(time/1000)+" sec";
-        } else {
-            return Long.toString(time/(1000*60)) +" min";
-        }
-    }
 %><cs:ftcs>
 <a href="ContentServer?pagename=Support/CacheManager/RS/CacheVisualizationTable">Google Table View</a>&nbsp;|
 <a href="ContentServer?pagename=Support/CacheManager/RS/CacheDetailed">Detailed View</a>&nbsp;|
@@ -77,9 +51,9 @@
                   %><tr><td><%= Integer.toString(i++) %></td><%
                   %><td><%= key %></td><%
                   %><td style='text-align:right; white-space: nowrap; <%= hit_ratio < 50 ?"background-color:red":""%>'><%= hit_ratio_s %></td><%
-                  %><td style="text-align:right; white-space: nowrap"><%= stats.getHits()%>/<%= stats.getMisses()%></td><%
+                  %><td style="text-align:left; white-space: nowrap"><%= stats.getHits()%>/<%= stats.getMisses()%></td><%
                   %><td style='text-align:right; white-space: nowrap;<%= fill_ratio > 90 ?"background-color:red":""%>'><%= fill_ratio_s %></td><%
-                  %><td style="text-align:right; white-space: nowrap"><%= ht.size() %>/<%= ht.getCapacity() %></td><%
+                  %><td style="text-align:left; white-space: nowrap"><%= ht.size() %>/<%= ht.getCapacity() %></td><%
                   %><td style="text-align:right;white-space: nowrap"><%= stats.getRemoveCount()%></td><%
                   %><td style="text-align:right;white-space: nowrap"><%= stats.getClearCount()%></td><%
               }
@@ -87,6 +61,7 @@
           %></tr>
       <% }  %>
   </table>
+  <% if (i==1) out.write("No warnings issued"); %>
 <br/>
 <ul class="subnav">
     <li><b>Name: </b>name of the key of the table</li>
