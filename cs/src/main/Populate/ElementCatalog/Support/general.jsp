@@ -36,13 +36,12 @@ public void jspInit(){
 ics.SetVar("st_version","3.7.1");
 %><satellite:link pagename='Support/css' satellite="true" outstring="cssURL" ><satellite:argument name="v" value="22"/></satellite:link><%
 %><satellite:link pagename='Support/prototype' satellite="true" outstring="prototypeURL" ><satellite:argument name="v" value="1.6.1"/></satellite:link><%
-%><head>
+%><head><script type="text/javascript">var began_loading = new Date().getTime();</script>
 <title><ics:getvar name="pagename"/></title>
 <meta http-equiv="Pragma" content="no-cache"/><%
 %><link rel="stylesheet" href='<%=ics.GetVar("cssURL")%>' type="text/css" media="screen"/>
 </head>
 <script type="text/javascript">
-var began_loading = new Date().getTime();
 <%=csEnv %>
 var session={<%
     {
@@ -61,7 +60,7 @@ var session={<%
 function hitLoadSensor(){
   var elapsed_loading= new Date().getTime() - began_loading;
   var server_elapsed = parseInt(window.elapsed/1000);
-  document.getElementById("elapsed").innerHTML = "loaded in " + server_elapsed + "/"+ elapsed_loading +"ms";
+  document.getElementById("elapsed").innerHTML = "loaded in s" + server_elapsed + "/c"+ elapsed_loading +"ms";
   var pl = 'l=' + escape(self.location) + '&t=' + (elapsed) + '&e=' + window.elapsed;
   <% if(ics.GetSSVar("supporttools.beacon") ==null){
       ics.SetSSVar("supporttools.beacon","1");
