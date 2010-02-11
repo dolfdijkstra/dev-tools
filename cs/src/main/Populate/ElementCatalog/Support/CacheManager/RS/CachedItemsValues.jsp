@@ -20,7 +20,7 @@
 %><%@ page import="java.util.*"
 %><%@ page import="java.text.*"
 %><cs:ftcs>
-<center><h3>Resultset Cache Profiler - Item Detail View for <string:stream variable="key"/></h3></center>
+<h3>Resultset Cache Profiler - Item Detail View for <string:stream variable="key"/></h3>
     <table class="altClass">
     <%
         DateFormat df = new SimpleDateFormat("yy/MM/dd HH:mm:ss");

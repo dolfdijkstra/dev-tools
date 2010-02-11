@@ -14,12 +14,12 @@
 %><%@ page import="java.util.*"
 %><%@ page import="java.text.*"
 %><cs:ftcs><script type="text/javascript" src="http://www.google.com/jsapi"></script>
-<a href="ContentServer?pagename=Support/CacheManager/RS/CacheVisualizationTable">Google Table View</a>&nbsp;|
-<a href="ContentServer?pagename=Support/CacheManager/RS/CacheDetailed">Detailed View</a>&nbsp;|
-<a href="ContentServer?pagename=Support/CacheManager/RS/CacheWarnings">Warnings View</a>&nbsp;|
-<a href="ContentServer?pagename=Support/CacheManager/RS/CacheText">Text View</a><br/>
+<a href="ContentServer?pagename=Support/CacheManager/RS/CacheVisualizationTable">Google Table</a>&nbsp;|
+<a href="ContentServer?pagename=Support/CacheManager/RS/CacheDetailed">Detailed</a>&nbsp;|
+<a href="ContentServer?pagename=Support/CacheManager/RS/Cache">Summary</a>&nbsp;|
+<a href="ContentServer?pagename=Support/CacheManager/RS/CacheWarnings">Warnings</a>&nbsp;|
+<a href="ContentServer?pagename=Support/CacheManager/RS/CacheText">Text</a><br/>
 <h3>Resultset Cache Profiler</h3>
-
 <input type='button' value='Refresh' onclick='return getCacheData()' />
 <div id="table_div"></div>
 
