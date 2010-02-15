@@ -10,6 +10,26 @@
 //
 %><cs:ftcs>
     <% String[] tables={"AssetPublication","ApprovedAssetDeps","ApprovedAssets","AssetExportData","AssetPublishList","PublishedAssets","ActiveList","CheckOutInfo"}; %>
+
+    <div class="entry-header">
+         <h2><a href='ContentServer?pagename=Support/TCPI/AP/UnApprove'><b>UnApprove</b></a></h2>
+    </div>
+    <div class="entry">
+         <p>Forces Assets out of a Publish Queue.</p>
+    </div>
+    <div class="entry-header">
+         <h2><a href='ContentServer?pagename=Support/TCPI/AP/ForcePublish'><b>ForcePublishAssets</b></a></h2>
+    </div>
+    <div class="entry">
+         <p>Force approve Assets to a given destination if they have been published to this destination before.</p>
+    </div>
+
+    <div class="entry-header">
+        <h2><a href='ContentServer?pagename=Support/TCPI/AP/NotePublish'><b>Mark as Published</b></a></h2>
+    </div>
+    <div class="entry">
+        <p>Mark approved assets as published to a destination. If the approved assets are already available on the target system, this tools notifies the approval system of that state.</p>
+    </div>
     <div class="entry-header">
          <h2><a href='ContentServer?pagename=Support/TCPI/AP/PubQueues'><b>ApprovalStats</b></a></h2>
     </div>
@@ -34,18 +54,8 @@
     <div class="entry">
          <p>List and Approve Assets either in a Held/Changed State.</p>
     </div>
-    <div class="entry-header">
-         <h2><a href='ContentServer?pagename=Support/TCPI/AP/UnApprove'><b>UnApprove</b></a></h2>
-    </div>
-    <div class="entry">
-         <p>Forces Assets out of Publish Queue.</p>
-    </div>
-    <div class="entry-header">
-         <h2><a href='ContentServer?pagename=Support/TCPI/AP/ForcePublish'><b>ForcePublishAssets</b></a></h2>
-    </div>
-    <div class="entry">
-         <p>Force Publish Assets to a given Destination</p>
-    </div>
+
+
     <div class="entry-header">
          <h2><a href='ContentServer?pagename=Support/TCPI/AP/DuplicatePubkeyFront'><b>RemoveDuplicatePubkeys</b></a></h2>
     </div>
@@ -125,12 +135,6 @@
     </div>
     <div class="entry">
         <p>Checks for leftover rows in the tempory publish tables. <br/>There should only be data in these tables when there are not pubsessions running.</p>
-    </div>
-    <div class="entry-header">
-        <h2><a href='ContentServer?pagename=Support/TCPI/AP/NotePublish'><b>Mark as Published</b></a></h2>
-    </div>
-    <div class="entry">
-        <p>Mark assets ready for publish as already published to a destination.</p>
     </div>
     <div class="entry-header">
         <h2><a href='ContentServer?pagename=Support/TCPI/AP/PublishPerformance'><b>Publish Performance</b></a></h2>
