@@ -101,6 +101,10 @@
 				<setvar NAME="numAssets" VALUE="Variables.PublishableAssetsTotal"/>
 				Fake publishing <CSVAR NAME="Variables.numAssets"/> assets.<br/>
 				<CALCULATOR.GO VALUE="Counters.count Variables.numAssets GTE" VARNAME="exp"/>
+				<CALCULATOR.GO VALUE="Variables.numAssets 1000 GTE" VARNAME="show"/>
+				<IF COND="Variables.show=1"><THEN>
+					<p>More than a 1000 assets will be marked as published. Individual assets will not be listed here.</p>
+				</THEN></IF>
 				<SETVAR NAME="chunkSize" VALUE="20"/>
 				<TIME.SET NAME="totalNotePublishTimes"/>
 				<LOOP UNTIL="Variables.exp=1">
@@ -112,7 +116,9 @@
 							<MIRRORKEY.GETTYPE NAME="PublishableAssetsCounters.count" VARNAME="assettype"/>
 							<MIRRORKEY.GETID NAME="PublishableAssetsCounters.count" VARNAME="assetid"/>
 							<ASSET.LIST TYPE="Variables.assettype" LIST="assetList" FIELD1="id" VALUE1="Variables.assetid" />
+							<IF COND="Variables.show=0"><THEN>
 							<tr><td><CSVAR NAME="Counters.count"/></td><td><CSVAR NAME="Variables.assettype"/></td><td><CSVAR NAME="Variables.assetid:assetList.updateddate"/></td></tr>
+							</THEN></IF>
 							<PUBLISHSUBASSETS.ADD TYPE="Variables.assettype" ID="Variables.assetid" DATE="assetList.updateddate"/>
 							<PUBLISHEDASSETS.ADD KEY="PublishableAssetsCounters.count"/>
 							<INCCOUNTER NAME="count" VALUE="1"/>
