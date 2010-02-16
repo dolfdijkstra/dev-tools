@@ -1,22 +1,21 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
-%><%@ taglib prefix="user" uri="futuretense_cs/user.tld"
 %><%@ taglib prefix="time" uri="futuretense_cs/time.tld"
 %><%@ page import="javax.naming.*"
-%><%@ page import="java.sql.*" %>
-<%@ page import="java.io.*" %>
-<%@ page import="java.lang.*" %>
-<%@ page import="javax.sql.*" %>
-<%@ page import="COM.FutureTense.Interfaces.*" %>
-<cs:ftcs>
-<%
+%><%@ page import="java.sql.*"
+%><%@ page import="java.io.*"
+%><%@ page import="java.lang.*"
+%><%@ page import="javax.sql.*"
+%><%@ page import="COM.FutureTense.Interfaces.*"
+%><cs:ftcs><%
+
     String sSQL = ics.GetVar("sql");
     if(null==sSQL || "".equals(sSQL)) {
         sSQL = "SELECT tblname,acl FROM SystemInfo ORDER BY UPPER(tblname)";
     }
-%>
 
-<form action="ContentServer" name="sqlplus" method="POST">
+
+%><form action="ContentServer" name="sqlplus" method="POST">
 <input type='hidden' name='pagename' value='<%=ics.GetVar("pagename")%>'/>
 <table style="border:none">
     <tr><td width="10%" style="border:none;text-align:right"><b>Enter SQL :</b></td><td style="border:none"><textarea name="sql" cols="102" rows="10" ><%=sSQL%></textarea></td></tr>
@@ -48,7 +47,7 @@
     catch (Exception ex)
     {
         out.println(ex.toString());
-        ex.printStackTrace();
+        org.apache.commons.logging.LogFactory.getLog("com.fatwire.logging.cs.db").error(ex.getMessage(),ex);
     }
     finally
     {
