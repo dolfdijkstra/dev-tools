@@ -54,8 +54,6 @@
     <div class="entry">
          <p>List and Approve Assets either in a Held/Changed State.</p>
     </div>
-
-
     <div class="entry-header">
          <h2><a href='ContentServer?pagename=Support/TCPI/AP/DuplicatePubkeyFront'><b>RemoveDuplicatePubkeys</b></a></h2>
     </div>
@@ -116,13 +114,7 @@
          <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/FindWrongTargetidInApprovedAssetDeps'><b>FindWrongTargetidInDeps</b></a></h2>
     </div>
     <div class="entry">
-         <p>Probably the most important utility and also the most time consuming.<br/> Checks for the referential integrity between ApprovedAssets and ApprovedAssetDeps via targetid.</p>
-    </div>
-    <div class="entry-header">
-         <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/FixWrongTargetidInApprovedAssetDeps'><b>FixWrongTargetidInDeps</b></a></h2>
-    </div>
-    <div class="entry">
-         <p>Probably the most important utility and also the most time consuming.<br/> Checks for the referential integrity between ApprovedAssets and ApprovedAssetDeps via targetid.</p>
+         <p>Checks for the referential integrity between ApprovedAssets and ApprovedAssetDeps via targetid. Time consuming utility.</p>
     </div>
     <div class="entry-header">
          <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CountHeldWithoutChildren'><b>CountHeldWithoutChildren</b></a></h2>
