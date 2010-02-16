@@ -28,51 +28,58 @@ function checkall () {
 <h3>Find which Pages an Asset is Referenced</h3>
 <IF COND="IsVariable.c=false"><THEN>
 <h4>Select AssetType</h4>
-<FORM METHOD="POST" ACTION="ContentServer">
-	<INPUT TYPE="hidden" NAME="pagename" VALUE="Variables.pagename" REPLACEALL="Variables.pagename"/>
-   <SELECT name="c">
+<form method="post" action="ContentServer">
+	<input type="hidden" name="pagename" value="Variables.pagename" REPLACEALL="Variables.pagename"/>
+   <select name="c">
        <SETVAR NAME="tablename" VALUE="AssetType"/>
        <EXECSQL  SQL="SELECT assettype FROM AssetType ORDER BY assettype" LIST="assettypes" TABLE="AssetType" />
        <LOOP LIST="assettypes">
-            <br/><OPTION value="assettypes.assettype" REPLACEALL="assettypes.assettype"><CSVAR NAME="assettypes.assettype"/></OPTION>
+            <br/><option value="assettypes.assettype" REPLACEALL="assettypes.assettype"><CSVAR NAME="assettypes.assettype"/></option>
        </LOOP>
-   </SELECT><br/><br/>
-   <INPUT TYPE="Submit" NAME="Submit" VALUE="List for Flush"/>
-   &nbsp;<INPUT TYPE="Submit" NAME="Submit" VALUE="List Container Pages"/>
-</FORM>
+   </select>Optionally enter assetid: <input type="text" name="id" /><br/><br/>
+   <input type="Submit" name="Submit" value="List for Flush"/>
+   &nbsp;<input type="Submit" name="Submit" value="List Container Pages"/>
+</form>
 </THEN><ELSE>
 	<SETVAR NAME="tablename" VALUE="SystemItemCache"/>
-	<EXECSQL  SQL="SELECT DISTINCT id FROM SystemItemCache WHERE id LIKE 'asset-%:Variables.c' ORDER BY id" LIST="items" TABLE="SystemItemCache" />
-	<IF COND="Variables.errno=-101"><THEN>There are no pages cached for assettype <CSVAR NAME="Variables.c"/>!<br/>
+	<IF COND="IsVariable.id=false"><THEN>
+  	  <EXECSQL  SQL="SELECT DISTINCT id FROM SystemItemCache WHERE id LIKE 'asset-%:Variables.c' ORDER BY id" LIST="items" TABLE="SystemItemCache,SystemItemCache" />
+	  <IF COND="Variables.errno=-101"><THEN>There are no pages cached for assettype <CSVAR NAME="Variables.c"/>!<br/></THEN></IF>
+	  <IF COND="Variables.errno=-105"><THEN>SQL error</THEN></IF>
 	</THEN><ELSE>
-		<IF COND="Variables.Submit=List for Flush"><THEN>
-		<P><b>Select asset(s) whose container pages need to be <I>Flushed</I></b></P>
-			<FORM METHOD="POST" ACTION="ContentServer">
-				<INPUT TYPE="hidden" NAME="pagename" VALUE="Support/CacheManager/flushByItemPost"/>
-				<INPUT TYPE="hidden" NAME="cs-cs" VALUE="on"/>
-				<INPUT TYPE="hidden" NAME="cs-ss" VALUE="on"/>
-				<INPUT TYPE="hidden" NAME="ss" VALUE="on"/>
-				<A HREF="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Select all assets';return true;" onmouseout="window.status='';return true;">CheckAll</A>&nbsp;
-				<INPUT TYPE="Submit" NAME="Submit" VALUE="&nbsp;Flush&nbsp;"/><br/><br/>
-				<LOOP LIST="items">
-					<INPUT name="idlist" type="checkbox" value="items.id" REPLACEALL="items.id"/><CSVAR NAME="items.id"/><br/>
-				</LOOP>
-				<br/><A HREF="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Select all assets';return true;" onmouseout="window.status='';return true;">CheckAll</A>&nbsp;
-				<INPUT TYPE="Submit" NAME="Submit" VALUE="&nbsp;Flush&nbsp;"/>
-			</FORM>
-		</THEN><ELSE>
-		<P><b>Select asset(s) whose container pages need to be <I>Listed</I></b></P>
-			<FORM METHOD="POST" ACTION="ContentServer">
-				<INPUT TYPE="hidden" NAME="pagename" VALUE="Support/CacheManager/listByItemPost"/>
-				<A HREF="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Select all assets';return true;" onmouseout="window.status='';return true;">check all</A>&nbsp;
-				<INPUT TYPE="Submit" NAME="Submit" VALUE="&nbsp;List&nbsp;"/><br/><br/>
-				<LOOP LIST="items">
-					<INPUT name="idlist" type="checkbox" value="items.id" REPLACEALL="items.id"/><CSVAR NAME="items.id"/><br/>
-				</LOOP>
-				<br/><A HREF="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Select all assets';return true;" onmouseout="window.status='';return true;">check all</A>&nbsp;
-				<INPUT TYPE="Submit" NAME="Submit" VALUE="&nbsp;List&nbsp;"/>
-			</FORM>
-		</ELSE></IF>
+	  <EXECSQL  SQL="SELECT DISTINCT id FROM SystemItemCache WHERE id = 'asset-Variables.id:Variables.c' ORDER BY id" LIST="items" TABLE="SystemItemCache,SystemItemCache" />
+	  <IF COND="Variables.errno=-101"><THEN>There are no pages cached for assettype <CSVAR NAME="Variables.c"/> with id <CSVAR NAME="Variables.id"/>!<br/></THEN></IF>
+	  <IF COND="Variables.errno=-105"><THEN>SQL error</THEN></IF>
 	</ELSE></IF>
+	<IF COND="IsError.Variables.errno=false"><THEN>
+		<IF COND="Variables.Submit=List for Flush"><THEN>
+		<p><b>Select asset(s) whose container pages need to be <i>Flushed</i></b></p>
+			<form method="post" action="ContentServer">
+				<input type="hidden" name="pagename" value="Support/CacheManager/flushByItemPost"/>
+				<input type="hidden" name="cs-cs" value="on"/>
+				<input type="hidden" name="cs-ss" value="on"/>
+				<input type="hidden" name="ss" value="on"/>
+				<a href="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Select all assets';return true;" onmouseout="window.status='';return true;">CheckAll</a>&nbsp;
+				<input type="Submit" NAME="Submit" VALUE="&nbsp;Flush&nbsp;"/><br/><br/>
+				<LOOP LIST="items">
+					<INPUT name="idlist" type="checkbox" value="items.id" REPLACEALL="items.id"/><CSVAR NAME="items.id"/><br/>
+				</LOOP>
+				<br/><a href="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Select all assets';return true;" onmouseout="window.status='';return true;">CheckAll</a>&nbsp;
+				<input type="submit" name="Submit" value="&nbsp;Flush&nbsp;"/>
+			</form>
+		</THEN><ELSE>
+		<p><b>Select asset(s) whose container pages need to be <i>Listed</i></b></p>
+			<form method="post" action="ContentServer">
+				<input type="hidden" name="pagename" value="Support/CacheManager/listByItemPost"/>
+				<a href="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Select all assets';return true;" onmouseout="window.status='';return true;">check all</a>&nbsp;
+				<input type="submit" name="Submit" value="&nbsp;List&nbsp;"/><br/><br/>
+				<LOOP LIST="items">
+					<input name="idlist" type="checkbox" value="items.id" REPLACEALL="items.id"/><CSVAR NAME="items.id"/><br/>
+				</LOOP>
+				<br/><a href="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Select all assets';return true;" onmouseout="window.status='';return true;">check all</a>&nbsp;
+				<input type="submit" name="Submit" value="&nbsp;List&nbsp;"/>
+			</form>
+		</ELSE></IF>
+	</THEN></IF>	
 </ELSE></IF>
 </FTCS>
