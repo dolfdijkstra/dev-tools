@@ -9,13 +9,13 @@
 -
 -->
 <h3>Flush Pages by Item</h3>
-<P>Please enter a comma-separated list of items to flush</P>
-<FORM METHOD="POST" ACTION="ContentServer">
-	<INPUT TYPE="hidden" NAME="pagename" VALUE="Support/CacheManager/flushByItemPost"/>
-	<TEXTAREA NAME="idlist" VALUE="" COLS="48"/><br />
-	<INPUT TYPE="checkbox" NAME="cs-cs"/>Flush pages from Content Server cached for a browser<br/>
-	<INPUT TYPE="checkbox" NAME="cs-ss"/>Flush pages from Content Server cached for a CS Satellite<br/>
-	<INPUT TYPE="checkbox" NAME="ss"/>Flush pages from all Satellite engines<br/><br/>
-	<INPUT TYPE="Submit" NAME="Submit" VALUE="Submit"/>
-</FORM>
+<p>Please enter a comma-separated list of items to flush. Assets need to be in the form of 'asset-123939289229:Product'.</p>
+<form method="post" action="ContentServer">
+	<input type="hidden" name="pagename" value="Support/CacheManager/flushByItemPost"/>
+	<textarea name="idlist" value="" cols="48"/><br />
+	<input type="checkbox" name="cs-cs"/>Flush pages from Content Server cached for a browser<br/>
+	<input type="checkbox" name="cs-ss"/>Flush pages from Content Server cached for a CS Satellite<br/>
+	<input type="checkbox" name="ss"/>Flush pages from all Satellite engines<br/><br/>
+	<input type="submit" name="Submit" value="Submit"/>
+</form>
 </FTCS> 
