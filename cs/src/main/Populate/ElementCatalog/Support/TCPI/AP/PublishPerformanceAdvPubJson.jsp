@@ -56,36 +56,33 @@ if (Utilities.goodString(tqx)){
 
 
 //tq to hold the query
-String sql = "SELECT t.name as name, s.id as id, s.cs_sessiondate as cs_sessiondate FROM PubTarget t, PubContext c, PubSession s WHERE c.cs_sessionid=s.id and c.cs_target=t.id ORDER BY s.cs_sessiondate DESC";
-String colsmeta="cols: [{id: 'sessionid', label: 'pub sessionid', type: 'number'},{id: 'cs_sessiondate', label: 'Publish End Time', type: 'datetime'},{id: 'target_name', label: 'Destination', type: 'string'},"+
-"{id: 'add_pub_list',label: 'Add to PubList',type:'number'},{id: 'mirror_assettypes',label: 'Mirror assettypes',type:'number'},{id: 'mirror_pub_list',label: 'Mirror PubList',type:'number'},"+
-"{id: 'send_to_target',label: 'Send to Target',type:'number'},{id: 'mirroring',label: 'Mirroring',type:'number'},{id: 'flush_cache',label: 'Flush Cache',type:'number'},"+
-"{id: 'delete_pub_list',label: 'Delete PubList',type:'number'},{id: 'note_publish',label: 'Mark as Published',type:'number'},{id: 'total',label: 'Total Time',type:'number'},{id: 'asset_num',label: 'Number of assets', type:'number'}]";
-String[] cols = { "id","cs_sessiondate","target_name","add_pub_list", "mirror_assettypes",
-        "mirror_pub_list", "send_to_target", "mirroring",
-        "flush_cache", "delete_pub_list", "note_publish", "total",
-        "asset_num" };
+String sql = "SELECT t.name as name, s.id as id, s.cs_status as cs_status, s.cs_sessiondate as cs_sessiondate, s.cs_enddate as cs_enddate FROM PubTarget t, PubContext c, PubSession s WHERE c.cs_sessionid=s.id and c.cs_target=t.id ORDER BY s.cs_sessiondate DESC";
+
+String colsmeta="cols: [{id: 'sessionid', label: 'pub sessionid', type: 'number'},{id: 'cs_sessiondate', label: 'Publish Start Time', type: 'datetime'},{id: 'target_name', label: 'Destination', type: 'string'},"+
+"{id: 'cs_status', label: 'Status', type: 'string'},{id: 'gatherer',label: 'Gatherer',type:'number'},{id: 'packager',label: 'Packager',type:'number'},{id: 'transporter',label: 'Transporter',type:'number'},"+
+"{id: 'resource',label: 'RESOURCE',type:'number'},{id: 'unpacker',label: 'Unpacker',type:'number'},{id: 'cacheflusher',label: 'Flush Cache',type:'number'},"+
+"{id: 'total',label: 'Total Time',type:'number'},{id: 'unaccounted',label: 'Unaccounted Time',type:'number'},{id: 'asset_num',label: 'Number of assets', type:'number'}]";
+String[] cols = { "id","cs_sessiondate","target_name","status","gatherer", "packager",
+        "transporter", "resource","unpacker", "cacheflusher", "total","unaccounted","asset_num" };
 
 
 %><%=responseHandler %>({version:'<%=version %>',reqId:'<%= reqId %>',status:'ok',table:{<%= colsmeta %>,rows:[<%
 
 IList list = ics.SQL("PubSession",sql,"ps", 500, true,  new StringBuffer());
-Pattern[] pattern = new Pattern[] {
-        Pattern.compile("\\[TIME\\]Done adding assets to AssetPublishList in (\\d{1,}) ms."),
-        Pattern.compile("\\[TIME\\]Done mirroring assettypes in (\\d{1,}) ms."),
-        Pattern.compile("\\[TIME\\]Done mirroring AssetPublishList in (\\d{1,}) ms."),
-        Pattern.compile("\\[TIME\\]Done sending assets to the target in (\\d{1,}) ms."),
-        Pattern.compile("\\[TIME\\]Done with mirroring in (\\d{1,}) ms."),
-        Pattern.compile("\\[TIME\\]Done flushing the cache on the target in (\\d{1,}) ms."),
-        Pattern.compile("\\[TIME\\]Done deleting entries in AssetPublishList in (\\d{1,}) ms."),
-        Pattern.compile("\\[TIME\\]Done with NotePublish in (\\d{1,}) ms."),
-        Pattern.compile("\\[TIME\\]Publishing took (\\d{1,}) ms for (\\d{1,}) assets.") };
+
+String[] types= new String[]{"Gatherer","Packager","Transporter","Unpacker","RESOURCE","CacheFlusher"};
 
 if(list !=null && list.hasData()){
     PreparedStmt ps = new PreparedStmt(
-            "SELECT cs_text, cs_serial FROM PubMessage WHERE cs_text LIKE '%TIME]%' AND cs_sessionid=? ORDER BY cs_serial",
+        "SELECT cs_type, DATEDIFF('ss', min(cs_logdate) , max(cs_logdate)) as elapsed from PubMessage WHERE cs_type in('Gatherer','Packager','Transporter','Unpacker','RESOURCE','CacheFlusher') AND cs_sessionid=? GROUP BY cs_type",
             Collections.singletonList("PubMessage"));
     ps.setElement(0, "PubMessage", "cs_sessionid");
+
+
+    PreparedStmt pstot = new PreparedStmt(
+        "SELECT cs_text from PubMessage WHERE cs_status='__ASSTS_PUBLISHD__' AND cs_sessionid=?",
+            Collections.singletonList("PubMessage"));
+    pstot.setElement(0, "PubMessage", "cs_sessionid");
 
    for (int i = 0; i < list.numRows(); i++){
         list.moveTo(i + 1);
@@ -93,31 +90,42 @@ if(list !=null && list.hasData()){
         vals[0]=list.getValue("id");
         vals[1]= "new Date(" + Utilities.calendarFromJDBCString(list.getValue("cs_sessiondate")).getTimeInMillis() +")";
         vals[2]=list.getValue("name");
+        vals[3]=list.getValue("cs_status");
         StatementParam p = ps.newParam();
         //ics.LogMsg(list.getValue("id"));
         p.setLong(0, Long.parseLong(list.getValue("id")));
         IList history = ics.SQL(ps, p, true);
+        int total2=0;
         if (history != null && history.hasData()) {
             for (int k = 0; k < history.numRows(); k++) {
                 history.moveTo(k + 1);
-                String text = history.getValue("cs_text");
+                String text = history.getValue("cs_type");
                 //ics.LogMsg(text);
-                for (int j = 0; j < pattern.length; j++) {
-                    //ics.LogMsg(pattern[j].toString());
-                    Matcher m = pattern[j].matcher(text);
-                    if (m.matches()) {
-                        vals[j+3] =m.group(1);
-                        if (j == pattern.length - 1) {
-                            vals[j + 4] = m.group(2);
-                        }
+                for (int j = 0; j < types.length; j++) {
+                    if (types[j].equals(text)) {
+                        vals[j+4] = history.getValue("elapsed");
+                        total2 += Integer.parseInt(history.getValue("elapsed"));
                         break;
                     }
                 }
             }
         }
+        p = pstot.newParam();
+
+        p.setLong(0, Long.parseLong(list.getValue("id")));
+        history = ics.SQL(pstot, p, true);
+        if (history != null && history.hasData()) {
+            history.moveTo(1);
+            String text = history.getValue("cs_text");
+            vals[cols.length-1]=text;
+        }
+        long total1=(Utilities.calendarFromJDBCString(list.getValue("cs_enddate")).getTimeInMillis() -Utilities.calendarFromJDBCString(list.getValue("cs_sessiondate")).getTimeInMillis())/1000;
+        vals[cols.length-3]= Long.toString(total1);
+        vals[cols.length-2]= Long.toString(total1-total2);
+
         %><%= i > 0 ? ",":"" %>{c:[<%
         for (int k=0;k<vals.length;k++){
-            %><%= k > 0 ? ",":"" %>{v: <%= (k==2) ?"'"+ org.apache.commons.lang.StringEscapeUtils.escapeJavaScript(vals[k]) +"'":vals[k]  %>}<%
+            %><%= k > 0 ? ",":"" %>{v: <%= (k==2 || k==3) ?"'"+ org.apache.commons.lang.StringEscapeUtils.escapeJavaScript(vals[k]) +"'":vals[k]  %>}<%
         }
         %>]}<%
    }
