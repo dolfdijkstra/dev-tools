@@ -10,7 +10,11 @@
 %><%@ page import="java.util.regex.Pattern"
 %><%@ page import="com.fatwire.cs.core.db.PreparedStmt"
 %><%@ page import="com.fatwire.cs.core.db.StatementParam"
+%><%!
 
+long diff(String d1, String d2){
+    return Math.abs(Utilities.calendarFromJDBCString(d2).getTimeInMillis() -Utilities.calendarFromJDBCString(d1).getTimeInMillis())/1000;
+}
 %><cs:ftcs><%
 String tqx = ics.GetVar("tqx");
 String tq = ics.GetVar("tq");
@@ -56,27 +60,27 @@ if (Utilities.goodString(tqx)){
 
 
 //tq to hold the query
-String sql = "SELECT t.name as name, s.id as id, s.cs_status as cs_status, s.cs_sessiondate as cs_sessiondate, s.cs_enddate as cs_enddate FROM PubTarget t, PubContext c, PubSession s WHERE c.cs_sessionid=s.id and c.cs_target=t.id ORDER BY s.cs_sessiondate DESC";
+String sql = "SELECT t.name as name, s.id as id, s.cs_status as cs_status, s.cs_sessiondate as cs_sessiondate, s.cs_enddate as cs_enddate FROM PubTarget t, PubContext c, PubSession s WHERE c.cs_sessionid=s.id AND c.cs_target=t.id ORDER BY s.cs_sessiondate DESC";
 
 String colsmeta="cols: [{id: 'sessionid', label: 'pub sessionid', type: 'number'},{id: 'cs_sessiondate', label: 'Publish Start Time', type: 'datetime'},{id: 'target_name', label: 'Destination', type: 'string'},"+
 "{id: 'cs_status', label: 'Status', type: 'string'},{id: 'gatherer',label: 'Gatherer',type:'number'},{id: 'packager',label: 'Packager',type:'number'},{id: 'transporter',label: 'Transporter',type:'number'},"+
-"{id: 'resource',label: 'RESOURCE',type:'number'},{id: 'unpacker',label: 'Unpacker',type:'number'},{id: 'cacheflusher',label: 'Flush Cache',type:'number'},"+
-"{id: 'total',label: 'Total Time',type:'number'},{id: 'unaccounted',label: 'Unaccounted Time',type:'number'},{id: 'asset_num',label: 'Number of assets', type:'number'}]";
+"{id: 'unpacker',label: 'Unpacker',type:'number'},{id: 'cacheflusher',label: 'Flush Cache',type:'number'},"+
+"{id: 'total',label: 'Total Time',type:'number'},{id: 'asset_num',label: 'Number of assets', type:'number'}]";
 String[] cols = { "id","cs_sessiondate","target_name","status","gatherer", "packager",
-        "transporter", "resource","unpacker", "cacheflusher", "total","unaccounted","asset_num" };
+        "transporter", "unpacker", "cacheflusher", "total","asset_num" };
 
 
 %><%=responseHandler %>({version:'<%=version %>',reqId:'<%= reqId %>',status:'ok',table:{<%= colsmeta %>,rows:[<%
 
 IList list = ics.SQL("PubSession",sql,"ps", 500, true,  new StringBuffer());
 
-String[] types= new String[]{"Gatherer","Packager","Transporter","Unpacker","RESOURCE","CacheFlusher"};
+String[] types= new String[]{"Gatherer","Packager","Transporter","Unpacker","CacheFlusher"};
 
 if(list !=null && list.hasData()){
     PreparedStmt ps = new PreparedStmt(
-        "SELECT cs_type, DATEDIFF('ss', min(cs_logdate) , max(cs_logdate)) as elapsed from PubMessage WHERE cs_type in('Gatherer','Packager','Transporter','Unpacker','RESOURCE','CacheFlusher') AND cs_sessionid=? GROUP BY cs_type",
-            Collections.singletonList("PubMessage"));
-    ps.setElement(0, "PubMessage", "cs_sessionid");
+        "SELECT component, started,lastupdate FROM FW_PubProgress WHERE pubsession=? AND started IS NOT NULL",
+            Collections.singletonList("FW_PubProgress"));
+    ps.setElement(0, "FW_PubProgress", "pubsession");
 
 
     PreparedStmt pstot = new PreparedStmt(
@@ -95,16 +99,14 @@ if(list !=null && list.hasData()){
         //ics.LogMsg(list.getValue("id"));
         p.setLong(0, Long.parseLong(list.getValue("id")));
         IList history = ics.SQL(ps, p, true);
-        int total2=0;
         if (history != null && history.hasData()) {
             for (int k = 0; k < history.numRows(); k++) {
                 history.moveTo(k + 1);
-                String text = history.getValue("cs_type");
+                String text = history.getValue("component");
                 //ics.LogMsg(text);
                 for (int j = 0; j < types.length; j++) {
                     if (types[j].equals(text)) {
-                        vals[j+4] = history.getValue("elapsed");
-                        total2 += Integer.parseInt(history.getValue("elapsed"));
+                        vals[j+4] = Long.toString(diff(history.getValue("started"),history.getValue("lastupdate")));
                         break;
                     }
                 }
@@ -119,9 +121,8 @@ if(list !=null && list.hasData()){
             String text = history.getValue("cs_text");
             vals[cols.length-1]=text;
         }
-        long total1=(Utilities.calendarFromJDBCString(list.getValue("cs_enddate")).getTimeInMillis() -Utilities.calendarFromJDBCString(list.getValue("cs_sessiondate")).getTimeInMillis())/1000;
-        vals[cols.length-3]= Long.toString(total1);
-        vals[cols.length-2]= Long.toString(total1-total2);
+        long total1=diff(list.getValue("cs_enddate"),list.getValue("cs_sessiondate"));
+        vals[cols.length-2]= Long.toString(total1);
 
         %><%= i > 0 ? ",":"" %>{c:[<%
         for (int k=0;k<vals.length;k++){
