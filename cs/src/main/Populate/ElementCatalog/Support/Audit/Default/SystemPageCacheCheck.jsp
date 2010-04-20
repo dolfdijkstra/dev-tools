@@ -111,8 +111,8 @@ if(Utilities.goodString(ics.GetVar("id"))) {
         %>Total Rows with missing files: <b><%= badrows%></b><br/><%
     }
     if (rows_to_be_done - numrows > 0) {
-        int limit=  = 2500;try {limit= Integer.parseInt(ics.GetVar("limit")); } catch(Exception e) {}
-        if (limit>2) limit=2;
+        int limit = 2500;try {limit= Integer.parseInt(ics.GetVar("limit")); } catch(Exception e) {}
+        if (limit<2) limit=2;
         %>Rows remaining to be scanned: <b><%= Integer.toString(rows_to_be_done - numrows) %></b><br/><%
         %><a href='ContentServer?pagename=<ics:getvar name="pagename"/>&limit=<%= Integer.toString(limit / 2 ) %>&start=<ics:resolvevariables name="bodies.id" />'><b>&gt;&gt;</b> - Next <%= Integer.toString(limit / 2) %> Rows</a><%
         %><a href='ContentServer?pagename=<ics:getvar name="pagename"/>&limit=<%= Integer.toString(limit) %>&start=<ics:resolvevariables name="bodies.id" />'><b>&gt;&gt;</b> - Next <%= Integer.toString(limit) %> Rows</a><%
