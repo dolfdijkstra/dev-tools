@@ -3,7 +3,7 @@
 %><%@ page import="COM.FutureTense.Interfaces.ICS"
 %><%@ page import="COM.FutureTense.Interfaces.IList"
 %><%@ page import="COM.FutureTense.Interfaces.Utilities"
-%><%@ page import="java.util.Date"
+%><%@ page import="java.util.*"
 %><%@ page import="java.text.*"
 %><%@ page import="java.util.Collections"
 %><%@ page import="java.util.regex.Matcher"
@@ -60,7 +60,18 @@ if (Utilities.goodString(tqx)){
 
 
 //tq to hold the query
-String sql = "SELECT t.name as name, s.id as id, s.cs_status as cs_status, s.cs_sessiondate as cs_sessiondate, s.cs_enddate as cs_enddate FROM PubTarget t, PubContext c, PubSession s WHERE c.cs_sessionid=s.id AND c.cs_target=t.id ORDER BY s.cs_sessiondate DESC";
+String sql = "SELECT t.name as name, s.id as id, s.cs_status as cs_status, s.cs_sessiondate as cs_sessiondate, s.cs_enddate as cs_enddate FROM PubTarget t, PubContext c, PubSession s WHERE c.cs_sessionid=s.id AND c.cs_target=t.id AND s.cs_sessiondate BETWEEN ? AND ? ORDER BY s.cs_sessiondate DESC";
+
+PreparedStmt ps = new PreparedStmt(
+    sql,Arrays.asList(new String[]{"PubTarget", "PubContext" , "PubSession"}));
+ps.setElement(0, "PubSession", "cs_sessiondate");
+ps.setElement(1, "PubSession", "cs_enddate");
+StatementParam p = ps.newParam();
+long t1=Utilities.calendarFromJDBCString(ics.GetVar("startdate")).getTimeInMillis();
+long t2=Utilities.calendarFromJDBCString(ics.GetVar("enddate")).getTimeInMillis();
+p.setTimeStamp(0, new java.sql.Timestamp(t1 < t2 ? t1:t2));
+p.setTimeStamp(1, new java.sql.Timestamp(t1 < t2 ? t2:t1));
+
 
 String colsmeta="cols: [{id: 'sessionid', label: 'pub sessionid', type: 'number'},{id: 'cs_sessiondate', label: 'Publish Start Time', type: 'datetime'},{id: 'target_name', label: 'Destination', type: 'string'},"+
 "{id: 'cs_status', label: 'Status', type: 'string'},{id: 'gatherer',label: 'Gatherer',type:'number'},{id: 'packager',label: 'Packager',type:'number'},{id: 'transporter',label: 'Transporter',type:'number'},"+
@@ -72,30 +83,33 @@ String[] cols = { "id","cs_sessiondate","target_name","status","gatherer", "pack
 
 %><%=responseHandler %>({version:'<%=version %>',reqId:'<%= reqId %>',status:'ok',table:{<%= colsmeta %>,rows:[<%
 
-IList list = ics.SQL("PubSession",sql,"ps", 500, true,  new StringBuffer());
+IList list = ics.SQL(ps, p, true);//ics.SQL("PubSession",sql,"ps", -1, true,  new StringBuffer());
 
 String[] types= new String[]{"Gatherer","Packager","Transporter","Unpacker","CacheFlusher"};
 
+double[] elapsed= new double[7];
+int[] nums= new int[7];
+
 if(list !=null && list.hasData()){
-    PreparedStmt ps = new PreparedStmt(
+   ps = new PreparedStmt(
         "SELECT component, started,lastupdate FROM FW_PubProgress WHERE pubsession=? AND started IS NOT NULL",
             Collections.singletonList("FW_PubProgress"));
-    ps.setElement(0, "FW_PubProgress", "pubsession");
+   ps.setElement(0, "FW_PubProgress", "pubsession");
 
 
-    PreparedStmt pstot = new PreparedStmt(
+   PreparedStmt pstot = new PreparedStmt(
         "SELECT cs_text from PubMessage WHERE cs_status='__ASSTS_PUBLISHD__' AND cs_sessionid=?",
             Collections.singletonList("PubMessage"));
-    pstot.setElement(0, "PubMessage", "cs_sessionid");
-
-   for (int i = 0; i < list.numRows(); i++){
+   pstot.setElement(0, "PubMessage", "cs_sessionid");
+   int i = 0;
+   for (; i < list.numRows(); i++){
         list.moveTo(i + 1);
         String[] vals= new String[cols.length];
         vals[0]=list.getValue("id");
         vals[1]= "new Date(" + Utilities.calendarFromJDBCString(list.getValue("cs_sessiondate")).getTimeInMillis() +")";
         vals[2]=list.getValue("name");
         vals[3]=list.getValue("cs_status");
-        StatementParam p = ps.newParam();
+        p = ps.newParam();
         //ics.LogMsg(list.getValue("id"));
         p.setLong(0, Long.parseLong(list.getValue("id")));
         IList history = ics.SQL(ps, p, true);
@@ -106,7 +120,10 @@ if(list !=null && list.hasData()){
                 //ics.LogMsg(text);
                 for (int j = 0; j < types.length; j++) {
                     if (types[j].equals(text)) {
-                        vals[j+4] = Long.toString(diff(history.getValue("started"),history.getValue("lastupdate")));
+                        long d = diff(history.getValue("started"),history.getValue("lastupdate"));
+                        elapsed[j] += d;
+                        nums[j]++;
+                        vals[j+4] = Long.toString(d);
                         break;
                     }
                 }
@@ -119,10 +136,17 @@ if(list !=null && list.hasData()){
         if (history != null && history.hasData()) {
             history.moveTo(1);
             String text = history.getValue("cs_text");
+            elapsed[6] += Integer.parseInt(text);
+            nums[6]++;
+
             vals[cols.length-1]=text;
         }
-        long total1=diff(list.getValue("cs_enddate"),list.getValue("cs_sessiondate"));
-        vals[cols.length-2]= Long.toString(total1);
+        if (Utilities.goodString(list.getValue("cs_enddate")) && Utilities.goodString(list.getValue("cs_sessiondate"))){
+            long total1=diff(list.getValue("cs_enddate"),list.getValue("cs_sessiondate"));
+            elapsed[5] += total1;
+            nums[5]++;
+            vals[cols.length-2]= Long.toString(total1);
+        }
 
         %><%= i > 0 ? ",":"" %>{c:[<%
         for (int k=0;k<vals.length;k++){
@@ -130,6 +154,15 @@ if(list !=null && list.hasData()){
         }
         %>]}<%
    }
+   if (i>0){
+    %>,{c:[{v: null},{v: null},{v: 'AVERAGE'},{v: null}<%
+
+    for (int k=0;k<elapsed.length;k++){
+        %>,{v: <%= nums[k] ==0 ? "": Long.toString(Math.round(elapsed[k]/nums[k]))  %>}<%
+    }
+    %>]}<%
+   }
+
 }
 %>]
 }});</cs:ftcs>
