@@ -52,11 +52,11 @@ if (logfile instanceof String ){
         int count = 0;
         while( (line = file.readLine()) != null ) {
           if (pattern ==null){
-            out.println( line );
+            out.println( org.apache.commons.lang.StringEscapeUtils.escapeHtml(line) );
           }else {
             Matcher m = pattern.matcher(line);
             if(m.find()){
-                out.println( Integer.toString(count) +" "+ line );
+                out.println( Integer.toString(count) +" "+  org.apache.commons.lang.StringEscapeUtils.escapeHtml(line));
             }
           }
           count++;
