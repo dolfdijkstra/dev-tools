@@ -1,6 +1,5 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
-%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
 // Support/CacheManager/PageCacheSummary
 //
@@ -65,7 +64,7 @@ function execute(tq,title) {
         var data = response.getDataTable();
 
         var chart = new google.visualization.ColumnChart($(tq));
-        chart.draw(data, {'title': title});
+        chart.draw(data, {'title': title, logScale: true});
     }
 }
 </script>
