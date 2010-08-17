@@ -61,14 +61,15 @@ function showPreview(pURL)
 	<p><CSVAR NAME="page.@urlqry"/></p>
 		<table class="altClass">
 			<tr>
+			    <th>Display</th>
 				<th>ModTime</th>
 				<th>ExpiryTime</th>
-				<th>Display</th>
+				
 			</tr>
 			<tr>
+			    <td><a HREF="javascript:void(0)" onclick="openPreview('page.id');" onmouseover="div_show(this,'page.id');" onmouseout="window.status='';return true" REPLACEALL="page.id">show cached pagelet</a></td>
 				<td><CSVAR NAME="page.mtime"/></td>
 				<td><CSVAR NAME="page.etime"/></td>
-				<td><a HREF="javascript:void(0)" onclick="openPreview('page.id');" onmouseover="window.status='show cached page';return true;" onmouseout="window.status='';return true" REPLACEALL="page.id">show cached pagelet</a></td>
 			</tr>
 			<tr><td colspan="3"><CSVAR NAME="page.@urlhead"/></td></tr>
 		</table>
@@ -80,4 +81,37 @@ function showPreview(pURL)
 		</CALLELEMENT>		
 	</ELSE></IF>
 </ELSE></IF>
+<div id="hoverbox" style="position: absolute; visibility: hidden; width: 90%; background: #FFF;"></div>
+<script type="text/javascript" src='Variables.prototypeURL' REPLACEALL="Variables.prototypeURL"></script>
+<script type="text/javascript"><![CDATA[
+function div_show(obj,key){
+    new Ajax.Request('ContentServer', {
+      method: 'get',
+      parameters: {pagename:'Support/CacheManager/ShowCachedPageEscaped',pid: key},
+      onSuccess: function(response){
+            var result = response.responseText;
+            showPagelet(obj,result);
+      },
+      onFailure: function(){ showPagelet(obj,'Something went wrong...'); }
+    });
+
+}
+function div_hide(){
+        
+}
+function showPagelet(obj,result){
+    var div= $('hoverbox');
+    div.innerHTML=result;
+    var oTop  = 0;
+    var oLeft = 0;
+    // find object position on the page
+    do {oLeft+=obj.offsetLeft; oTop+=obj.offsetTop} while (obj=obj.offsetParent);
+    // set the position of invisible div
+    div.style.top  = (oTop  + 20) + 'px';
+    div.style.left = (oLeft + 20) + 'px';
+    div.style.visibility = 'visible';
+}
+
+]]>
+</script>
 </FTCS>

@@ -26,13 +26,14 @@ String idval = ics.GetVar("idlist");
 String errorMsg = null;
 
 if (!Utilities.goodString(idval)){
-	ics.SetErrno(ftErrors.badparams);
-	errorMsg="You must specify at least one ID to list";
+    ics.SetErrno(ftErrors.badparams);
+    errorMsg="You must specify at least one ID to list";
 } else {
-	String idList = Utilities.replaceAll(idval,";","','");
-	idList = "'"+ idList +"'";
+    String idList = Utilities.replaceAll(idval,";","','");
+    idList = "'"+ idList +"'";
 %>
-    <ics:sql sql='<%= "SELECT SystemItemCache.id as id, SystemPageCache.id as pid, SystemPageCache.urlqry, SystemPageCache.mtime FROM SystemPageCache, SystemItemCache WHERE SystemItemCache.page = SystemPageCache.id AND SystemItemCache.id IN (" + idList +") ORDER BY id,mtime" %>' table="SystemPageCache,SystemItemCache" listname="pages"/>
+    <ics:sql sql='<%= "SELECT SystemItemCache.id as id, SystemPageCache.id as pid, SystemPageCache.urlqry, SystemPageCache.mtime FROM SystemPageCache, SystemItemCache WHERE SystemItemCache.page = SystemPageCache.id AND SystemItemCache.id IN (" + idList +") ORDER BY id,mtime" %>' table="SystemPageCache,SystemItemCache" listname="pages" limit="1000"/>
+    <% if (ics.GetList("pages").numRows() ==1000) {%><p>Limiting output to 1000 rows.</p><%}%>
     <table class="altClass">
         <tr>
             <th widht="5%">Nr</th>
@@ -40,17 +41,17 @@ if (!Utilities.goodString(idval)){
             <th width="20%">ModTime</th>
             <th width="45%">Query String</th>
         </tr>
-    	<ics:listloop listname="pages">
+        <ics:listloop listname="pages">
         <tr>
             <td nowrap align="right"><ics:resolvevariables name="pages.#curRow"/></td>
             <td nowrap><ics:resolvevariables name="pages.id"/></td>
             <td nowrap><ics:resolvevariables name="pages.mtime"/></td>
             <td><a href='ContentServer?pagename=Support/CacheManager/listItemsByPage&pid=<ics:resolvevariables name="pages.pid"/>'><ics:resolvevariables name="pages.@urlqry"/></a></td>
         </tr>
-    	</ics:listloop>
+        </ics:listloop>
     </table>
 <%
-    ics.ClearErrno(); 
+    ics.ClearErrno();
 }
 %>
 
