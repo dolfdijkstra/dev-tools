@@ -11,6 +11,8 @@
 %><%@ page import="java.lang.management.ManagementFactory"
 %><%@ page import="java.lang.management.ThreadInfo"
 %><%@ page import="java.lang.management.ThreadMXBean"
+%><%@ page import="java.util.regex.Pattern"
+%><%@ page import="java.lang.Thread.State"
 %><%!
 private final ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();
 
@@ -20,19 +22,48 @@ private static final char[] INDENT = "    ".toCharArray();
 private static final char[] NEW_LINE = "\r\n".toCharArray();
 
 
-void createThreadDump(StringBuilder sb, int max, boolean runningOnly) {
-    ThreadInfo[] threadInfos;
-    threadInfos = threadMXBean.getThreadInfo(
-            threadMXBean.getAllThreadIds(), max);
+void createThreadDump(StringBuilder sb, int max, State[] states, Pattern p) {
+        Thread[] t = new Thread[Thread.activeCount() * 2];
 
-    for (ThreadInfo threadInfo : threadInfos) {
-        printThreadInfo(threadInfo, sb,runningOnly);
+        int count = Thread.enumerate(t);
+        for (int i = 0; i < count; i++) {
+            if (t[i] != null) {
+                if (t[i].getState() == State.BLOCKED){
+                   sb.append(t[i].getName()).append(" ").append(t[i].getState()).append(NEW_LINE);
+                    for (StackTraceElement ste : t[i].getStackTrace()) {
+                        sb.append(INDENT).append("at ").append(ste.toString());
+                        sb.append(NEW_LINE);
+                    }
+                    sb.append(NEW_LINE);
+
+                    ThreadInfo ti = threadMXBean.getThreadInfo(t[i].getId(),
+                            max);
+                    sb.append(ti.toString()).append(NEW_LINE);
+
+                }
+            }
+        }
+
+        ThreadInfo[] threadInfos = threadMXBean.dumpAllThreads(true, true);
+        //        threadInfos = threadMXBean.getThreadInfo(
+        //                threadMXBean.getAllThreadIds(), max);
+
+    for (ThreadInfo ti : threadInfos) {
+        State state = ti.getThreadState();
+        //sb.append(state).append(NEW_LINE);
+
+        for (State s:states){
+           if (s == state && p.matcher(ti.getThreadName()).matches()){
+               sb.append(ti.toString()).append(NEW_LINE);
+              //printThreadInfo(ti, sb);
+           }
+        }
+
     }
 
 }
 
-private void printThreadInfo(ThreadInfo ti, final StringBuilder sb, boolean runningOnly) {
-    if (runningOnly && ti.getThreadState() != Thread.State.RUNNABLE) return;
+private void printThreadInfo(ThreadInfo ti, final StringBuilder sb) {
     long tid = ti.getThreadId();
     sb.append("\"").append(ti.getThreadName()).append("\"").append(" id=").append(tid).append(" in "
            ).append(ti.getThreadState());
@@ -83,7 +114,30 @@ String formatNanos(long ns) {
 <cs:ftcs><% if (threadMXBean.isThreadContentionMonitoringSupported()&& !threadMXBean.isThreadContentionMonitoringEnabled()){threadMXBean.setThreadContentionMonitoringEnabled(true);}
 String m = ics.GetVar("maxStackTraceSize");
 int max= Integer.MAX_VALUE;
-boolean runningOnly = "true".equals(ics.GetVar("runningThreadsOnly"));
+State[] states  = Thread.State.values();
+String regex =".*";
+
+if (COM.FutureTense.Interfaces.Utilities.goodString(ics.GetVar("regex"))){
+    try {
+        regex=ics.GetVar("regex");
+    }catch(Exception e){
+     //ignore
+    }
+}
+
+if (COM.FutureTense.Interfaces.Utilities.goodString(ics.GetVar("state"))){
+    try {
+        //out.println(ics.GetVar("state"));
+        String[] s =ics.GetVar("state").split(";");
+        states  = new State[s.length];
+        for (int i=0; i< s.length;i++){
+            states[i]= State.valueOf(s[i]);
+        }
+    }catch(Exception e){
+     //ignore
+    }
+}
+
 if (COM.FutureTense.Interfaces.Utilities.goodString(m)){
     try {
         max = Integer.parseInt(m);
@@ -91,8 +145,8 @@ if (COM.FutureTense.Interfaces.Utilities.goodString(m)){
      //ignore
     }
 }
-StringBuilder str = new StringBuilder();
+StringBuilder str = new StringBuilder(4000);
 str.append("Full Thread Dump at ").append(new java.util.Date()).append(NEW_LINE);
-createThreadDump(str,max,runningOnly);
+createThreadDump(str,max,states, Pattern.compile(regex));
 out.write(str.toString());
 %></cs:ftcs>
