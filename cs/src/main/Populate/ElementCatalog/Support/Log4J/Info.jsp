@@ -1,12 +1,19 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
-%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%
 //
 // Support/Log4J/Info
 //
 //
 %><cs:ftcs>
+<h2>Current Commons Logging Factory Configuration</h2>
+<%
+        org.apache.commons.logging.LogFactory lf = org.apache.commons.logging.LogFactory.getFactory();
+        for (String n:lf.getAttributeNames()){
+            %><%= n +"=" + lf.getAttribute(n) %><br/><%
+        }
+
+%>
 <h2>How to configure log4j</h2>
 <p>
 Currently log4j is not configured for ContentServer. Below are the steps of what needs to be done to configure log4j.

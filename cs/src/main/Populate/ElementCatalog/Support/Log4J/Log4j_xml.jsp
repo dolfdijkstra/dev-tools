@@ -28,7 +28,7 @@
         <param name="bufferedIO" value="false"/>
         <param name="BufferSize" value="256"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%t] [%c{4}] %m%n"/>
+            <param name="ConversionPattern" value="%d{ISO8601}[%-5p][%-17.17t][%c{4}] %m%n"/>
         </layout>
     </appender>
 
