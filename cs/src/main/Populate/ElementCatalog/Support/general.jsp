@@ -61,7 +61,7 @@ function hitLoadSensor(){
   var elapsed_loading= new Date().getTime() - began_loading;
   var server_elapsed = parseInt(window.elapsed/1000);
   document.getElementById("elapsed").innerHTML = "loaded in s" + server_elapsed + "/c"+ elapsed_loading +"ms";
-  var pl = 'l=' + escape(self.location) + '&t=' + (elapsed_loading) + '&e=' + window.elapsed;
+  var pl = 'l=' + escape(self.location) + '&t=' + (elapsed_loading) + '&e=' + server_elapsed;
   <% if(ics.GetSSVar("supporttools.beacon") ==null){
       ics.SetSSVar("supporttools.beacon","1");
       %>pl +='&n.os='+navigator.oscpu;
