@@ -25,7 +25,7 @@ for (int i=0; i< location.length;i++){
     %><b><%=desc[i] %></b>: <%= location[i].getCanonicalPath() %><br/><%
 }
 %><h3>procfs info</h3><%
-String[] procs ="/proc/mounts,/proc/cpuinfo,/proc/diskstats,/proc/meminfo,/proc/modules,/proc/uptime,/proc/version".split(",");
+String[] procs ="/proc/mounts,/proc/cpuinfo,/proc/diskstats,/proc/meminfo,/proc/modules,/proc/uptime,/proc/version,/proc/self/environ,/proc/self/limits".split(",");
 for (String p:procs){
     File f = new File(p);
     if (f.exists() && f.canRead()){
