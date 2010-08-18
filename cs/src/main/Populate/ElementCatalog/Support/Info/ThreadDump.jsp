@@ -23,30 +23,30 @@ private static final char[] NEW_LINE = "\r\n".toCharArray();
 
 
 void createThreadDump(StringBuilder sb, int max, State[] states, Pattern p) {
-        Thread[] t = new Thread[Thread.activeCount() * 2];
+    Thread[] t = new Thread[Thread.activeCount() * 2];
 
-        int count = Thread.enumerate(t);
-        for (int i = 0; i < count; i++) {
-            if (t[i] != null) {
-                if (t[i].getState() == State.BLOCKED){
-                   sb.append(t[i].getName()).append(" ").append(t[i].getState()).append(NEW_LINE);
-                    for (StackTraceElement ste : t[i].getStackTrace()) {
-                        sb.append(INDENT).append("at ").append(ste.toString());
-                        sb.append(NEW_LINE);
-                    }
+    int count = Thread.enumerate(t);
+    for (int i = 0; i < count; i++) {
+        if (t[i] != null) {
+            if (t[i].getState() == State.BLOCKED){
+               sb.append(t[i].getName()).append(" ").append(t[i].getState()).append(NEW_LINE);
+                for (StackTraceElement ste : t[i].getStackTrace()) {
+                    sb.append(INDENT).append("at ").append(ste.toString());
                     sb.append(NEW_LINE);
-
-                    ThreadInfo ti = threadMXBean.getThreadInfo(t[i].getId(),
-                            max);
-                    sb.append(ti.toString()).append(NEW_LINE);
-
                 }
+                sb.append(NEW_LINE);
+
+                ThreadInfo ti = threadMXBean.getThreadInfo(t[i].getId(),
+                        max);
+                sb.append(ti.toString()).append(NEW_LINE);
+
             }
         }
+    }
 
-        ThreadInfo[] threadInfos = threadMXBean.dumpAllThreads(true, true);
-        //        threadInfos = threadMXBean.getThreadInfo(
-        //                threadMXBean.getAllThreadIds(), max);
+    ThreadInfo[] threadInfos = threadMXBean.dumpAllThreads(true, true);
+    //        threadInfos = threadMXBean.getThreadInfo(
+    //                threadMXBean.getAllThreadIds(), max);
 
     for (ThreadInfo ti : threadInfos) {
         State state = ti.getThreadState();
@@ -54,8 +54,22 @@ void createThreadDump(StringBuilder sb, int max, State[] states, Pattern p) {
 
         for (State s:states){
            if (s == state && p.matcher(ti.getThreadName()).matches()){
+              printThreadInfo(ti, sb,max);
+           }
+        }
+
+    }
+
+}
+void createThreadDumpNative(StringBuilder sb, int max, State[] states, Pattern p) {
+
+    ThreadInfo[] threadInfos = threadMXBean.dumpAllThreads(true, true);
+
+    for (ThreadInfo ti : threadInfos) {
+        State state = ti.getThreadState();
+        for (State s:states){
+           if (s == state && p.matcher(ti.getThreadName()).matches()){
                sb.append(ti.toString()).append(NEW_LINE);
-              //printThreadInfo(ti, sb);
            }
         }
 
@@ -63,7 +77,7 @@ void createThreadDump(StringBuilder sb, int max, State[] states, Pattern p) {
 
 }
 
-private void printThreadInfo(ThreadInfo ti, final StringBuilder sb) {
+private void printThreadInfo(ThreadInfo ti, final StringBuilder sb, int max) {
     long tid = ti.getThreadId();
     sb.append("\"").append(ti.getThreadName()).append("\"").append(" id=").append(tid).append(" in "
            ).append(ti.getThreadState());
@@ -100,8 +114,10 @@ private void printThreadInfo(ThreadInfo ti, final StringBuilder sb) {
 
     sb.append(NEW_LINE);
     for (StackTraceElement ste : ti.getStackTrace()) {
+        if (--max<0) break;
         sb.append(INDENT).append("at ").append(ste.toString());
         sb.append(NEW_LINE);
+
     }
     sb.append(NEW_LINE);
 
@@ -112,10 +128,11 @@ String formatNanos(long ns) {
 }
 %>
 <cs:ftcs><% if (threadMXBean.isThreadContentionMonitoringSupported()&& !threadMXBean.isThreadContentionMonitoringEnabled()){threadMXBean.setThreadContentionMonitoringEnabled(true);}
-String m = ics.GetVar("maxStackTraceSize");
+String m = ics.GetVar("max");
 int max= Integer.MAX_VALUE;
 State[] states  = Thread.State.values();
 String regex =".*";
+boolean extended= "true".equals(ics.GetVar("extended"));
 
 if (COM.FutureTense.Interfaces.Utilities.goodString(ics.GetVar("regex"))){
     try {
@@ -147,6 +164,10 @@ if (COM.FutureTense.Interfaces.Utilities.goodString(m)){
 }
 StringBuilder str = new StringBuilder(4000);
 str.append("Full Thread Dump at ").append(new java.util.Date()).append(NEW_LINE);
-createThreadDump(str,max,states, Pattern.compile(regex));
+if (extended) {
+    createThreadDump(str,max,states, Pattern.compile(regex));
+} else {
+    createThreadDumpNative(str,max,states, Pattern.compile(regex));
+}
 out.write(str.toString());
 %></cs:ftcs>
