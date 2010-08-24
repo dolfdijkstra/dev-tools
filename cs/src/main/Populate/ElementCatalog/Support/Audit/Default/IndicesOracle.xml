@@ -49,7 +49,7 @@
             </tr>
     </LOOP>
 </table>
-<font color="gray">
+<div color="gray">
 <strong>IndexName - ColumnDetails</strong><br/>
 <b>NAME: </b>Name of the index<br/>
 <b>COLUMN(S): </b> Name of the column(s) indexed.<br/>
@@ -63,5 +63,5 @@ For indexes that enforce UNIQUE and PRIMARY KEY constraints, this value is alway
 <b>STATUS: </b>Current Status of the index<br/>
 <b>LAST_ANALYZED: </b>Time this Index was last analyzed.<br/>
 <b>TABLESPACE: </b>Name of the tablespace this index is in. <br/>
-</font>
+</div>
 </ftcs>
