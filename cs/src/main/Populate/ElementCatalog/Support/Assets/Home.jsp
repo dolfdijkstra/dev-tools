@@ -8,16 +8,13 @@
 // OUTPUT
 //%>
 <cs:ftcs>
-    <div class="entry-header">
+<ul class="entry-header">
+<li class="dangerous">
          <h2><a href='ContentServer?pagename=Support/Assets/BulkSaveAssets'><b>BulkSaveAssets</b></a></h2>
-    </div>
-    <div class="entry">
          <p>Allows to bulk load, save or void assets based on a entered query.</p>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="dangerous">
          <h2><a href='ContentServer?pagename=Support/Assets/checkAssets'><b>checkAssets</b></a></h2>
-    </div>
-    <div class="entry">
          <p>Checks for assets integrity.</p>
          <ul>
          <li>Checks to see if table exists in the DB</li>
@@ -29,15 +26,10 @@
          <li>Checks for corresponding MungoBlob row (or _Mungo)</li>
          <li>Checks for missing files</li>
          </ul>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="dangerous">
          <h2><a href='ContentServer?pagename=Support/Assets/ScatterAsset'><b>ScatterAsset</b></a></h2>
-    </div>
-    <div class="entry">
          <p>Loads and scatters an asset for inspection.</p>
-    </div>
-
-
-
-
+    </li>
+</ul>
 </cs:ftcs>

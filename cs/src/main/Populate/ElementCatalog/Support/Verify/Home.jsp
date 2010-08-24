@@ -16,41 +16,30 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-    <div class="entry-header">
+<ul class="entry-header">
+    <li class="read-only">
         <h2><a href="ContentServer?pagename=Support/Verify/Files/ftcslog">FutureTense Log</a></h2>
-    </div>
-    <div class="entry">
         <p>Displays last few lines from futuretense log (does not tail the log). To get latest log entries refresh the page. <br/>
                To get full log file add &full=yes at the end of url and refresh the page. <br/>
                To clear log file add &clearlog=true at the end of url and refresh the page.
         </p>
-    </div>
-        <div class="entry-header">
+    </li>
+        <li class="with-care">
              <h2><a href="ContentServer?pagename=Support/Verify/Cluster/TestFS">File System Test</a></h2>
-        </div>
-        <div class="entry">
              <p>Test the performance of the shared file system.</p>
-        </div>
-
-
-        <div class="entry-header">
+        </li>
+        <li class="read-only">
              <h2><a href="ContentServer?pagename=Support/Verify/Cluster/CheckSyncdirTime">CheckSyncdirTime</a></h2>
-        </div>
-        <div class="entry">
              <p>Check if the time of a file on disks in the usedisksync/event folder is about the same as the current jvm.<br/>
              We have seen problems in the past, where the shared drive was not correctly time sync'ed.</p>
-        </div>
-        <div class="entry-header">
+        </li>
+        <li class="with-care">
              <h2><a href="ContentServer?pagename=Support/Verify/Cluster/LockTest">LockTest</a></h2>
-        </div>
-        <div class="entry">
              <p>Locks a file in the sync dir.<br/>
              Try to lock the same file from an other jvm, it should fail. Only usefull when cs cluster is enabled</p>
-        </div>
-        <div class="entry-header">
+        </li>
+        <li class="with-care">
              <h2><a href="ContentServer?pagename=Support/Verify/Cluster/ClusterTest">Basic Cluster Test</a></h2>
-        </div>
-        <div class="entry">
             <p>Test unique id generation and session persistance. This element is designed to test failover of a cluster. It should work on all clusterable appservers. </p>
             <p>It shows following things: </p>
             <ol style="margin-left=20px;">
@@ -80,52 +69,43 @@
               session counter and unique id. The shut one appserver jvm down and reload the
               page in your open browsers. Again verify the results to make sure the session
               counter keeps increasing, and for some browsers the jvm id changes. </p>
-        </div>
-        <div class="entry-header">
+        </li>
+        <li class="with-care">
             <h2><a href="ContentServer?pagename=Support/Verify/i18n/encoding">Unicode Form Post</a></h2>
-        </div>
-        <div class="entry">
-            Post some unicode(UTF-8) chars to a CS table. Test creates a table jsp01 (if not exist) and posts unicode characters into the table and retrieves it back from the table.
+
+            <p>Post some unicode(UTF-8) chars to a CS table. Test creates a table jsp01 (if not exist) and posts unicode characters into the table and retrieves it back from the table.
                    If the characters posted are grabled on retreival then UTF-8 settings either on CS/Appserver/OS might be wrong. <br/>
-                   Unicode chars used for test (can be changed by user) are latin1, latinA, greek, arabic and japanese. Following methods are employed during post:
+                   Unicode chars used for test (can be changed by user) are latin1, latinA, greek, arabic and japanese. Following methods are employed during post:</p>
                    <ul style="margin-left=20px;">
                        <li> method=get </li>
                        <li> method=post enctype=application/x-www-form-urlencoded </li>
                        <li> method=post enctype=multipart/form-data </li>
                    </ul>
-        </div>
-        <div class="entry-header">
+        </li>
+        <li class="read-only">
             <h2><a href="ContentServer?pagename=Support/Verify/i18n/UnicodeChart">Unicode Chart</a></h2>
-        </div>
-        <div class="entry">
             <p>Check the display of different Unicode characters</p>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="dangerous">
          <h2><a href="ContentServer?pagename=Support/Verify/xml/exportFront">DB to XML</a></h2>
-    </div>
-    <div class="entry">
          <p>Displays all tables listed in SystemInfo table (temporary tables are filtered) in a choice box and an optinal textarea for user-defined query.
                 Selecting a table with empty query will output all table data in xml format. To output a subset of data, select the table and input a query to filter data.
-                Displays output for only one table at a time. </p>
-         Tips:
+                Displays output for only one table at a time.
+         Tips:</p>
          <ul style="margin-left=20px;">
              <li>Use browsers SaveAs to save the output to an xml.</li>
              <li>Use browsers back button to go back into the tool.</li>
          </ul>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="read-only">
          <h2><a href="ContentServer?pagename=Support/Verify/Cluster/HttpSession">HttpSession</a></h2>
-    </div>
-    <div class="entry">
          <p>Displays Basic session infomation</p>
-    </div>
-    <div class="entry-header">
-         <h2><a href="ContentServer?pagename=Support/Verify/Cluster/nodeFront">Cluster Nodes</a></h2>
-    </div>
-    <div class="entry">
-         <p>Runs Connectivity tests on Cluster Nodes (use appservers http port of cluster nodes).<br/>
-                Enter number of nodes in the cluster on page1. Next page displays url, username and password fields for each cluster node. Fill in relevant info and click submit.
-                Element posts a page to all cluster nodes and displays the response of each cluster node. Verify response is same across all cluster nodes.</p>
-    </div>
-
+    </li>
+    <li class="dangerous">
+        <h2><a href="ContentServer?pagename=Support/Verify/Cluster/nodeFront">Cluster Nodes</a></h2>
+        <p>Runs Connectivity tests on Cluster Nodes (use appservers http port of cluster nodes).<br/>
+        Enter number of nodes in the cluster on page1. Next page displays url, username and password fields for each cluster node. Fill in relevant info and click submit.
+        Element posts a page to all cluster nodes and displays the response of each cluster node. Verify response is same across all cluster nodes.</p>
+    </li>
+</ul>
 </cs:ftcs>

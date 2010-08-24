@@ -10,135 +10,92 @@
 //
 %><cs:ftcs>
     <% String[] tables={"AssetPublication","ApprovedAssetDeps","ApprovedAssets","AssetExportData","AssetPublishList","PublishedAssets","ActiveList","CheckOutInfo"}; %>
-
-    <div class="entry-header">
+<ul class="entry-header">
+    <li class="dangerous">
          <h2><a href='ContentServer?pagename=Support/TCPI/AP/UnApprove'><b>UnApprove</b></a></h2>
-    </div>
-    <div class="entry">
          <p>Forces Assets out of a Publish Queue.</p>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="dangerous">
          <h2><a href='ContentServer?pagename=Support/TCPI/AP/ForcePublish'><b>ForcePublishAssets</b></a></h2>
-    </div>
-    <div class="entry">
          <p>Force approve Assets to a given destination if they have been published to this destination before.</p>
-    </div>
-
-    <div class="entry-header">
+    </li>
+    <li class="dangerous">
         <h2><a href='ContentServer?pagename=Support/TCPI/AP/NotePublish'><b>Mark as Published</b></a></h2>
-    </div>
-    <div class="entry">
         <p>Mark approved assets as published to a destination. If the approved assets are already available on the target system, this tools notifies the approval system of that state.</p>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="read-only">
          <h2><a href='ContentServer?pagename=Support/TCPI/AP/PubQueues'><b>ApprovalStats</b></a></h2>
-    </div>
-    <div class="entry">
          <p>Calculates and Displays Approval and Publish statistics for all Publish Destinations.</p>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="read-only">
          <h2><a href='ContentServer?pagename=Support/TCPI/AP/ListHeld'><b>ListHeldAssets</b></a></h2>
-    </div>
-    <div class="entry">
          <p>Lists Assets that are in a Held State (across all Destinations)</p>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="read-only">
          <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CheckDates'><b>CheckDates</b></a></h2>
-    </div>
-    <div class="entry">
          <p>Verifies Asset Dates in ApprovedAssets against PublishedAssets</p>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="dangerous">
          <h2><a href='ContentServer?pagename=Support/TCPI/AP/ApproveHeldAndChanged'><b>ApproveHeldAndChanged</b></a></h2>
-    </div>
-    <div class="entry">
          <p>List and Approve Assets either in a Held/Changed State.</p>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="dangerous">
          <h2><a href='ContentServer?pagename=Support/TCPI/AP/DuplicatePubkeyFront'><b>RemoveDuplicatePubkeys</b></a></h2>
-    </div>
-    <div class="entry">
          <p>Delete Duplicate Pubkeys for Static Publish Destinations</p>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="dangerous">
          <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CountAssetsReverse'><b>AssetPublicationReverse</b></a></h2>
-    </div>
-    <div class="entry">
         <p>This lists the number of missing AssetPublication table entries for assets in the database.</p>
-    </div>
+    </li>
         <% for (int i=0; i< tables.length;i++){ %>
-         <div class="entry-header">
+         <li class="with-care">
               <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CountAssets&tname=<%= tables[i] %>'><b><%= tables[i] %></b></a></h2>
-         </div>
-         <div class="entry">
               <p>This lists the number of missing assets in the database for table <%= tables[i] %>.</p>
-         </div>
+         </li>
         <% } %>
-    <div class="entry-header">
+    <li class="with-care">
          <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CountAssetRelationTree'><b>AssetRelationTree</b></a></h2>
-    </div>
-    <div class="entry">
          <p>This lists the number of missing assets in the database for table AssetRelationTree.</p>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="dangerous">
          <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CountPubKeyTable'><b>PubKeyTable</b></a></h2>
-    </div>
-    <div class="entry">
         <p>This lists the number of missing assets in the database for table PubKeyTable.</p>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="dangerous">
         <h2><a href='ContentServer?pagename=Support/TCPI/SQL/Index'><b>SQLScripts</b></a></h2>
-    </div>
-    <div class="entry">
-             <p>This is the index page to the sql scripts to be run in sqlplus</p>
-    </div>
-    <div class="entry-header">
-         <h2><a href='ContentServer?pagename=Support/TCPI/AP/CheckPubKeyForPublishable'><b>CheckPubKeyForPublishable</b></a></h2>
-    </div>
-    <div class="entry">
+        <p>This is the index page to the sql scripts to be run in sqlplus</p>
+    </li>
+    <li class="with-care">
+        <h2><a href='ContentServer?pagename=Support/TCPI/AP/CheckPubKeyForPublishable'><b>CheckPubKeyForPublishable</b></a></h2>
         <p>This lists the content of urlkey fields of PubKeyTable for all publishable assets.</p>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="with-care">
          <h2><a href='ContentServer?pagename=Support/TCPI/AP/TopDependencies'><b>TopDependencies</b></a></h2>
-    </div>
-    <div class="entry">
         <p>Shows ApprovedAssets that have a lot of dependencies. <br/> Has ability to force approve assets for all targets it is currently approved.</p>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="dangerous">
          <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CountAssetApprAndDeps'><b>CountAssetApprAndDeps</b></a></h2>
-    </div>
-    <div class="entry">
          <p>Does a count on ApprovedAssets and ApprovedAssetDeps tables for their references.</p>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="dangerous">
          <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/FindWrongTargetidInApprovedAssetDeps'><b>FindWrongTargetidInDeps</b></a></h2>
-    </div>
-    <div class="entry">
          <p>Checks for the referential integrity between ApprovedAssets and ApprovedAssetDeps via targetid. Time consuming utility.</p>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="with-care">
          <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CountHeldWithoutChildren'><b>CountHeldWithoutChildren</b></a></h2>
-    </div>
-    <div class="entry">
          <p>Checks for assets that are held by do not have any dependants.<br/>This is also an indication that the targetids do not match.</p>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="dangerous">
         <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CleanAssetPublishLists'><b>CleanAssetPublishLists</b></a></h2>
-    </div>
-    <div class="entry">
         <p>Checks for leftover rows in the tempory publish tables. <br/>There should only be data in these tables when there are not pubsessions running.</p>
-    </div>
-    <div class="entry-header">
+    </li>
+    <li class="read-only">
         <h2><a href='ContentServer?pagename=Support/TCPI/AP/PublishPerformance'><b>Publish Performance</b></a></h2>
-    </div>
-    <div class="entry">
         <p>Get info on the performance of publishes of type MirrorPublishing if VERBOSE=true is set as a publish argument.</p>
-    </div>
-
-    <div class="entry-header">
+    </li>
+    <li class="with-care">
         <h2><a href='ContentServer?pagename=Support/TCPI/AP/EventForm'><b>Current Events</b></a></h2>
-    </div>
-    <div class="entry">
         <p>Lists, Enables, Disables and Destroys all available Events</p>
-    </div>
+    </li>
+</ul>
 </cs:ftcs>

@@ -17,9 +17,7 @@ The script can also be <satellite:link pagename="Support/Performance/Standard/sc
 <li>The path to Satellite is /cs/Satellite, it is easy to change this in the script.</li>
 </ul>
 <br/><br/>
-<pre style="background-color: #CCCCCC">
-<%= org.apache.commons.lang.StringEscapeUtils.escapeHtml(ics.ReadPage("Support/Performance/Standard/script",new FTValList())) %>
-</pre>
+<code><%= org.apache.commons.lang.StringEscapeUtils.escapeHtml(ics.ReadPage("Support/Performance/Standard/script",new FTValList())) %></code>
 <table>
 <tr>
 <th>ContentServer</th>
