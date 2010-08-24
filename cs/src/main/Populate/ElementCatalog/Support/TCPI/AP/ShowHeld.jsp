@@ -37,8 +37,9 @@ updatedby = <ics:listget listname="thisAsset" fieldname="updatedby" /><BR/>
 updateddate = <ics:listget listname="thisAsset" fieldname="updateddate" /><BR/>
 sites = <ics:listloop listname="sites">
         <ics:listget listname="sites" fieldname="value" output="pubid"/>
+        <% if ("0".equals(ics.GetVar("pubid"))){ %>All Sites<%} else { %>
         <ics:sql sql='<%= ics.ResolveVariables("SELECT name as value FROM Publication WHERE id=Variables.pubid") %>' table='Publication' listname="sitename"/>
-        <ics:listget listname="sitename" fieldname="value"/>,
+        <ics:listget listname="sitename" fieldname="value"/>, <%}%>
     </ics:listloop><BR/>
 </h5>
 
