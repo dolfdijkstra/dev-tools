@@ -27,21 +27,21 @@
               xfile = filename.substring(0,filename.lastIndexOf(","));
           else
               xfile = filename.substring(0,filename.lastIndexOf("."));
-          
+
           String dirname = urlfile.substring(0,urlfile.lastIndexOf(filename));
           String oldpath = path+dirname+filename;
 
           File dirfiles = new File(path+dirname);
           String[] files = dirfiles.list();
-          
+
           if (files.length > 0)
              out.print("<font color=\"orange\">File Rollups: </font>");
           for (int j=0; j<files.length; j++) {
               String yfile = null;
               if (Utilities.isFolder(path+dirname+files[j])!=0) {
-                  if (files[j].lastIndexOf(",") < 0) 
+                  if (files[j].lastIndexOf(",") < 0)
                       yfile = files[j].substring(0,files[j].lastIndexOf("."));
-                  else 
+                  else
                       yfile = files[j].substring(0,files[j].lastIndexOf(","));
 
                   if (xfile.equalsIgnoreCase(yfile)) {
@@ -58,16 +58,16 @@
 %>
 
 <%
-	String query = "SELECT url, elementname FROM ElementCatalog ORDER BY elementname";
-    String defquery = "SELECT defdir from SystemInfo where tblname='ElementCatalog'";
-	String table = "ElementCatalog";
-	String listname = null;
-	String defdir=null;
-	IList resultList;
-	StringBuffer errstr = new StringBuffer();
+    String query = "SELECT url, elementname FROM ElementCatalog ORDER BY elementname";
+    String defquery = "SELECT defdir FROM SystemInfo WHERE tblname='ElementCatalog'";
+    String table = "ElementCatalog";
+    String listname = null;
+    String defdir=null;
+    IList resultList;
+    StringBuffer errstr = new StringBuffer();
 
     ics.ClearErrno();
-    resultList = ics.SQL("SystemInfo", defquery, listname, -1, true, errstr); 
+    resultList = ics.SQL("SystemInfo", defquery, listname, -1, true, errstr);
     if (ics.GetErrno()==0 && resultList.hasData()){
         int numrows = resultList.numRows();
         for (int i=1; i<=numrows; i++) {
@@ -88,7 +88,7 @@
 
     ics.ClearErrno();
     int count=0;
-    resultList = ics.SQL(table, query, listname, -1, true, errstr); 
+    resultList = ics.SQL(table, query, listname, -1, true, errstr);
     if (ics.GetErrno()==0 && resultList.hasData()){
         int numrows = resultList.numRows();
         out.print("Total Number of Elements: <b>"+numrows+"</b>");
