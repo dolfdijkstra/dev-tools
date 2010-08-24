@@ -33,7 +33,7 @@ public void jspInit(){
 
 }
 %><cs:ftcs><%
-ics.SetVar("st_version","3.7.3.0");
+ics.SetVar("st_version","3.8.0");
 %><satellite:link pagename='Support/css' satellite="true" outstring="cssURL" ><satellite:argument name="v" value="22"/></satellite:link><%
 %><satellite:link pagename='Support/prototype' satellite="true" outstring="prototypeURL" ><satellite:argument name="v" value="1.6.1"/></satellite:link><%
 %><head><script type="text/javascript">var began_loading = new Date().getTime();</script>
