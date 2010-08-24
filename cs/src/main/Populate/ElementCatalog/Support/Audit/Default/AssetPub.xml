@@ -12,7 +12,7 @@
 <!-- first section lists publications that are referenced in the assetpublication table -->
 	
 <setvar NAME="tablename" VALUE="AssetPublication"/>
-<EXECSQL SQL="select DISTINCT pubid as pubid from AssetPublication" LIST="pubs"/> 
+<EXECSQL SQL="select DISTINCT pubid as pubid from AssetPublication WHERE pubid !=0" LIST="pubs"/> 
 <center><b>There are <CSVAR NAME="pubs.#numRows"/> Publications</b>
 <table class="altClass" style="width:50%">
 <LOOP LIST="pubs">
@@ -38,9 +38,9 @@
 
 <br/><br/><b>If any of the names do not make sense you have 'orphans' in your AssetPublication table which should be cleaned out</b><br/>
 <table class="altClass">
-<EXECSQL SQL="select DISTINCT pubid as pubid from AssetPublication" LIST="P"/>
-<LOOP LIST="P">
-    <EXECSQL SQL="select name, id  from publication where id = P.pubid" LIST="N"/>
+
+<LOOP LIST="pubs">
+    <EXECSQL SQL="select name, id  from Publication where id = pubs.pubid" LIST="N"/>
     <IF COND="Variables.errno=-101">
     <THEN>
         <SETVAR NAME="ORPHAN" VALUE="1"/>			
@@ -51,7 +51,7 @@
     </IF>
 
     <SETVAR NAME="NNAME" VALUE="N.name"/>
-    <SETVAR NAME="pubid" VALUE="P.pubid"/>
+    <SETVAR NAME="pubid" VALUE="pubs.pubid"/>
 
     <tr><th colspan="4"><b>Site: <CSVAR NAME="Variables.NNAME"/></b></th></tr>
     <IF COND="Variables.ORPHAN=1">
