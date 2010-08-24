@@ -124,8 +124,8 @@ static class View {
     }
     tBodyOpen=true;
      out.print("<tbody>");
-     out.print("<tr class=\"sectionTitle\">");
-     out.print ("<td colspan=\"2\">");
+     out.print("<tr>");
+     out.print ("<th colspan=\"2\">");
      out.print(sValue);
      out.print("</th>");
      out.print("</tr>");
@@ -572,7 +572,7 @@ static class View {
 
         if (Utilities.goodString(webXmlPath)){
             String webXml = Utilities.readFile(webXmlPath);
-            printTableRowSpan2( "web.xml", encodeString(webXml));
+            printTableRowSpan2( "web.xml", "<code>"+encodeString(webXml) +"</code>");
         }
 
 
@@ -584,7 +584,17 @@ static class View {
         NumberFormat formatter = NumberFormat.getNumberInstance(Locale.US);
         if (Utilities.goodString(path) && new File(path).isDirectory()){
             File[] files = new File(path).listFiles();
-            java.util.Arrays.sort(files);
+            final java.text.Collator usCollator = java.text.Collator.getInstance(Locale.US);
+            java.util.Comparator<File> comp = new java.util.Comparator<File>(){
+                 public int compare(File o1, File o2){
+                     return usCollator.compare(o1.getName(),o2.getName());
+                 }
+
+                 public boolean equals(Object obj) {return obj==this;}
+
+
+            };
+            java.util.Arrays.sort(files, comp);
             for (File f:files){
                 if (f.isFile()){
                     printTableRow( f.getName(), formatter.format(f.length()));
