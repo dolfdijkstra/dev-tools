@@ -33,13 +33,29 @@ if (bContinue) {
 
     <h3>Check <i><ics:getvar name="tname"/></i> for Missing Assets</h3><br/>
     <ics:clearerrno />
-
+    <ics:sql sql='<%= ics.ResolveVariables("SELECT DISTINCT assettype FROM Variables.tname ORDER BY assettype") %>' table='<%= ics.GetVar("tname") %>' listname="assettypes"/>
     <ics:sql sql='<%= ics.ResolveVariables("SELECT id,name  FROM Publication ORDER BY name") %>' table='Publication' listname="sites"/>
     <ics:sql sql='<%= ics.ResolveVariables("SELECT count(*) as num FROM Variables.tname") %>' table='<%= ics.GetVar("tname") %>' listname="tcount"/>
-    Number of rows in the table: <b><ics:listget listname="tcount" fieldname="num"/></b>
+    Number of rows in the table: <b><ics:listget listname="tcount" fieldname="num"/></b><br/>
     <ics:clearerrno />
 
-    <% if (Utilities.goodString(ics.GetVar("assettype"))){ %>
+    <% if (Utilities.goodString(ics.GetVar("assettype"))){
+                IList assetTypes = ics.GetList("assettypes");
+                int num = assetTypes.numRows();
+                for (int i=1; i<=  num;i++){
+                    assetTypes.moveTo(i);
+                    if (ics.GetVar("assettype").equals(assetTypes.getValue("assettype"))){
+                        if (i+1<=num) {
+                            i++;
+                            assetTypes.moveTo(i);
+                            %><a href='ContentServer?pagename=<ics:getvar name="pagename"/>&tname=<ics:getvar name="tname" />&assettype=<%= assetTypes.getValue("assettype") %>'>Next >> <%= assetTypes.getValue("assettype") %></a><%
+                            i=num+1;
+                        }
+                    }
+                }
+
+
+        %>
         <table class="altClass"><tr>
         <td>
             <table>
@@ -112,7 +128,7 @@ if (bContinue) {
         </tr></table>
     <% } %>
     <ics:clearerrno />
-    <ics:sql sql='<%= ics.ResolveVariables("SELECT DISTINCT assettype FROM Variables.tname ORDER BY assettype") %>' table='<%= ics.GetVar("tname") %>' listname="assettypes"/>
+
     <br/>
     <table class="altClass" style="width:40%">
     <tr>
