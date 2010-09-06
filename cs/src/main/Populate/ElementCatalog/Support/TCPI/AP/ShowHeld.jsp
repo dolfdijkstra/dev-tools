@@ -1,21 +1,21 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" %>
-<%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
-<%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
-<%//
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
+%><%//
 // Support/TCPI/AP/ShowHeld
 //
 // INPUT
 //
 // OUTPUT
-//%>
-<%@ page import="COM.FutureTense.Interfaces.FTValList" %>
-<%@ page import="COM.FutureTense.Interfaces.ICS" %>
-<%@ page import="COM.FutureTense.Interfaces.IList" %>
-<%@ page import="COM.FutureTense.Interfaces.Utilities" %>
-<%@ page import="COM.FutureTense.Util.ftErrors" %>
-<%@ page import="COM.FutureTense.Util.ftMessage"%>
-<cs:ftcs>
-<h3><center>Detail View - Asset Dependents</center></h3>
+//
+%><%@ page import="COM.FutureTense.Interfaces.FTValList"
+%><%@ page import="COM.FutureTense.Interfaces.ICS"
+%><%@ page import="COM.FutureTense.Interfaces.IList"
+%><%@ page import="COM.FutureTense.Interfaces.Utilities"
+%><%@ page import="COM.FutureTense.Util.ftErrors"
+%><%@ page import="COM.FutureTense.Util.ftMessage"
+%><cs:ftcs>
+<h3>Detail View - Asset Dependents</h3>
 <% if (ics.GetVar("assetid")!=null) { %>
 <%//<b>Assetid: <ics:getvar name="assetid" /></b><hr/> %>
 
@@ -44,21 +44,20 @@ sites = <ics:listloop listname="sites">
 </h5>
 
 <%// ********************* RENDER PUBKEY TABLE RECORDS ********************* %>
-<ics:sql sql='<%= ics.ResolveVariables("SELECT id FROM ApprovedAssets WHERE assetid=Variables.assetid") %>' table="ApprovedAssets" listname="depID"/>
-DEBUG: SQL errno = <ics:geterrno/>, id=<ics:listget listname="depID" fieldname="id"/>
 
 <ics:sql sql='<%= ics.ResolveVariables("SELECT * FROM PubKeyTable WHERE assetid=Variables.assetid ORDER BY targetid") %>' table="PubKeyTable" listname="keys"/>
 DEBUG: SQL errno = <ics:geterrno/>
 
 <table class="altClass">
-<tr><th colspan="6" style="background-color:#58a">PubKeyTable</th></tr>
+<tr><th colspan="6">PubKeyTable</th></tr>
 <tr>
     <th>#</th>
     <th>id</th>
     <th>targetid</th>
     <th>newkey</th>
-    <th>localkey</th>
     <th>permanent</th>
+    <th>localkey</th>
+
 </tr>
 
 <ics:listloop listname="keys">
@@ -67,9 +66,23 @@ DEBUG: SQL errno = <ics:geterrno/>
         <td><ics:listget listname="keys" fieldname="id"/></td>
         <td><ics:listget listname="keys" fieldname="targetid"/></td>
         <td><ics:listget listname="keys" fieldname="newkey" /></td>
-        <td><ics:listget listname="keys" fieldname="localkey"/></td>
         <td><ics:listget listname="keys" fieldname="ispermanent"/></td>
-    </tr>
+        <td><ics:listget listname="keys" fieldname="localkey"/></td>
+     </tr>
+    <ics:sql sql='<%= ics.ResolveVariables("SELECT pubkeyid, assettype, assetid, assetdate FROM PublishedAssets WHERE pubkeyid=keys.id") %>' table="PublishedAssets" listname="publishedassets"/>
+    <%
+    if (ics.GetErrno()!=-101) {
+        %><ics:listloop listname="publishedassets">
+        <tr>
+            <td align="right" colspan="2">&nbsp;</td>
+            <td align="right">PublishedAssets <ics:listget listname="publishedassets" fieldname="#curRow"/></td>
+            <td colspan="2"><a href='ContentServer?pagename=Support/TCPI/AP/ShowHeld&assetid=<ics:listget listname="publishedassets" fieldname="assetid" />'><ics:listget listname="publishedassets" fieldname="assettype" /> -
+                <ics:listget listname="publishedassets" fieldname="assetid" /></a></td>
+            <td><ics:listget listname="publishedassets" fieldname="assetdate" /></td>
+        </tr>
+        </ics:listloop>
+    <%}%>
+
 </ics:listloop>
 </table>
 Legend:<br/>
@@ -81,7 +94,7 @@ Legend:<br/>
 
 <%// ********************* RENDER APPROVEDASSETS RECORDS FOR THE CURRENT ASSET ********************* %>
 <table class="altClass">
-    <tr><th colspan="12" style="background-color:#58a">ApprovedAssets</th></tr>
+    <tr><th colspan="12">ApprovedAssets</th></tr>
     <tr>
         <th>#</th>
         <th>id</th>
@@ -154,7 +167,7 @@ DEBUG: SQL errno = <ics:geterrno/>
 <% if (ics.GetErrno() ==0) { %>
     <h4>Broken Refs found for this asset</h4>
     <table class="altClass">
-        <tr><th colspan="9" style="background-color:#58a">ApprovedAssetDeps (broken refs)</th></tr>
+        <tr><th colspan="9">ApprovedAssetDeps (broken refs)</th></tr>
         <tr>
             <th>#</th>
             <th>id</th>
@@ -178,7 +191,7 @@ DEBUG: SQL errno = <ics:geterrno/>
                 <ics:listget listname="brokenrefs" fieldname="ownerid" output="ownerid" />
                 <ics:clearerrno/>
                 <ics:sql sql='<%= ics.ResolveVariables("SELECT assetid FROM ApprovedAssets WHERE id=Variables.ownerid")  %>'  table="ApprovedAssets" listname="owner"/>
-                <a href='ContentServer?pagename=Support/SysAdmin/AP/ShowHeld&assetid=<ics:listget listname="owner" fieldname="assetid" />'><ics:getvar name="ownerid"  /></a>
+                <a href='ContentServer?pagename=Support/TCPI/AP/ShowHeld&assetid=<ics:listget listname="owner" fieldname="assetid" />'><ics:getvar name="ownerid"  /></a>
             </td>
             <td><ics:listget listname="brokenrefs" fieldname="assettype" /></td>
             <td><ics:listget listname="brokenrefs" fieldname="assetid" /></td>
@@ -210,7 +223,7 @@ DEBUG: SQL errno = <ics:geterrno/>
         <% if (ics.GetErrno()==0) { %>
         <h5>Listing not more than 100 records</h5>
     <table class="altClass">
-        <tr><th colspan="12" style="background-color:#58a">ApprovedAssetDeps - Child Dependencies for <font color="black"><ics:listget listname="PubTargetName" fieldname="value" /></font></th></tr>
+        <tr><th colspan="12">ApprovedAssetDeps - Child Dependencies for <font color="black"><ics:listget listname="PubTargetName" fieldname="value" /></font></th></tr>
         <tr>
             <th>#</th>
             <th>id</th>
@@ -298,7 +311,7 @@ DEBUG: SQL errno = <ics:geterrno/>
 DEBUG: SQL errno = <ics:geterrno/>
 <h5>Listing not more than 100 records</h5>
 <table class="altClass">
-    <tr><th colspan="11" style="background-color:#58a">ApprovedAssetDeps - Parents of Current Asset</th></tr>
+    <tr><th colspan="11">ApprovedAssetDeps - Parents of Current Asset</th></tr>
     <tr>
         <th>#</th>
         <th>id</th>
@@ -368,9 +381,44 @@ Legend:<br/>
 <li>assetdeptype: E=exists, V=exact, G=greater</li>
 <li>lastpub (dep existed @ last pub): T=true, F=false</li>
 </ol>
-<% } else { %>
-    <form method="POST" action='ContentServer?pagename=<%= ics.GetVar("pagename") %>'>
+<ics:sql sql='<%= ics.ResolveVariables("SELECT pubkeyid, assettype, assetid, assetdate FROM PublishedAssets WHERE assetid=Variables.assetid") %>' table="PublishedAssets" listname="publishedassets"/>
+<%
+if (ics.GetErrno()!=-101) {
+    %>Errno: <b><ics:geterrno/></b>, PubKeys for this PublishedAsset (via PublishedAssets) : <b><ics:listget listname="publishedassets" fieldname="#numRows"/></b>
+      <table class="altClass">
+            <tr>
+                <th>Nr</th>
+                <th>Pubkeyid</th>
+                <th>Targetid</th>
+                <th>Newkey</th>
+                <th>Localkey</th>
+                <th>Permanent</th>
+                <th>Assetdate</th>
+            </tr>
+            <ics:listloop listname="publishedassets">
+            <tr>
+                <td align="right"><ics:listget listname="publishedassets" fieldname="#curRow"/></td>
+                <ics:sql sql='<%= ics.ResolveVariables("SELECT * FROM PubKeyTable WHERE id=publishedassets.pubkeyid") %>' table="PubKeyTable" listname="keys"/>
+                <td><ics:listget listname="publishedassets" fieldname="pubkeyid" /></td>
+                <td><ics:listget listname="keys" fieldname="targetid" /></td>
+                <td><ics:listget listname="keys" fieldname="newkey" /></td>
+                <td><ics:listget listname="keys" fieldname="localkey" /></td>
+                <td><ics:listget listname="keys" fieldname="ispermanent" /></td>
+                <td><ics:listget listname="publishedassets" fieldname="assetdate" /></td>
+            </tr>
+            </ics:listloop>
+        </table><%
+  } else {
+     %><font color="red">No PublishedAssets to Display</font> <br/><%
+  }
+
+
+
+
+
+} else {
+    %><form method="POST" action='ContentServer?pagename=<%= ics.GetVar("pagename") %>'>
     <b>Any Assetid: </b><input type="text" name="assetid" value=""/>&nbsp;<input type="Submit" name="showheld" value="ShowHeld"><br/>
-    </form>
-<% } %>
-</cs:ftcs>
+    </form><%
+}
+%></cs:ftcs>

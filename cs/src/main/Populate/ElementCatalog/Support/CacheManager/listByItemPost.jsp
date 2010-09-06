@@ -16,10 +16,10 @@
 <%@ page import="COM.FutureTense.Interfaces.Utilities"%>
 <%@ page import="COM.FutureTense.Util.ftErrors"%>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
-<%@ page import="COM.FutureTense.Util.ftStatusCode"%>
-<%@ page import="COM.FutureTense.Cache.CacheManager"%>
-<%@ page import="COM.FutureTense.Cache.CacheHelper"%>
-<cs:ftcs>
+<%@ page import="COM.FutureTense.Util.ftStatusCode"
+%><%@ page import="java.util.Date"
+%><%@ page import="com.fatwire.cs.core.db.Util"
+%><cs:ftcs>
 <h3>List Pages by Item</h3><BR/>
 <%
 String idval = ics.GetVar("idlist");
@@ -31,8 +31,9 @@ if (!Utilities.goodString(idval)){
 } else {
     String idList = Utilities.replaceAll(idval,";","','");
     idList = "'"+ idList +"'";
+    Date now = new Date();
 %>
-    <ics:sql sql='<%= "SELECT SystemItemCache.id as id, SystemPageCache.id as pid, SystemPageCache.urlqry, SystemPageCache.mtime FROM SystemPageCache, SystemItemCache WHERE SystemItemCache.page = SystemPageCache.id AND SystemItemCache.id IN (" + idList +") ORDER BY id,mtime" %>' table="SystemPageCache,SystemItemCache" listname="pages" limit="1000"/>
+    <ics:sql sql='<%= "SELECT SystemItemCache.id as id, SystemPageCache.id as pid, SystemPageCache.urlqry, SystemPageCache.mtime,SystemPageCache.etime FROM SystemPageCache, SystemItemCache WHERE SystemItemCache.page = SystemPageCache.id AND SystemItemCache.id IN (" + idList +") ORDER BY id,mtime" %>' table="SystemPageCache,SystemItemCache" listname="pages" limit="1000"/>
     <% if (ics.GetList("pages").numRows() ==1000) {%><p>Limiting output to 1000 rows.</p><%}%>
     <table class="altClass">
         <tr>
@@ -42,7 +43,7 @@ if (!Utilities.goodString(idval)){
             <th width="45%">Query String</th>
         </tr>
         <ics:listloop listname="pages">
-        <tr>
+        <tr <%= now.after(Util.parseJdbcDate(ics.ResolveVariables("pages.etime"))) ? "style='background-color:red'":"" %>>
             <td nowrap align="right"><ics:resolvevariables name="pages.#curRow"/></td>
             <td nowrap><ics:resolvevariables name="pages.id"/></td>
             <td nowrap><ics:resolvevariables name="pages.mtime"/></td>

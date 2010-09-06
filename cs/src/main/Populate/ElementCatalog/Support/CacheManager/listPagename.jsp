@@ -67,6 +67,17 @@ static String getQSStripped(String qs){
         <td><ics:resolvevariables name="pages.num"/></td>
     </tr>
     </ics:listloop>
+    <ics:sql sql='<%= "SELECT count(id) AS num FROM SystemPageCache WHERE etime < {ts \'"+Util.formatJdbcDate( new Date()) +"\'}" %>' table="SystemPageCache" listname="pages"/>
+    <ics:listloop listname="pages">
+    <% String num = ics.ResolveVariables("pages.num");
+    if (num !=null && Integer.parseInt(num) >0){
+        %><tr style='background-color:red'>
+        <td colspan="2"><b>Expired</b></td>
+        <td><b><ics:resolvevariables name="pages.num"/></b></td>
+    </tr>
+    <%}%>
+    </ics:listloop>
+
 </table>
 <% } else if ("itempages".equals(ics.GetVar("mode"))) { %>
 <ics:sql sql='<%= ics.ResolveVariables("SELECT * FROM SystemPageCache sp, SystemItemCache si WHERE sp.id=si.page and sp.pagename=\'Variables.pname\' and si.id=\'Variables.iname\' ORDER BY sp.etime") %>' table="SystemPageCache" listname="pages"/>

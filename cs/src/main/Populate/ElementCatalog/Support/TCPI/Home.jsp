@@ -11,6 +11,10 @@
 %><cs:ftcs>
     <% String[] tables={"AssetPublication","ApprovedAssetDeps","ApprovedAssets","AssetExportData","AssetPublishList","PublishedAssets","ActiveList","CheckOutInfo"}; %>
 <ul class="entry-header">
+    <li class="read-only">
+         <h2><a href='ContentServer?pagename=Support/TCPI/AP/ShowHeld'><b>DetailStatus</b></a></h2>
+         <p>Shows approval detail of an assets</p>
+    </li>
     <li class="dangerous">
          <h2><a href='ContentServer?pagename=Support/TCPI/AP/UnApprove'><b>UnApprove</b></a></h2>
          <p>Forces Assets out of a Publish Queue.</p>
@@ -89,6 +93,10 @@
         <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CleanAssetPublishLists'><b>CleanAssetPublishLists</b></a></h2>
         <p>Checks for leftover rows in the tempory publish tables. <br/>There should only be data in these tables when there are not pubsessions running.</p>
     </li>
+    <li class="dangerous">
+        <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CleanPubDataStore'><b>CleanPubDataStore</b></a></h2>
+        <p>Checks for leftover rows in FW_PubDataStore.</p>
+</li>
     <li class="read-only">
         <h2><a href='ContentServer?pagename=Support/TCPI/AP/PublishPerformance'><b>Publish Performance</b></a></h2>
         <p>Get info on the performance of publishes of type MirrorPublishing if VERBOSE=true is set as a publish argument.</p>
