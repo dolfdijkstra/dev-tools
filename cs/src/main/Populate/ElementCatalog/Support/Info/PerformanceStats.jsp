@@ -14,6 +14,7 @@
 <center><h3>Time Debug Instrumentation</h3></center>
 
     <input type='button' value='Refresh' onclick='return getCacheData()' />
+    <input type='button' value='Clear Stats' onclick='return clearStats()' />
     <div id="table_div"></div>
 
     <script type="text/javascript">
@@ -38,6 +39,15 @@
         query.send(handleQueryResponse);
         return true;
       }
+      function clearStats() {
+        var query = new google.visualization.Query('ContentServer?pagename=Support/Info/PerformanceStatsJson&clear=true');
+        query.setTimeout(5);
+        //query.setRefreshInterval(10);
+        // Send the query with a callback function.
+        query.send(handleQueryResponse);
+        return true;
+      }
+
       function handleQueryResponse(response) {
         if (response.isError()) {
           alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
@@ -52,7 +62,8 @@
        }
        var options = {allowHtml: true,showRowNumber: true};
        table.draw(data, options);
+       }
 
-}
+
 </script>
 </cs:ftcs>

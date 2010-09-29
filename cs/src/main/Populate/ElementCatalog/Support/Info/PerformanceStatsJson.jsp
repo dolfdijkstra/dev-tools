@@ -32,7 +32,9 @@ private Logger log;
 
 private Level oldLevel;
 private boolean oldAdditivity;
+private ConcurrentHashMap<String, Stat> stats = new ConcurrentHashMap<String, Stat>();
 public void jspInit() {
+  stats.clear();
   log = Logger.getLogger(StatisticsAppender.TIME_DEBUG);
   if (log.getAppender("stats") == null) {
       oldLevel = log.getLevel();
@@ -42,11 +44,12 @@ public void jspInit() {
         //log.setAdditivity(false);
       }
 
-      StatisticsAppender a = new StatisticsAppender();
+      StatisticsAppender a = new StatisticsAppender(stats);
       a.setName("stats");
       a.activateOptions();
       log.addAppender(a);
   }
+
 
 }
 
@@ -56,8 +59,14 @@ public void jspDestroy() {
       log.setLevel(oldLevel);
       //log.setAdditivity(oldAdditivity);
   }
+  stats.clear();
 }
 
+public Stat[] getStats() {
+    synchronized (stats) {
+        return stats.values().toArray(new Stat[0]);
+    }
+}
 
 
 static class StatisticsAppender extends AppenderSkeleton {
@@ -65,7 +74,7 @@ static class StatisticsAppender extends AppenderSkeleton {
 
 
     private Pattern pagePattern = Pattern
-            .compile("Execute time  Hours: (\\d{1,}) Minutes: (\\d{1,}) Seconds: (\\d{1,}):(\\d{3})");
+            .compile("Execute page ([^ ]*) Hours: (\\d{1,}) Minutes: (\\d{1,}) Seconds: (\\d{1,}):(\\d{3})");
 
     private Pattern elementPattern = create("element", true);
 
@@ -77,12 +86,11 @@ static class StatisticsAppender extends AppenderSkeleton {
     private Pattern updatePattern = create("update statement", true);
 
     private Pattern queryPatternWithDot = create("query", true);
-    private static ConcurrentHashMap<String, Stat> stats = new ConcurrentHashMap<String, Stat>();
 
-    public static Stat[] getStats() {
-        synchronized (stats) {
-            return stats.values().toArray(new Stat[0]);
-        }
+    private ConcurrentHashMap<String, Stat> stats;
+
+    StatisticsAppender(ConcurrentHashMap<String, Stat> stats){
+        this.stats=stats;
     }
 
     //@Override
@@ -113,9 +121,9 @@ static class StatisticsAppender extends AppenderSkeleton {
 
     private void parseIt(String s) throws Exception {
 
-        long[] pr = this.pageResult(pagePattern.matcher(s));
-        if (pr.length == 1) {
-            update("page", pr[0]);
+        String[] pr = this.pageResult(pagePattern.matcher(s));
+        if (pr.length == 2) {
+            update("page", pr[0], Long.parseLong(pr[1]));
             return;
         }
         String[] r = result(elementPattern.matcher(s));
@@ -172,7 +180,7 @@ static class StatisticsAppender extends AppenderSkeleton {
 
         int t = s == null ? -1 : s.trim().indexOf(" ");
         if (t != -1) {
-            return s.substring(0, t).toLowerCase();
+            return s.trim().substring(0, t).toLowerCase();
         }
         return "unknown";
     }
@@ -182,17 +190,19 @@ static class StatisticsAppender extends AppenderSkeleton {
                 + (dot ? "." : ""), Pattern.DOTALL);
     }
 
-    private long[] pageResult(Matcher m) {
-        long[] r = new long[0];
+    private String[] pageResult(Matcher m) {
+        String[] r = new String[0];
         if (m.matches()) {
             MatchResult mr = m.toMatchResult();
-            if (mr.groupCount() == 4) {
-                long t = Long.parseLong(mr.group(1)) * (3600000L);
-                t += Long.parseLong(mr.group(2)) * (60000L);
-                t += Long.parseLong(mr.group(3)) * (1000L);
-                t += Long.parseLong(mr.group(4));
-                r = new long[1];
-                r[0] = t;
+            if (mr.groupCount() == 5) {
+
+                long t = Long.parseLong(mr.group(2)) * (3600000L);
+                t += Long.parseLong(mr.group(3)) * (60000L);
+                t += Long.parseLong(mr.group(4)) * (1000L);
+                t += Long.parseLong(mr.group(5));
+                r = new String[2];
+                r[0] = mr.group(1).trim();
+                r[1] = Long.toString(t);
 
             }
 
@@ -206,7 +216,7 @@ static class StatisticsAppender extends AppenderSkeleton {
             MatchResult mr = m.toMatchResult();
             r = new String[mr.groupCount()];
             for (int i = 0; i < mr.groupCount(); i++) {
-                r[i] = mr.group(i + 1);
+                r[i] = mr.group(i + 1).trim();
 
             }
         }
@@ -254,6 +264,10 @@ static class Stat {
 
     int getCount() {
         return count;
+    }
+
+    long getTotal() {
+        return total.longValue();
     }
 
     void reset() {
@@ -317,6 +331,10 @@ static class StatComparator implements Comparator<Stat>{
 if ("true".equals(ics.GetVar("detach"))){
     if (log !=null){log.removeAppender("stats");}
 }
+if ("true".equals(ics.GetVar("clear"))){
+    stats.clear();
+
+}
 
 String tqx = ics.GetVar("tqx");
 /*
@@ -364,14 +382,16 @@ cols: [{id: 'type', label: 'Type', type: 'string'},
      {id: 'subtype', label: 'Subtype', type: 'string'},
      {id: 'count', label: 'Count', type: 'number'},
      {id: 'average', label: 'Average', type: 'number'},
+     {id: 'total', label: 'Total', type: 'number'},
      {id: 'min', label: 'Min', type: 'number'},
      {id: 'max', label: 'Max', type: 'number'}
     ],
 rows:[
 <%
     DecimalFormat nf = new DecimalFormat("0.0");
+    DecimalFormat tf = new DecimalFormat("0");
 
-    Stat[] stats = StatisticsAppender.getStats();
+    Stat[] stats = getStats();
     java.util.Arrays.sort(stats, new StatComparator());
 
     for (int i=0; i < stats.length;i++){
@@ -381,6 +401,7 @@ rows:[
         %>{v: '<%= stat.getSubType() !=null ? stat.getSubType() :""%>'}, <%
         %>{v: <%= stat.getCount() %>}, <%
         %>{v: <%= nf.format(stat.getAverage()) %>, f: '<%= nf.format(stat.getAverage()) %>'}, <%
+        %>{v: <%= tf.format(stat.getTotal()) %>, f: '<%= tf.format(stat.getTotal()) %>'}, <%
         %>{v: <%= stat.getMin() %>}, <%
         %>{v: <%= stat.getMax() %>}<%
         %>]}<%= ((i+1) < stats.length)?",":"" %><%
