@@ -1,6 +1,6 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
-%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
-%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%
 //
 // Support/Log4J/Log4J
@@ -9,15 +9,15 @@
 //
 // OUTPUT
 //%>
-<%@ page import="COM.FutureTense.Interfaces.FTValList" 
-%><%@ page import="COM.FutureTense.Interfaces.ICS" 
-%><%@ page import="COM.FutureTense.Interfaces.IList" 
-%><%@ page import="COM.FutureTense.Interfaces.Utilities" 
-%><%@ page import="COM.FutureTense.Util.ftErrors" 
+<%@ page import="COM.FutureTense.Interfaces.FTValList"
+%><%@ page import="COM.FutureTense.Interfaces.ICS"
+%><%@ page import="COM.FutureTense.Interfaces.IList"
+%><%@ page import="COM.FutureTense.Interfaces.Utilities"
+%><%@ page import="COM.FutureTense.Util.ftErrors"
 %><%@ page import="COM.FutureTense.Util.ftMessage"
-%><%@ page import="org.apache.log4j.*" 
-%><%@ page import="org.apache.log4j.spi.*" 
-%><%@ page import="java.util.*" 
+%><%@ page import="org.apache.log4j.*"
+%><%@ page import="org.apache.log4j.spi.*"
+%><%@ page import="java.util.*"
 %><%!
     private String[] levels = "TRACE,DEBUG,INFO,WARN,ERROR,OFF".split(",");
 %><cs:ftcs><h1>Dynamic Log4J Control</h1>
@@ -42,7 +42,7 @@
 </tr>
 <tr>
 <td>0</td><td><%= rootLogger.getLevel() %></td><td><%= rootLogger.getName() %></td>
-<td><% for (int i=0; i< levels.length;i++){ 
+<td><% for (int i=0; i< levels.length;i++){
         %><a href='ContentServer?pagename=<%= ics.GetVar("pagename") %>&log=root&level=<%=levels[i] %>'><%=levels[i] %></a> <%
         }
 %></td>
@@ -51,22 +51,23 @@
 Set loggerNameSet = new TreeSet();
 
 for (Enumeration loggers = loggerRepository.getCurrentLoggers(); loggers.hasMoreElements();){
-	Logger logger = (Logger)loggers.nextElement();
-	loggerNameSet.add(logger.getName());
-	
+    Logger logger = (Logger)loggers.nextElement();
+    loggerNameSet.add(logger.getName());
+
 }
 int num=0;
 
+boolean showAll = "true".equals(ics.GetVar("showAll")) ;
 for (Iterator loggers = loggerNameSet.iterator(); loggers.hasNext();){
         Logger logger = loggerRepository.getLogger((String)loggers.next());
         num++;
-        if (logger.getLevel() !=null || "true".equals(ics.GetVar("showAll") )){
+        if (logger.getLevel() !=null || showAll){
         %><tr>
                 <td><%= Integer.toString(num) %></td>
                 <td><%= logger.getLevel() !=null? logger.getLevel().toString():"(inherited: "+ logger.getEffectiveLevel()+")" %></td>
                 <td><%= logger.getName() %></td>
-                <td><% for (int i=0; i< levels.length;i++){ 
-                %><a href='ContentServer?pagename=<%= ics.GetVar("pagename") %>&log=<%= logger.getName() %>&level=<%=levels[i] %>'><%=levels[i] %></a> <%
+                <td><% for (int i=0; i< levels.length;i++){
+                    %><a href='ContentServer?pagename=<%= ics.GetVar("pagename") %>&log=<%= logger.getName() %>&level=<%=levels[i] %>&showAll=<%=showAll%>'><%=levels[i] %></a> <%
                 }
                 %></td>
           </tr>
