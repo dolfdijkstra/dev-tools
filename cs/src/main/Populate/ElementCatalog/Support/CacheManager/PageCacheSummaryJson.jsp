@@ -120,9 +120,9 @@ if (Utilities.goodString(tq)){
         if (ics.GetProperty("cs.dbtype").toLowerCase().contains("oracle")){
             sql="SELECT ttl, COUNT(id) AS pages FROM (select  EXTRACT( HOUR FROM (etime-mtime)) *60 +  EXTRACT( DAY FROM (etime-mtime)) *24*60 + EXTRACT( MINUTE FROM (etime-mtime)) as ttl,id FROM SystemPageCache WHERE etime > CURRENT_TIMESTAMP) GROUP BY ttl ORDER BY ttl";
         }else if (ics.GetProperty("cs.dbtype").toLowerCase().contains("hsqldb")){
-           sql = "SELECT t.ttl, COUNT(t.id) AS pages FROM (SELECT DATEDIFF('mi',mtime,etime) ttl, id FROM SystemPageCache WHERE etime > CURRENT_TIMESTAMP) as t GROUP BY t.ttl ORDER BY ttl";
+           sql = "SELECT t.ttl, COUNT(t.id) AS pages FROM (SELECT DATEDIFF('mi',mtime,etime) ttl, id FROM SystemPageCache WHERE etime > CURRENT_TIMESTAMP)  t GROUP BY t.ttl ORDER BY ttl";
         }else {
-            sql = "SELECT t.ttl, COUNT(t.id) AS pages FROM (SELECT DATEDIFF(mi,mtime,etime) ttl, id FROM SystemPageCache WHERE etime > CURRENT_TIMESTAMP) as t GROUP BY t.ttl ORDER BY ttl";
+            sql = "SELECT t.ttl, COUNT(t.id) AS pages FROM (SELECT DATEDIFF(mi,mtime,etime) ttl, id FROM SystemPageCache WHERE etime > CURRENT_TIMESTAMP) t GROUP BY t.ttl ORDER BY ttl";
         }
 
         colsmeta="cols: [{id: 'ttl', label: 'Time to Live in minutes', type: 'string'},{id: 'pages', label: 'Number of pages', type: 'number'}]";
@@ -136,7 +136,7 @@ if (Utilities.goodString(tq)){
         } else {
             datediff = "DATEDIFF(hh,CURRENT_TIMESTAMP,etime)";
         }
-        sql="SELECT t.ttl, count(t.id) as pages FROM (SELECT "+datediff+" ttl, id FROM SystemPageCache WHERE etime > CURRENT_TIMESTAMP) as t GROUP BY t.ttl ORDER BY ttl";
+        sql="SELECT t.ttl, count(t.id) as pages FROM (SELECT "+datediff+" ttl, id FROM SystemPageCache WHERE etime > CURRENT_TIMESTAMP) t GROUP BY t.ttl ORDER BY ttl";
         colsmeta="cols: [{id: 'ttl', label: 'Time to Live in hours', type: 'string'},{id: 'pages', label: 'Number of pages', type: 'number'}]";
         cols = new String[]{"ttl","pages"};
         formatter=hoursFormatter;
@@ -151,7 +151,7 @@ if (Utilities.goodString(tq)){
             datediff = "DATEDIFF(hh,mtime,CURRENT_TIMESTAMP)";
         }
 
-        sql="SELECT t.age, count(t.id) AS pages FROM (SELECT "+datediff+" age, id FROM SystemPageCache WHERE etime > CURRENT_TIMESTAMP) as t GROUP BY t.age ORDER BY age DESC";
+        sql="SELECT t.age, count(t.id) AS pages FROM (SELECT "+datediff+" age, id FROM SystemPageCache WHERE etime > CURRENT_TIMESTAMP) t GROUP BY t.age ORDER BY age DESC";
         colsmeta="cols: [{id: 'age', label: 'Age in hours', type: 'string'},{id: 'pages', label: 'Number of pages', type: 'number'}]";
         cols = new String[]{"age","pages"};
         formatter=hoursFormatter;
