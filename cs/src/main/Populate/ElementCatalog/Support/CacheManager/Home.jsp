@@ -50,8 +50,7 @@
 
 </ul>
 </div>
-<div class="high-risk"><p>High-risk Expert use only</p>
-
+<div class="high-risk">
 <ul class="entry-header">
     <li class="dangerous">
         <satellite:link pagename="Support/CacheManager/list"/>
