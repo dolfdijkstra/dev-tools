@@ -46,10 +46,14 @@ return "ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd=" + cmd ;
      <p>Displays all java System Properties. Useful for a general system audit</p>
 </li>
 <li class="read-only">
-     <h2><a href='<%= buildMenuUrl("ElementCheck") %>'>ListAndCheck Elements</a></h2>
-     <p>Displays list of all elements in ElementCatalog. Useful to see how many elements are currently in system. <br/>
-     Also checks if url column files exist on Disk. If file does not exist it gives an option to use an existing element or create a zero byte element. Useful when system goes out of sync due to system crash or disk failure.</p>
+     <h2><a href='<%= buildMenuUrl("ElementCheck") %>'>Check Elements</a></h2>
+     <p>Checks if url column files exist on disk. If file does not exist it gives an option to use an existing element or create a zero byte element. Useful when system goes out of sync due to system crash or disk failure.</p>
 </li>
+<li class="read-only">
+     <h2><a href='<%= buildMenuUrl("SystemSqlCheck") %>'>Check SystemSql</a></h2>
+     <p>Checks if url column files exist on disk. If file does not exist it gives an option to use an existing file or create a zero byte file. Useful when system goes out of sync due to system crash or disk failure.</p>
+</li>
+
 <li class="read-only">
      <h2><a href='<%= buildMenuUrl("TableDefs") %>'>Show Table Definitions</a></h2>
     <p>Shows definitions for all tables in Systeminfo grouped by systable column.<br/>
@@ -72,6 +76,7 @@ return "ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd=" + cmd ;
      <h2><a href="ContentServer?pagename=Support/Audit/Default/SystemPageCacheCheck">Check SystemPageCache</a></h2>
      <p>Checks SystemPageCache for missing files on disk. If records found, then there is the possibility the expire.</p>
 </li>
+
 <li class="with-care">
      <h2><a href='<%= buildMenuUrl("AllTables") %>'>Full TableCount</a></h2>
     <p>Counts rows for all tables in Systeminfo grouped by systable column.</p>

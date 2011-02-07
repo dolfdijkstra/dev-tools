@@ -78,17 +78,18 @@ if(Utilities.goodString(ics.GetVar("id"))) {
                 if (badrows==1) {
                   %><tr>
                         <th>Nr</th>
+                        <th><input type="checkbox" name="all" value='all' onclick="checkall(this.checked, this.form,'id') " /></th>
                         <th>id</th>
                         <th>pagename</th>
                         <th>mtime</th>
                         <th>urlqry</th>
                         <th>urlhead</th>
                         <th>urlpage</th>
-                        <th><input type="checkbox" name="all" value='all' onclick="checkall(this.checked, this.form,'id') " /></th>
                    </tr><%
                 }
              %><tr>
                 <td align="right"><ics:resolvevariables name="bodies.#curRow" /></td>
+                <td><input type="checkbox" name="id" value='<ics:resolvevariables name="bodies.id" />' /></td>
                 <td><ics:resolvevariables name="bodies.id" /></td>
                 <td><ics:resolvevariables name="bodies.pagename" /></td>
                 <td><ics:resolvevariables name="bodies.mtime" /></td>
@@ -96,7 +97,7 @@ if(Utilities.goodString(ics.GetVar("id"))) {
                 <td><%= p[0] ?"FOUND":"NOT FOUND" %></td>
                 <td><%= p[1] ?"FOUND":"NOT FOUND" %></td>
                 <td><%= p[2] ?"FOUND":"NOT FOUND" %></td>
-                <td><input type="checkbox" name="id" value='<ics:resolvevariables name="bodies.id" />' /></td>
+
              </tr><%
             }
            %></ics:listloop>

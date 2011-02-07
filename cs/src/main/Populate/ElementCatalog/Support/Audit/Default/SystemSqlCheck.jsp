@@ -2,7 +2,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Audit/Default/ElementCheck
+// Support/Audit/Default/SystemSqlCheck
 //
 // INPUT
 //
@@ -17,7 +17,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.io.*"%>
 <cs:ftcs>
-<h3><center>Lists Elements and Checks all URL columns Exist on Disk</center></h3>
+<h3><center>Lists SystemSql and Checks all URL columns Exist on Disk</center></h3>
 <%!
    private void fileRollup(JspWriter out, String urlfile, String path) throws IOException{
       try {
@@ -35,7 +35,7 @@
           String[] files = dirfiles.list();
 
           if (files.length > 0)
-             out.print("<font color=\"orange\">File Rollups: </font>");
+      out.print("<font color=\"orange\">File Rollups: </font><br/>");
           for (int j=0; j<files.length; j++) {
               String yfile = null;
               if (Utilities.isFolder(path+dirname+files[j])!=0) {
@@ -46,8 +46,10 @@
 
                   if (xfile.equalsIgnoreCase(yfile)) {
                       String newpath = path+dirname+files[j];
-                      out.print("<font color=\"orange\">"+files[j]+"</font>");
-                      out.print("&nbsp;<a href=\"ContentServer?pagename=Support/Audit/DispatcherFront&cmd=ElementCheck&filespec="+newpath+"&filepath="+oldpath+"&useme=yes\">UseMe</a><br/>");
+              File ff = new File(newpath);
+              Date ffdate = new Date(ff.lastModified());
+                      out.print("<font color=\"orange\">"+files[j]+"</font> (" + ff.length() + " bytes, lastModified " + ffdate.toString() + ") ");
+                      out.print("&nbsp;<a href=\"ContentServer?pagename=Support/Audit/DispatcherFront&cmd=SystemSqlCheck&filespec="+newpath+"&filepath="+oldpath+"&useme=yes\">UseMe</a><br/>");
                   }
               }
           }
@@ -58,16 +60,17 @@
 %>
 
 <%
-    String query = "SELECT url, elementname FROM ElementCatalog ORDER BY elementname";
-    String defquery = "SELECT defdir FROM SystemInfo WHERE tblname='ElementCatalog'";
-    String table = "ElementCatalog";
-    String listname = null;
+    String query = "SELECT url, qryname FROM SystemSQL ORDER BY qryname";
+
+    String table = "SystemSQL";
+    String listname = "listname";
     String defdir=null;
     IList resultList;
     StringBuffer errstr = new StringBuffer();
 
     ics.ClearErrno();
-    defdir = ics.ResolveVariables("CS.CatalogDir.ElementCatalog");
+    defdir = ics.ResolveVariables("CS.CatalogDir.SystemSQL");
+
     if("yes".equals(ics.GetVar("useme"))) {
         String content = Utilities.readFile(ics.GetVar("filespec"));
         Utilities.writeFile(ics.GetVar("filepath"), content);
@@ -81,17 +84,18 @@
     ics.ClearErrno();
     int count=0;
     resultList = ics.SQL(table, query, listname, -1, true, errstr);
+
     if (ics.GetErrno()==0 && resultList.hasData()){
         int numrows = resultList.numRows();
-        out.print("Total Number of Elements: <b>"+numrows+"</b>");
+        out.print("Total Number of SystemSQL: <b>"+numrows+"</b>");
         out.print("<table class=\"altClass\">");
-        out.print("<tr><th width=\"40%\" align=\"left\">Element Name</th><th>UrlFile?</th></tr>");
+        out.print("<tr><th width=\"40%\" align=\"left\">SystemSQL Name</th><th>UrlFile?</th></tr>");
         for (int i=1; i<=numrows; i++) {
             resultList.moveTo(i);
             if (!Utilities.fileExists(defdir + resultList.getValue("url"))) {
                 count++;
                 out.print("<tr><td>");
-                out.print(resultList.getValue("elementname"));
+                out.print(resultList.getValue("qryname"));
                 out.print("</td>");
                 out.print("<td>");
                 out.print("<font color=\"red\"><b>File NOT FOUND</b></font><br/>");
@@ -101,7 +105,7 @@
         }
         out.print("</table>");
         if(count==0){
-            out.print("<p style=\"font-size:large\">All ElementCatalog rows are in sync with the file system.</p>");
+            out.print("<p style=\"font-size:large\">All SystemSQL rows are in sync with the file system.</p>");
         }
     }
 %>
