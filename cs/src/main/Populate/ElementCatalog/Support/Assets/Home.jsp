@@ -8,6 +8,9 @@
 // OUTPUT
 //%>
 <cs:ftcs>
+<div class="low-risk">&nbsp;</div>
+<div class="medium-risk">&nbsp;</div>
+<div class="high-risk">
 <ul class="entry-header">
 <li class="dangerous">
          <h2><a href='ContentServer?pagename=Support/Assets/BulkSaveAssets'><b>BulkSaveAssets</b></a></h2>
@@ -32,4 +35,5 @@
          <p>Loads and scatters an asset for inspection.</p>
     </li>
 </ul>
+</div>
 </cs:ftcs>

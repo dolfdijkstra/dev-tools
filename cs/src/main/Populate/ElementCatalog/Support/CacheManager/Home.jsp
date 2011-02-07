@@ -8,14 +8,22 @@
 %><%@ page import="COM.FutureTense.Util.ftErrors"
 %><%@ page import="COM.FutureTense.Util.ftMessage"
 %><cs:ftcs>
+<div class="low-risk">
 <ul class="entry-header">
-    <li class="dangerous">
-        <satellite:link pagename="Support/CacheManager/list"/>
-        <h2><a href='<%= ics.GetVar("referURL") %>'>List Pages in ContentServer and CSSatellite Caches</a></h2>
-
-        <p>Lists all Content Server cache and also all cache on Satellite Server listed in SystemSatellite table. Depends on the choices selected.
-        May take long time to list if too many number of pages are cached.</p>
+    <li class="read-only">
+        <satellite:link pagename="Support/CacheManager/PageCacheSummary"/>
+        <h2><a href='<%= ics.GetVar("referURL") %>'>PageCacheSummary</a></h2>
+        <p>Provides some graphs on page cache, like time to live and when pages where initially cached.</p>
     </li>
+    <li class="read-only">
+        <satellite:link pagename="Support/CacheManager/RS/CacheVisualizationTable"/>
+        <h2><a href='<%= ics.GetVar("referURL") %>'>Resultset Cache Profiler</a></h2>
+        <p>Provides detailed information about the resultcaches (memory based cache), when created, how many times a cache is accessed or removed, last time checked and other details</p>
+    </li>
+</ul>
+</div>
+<div class="medium-risk">
+<ul class="entry-header">
     <li class="with-care">
         <satellite:link pagename="Support/CacheManager/listPagename"/>
         <h2><a href='<%= ics.GetVar("referURL") %>'>Detail Inventory View of ContentServer Cache</a></h2>
@@ -38,6 +46,19 @@
         <h2><a href='<%= ics.GetVar("referURL") %>'>Show Unkowndeps Pages</a></h2>
 
         <p>Displays all unkowndeps from all cached pages in Content Server (listed in descending order based on pagename). Navigation into pages is available for furthur investigation.</p>
+    </li>
+
+</ul>
+</div>
+<div class="high-risk"><p>High-risk Expert use only</p>
+
+<ul class="entry-header">
+    <li class="dangerous">
+        <satellite:link pagename="Support/CacheManager/list"/>
+        <h2><a href='<%= ics.GetVar("referURL") %>'>List Pages in ContentServer and CSSatellite Caches</a></h2>
+
+        <p>Lists all Content Server cache and also all cache on Satellite Server listed in SystemSatellite table. Depends on the choices selected.
+        May take long time to list if too many number of pages are cached.</p>
     </li>
     <li class="dangerous">
         <satellite:link pagename="Support/CacheManager/flushByItem"/>
@@ -89,15 +110,6 @@
         <p>Flush cache from all registered Satellite Servers.</p>
     </li>
 
-    <li class="read-only">
-        <satellite:link pagename="Support/CacheManager/PageCacheSummary"/>
-        <h2><a href='<%= ics.GetVar("referURL") %>'>PageCacheSummary</a></h2>
-        <p>Provides some graphs on page cache, like time to live and when pages where initially cached.</p>
-    </li>
-    <li class="read-only">
-        <satellite:link pagename="Support/CacheManager/RS/CacheVisualizationTable"/>
-        <h2><a href='<%= ics.GetVar("referURL") %>'>Resultset Cache Profiler</a></h2>
-        <p>Provides detailed information about the resultcaches (memory based cache), when created, how many times a cache is accessed or removed, last time checked and other details</p>
-    </li>
 </ul>
+</div>
 </cs:ftcs>

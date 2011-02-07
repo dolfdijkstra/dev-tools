@@ -25,9 +25,9 @@ li {
 div.content {
   margin-top: 18px;
   width: 100%;
-  min-width: 1000px;
   text-align: left;
   background-color: white;
+  overflow:auto
 }
 #logo{
   position: relative;
@@ -64,25 +64,30 @@ h3 {
   color: #4A525A;
   text-align: center;
 }
+
+div.low-risk,
+div.medium-risk,
+div.high-risk
+{
+  float:left;width:33%
+}
+
 ul.entry-header li {
   background-color: #FBF9FA;
   padding: 0px 0px 0px 0px;
 }
  
 li.read-only a {
-  /*background-color:#A38799;*/
   background-color:#F6F1F4;
   color:black;
 }
 
 li.with-care a {
-  /*background-color:#A36C90;*/
   background-color:#D2B6C8;
   color:white;
 }
 
 li.dangerous a {
-  /*background-color:#A3357C;*/
   background-color:#A36C90;
   color:white;
 }
@@ -114,11 +119,8 @@ ul.entry-header a {
 }
 
 
-ul.entry-header{
+ul.entry-header {
   margin-left: 18px;
-  border-top: 1px solid #D1D3D5;
-  border-bottom: 1px solid #D1D3D5;
-  width: 431px;
   list-style-type:none;
 }
 ul.entry-header li p {
@@ -139,7 +141,7 @@ blockquote p {
   font-size: 1em;
 }
 #footer {
-	min-width: 1000px;
+    width:100%;
 	margin-top: 12px;
 	height:17px;
 	background-color:#7FC942;
@@ -168,8 +170,8 @@ label {
   padding: 5px 10px;
 }
 #nav-bg {
-  min-width: 1000px;
-  height: 34px;
+  min-width: 100px;
+  min-height: 34px;
   background-color: #9DAD90;
   border-bottom: 1px #666;
   margin: 0 1px 0 1px;
@@ -179,7 +181,7 @@ label {
 }
 #nav ul {
   text-align: center;
-  margin: 0 0 0 100px;
+  margin: 0 20 0 100px;
   list-style-type: none;
 }
 #nav a {
@@ -204,7 +206,7 @@ label {
   float: left;
   padding: 0;
   margin: 0;
-  width: 90px;
+  min-width: 90px;
 }
 #elapsed{
  padding: 10px;

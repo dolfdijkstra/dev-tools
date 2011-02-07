@@ -16,6 +16,7 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
+<div class="low-risk">
 <ul class="entry-header">
     <li class="read-only">
         <h2><a href="ContentServer?pagename=Support/Verify/Files/ftcslog">FutureTense Log</a></h2>
@@ -24,14 +25,27 @@
                To clear log file add &clearlog=true at the end of url and refresh the page.
         </p>
     </li>
-        <li class="with-care">
-             <h2><a href="ContentServer?pagename=Support/Verify/Cluster/TestFS">File System Test</a></h2>
-             <p>Test the performance of the shared file system.</p>
-        </li>
         <li class="read-only">
              <h2><a href="ContentServer?pagename=Support/Verify/Cluster/CheckSyncdirTime">CheckSyncdirTime</a></h2>
              <p>Check if the time of a file on disks in the usedisksync/event folder is about the same as the current jvm.<br/>
              We have seen problems in the past, where the shared drive was not correctly time sync'ed.</p>
+        </li>
+
+        <li class="read-only">
+            <h2><a href="ContentServer?pagename=Support/Verify/i18n/UnicodeChart">Unicode Chart</a></h2>
+            <p>Check the display of different Unicode characters</p>
+    </li>
+    <li class="read-only">
+         <h2><a href="ContentServer?pagename=Support/Verify/Cluster/HttpSession">HttpSession</a></h2>
+         <p>Displays Basic session infomation</p>
+    </li>
+</ul>
+</div>
+<div class="medium-risk">
+<ul class="entry-header">
+        <li class="with-care">
+             <h2><a href="ContentServer?pagename=Support/Verify/Cluster/TestFS">File System Test</a></h2>
+             <p>Test the performance of the shared file system.</p>
         </li>
         <li class="with-care">
              <h2><a href="ContentServer?pagename=Support/Verify/Cluster/LockTest">LockTest</a></h2>
@@ -82,10 +96,11 @@
                        <li> method=post enctype=multipart/form-data </li>
                    </ul>
         </li>
-        <li class="read-only">
-            <h2><a href="ContentServer?pagename=Support/Verify/i18n/UnicodeChart">Unicode Chart</a></h2>
-            <p>Check the display of different Unicode characters</p>
-    </li>
+
+</ul>
+</div>
+<div class="high-risk">
+<ul class="entry-header">
     <li class="dangerous">
          <h2><a href="ContentServer?pagename=Support/Verify/xml/exportFront">DB to XML</a></h2>
          <p>Displays all tables listed in SystemInfo table (temporary tables are filtered) in a choice box and an optinal textarea for user-defined query.
@@ -97,10 +112,6 @@
              <li>Use browsers back button to go back into the tool.</li>
          </ul>
     </li>
-    <li class="read-only">
-         <h2><a href="ContentServer?pagename=Support/Verify/Cluster/HttpSession">HttpSession</a></h2>
-         <p>Displays Basic session infomation</p>
-    </li>
     <li class="dangerous">
         <h2><a href="ContentServer?pagename=Support/Verify/Cluster/nodeFront">Cluster Nodes</a></h2>
         <p>Runs Connectivity tests on Cluster Nodes (use appservers http port of cluster nodes).<br/>
@@ -108,4 +119,5 @@
         Element posts a page to all cluster nodes and displays the response of each cluster node. Verify response is same across all cluster nodes.</p>
     </li>
 </ul>
+</div>
 </cs:ftcs>

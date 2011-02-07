@@ -9,15 +9,11 @@
 // OUTPUT
 //
 %><cs:ftcs>
+<div class="low-risk">
 <ul class="entry-header">
     <li class="read-only">
         <h2><a href="ContentServer?pagename=Support/Info/collectInfo">Collect Info</a></h2>
         <p>Collects information about the runtime environment like versions, ini files etc.</p>
-    </li>
-    <li class="dangerous">
-        <h2><a href="ContentServer?pagename=Support/Info/sqlplus">Database Query Tool</a></h2>
-        <p>Connects directly to the database to run sql statements
-        </p>
     </li>
     <li class="read-only">
         <h2><a href="ContentServer?pagename=Support/Info/ThreadDump">Thread Dump</a></h2>
@@ -41,5 +37,20 @@
         <h2><a href="ContentServer?pagename=Support/Info/SendEmail">Send Email</a></h2>
         <p>Test program to send a email.</p>
     </li>
+
 </ul>
+</div>
+<div class="medium-risk">
+&nbsp;</div>
+<div class="high-risk">
+<ul class="entry-header">
+    <li class="dangerous">
+        <h2><a href="ContentServer?pagename=Support/Info/sqlplus">Database Query Tool</a></h2>
+        <p>Connects directly to the database to run sql statements
+        </p>
+    </li>
+
+</ul>
+</div>
+
 </cs:ftcs>

@@ -9,6 +9,7 @@
 // OUTPUT
 //
 %><cs:ftcs>
+<div class="low-risk">
 <ul class="entry-header">
     <li class="read-only">
          <h2><a href="ContentServer?pagename=Support/Flex/Audit/ShowDefinitionTree"><b>ShowDefinitionTree</b></a></h2>
@@ -34,4 +35,10 @@
          <h2><a href="ContentServer?pagename=Support/Flex/Audit/ShowMissingAttributesFront"><b>ShowMissingAttributes</b></a></h2>
          <p>For a given assetype, displays how many assets do not have all the required attributes.</p>
     </li>
+</ul>
+</div>
+<div class="medium-risk">
+&nbsp;</div>
+<div class="high-risk">
+&nbsp;</div>
 </cs:ftcs>
