@@ -83,7 +83,7 @@ String[] cols = { "id","cs_sessiondate","target_name","status","gatherer", "pack
 
 %><%=responseHandler %>({version:'<%=version %>',reqId:'<%= reqId %>',status:'ok',table:{<%= colsmeta %>,rows:[<%
 
-IList list = ics.SQL(ps, p, true);//ics.SQL("PubSession",sql,"ps", -1, true,  new StringBuffer());
+IList list = ics.SQL(ps, p, true);
 
 String[] types= new String[]{"Gatherer","Packager","Transporter","Unpacker","CacheFlusher"};
 
@@ -110,14 +110,12 @@ if(list !=null && list.hasData()){
         vals[2]=list.getValue("name");
         vals[3]=list.getValue("cs_status");
         p = ps.newParam();
-        //ics.LogMsg(list.getValue("id"));
         p.setLong(0, Long.parseLong(list.getValue("id")));
         IList history = ics.SQL(ps, p, true);
         if (history != null && history.hasData()) {
             for (int k = 0; k < history.numRows(); k++) {
                 history.moveTo(k + 1);
                 String text = history.getValue("component");
-                //ics.LogMsg(text);
                 for (int j = 0; j < types.length; j++) {
                     if (types[j].equals(text)) {
                         long d = diff(history.getValue("started"),history.getValue("lastupdate"));

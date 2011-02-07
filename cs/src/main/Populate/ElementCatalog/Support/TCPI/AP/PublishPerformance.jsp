@@ -18,8 +18,9 @@ yesterday.add(Calendar.DAY_OF_MONTH, -1);
 Get pubsession date between <input type='text' id='startdate' value='<%= Utilities.sqlDate(yesterday)%>'/>
  and <input type='text' id='enddate' value='<%= Utilities.sqlDate(now) %>'/><input type='button' value='Load data' onclick='return fetchData()' />
 <div id="message" style="display: none"><img id="loadingimg" src="js/dojox/image/resources/images/loading.gif" onerror="this.remove();"/><b id="messageText">Getting data. Please wait...</b></div>
-
+<div id="legend" style="display: none"><p>Elapsed times are in milliseconds.</p></div>
 <div id="table_div"></div>
+
 <script type="text/javascript">
 var table ;
 var sort;
@@ -38,15 +39,11 @@ function drawTable() {
         sort = [{column: event.column, desc: !event.ascending}];
       });
 
-    //fetchData();
 }
 function fetchData() {
     $('message').style.visibility='visible';
     $('message').style.display='block';
 
-    //var button = $('controlButton');
-    //button.value="Stop File System Test";
-    //button.onclick = function(){fsTest.stopTest('User stopped test');};
     var query = new google.visualization.Query('ContentServer?pagename=Support/TCPI/AP/PublishPerformanceJson&startdate=' +$('startdate').value +'&enddate='+$('enddate').value);
     // Send the query with a callback function.
     query.send(handleQueryResponse);
@@ -58,6 +55,8 @@ function handleQueryResponse(response) {
       alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
       return;
     }
+    $('legend').style.visibility='visible';
+    $('legend').style.display='block';
 
     var data = response.getDataTable();
 
