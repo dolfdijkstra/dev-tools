@@ -1,6 +1,6 @@
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
-%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
-%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
 // Support/CacheManager/blowCacheFast
 //
@@ -24,13 +24,16 @@ String thisPage = ics.GetVar("pagename");
 if (ics.GetVar("expire")!=null) {
 %>
 <br/>
-<ics:sql sql="UPDATE SystemPageCache SET etime = {d '1999-01-01'}" listname="blowlist" table="SystemPageCache"/>
-SystemPageCache Errno: <ics:geterrno/> (-502 is ok)<br>
-<ics:flushcatalog catalog="SystemPageCache"/>
-<ics:clearerrno/>
+
 <ics:sql sql="DELETE FROM SystemItemCache" listname="blowlist" table="SystemItemCache"/>
 SystemItemCache Errno: <ics:geterrno/> (-502 is ok)<br>
 <ics:flushcatalog catalog="SystemItemCache"/>
+
+<ics:sql sql="UPDATE SystemPageCache SET etime = {d '1999-01-01'}" listname="blowlist" table="SystemPageCache"/>
+SystemPageCache Errno: <ics:geterrno/> (-502 is ok)<br>
+<ics:flushcatalog catalog="SystemPageCache"/>
+
+<ics:clearerrno/>
 <a href="CacheServer">Cleanup expired files</a><br/>
 <%} else { %>
 <br/>
