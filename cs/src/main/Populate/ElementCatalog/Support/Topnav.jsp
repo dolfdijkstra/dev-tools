@@ -48,7 +48,7 @@ private org.apache.commons.logging.Log log = org.apache.commons.logging.LogFacto
                         }
                     %>
                 </ul>
-                <div id="elapsed" style="padding: 10px; text-align: right; color: white;"></div>
+                <div id="elapsed"></div>
         </div>
     </div>
 </cs:ftcs>
