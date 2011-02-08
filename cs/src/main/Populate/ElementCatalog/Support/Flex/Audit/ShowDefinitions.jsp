@@ -62,35 +62,20 @@
 
                 <table cellspacing="0">
                     <tr>
-                        <th width="10%">Req?</th>
-                        <th width="30%">Parent Name</th>
-                        <th width="20%"></th>
-                        <th width="20%">Multi?</th>
-                        <th width="20%"></th>
+                    <th width="30%">Parent Name</th>
                     </tr>
                     <ics:listloop listname="parentlist1">
                         <tr>
 
                                 <ics:clearerrno/>
                                 <ics:sql sql='<%= ics.ResolveVariables("SELECT name FROM fgt.assettemplate WHERE id = parentlist1.productgrouptemplateid ") %>' table='<%= ics.ResolveVariables("fgt.assettemplate") %>' listname="parentname" />
-
-                                <% if ("T".equals(ics.ResolveVariables("parentlist1.required"))){ %>
-                                    <td width="10">*</td>
-
-                                    <td width="200"><font color="red"><ics:resolvevariables name="parentname.name"/></font></td>
-                                <% } else { %>
-                                    <td width="10"></td>
-                                    <td width="200"><ics:resolvevariables name="parentname.name"/></td>
-                                <% } %>
-                                      <td></td>
-                                <td>
+                                    <td><ics:resolvevariables name="parentname.name"/><% if ("T".equals(ics.ResolveVariables("parentlist1.required"))){ %> * <% } %>
                                     <% if ("T".equals(ics.ResolveVariables("parentlist1.multiple"))){ %>
-                                        M
+                                        [M]
                                     <% } else { %>
-                                        S
+                                        [S]
                                     <% } %>
                                 </td>
-                                <td></td>
                         </tr>
                     </ics:listloop>
                 </table>
@@ -102,28 +87,24 @@
 
             <table cellspacing="0">
                  <tr>
-                      <th width="10%">Req?</th>
-                      <th width="30%">Attr Name</th>
+                      <th width="40%">Attr Name</th>
                       <th width="20%">Attr Type</th>
-                      <th width="20%">Multi?</th>
                       <th width="20%">Attr Editor</th>
                  </tr>
                 <ics:listloop listname="templateattributes">
                     <tr>
-                        <% if ("T".equals(ics.ResolveVariables("templateattributes.required"))){ %>
-                            <td width="10">*</td><td width="200"><font color="red"><ics:resolvevariables name="templateattributes.aname"/></font></td>
-                        <% } else { %>
-                            <td width="10"></td><td width="200"><ics:resolvevariables name="templateattributes.aname"/></td>
-                        <% } %>
-                        <td width="30">
-                            <% if ("asset".equals(ics.ResolveVariables("templateattributes.type"))){ %>
-                            <ics:resolvevariables name="templateattributes.type"/> (<ics:resolvevariables name="templateattributes.atname"/>)
-                        <% } else { %>
-                            <ics:resolvevariables name="templateattributes.type"/>
-                        <% } %>
+
+                        <td><ics:resolvevariables name="templateattributes.aname"/>
+                        <% if ("T".equals(ics.ResolveVariables("templateattributes.required"))){ %> * <% } %>
                         </td>
-                        <td width="10"><ics:resolvevariables name="templateattributes.valuestyle"/></td>
-                        <td width="30">
+                        <td>
+                        <ics:resolvevariables name="templateattributes.type"/>
+                            <% if ("asset".equals(ics.ResolveVariables("templateattributes.type"))){ %>
+                             (<ics:resolvevariables name="templateattributes.atname"/>)
+                        <% } %>
+                       [<ics:resolvevariables name="templateattributes.valuestyle"/>]
+                       </td>
+                        <td>
                             <% if ( (ics.ResolveVariables("templateattributes.attreditorid") != null) && (ics.ResolveVariables("templateattributes.attreditorid").length() > 0)) { %>
                                 <ics:sql sql='<%= ics.ResolveVariables("SELECT id, name FROM AttrTypes WHERE templateattributes.attreditorid = id") %>' table='AttrTypes' listname="AttributeEditor"/>
                                 <ics:resolvevariables name="AttributeEditor.name"/>
