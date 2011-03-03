@@ -60,6 +60,11 @@ return "ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd=" + cmd ;
     Url columns can be verified (if file exists on disk or not).</p>
 </li>
 <li class="read-only">
+     <h2><a href='<%= buildMenuUrl("TableDefsJDBC") %>'>Show JDBC Table Definitions</a></h2>
+    <p>Shows definitions for all tables in Systeminfo grouped by systable column.</p>
+</li>
+
+<li class="read-only">
      <h2><a href='<%= buildMenuUrl("Indices") %>'>Full Index List</a></h2>
      <p>Lists all indexes that are used by the tables managed by Content Server. Useful for gathering system statistics</p>
 </li>
