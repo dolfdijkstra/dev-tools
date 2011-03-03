@@ -12,12 +12,12 @@
 <div class="low-risk">
 <ul class="entry-header">
     <li class="read-only">
-         <h2><a href="ContentServer?pagename=Support/Flex/Audit/ShowDefinitionTree"><b>ShowDefinitionTree</b></a></h2>
-         <p>Displays parent definitions with their heirarchy and attributes on each, useful for a quick overview.</p>
-    </li>
-    <li class="read-only">
          <h2><a href="ContentServer?pagename=Support/Flex/Audit/ShowDefinitionsFront"><b>ShowDefinitions</b></a></h2>
          <p>Displays the basic structure of an assettype with its definition, associated parents (immediate) and attributes.</p>
+    </li>
+    <li class="read-only">
+         <h2><a href="ContentServer?pagename=Support/Flex/Audit/ShowDefinitionTree"><b>ShowDefinitionTree</b></a></h2>
+         <p>Displays parent definitions with their heirarchy and attributes on each, useful for a quick overview.</p>
     </li>
     <li class="read-only">
          <h2><a href="ContentServer?pagename=Support/Flex/Audit/ShowParentsFront"><b>ShowParents</b></a></h2>
