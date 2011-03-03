@@ -9,7 +9,7 @@
 //
 // OUTPUT
 */
-%><cs:ftcs><div style="clear:both"/><script language="JavaScript" type="text/javascript">
+%><cs:ftcs><div style="clear:both"></div><script language="JavaScript" type="text/javascript">
 function decorateTables(){
     var clsName = 'altClass';
     var tables = document.getElementsByTagName("table");
