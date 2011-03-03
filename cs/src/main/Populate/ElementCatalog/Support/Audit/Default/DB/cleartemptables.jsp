@@ -29,24 +29,24 @@ Best is to do a restart of the appserver after the changes in the db.
 
 <% String query = "select tblname from SystemInfo where systable in ('tmp','tmpt')"; %>
 <p><%= query %></p>
-	<ics:callelement element="Support/Audit/Default/DB/DisplayQuery">
-		<ics:argument name="query" value='<%= query %>' />
-		<ics:argument name="table" value="SystemInfo" />
-	</ics:callelement>
+    <ics:callelement element="Support/Audit/Default/DB/DisplayQuery">
+        <ics:argument name="query" value='<%= query %>' />
+        <ics:argument name="table" value="SystemInfo" />
+    </ics:callelement>
 
 <br/><h4>From DB</h4>
 <%
-    if (ics.GetProperty("cs.dbtype").equals("Oracle")) {
-	   query ="select OBJECT_NAME, OBJECT_TYPE, CREATED FROM USER_OBJECTS WHERE OBJECT_TYPE='TABLE' AND OBJECT_NAME LIKE ('TT%') AND CREATED < (SYSDATE-1) ORDER BY OBJECT_NAME";
-	}
-	else { 
-	     query ="SELECT name FROM sysobjects WHERE uid=101 AND type='U' AND LOWER(name) like ('tt%')";
+    if (ics.GetProperty("cs.dbtype").indexOf("Oracle")!=-1) {
+       query ="select OBJECT_NAME, OBJECT_TYPE, CREATED FROM USER_OBJECTS WHERE OBJECT_TYPE='TABLE' AND OBJECT_NAME LIKE ('TT%') AND CREATED < (SYSDATE-1) ORDER BY OBJECT_NAME";
+    }
+    else {
+         query ="SELECT name FROM sysobjects WHERE uid=101 AND type='U' AND LOWER(name) like ('tt%')";
     }
 %>
 <p><%= query %></p>
-	<ics:callelement element="Support/Audit/Default/DB/DisplayQuery">
-		<ics:argument name="query" value='<%= query %>' />
-		<ics:argument name="table" value="SystemInfo" />
-	</ics:callelement>
+    <ics:callelement element="Support/Audit/Default/DB/DisplayQuery">
+        <ics:argument name="query" value='<%= query %>' />
+        <ics:argument name="table" value="SystemInfo" />
+    </ics:callelement>
 
 </cs:ftcs>

@@ -38,6 +38,11 @@
 <div class="medium-risk">
 <ul class="entry-header">
     <li class="with-care">
+        <h2><a href='ContentServer?pagename=Support/TCPI/AP/EventForm'><b>Current Events</b></a></h2>
+        <p>Lists, Enables, Disables and Destroys all available Events</p>
+    </li>
+
+    <li class="with-care">
          <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CountAssetRelationTree'><b>AssetRelationTree</b></a></h2>
          <p>This lists the number of missing assets in the database for table AssetRelationTree.</p>
     </li>
@@ -53,10 +58,12 @@
          <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CountHeldWithoutChildren'><b>CountHeldWithoutChildren</b></a></h2>
          <p>Checks for assets that are held by do not have any dependants.<br/>This is also an indication that the targetids do not match.</p>
     </li>
-    <li class="with-care">
-        <h2><a href='ContentServer?pagename=Support/TCPI/AP/EventForm'><b>Current Events</b></a></h2>
-        <p>Lists, Enables, Disables and Destroys all available Events</p>
-    </li>
+        <% for (int i=0; i< tables.length;i++){ %>
+         <li class="with-care">
+              <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CountAssets&tname=<%= tables[i] %>'><b><%= tables[i] %></b></a></h2>
+              <p>This lists the number of missing assets in the database for table <%= tables[i] %>.</p>
+         </li>
+        <% } %>
 
 </ul>
 </div>
@@ -69,6 +76,14 @@
     <li class="dangerous">
          <h2><a href='ContentServer?pagename=Support/TCPI/AP/ForcePublish'><b>ForcePublishAssets</b></a></h2>
          <p>Force approve Assets to a given destination if they have been published to this destination before.</p>
+    </li>
+    <li class="dangerous">
+        <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CleanAssetPublishLists'><b>CleanAssetPublishLists</b></a></h2>
+        <p>Checks for leftover rows in the tempory publish tables. <br/>There should only be data in these tables when there are not pubsessions running.</p>
+    </li>
+    <li class="dangerous">
+        <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CleanPubDataStore'><b>CleanPubDataStore</b></a></h2>
+        <p>Checks for leftover rows in FW_PubDataStore.</p>
     </li>
     <li class="dangerous">
         <h2><a href='ContentServer?pagename=Support/TCPI/AP/NotePublish'><b>Mark as Published</b></a></h2>
@@ -86,12 +101,6 @@
          <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CountAssetsReverse'><b>AssetPublicationReverse</b></a></h2>
         <p>This lists the number of missing AssetPublication table entries for assets in the database.</p>
     </li>
-        <% for (int i=0; i< tables.length;i++){ %>
-         <li class="with-care">
-              <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CountAssets&tname=<%= tables[i] %>'><b><%= tables[i] %></b></a></h2>
-              <p>This lists the number of missing assets in the database for table <%= tables[i] %>.</p>
-         </li>
-        <% } %>
     <li class="dangerous">
          <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CountPubKeyTable'><b>PubKeyTable</b></a></h2>
         <p>This lists the number of missing assets in the database for table PubKeyTable.</p>
@@ -108,15 +117,6 @@
          <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/FindWrongTargetidInApprovedAssetDeps'><b>FindWrongTargetidInDeps</b></a></h2>
          <p>Checks for the referential integrity between ApprovedAssets and ApprovedAssetDeps via targetid. Time consuming utility.</p>
     </li>
-    <li class="dangerous">
-        <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CleanAssetPublishLists'><b>CleanAssetPublishLists</b></a></h2>
-        <p>Checks for leftover rows in the tempory publish tables. <br/>There should only be data in these tables when there are not pubsessions running.</p>
-    </li>
-    <li class="dangerous">
-        <h2><a href='ContentServer?pagename=Support/TCPI/CleanUp/CleanPubDataStore'><b>CleanPubDataStore</b></a></h2>
-        <p>Checks for leftover rows in FW_PubDataStore.</p>
-</li>
-
 </ul>
 </div>
 
