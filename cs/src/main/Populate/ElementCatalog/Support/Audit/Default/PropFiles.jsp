@@ -61,16 +61,7 @@ class IniFileFilter implements java.io.FileFilter {
 </table>
 
 <%
-   String root = request.getRequestURI();
-   String croot1 = root.substring(root.indexOf("/"));
-   String croot2 = root.substring(root.lastIndexOf("/"));
-   String contextroot = null;
-   if (croot1.equals(croot2))
-      contextroot = "/";
-   else
-      contextroot = root.substring(root.indexOf("/"), root.lastIndexOf("/"));
-   String realpath = request.getRealPath(contextroot);
-   String resources = realpath.substring(0, realpath.lastIndexOf(Utilities.osSafeSpec("/"))) + "/WEB-INF/classes";
+   String resources = getServletConfig().getServletContext().getRealPath("/WEB-INF/classes");
    String proppath = Utilities.osSafeSpec(resources);
    File[] propfiles = new File(proppath).listFiles(new IniFileFilter());
    java.util.Arrays.sort(propfiles);
@@ -82,60 +73,62 @@ class IniFileFilter implements java.io.FileFilter {
         <tr><td><a href="ContentServer?pagename=<%= ics.GetVar("pagename") %>&prop=<%=propfiles[i].getName() %>&cmd=PropFiles"><%=propfiles[i].getName() %></a></td></tr>
     <% } %>
 </table>
+<br/><br/><table class="altClass" style="width:60%">
+
 <%
 String iniprop = ics.GetVar("iniprop");
 String prop = ics.GetVar("prop");
-%>
-<br/><br/><table class="altClass" style="width:60%">
-<% if(iniprop != null) { %>
-    <h3><b><%= iniprop%></b></h3>
-<%
-    Properties props = new Properties();
+Properties props = new Properties();
+String label="";
+if(iniprop != null) {
     if ("all".equals(iniprop)){
+        label="all";
         for (int i=0;i<inifiles.length; i++){
             props.load(new FileInputStream(inifiles[i]));
         }
     } else {
-        props.load(new FileInputStream(new File(inipath,iniprop)));
+        File f = new File(inipath,iniprop).getAbsoluteFile();
+        //check for iniprop input
+        if(!f.toString().startsWith(new File(inipath).getAbsoluteFile().toString())) {
+            throw new ServletException("invalid input");
+        }
+        props.load(new FileInputStream(f));
+        label=f.toString();
+
     }
-    Set keySet = new TreeSet(props.keySet());
-%>
-    <tr><th align="left">Property</th><th>Value</th></tr>
-    <%
-    for(Iterator e=keySet.iterator(); e.hasNext();) {
-        String key = (String)e.next();
-        String value = props.getProperty(key);
-    %>
-    <tr><td width="20%"><%= key%></td><td width="80%"><%= value%></td></tr>
-    <% } %>
-<%
+
 }
-else if(prop != null) {
-%>
-    <h3><b><%= prop%></b></h3>
-<%
-    Properties props = new Properties();
+if(prop != null) {
+
     if ("all".equals(prop)){
         for (int i=0;i<propfiles.length;i++){
             props.load(new FileInputStream(propfiles[i]));
         }
     } else {
+
+        File f = new File(proppath,prop).getAbsoluteFile();
+        //check for iniprop input
+        if(!f.toString().startsWith(new File(proppath).getAbsoluteFile().toString())) {
+            throw new ServletException("invalid input");
+        }
+
         props.load(new FileInputStream(new File(proppath,prop)));
+        label=f.toString();
     }
+
+}
+if(props.size() > 0) {
     Set keySet = new TreeSet(props.keySet());
-%>
-    <tr><th align="left">Property</th><th>Value</th></tr>
-    <%
+    %><h3><b><%= label%></b></h3><%
+    %><tr><th align="left">Property</th><th>Value</th></tr><%
+
     for(Iterator e=keySet.iterator(); e.hasNext();) {
         String key = (String)e.next();
         String value = props.getProperty(key);
-    %>
-    <tr><td width="20%"><%= key%></td><td width="80%"><%= value%></td></tr>
-    <% } %>
-<% } else { %>
-    <tr><td>
-    Nothing to display
-    </td></tr>
-<% } %>
-</table>
+        %><tr><td width="20%"><%= key%></td><td width="80%"><%= value%></td></tr><%
+     }
+} else {
+   %><tr><td>Nothing to display</td></tr><%
+}
+%></table>
 </cs:ftcs>
