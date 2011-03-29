@@ -9,7 +9,14 @@
 //%>
 <cs:ftcs>
 <div class="low-risk">&nbsp;</div>
-<div class="medium-risk">&nbsp;</div>
+<div class="medium-risk">
+<ul class="entry-header">
+<li class="with-care">
+         <h2><a href='ContentServer?pagename=Support/Assets/CheckedOut'><b>CheckedOut</b></a></h2>
+         <p>Lists all the checkout assets.</p>
+    </li>
+</ul>
+</div>
 <div class="high-risk">
 <ul class="entry-header">
 <li class="dangerous">
