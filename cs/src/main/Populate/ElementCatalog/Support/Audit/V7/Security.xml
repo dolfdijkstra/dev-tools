@@ -169,7 +169,7 @@
 	BFUser		BFUser
 -->
 <SETVAR NAME="errno" VALUE="0"/>
-<STRINGLIST NAME="CSUsers" STR="ContentServer,DefaultReader,fwadmin,xceleditor,xceladmin,admin,editor,user_author,user_approver,user_checker,user_designer,user_editor,user_marketer,user_publisher,BFUser" DELIM=","/>
+<STRINGLIST NAME="CSUsers" STR="ContentServer,fwadmin,xceleditor,xceladmin,admin,editor,user_author,user_approver,user_checker,user_designer,user_editor,user_marketer,user_publisher,BFUser" DELIM=","/>
 	<IF COND="IsError.Variables.errno=true">
 	<THEN>
 	<br/>Oops, theres an error creating the list for CS users
@@ -177,7 +177,7 @@
 	</IF>
 
 <SETVAR NAME="errno" VALUE="0"/>
-<STRINGLIST NAME="CSPwds" STR="password,SomeReader,xceladmin,xceleditor,xceladmin,xceladmin,xceleditor,user,user,user,user,user,user,user,BFUser" DELIM=","/>
+<STRINGLIST NAME="CSPwds" STR="password,xceladmin,xceleditor,xceladmin,xceladmin,xceleditor,user,user,user,user,user,user,user,BFUser" DELIM=","/>
 	<IF COND="IsError.Variables.errno=true">
 	<THEN>
 	<br/>Oops, theres an error creating the list for CS users
