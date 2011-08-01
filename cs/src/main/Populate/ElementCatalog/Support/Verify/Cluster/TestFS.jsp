@@ -66,7 +66,7 @@ var fsTest = {
         version:'2.0',
         timestamp: new Date(),
         hostname:'<%=hostname %>',
-        username: window.session.username,
+        username: 'unknown',
         cs_environment: window.csEnv,
         results: []
     },
