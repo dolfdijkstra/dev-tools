@@ -33,9 +33,8 @@ public void jspInit(){
 
 }
 %><cs:ftcs><%
-ics.SetVar("st_version","3.8.2");
-%><satellite:link pagename='Support/css' satellite="true" outstring="cssURL" ><satellite:argument name="v" value='<%= ics.isCacheable("Support/css")?"27": Long.toString(System.currentTimeMillis()) %>'/></satellite:link><%
-%><satellite:link pagename='Support/prototype' satellite="true" outstring="prototypeURL" ><satellite:argument name="v" value="1.6.1"/></satellite:link><%
+ics.SetVar("st_version","4.0.0");
+%><satellite:link pagename='Support/css' satellite="true" outstring="cssURL" ><satellite:argument name="v" value='<%= ics.isCacheable("Support/css")?"40": Long.toString(System.currentTimeMillis()) %>'/></satellite:link><%
 %><head><script type="text/javascript">var began_loading = new Date().getTime();</script>
 <title><ics:getvar name="pagename"/></title>
 <meta http-equiv="Pragma" content="no-cache"/><%
@@ -53,6 +52,57 @@ function addEvent(obj, evType, fn){
    return false;
  }
 }
+String.prototype.evalJSON = function () {
+	return eval('(' + this + ')');
+}
+
+Element.prototype.update = function(obj) {
+	this.innerHTML = obj;
+}
+
+function $(idValue) {
+	return document.getElementById(idValue);
+}
+
+var Ajax = {
+	Request: function(servlet, params) {
+        
+		var ajaxRequest;
+                    
+		var async = params.asynchronous;
+                    
+		if (async == null)
+			async = true;
+                    
+		if (window.XMLHttpRequest)
+			ajaxRequest = new XMLHttpRequest();
+		else
+			ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                    
+		ajaxRequest.onreadystatechange = function() {
+			if (ajaxRequest.readyState == 4) {
+				if (ajaxRequest.status == 200) {
+					params.onSuccess(ajaxRequest);
+				}
+				else {
+					params.onFailure();
+				}
+			}
+		}
+		    
+		var url = servlet;
+		var delim = "?";
+		urlParams = params.parameters;
+
+		for (var key in urlParams) {
+			url += delim + key + "=" + urlParams[key];
+			delim = "&";
+		}
+		    
+		ajaxRequest.open(params.method, url, async);
+			ajaxRequest.send();
+		}
+};
 </script>
 </head>
 <% ics.RemoveVar("referURL");ics.RemoveVar("cssURL");%></cs:ftcs>
