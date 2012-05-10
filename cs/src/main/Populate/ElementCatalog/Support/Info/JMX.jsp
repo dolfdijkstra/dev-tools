@@ -17,8 +17,12 @@
 %><%@ page import="javax.management.openmbean.CompositeData"
 %><%@ page import="javax.management.openmbean.TabularData"
 %><%@ page import="javax.management.openmbean.CompositeType"
+%><%@ page import="org.apache.commons.logging.Log"
+%><%@ page import="org.apache.commons.logging.LogFactory"
 %><%!
 
+
+Log log;
 private Comparator<ObjectName> comparator = new Comparator<ObjectName>(){
      public int compare(ObjectName o1, ObjectName o2){
          return o1.toString().compareTo(o2.toString());
@@ -31,6 +35,7 @@ private Comparator<ObjectName> comparator = new Comparator<ObjectName>(){
 
 public void jspInit(){
     //ManagementFactory.getPlatformMBeanServer().getDomains();
+    log = LogFactory.getLog("com.fatwire.cs.logging.devtools");
 }
 
 class BeanRenderer {
@@ -90,8 +95,10 @@ class BeanRenderer {
 
                     try {
                         value=mBeanServer.getAttribute(oname, attName);
+                    } catch(UnsupportedOperationException e){
+                        //ignore, trying to read what we don't have access too or where the internal state does not allow reading
                     } catch( Throwable t) {
-                        log("Error getting attribute " + oname +
+                        log.info("Error getting attribute " + oname +
                             " " + attName + " " + t.toString());
                         continue;
                     }
