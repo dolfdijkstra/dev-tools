@@ -7,4 +7,20 @@
 //
 // OUTPUT
 //
-%><cs:ftcs><ics:callelement element="Support/Audit/Dispatcher" /></cs:ftcs>
+%><cs:ftcs><%
+String cmd = ics.GetVar("cmd");
+
+String defaultElementName = "Support/Audit/Default/" + cmd;
+String elementName = null;
+
+if (ics.IsElement(defaultElementName)) {
+	elementName = defaultElementName;
+}
+
+if (elementName != null) {
+	%><!-- Calling: <%= elementName %> -->
+	<ics:callelement element='<%= elementName %>' /><%
+} else {
+	%>No element found for command: "<%= cmd %>" <%
+}
+%></cs:ftcs>
