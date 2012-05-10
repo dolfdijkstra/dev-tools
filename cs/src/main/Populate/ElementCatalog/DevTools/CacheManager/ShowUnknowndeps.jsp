@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/CacheManager/ShowUnknowndeps
+// DevTools/CacheManager/ShowUnknowndeps
 //
 // INPUT
 //
@@ -28,7 +28,7 @@ There are total <%= total %> unknowdeps pages...
       <tr>
         <td><%= i++ %></td>
         <td><satellite:link><%
-            %><satellite:parameter name='pagename' value='Support/CacheManager/listByItemPost'/><%
+            %><satellite:parameter name='pagename' value='DevTools/CacheManager/listByItemPost'/><%
             %><satellite:parameter name='idlist' value='<%=ics.ResolveVariables("unknownlist.pagename") %>'/><%
         %></satellite:link><%
         %><a href='<%= ics.GetVar("referURL") %>'><ics:resolvevariables name="unknownlist.pagename"/></a><%

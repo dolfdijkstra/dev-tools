@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/CacheManager/ShowDuplicate
+// DevTools/CacheManager/ShowDuplicate
 //
 // INPUT
 //
@@ -41,7 +41,7 @@ for (int i = 1; i <= rows; i++) {
 function div_show(obj,key){
     new Ajax.Request('ContentServer', {
       method: 'get',
-      parameters: {pagename:'Support/CacheManager/ShowCachedPageEscaped',pid: key},
+      parameters: {pagename:'DevTools/CacheManager/ShowCachedPageEscaped',pid: key},
       onSuccess: function(response){
             var result = response.responseText;
             showPagelet(obj,result);
@@ -54,7 +54,7 @@ function showDups(obj,key){
     $('hoverbox').style.visibility = 'hidden';
     new Ajax.Request('ContentServer', {
       method: 'get',
-      parameters: {pagename:'Support/CacheManager/ShowDuplicateDiv',pname: key},
+      parameters: {pagename:'DevTools/CacheManager/ShowDuplicateDiv',pname: key},
       onSuccess: function(response){
          $('dups').innerHTML=response.responseText;
       },

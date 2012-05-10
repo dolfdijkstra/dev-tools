@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
 %><%//
-// Support/TCPI/CleanUp/CountDuplicateTargetid
+// DevTools/TCPI/CleanUp/CountDuplicateTargetid
 //
 // INPUT
 //
@@ -55,7 +55,7 @@ Number of ApprovedAssetDeps with different targetid then owner: <b><ics:listget 
             <td><ics:listget listname="aad" fieldname="targetid"/></td>
             <td><ics:listget listname="aad" fieldname="ownerid"/></td>
             <td><ics:listget listname="aad" fieldname="assettype"/></td>
-            <td><a href='ContentServer?pagename=Support/TCPI/AP/ShowHeld&assetid=<ics:listget listname="aad" fieldname="assetid"/>'><ics:listget listname="aad" fieldname="assetid"/></a></td>			
+            <td><a href='ContentServer?pagename=DevTools/TCPI/AP/ShowHeld&assetid=<ics:listget listname="aad" fieldname="assetid"/>'><ics:listget listname="aad" fieldname="assetid"/></a></td>			
 		</tr>
     	</ics:listloop>
 	</table>

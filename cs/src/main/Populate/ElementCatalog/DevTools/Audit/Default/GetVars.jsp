@@ -2,7 +2,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Audit/Default/GetVars
+// DevTools/Audit/Default/GetVars
 //
 // INPUT
 //
@@ -15,5 +15,5 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<ics:callelement element="Support/Audit/Default/CSVariables"/>
+<ics:callelement element="DevTools/Audit/Default/CSVariables"/>
 </cs:ftcs>

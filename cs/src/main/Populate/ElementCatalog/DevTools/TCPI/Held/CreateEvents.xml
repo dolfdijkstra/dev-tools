@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE FTCS SYSTEM "futuretense_cs.dtd">
 <FTCS Version="1.2">
-<!-- Support/TCPI/Held/CreateEvents
+<!-- DevTools/TCPI/Held/CreateEvents
 -
 - INPUT
 -
@@ -18,7 +18,7 @@
 		<DELIVERYTYPE.GET NAME="dtype" FIELD="name" OUTPUT="dtype:name"/>
 		Enabling held asset event for <b><CSVAR NAME="uiPubTgts.name (Variables.dtype:name)"/></b><br/>
 		<APPEVENT NAME="held_uiPubTgts.id" GUID="ContentServer" TIMES="*:1,6,11,16,21,26,31,36,41,46,51,56:20 */*/*">
-			<ARGUMENT NAME="pagename" VALUE="Support/TCPI/Held/HeldEvent"/>
+			<ARGUMENT NAME="pagename" VALUE="DevTools/TCPI/Held/HeldEvent"/>
 			<ARGUMENT NAME="targ" VALUE="uiPubTgts.id"/>
 		</APPEVENT>
 		<IF COND="IsError.Variables.errno=true">

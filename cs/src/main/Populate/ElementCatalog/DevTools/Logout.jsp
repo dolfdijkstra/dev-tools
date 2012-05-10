@@ -3,7 +3,7 @@
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%@ taglib prefix="user" uri="futuretense_cs/user.tld"
 %><%//
-// Support/Logout
+// DevTools/Logout
 //
 // INPUT
 //
@@ -11,7 +11,7 @@
 //%>
 <%@ page import="COM.FutureTense.Interfaces.ICS"
 %><cs:ftcs><%
-String redir = "Support/Home";
+String redir = "DevTools/Home";
 if (ics.GetVar("redir") !=null){
     redir=ics.GetVar("redir");
 }

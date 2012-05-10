@@ -2,7 +2,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Verify/Cluster/nodeselect
+// DevTools/Verify/Cluster/nodeselect
 //
 // INPUT
 //
@@ -24,13 +24,13 @@
    }
 %>
 <form method="POST" action="ContentServer">
-<input type="hidden" name="pagename" value="Support/Verify/Cluster/nodeselectPost"/>
+<input type="hidden" name="pagename" value="DevTools/Verify/Cluster/nodeselectPost"/>
 <input type="hidden" name="numofnodes" value="<%= numOfNodes %>"/>
 
 <table class="altClass" style="width:50%">
 <% for (int i=0; i<numOfNodes; i++){ %>
     <tr><td colspan="2">
-    <ics:callelement element="Support/Verify/Cluster/clusternodeEdit" >
+    <ics:callelement element="DevTools/Verify/Cluster/clusternodeEdit" >
         <ics:argument name="node" value="<%= Integer.toString(i) %>"/>
     </ics:callelement>
     </td></tr>

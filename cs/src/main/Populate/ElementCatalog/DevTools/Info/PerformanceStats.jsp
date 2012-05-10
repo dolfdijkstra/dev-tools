@@ -3,7 +3,7 @@
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%
 //
-// Support/Info/PerformanceStats
+// DevTools/Info/PerformanceStats
 //
 // INPUT
 //
@@ -32,7 +32,7 @@
         getCacheData();
       }
       function getCacheData() {
-        var query = new google.visualization.Query('ContentServer?pagename=Support/Info/PerformanceStatsJson');
+        var query = new google.visualization.Query('ContentServer?pagename=DevTools/Info/PerformanceStatsJson');
         query.setTimeout(5);
         //query.setRefreshInterval(10);
         // Send the query with a callback function.
@@ -40,7 +40,7 @@
         return true;
       }
       function clearStats() {
-        var query = new google.visualization.Query('ContentServer?pagename=Support/Info/PerformanceStatsJson&clear=true');
+        var query = new google.visualization.Query('ContentServer?pagename=DevTools/Info/PerformanceStatsJson&clear=true');
         query.setTimeout(5);
         //query.setRefreshInterval(10);
         // Send the query with a callback function.

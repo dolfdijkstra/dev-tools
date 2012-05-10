@@ -45,10 +45,10 @@
                 <tr>
                     <td align="right"><CSVAR NAME="reapprovelist.#curRow"/></td>
                     <td><CSVAR NAME="reapprovelist.assettype" /></td>
-                    <td><a href="ContentServer?pagename=Support/TCPI/AP/ShowHeldSummary&#38;assetid=reapprovelist.assetid" REPLACEALL="reapprovelist.assetid"><CSVAR NAME="reapprovelist.assetid" /></a></td>
+                    <td><a href="ContentServer?pagename=DevTools/TCPI/AP/ShowHeldSummary&#38;assetid=reapprovelist.assetid" REPLACEALL="reapprovelist.assetid"><CSVAR NAME="reapprovelist.assetid" /></a></td>
                     <IF COND="IsVariable.approvechanged=true">
                     <THEN>
-                          <CALLELEMENT NAME="Support/TCPI/AP/HandleChangedAsset">
+                          <CALLELEMENT NAME="DevTools/TCPI/AP/HandleChangedAsset">
                                 <ARGUMENT NAME="type" VALUE="reapprovelist.assettype"/>
                                 <ARGUMENT NAME="assetid" VALUE="reapprovelist.assetid"/>
                                 <ARGUMENT NAME="target" VALUE="Variables.targ"/>
@@ -67,7 +67,7 @@
    	It took <b><TIME.GET NAME="changedoperation" /></b> ms to do the work.<br/><br/>
     <IF COND="reapprovelist.#numRows!=0">
         <THEN>
-            <a href="ContentServer?pagename=Support/TCPI/AP/ApprovalStats&#38;targ=Variables.targ&#38;approvechanged=true&#38;maxList=Variables.maxList&#38;tname=Variables.tname" REPLACEALL="Variables.targ,Variables.maxList,Variables.tname">Approve All Changed</a><br/>
+            <a href="ContentServer?pagename=DevTools/TCPI/AP/ApprovalStats&#38;targ=Variables.targ&#38;approvechanged=true&#38;maxList=Variables.maxList&#38;tname=Variables.tname" REPLACEALL="Variables.targ,Variables.maxList,Variables.tname">Approve All Changed</a><br/>
         </THEN>
     </IF>
     <br/><br/>
@@ -95,7 +95,7 @@
 				<td align="right"><CSVAR NAME="heldlist.#curRow"/></td><td><CSVAR NAME="heldlist.assettype" /></td><td><CSVAR NAME="heldlist.assetid" /></td><td align="right"><CSVAR NAME="heldlist.reason" /></td>
 				<IF COND="IsVariable.showBlocked=false">
 				<THEN>
-					<CALLELEMENT NAME="Support/TCPI/AP/CountBlockingAsset">
+					<CALLELEMENT NAME="DevTools/TCPI/AP/CountBlockingAsset">
 						<ARGUMENT NAME="type" VALUE="heldlist.assettype"/>
 						<ARGUMENT NAME="assetid" VALUE="heldlist.assetid"/>
 						<ARGUMENT NAME="target" VALUE="Variables.targ"/>
@@ -105,7 +105,7 @@
 			</tr>
     			<IF COND="IsVariable.showBlocked=true">
     			<THEN>
-    				<CALLELEMENT NAME="Support/TCPI/AP/HandleHeldAsset">
+    				<CALLELEMENT NAME="DevTools/TCPI/AP/HandleHeldAsset">
     					<ARGUMENT NAME="type" VALUE="heldlist.assettype"/>
     					<ARGUMENT NAME="assetid" VALUE="heldlist.assetid"/>
     					<ARGUMENT NAME="target" VALUE="Variables.targ"/>
@@ -123,9 +123,9 @@
 	It took <b><TIME.GET NAME="heldoperation" /></b> ms to do the work.<br/>
 	<IF COND="heldlist.#numRows!=0">
 	<THEN>
-                <a href="ContentServer?pagename=Support/TCPI/AP/ApprovalStats&#38;targ=Variables.targ&#38;maxList=Variables.maxList&#38;tname=Variables.tname" REPLACEALL="Variables.targ,Variables.maxList,Variables.tname">Count Blocking Assets</a><br/>
-                <a href="ContentServer?pagename=Support/TCPI/AP/ApprovalStats&#38;targ=Variables.targ&#38;showBlocked=true&#38;maxList=Variables.maxList&#38;tname=Variables.tname" REPLACEALL="Variables.targ,Variables.maxList,Variables.tname">Show Held Assets</a><br/>
-		<a href="ContentServer?pagename=Support/TCPI/AP/ApprovalStats&#38;targ=Variables.targ&#38;showBlocked=true&#38;approveheld=true&#38;maxList=Variables.maxList&#38;tname=Variables.tname" REPLACEALL="Variables.targ,Variables.maxList,Variables.tname">Approve All Held</a><br/>
+                <a href="ContentServer?pagename=DevTools/TCPI/AP/ApprovalStats&#38;targ=Variables.targ&#38;maxList=Variables.maxList&#38;tname=Variables.tname" REPLACEALL="Variables.targ,Variables.maxList,Variables.tname">Count Blocking Assets</a><br/>
+                <a href="ContentServer?pagename=DevTools/TCPI/AP/ApprovalStats&#38;targ=Variables.targ&#38;showBlocked=true&#38;maxList=Variables.maxList&#38;tname=Variables.tname" REPLACEALL="Variables.targ,Variables.maxList,Variables.tname">Show Held Assets</a><br/>
+		<a href="ContentServer?pagename=DevTools/TCPI/AP/ApprovalStats&#38;targ=Variables.targ&#38;showBlocked=true&#38;approveheld=true&#38;maxList=Variables.maxList&#38;tname=Variables.tname" REPLACEALL="Variables.targ,Variables.maxList,Variables.tname">Approve All Held</a><br/>
 	</THEN>
 	</IF>
 	</then>
@@ -149,10 +149,10 @@
                 <tr>
                     <td align="right"><CSVAR NAME="uimodifiedlist.#curRow"/></td>
                     <td><CSVAR NAME="uimodifiedlist.assettype" /></td>
-                    <td><a href="ContentServer?pagename=Support/TCPI/AP/ShowHeldSummary&#38;assetid=uimodifiedlist.assetid" REPLACEALL="uimodifiedlist.assetid"><CSVAR NAME="uimodifiedlist.assetid" /></a></td>
+                    <td><a href="ContentServer?pagename=DevTools/TCPI/AP/ShowHeldSummary&#38;assetid=uimodifiedlist.assetid" REPLACEALL="uimodifiedlist.assetid"><CSVAR NAME="uimodifiedlist.assetid" /></a></td>
                     <IF COND="IsVariable.approveuimodified=true">
                     <THEN>
-                          <CALLELEMENT NAME="Support/TCPI/AP/HandleUIModifiedAsset">
+                          <CALLELEMENT NAME="DevTools/TCPI/AP/HandleUIModifiedAsset">
                                 <ARGUMENT NAME="assetid" VALUE="uimodifiedlist.assetid"/>
                                 <ARGUMENT NAME="target" VALUE="Variables.targ"/>
                           </CALLELEMENT>
@@ -170,7 +170,7 @@
     It took <b><TIME.GET NAME="uimodified" /></b> ms to do the work.<br/>
     <IF COND="uimodifiedlist.#numRows!=0">
     <THEN>
-        <a href="ContentServer?pagename=Support/TCPI/AP/ApprovalStats&#38;targ=Variables.targ&#38;approveuimodified=true&#38;maxList=Variables.maxList&#38;tname=Variables.tname" REPLACEALL="Variables.targ,Variables.maxList,Variables.tname">Approve UI Modified Assets</a><br/>
+        <a href="ContentServer?pagename=DevTools/TCPI/AP/ApprovalStats&#38;targ=Variables.targ&#38;approveuimodified=true&#38;maxList=Variables.maxList&#38;tname=Variables.tname" REPLACEALL="Variables.targ,Variables.maxList,Variables.tname">Approve UI Modified Assets</a><br/>
     </THEN>
     </IF>	
 </THEN>
@@ -185,7 +185,7 @@
 		          <DELIVERYTYPE.LOAD NAME="dtype" OBJECTID="uiPubTgts.type"/>
 		          <DELIVERYTYPE.GET NAME="dtype" FIELD="name" OUTPUT="dtype:name"/>
               <li>
-              <a href="ContentServer?pagename=Support/TCPI/AP/ApprovalStats&#38;targ=uiPubTgts.id&#38;tname=uiPubTgts.name (Variables.dtype:name)" REPLACEALL="uiPubTgts.id,uiPubTgts.name,Variables.dtype:name">
+              <a href="ContentServer?pagename=DevTools/TCPI/AP/ApprovalStats&#38;targ=uiPubTgts.id&#38;tname=uiPubTgts.name (Variables.dtype:name)" REPLACEALL="uiPubTgts.id,uiPubTgts.name,Variables.dtype:name">
 			        <CSVAR NAME="uiPubTgts.name (Variables.dtype:name)"/></a><br/>
               </li>
         </loop>

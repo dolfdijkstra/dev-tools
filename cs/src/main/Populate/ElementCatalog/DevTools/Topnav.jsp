@@ -2,7 +2,7 @@
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%
 //
-// Support/Topnav
+// DevTools/Topnav
 //
 // INPUT
 //
@@ -28,22 +28,22 @@ private org.apache.commons.logging.Log log = org.apache.commons.logging.LogFacto
     <div id="nav-bg">
         <div id="nav">
                 <ul>
-                    <li><a href="ContentServer?pagename=Support/Home">HOME</a></li>
+                    <li><a href="ContentServer?pagename=DevTools/Home">HOME</a></li>
                     <% if (ics.UserIsMember("SiteGod")){
-                        %><li><a href="ContentServer?pagename=Support/Info/Home">INFO</a></li>
-                        <li><a href="ContentServer?pagename=Support/Audit/Home">SYSTEM</a></li>
-                        <li><a href="ContentServer?pagename=Support/TCPI/Home">APPROVAL</a></li>
-                        <li><a href="ContentServer?pagename=Support/CacheManager/Home">CACHE</a></li>
-                        <li><a href="ContentServer?pagename=Support/Assets/Home">ASSETS</a></li>
-                        <li><a href="ContentServer?pagename=Support/Flex/Home">FLEX</a></li>
-                        <li><a href="ContentServer?pagename=Support/Verify/Home">MISC</a></li>
+                        %><li><a href="ContentServer?pagename=DevTools/Info/Home">INFO</a></li>
+                        <li><a href="ContentServer?pagename=DevTools/Audit/Home">SYSTEM</a></li>
+                        <li><a href="ContentServer?pagename=DevTools/TCPI/Home">APPROVAL</a></li>
+                        <li><a href="ContentServer?pagename=DevTools/CacheManager/Home">CACHE</a></li>
+                        <li><a href="ContentServer?pagename=DevTools/Assets/Home">ASSETS</a></li>
+                        <li><a href="ContentServer?pagename=DevTools/Flex/Home">FLEX</a></li>
+                        <li><a href="ContentServer?pagename=DevTools/Verify/Home">MISC</a></li>
                         <% if (log instanceof org.apache.commons.logging.impl.Log4JLogger){ %>
-                        <li><a href="ContentServer?pagename=Support/Log4J/Log4J">LOG4J</a></li>
+                        <li><a href="ContentServer?pagename=DevTools/Log4J/Log4J">LOG4J</a></li>
                         <%} else {%>
-                        <li><a href="ContentServer?pagename=Support/Log4J/Info">LOG4J</a></li>
+                        <li><a href="ContentServer?pagename=DevTools/Log4J/Info">LOG4J</a></li>
                         <%}%>
-                        <li><a href="ContentServer?pagename=Support/Performance/Home">PERFORMANCE</a></li>
-                        <li><a href="ContentServer?pagename=Support/Logout">LOGOUT</a></li>
+                        <li><a href="ContentServer?pagename=DevTools/Performance/Home">PERFORMANCE</a></li>
+                        <li><a href="ContentServer?pagename=DevTools/Logout">LOGOUT</a></li>
                         <%
                         }
                     %>

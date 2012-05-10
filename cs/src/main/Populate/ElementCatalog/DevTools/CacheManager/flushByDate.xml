@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE FTCS SYSTEM "futuretense_cs.dtd">
 <FTCS Version="1.1">
-<!-- Support/CacheManager/flushByDate
+<!-- DevTools/CacheManager/flushByDate
 -
 - INPUT
 -
@@ -11,7 +11,7 @@
 <h3>Flush Pages by Date</h3>
 <P>This tool allows you to flush pages from cache based on the expiration date of pages or the date of items on the page.</P>
 <FORM METHOD="POST" ACTION="ContentServer">
-	<INPUT TYPE="hidden" NAME="pagename" VALUE="Support/CacheManager/flushByDatePost"/>
+	<INPUT TYPE="hidden" NAME="pagename" VALUE="DevTools/CacheManager/flushByDatePost"/>
 	<table style="width:75%">
 	<tr>
     <td width="20%">Flush pages </td>

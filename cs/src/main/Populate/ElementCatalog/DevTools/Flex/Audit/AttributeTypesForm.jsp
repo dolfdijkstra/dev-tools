@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/Flex/Audit/AssetTypeForm
+// DevTools/Flex/Audit/AssetTypeForm
 //
 // INPUT
 //
@@ -15,7 +15,7 @@ String sql ="SELECT assettype, description FROM AssetType WHERE assettype IN ("
 +"SELECT assetattr FROM FlexAssetTypes "
 +") "
 +"ORDER BY assettype ASC";
-String pagename="Support/Flex/Audit/" + ics.GetVar("PostPage");
+String pagename="DevTools/Flex/Audit/" + ics.GetVar("PostPage");
 %>
 <h3><ics:getvar name="PostPage"/></h3>
 <ics:sql sql='<%=sql %>' table="FlexAssetTypes" listname="assettypes"/>

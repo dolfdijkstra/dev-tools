@@ -2,7 +2,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Audit/Default/SystemSqlCheck
+// DevTools/Audit/Default/SystemSqlCheck
 //
 // INPUT
 //
@@ -49,7 +49,7 @@
               File ff = new File(newpath);
               Date ffdate = new Date(ff.lastModified());
                       out.print("<font color=\"orange\">"+files[j]+"</font> (" + ff.length() + " bytes, lastModified " + ffdate.toString() + ") ");
-                      out.print("&nbsp;<a href=\"ContentServer?pagename=Support/Audit/DispatcherFront&cmd=SystemSqlCheck&filespec="+newpath+"&filepath="+oldpath+"&useme=yes\">UseMe</a><br/>");
+                      out.print("&nbsp;<a href=\"ContentServer?pagename=DevTools/Audit/DispatcherFront&cmd=SystemSqlCheck&filespec="+newpath+"&filepath="+oldpath+"&useme=yes\">UseMe</a><br/>");
                   }
               }
           }

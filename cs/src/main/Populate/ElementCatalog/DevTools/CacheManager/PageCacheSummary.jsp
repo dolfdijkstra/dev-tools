@@ -1,7 +1,7 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%//
-// Support/CacheManager/PageCacheSummary
+// DevTools/CacheManager/PageCacheSummary
 //
 // INPUT
 //
@@ -48,7 +48,7 @@ function execute(tq,title) {
         $(tq).style.height='300px';
     }
 
-    var query = new google.visualization.Query('ContentServer?pagename=Support/CacheManager/PageCacheSummaryJson');
+    var query = new google.visualization.Query('ContentServer?pagename=DevTools/CacheManager/PageCacheSummaryJson');
     //query.setRefreshInterval(10);
     // Send the query with a callback function.
     query.setQuery('select ' + tq);

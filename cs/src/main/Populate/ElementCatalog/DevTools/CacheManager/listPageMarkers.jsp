@@ -139,7 +139,7 @@ if (markers.length !=0) {
             {
                 result.moveTo(1);
                 String id = result.getValue("id");
-                %><%= Integer.toString(i+1) %>: <a style="color:black" href='ContentServer?pagename=Support/CacheManager/listItemsByPage&pid=<%= id %>'><%= markers[i] %></a><br/><%
+                %><%= Integer.toString(i+1) %>: <a style="color:black" href='ContentServer?pagename=DevTools/CacheManager/listItemsByPage&pid=<%= id %>'><%= markers[i] %></a><br/><%
             }else {
                 %><%= Integer.toString(i+1) %>: (not in cache) <%= markers[i] %><br/><%
             }

@@ -2,7 +2,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Audit/V7/RevTrack/historyPost
+// DevTools/Audit/V7/RevTrack/historyPost
 //
 // INPUT
 //
@@ -43,7 +43,7 @@
                 String id = tok.nextToken();
                 %>
                 <p><%=table%> id <%=id%>:
-                <ics:callelement element="Support/Audit/V7/RevTrack/getHistory">
+                <ics:callelement element="DevTools/Audit/V7/RevTrack/getHistory">
                   <ics:argument name="table" value='<%=table%>'/>
                   <ics:argument name="assetid" value='<%=id%>'/>
                 </ics:callelement>
@@ -62,7 +62,7 @@
                     Integer version = (Integer)iVersions.next();
                     %><br>Deleting <%=id%> version <%=version%>...<%
                     %>
-                    <ics:callelement element="Support/Audit/V7/RevTrack/deleteHistoryVersion">
+                    <ics:callelement element="DevTools/Audit/V7/RevTrack/deleteHistoryVersion">
                       <ics:argument name="table" value='<%=table%>'/>
                       <ics:argument name="assetid" value='<%=id%>'/>
                       <ics:argument name="version" value='<%=version.toString()%>'/>

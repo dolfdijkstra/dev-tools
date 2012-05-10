@@ -3,7 +3,7 @@
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%@ taglib prefix="time" uri="futuretense_cs/time.tld" %>
 <%//
-// Support/CacheManager/ShowInvalidRows
+// DevTools/CacheManager/ShowInvalidRows
 //
 // INPUT
 //

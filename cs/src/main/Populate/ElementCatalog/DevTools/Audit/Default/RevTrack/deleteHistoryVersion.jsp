@@ -2,7 +2,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Audit/V7/RevTrack/deleteHistoryVersion
+// DevTools/Audit/V7/RevTrack/deleteHistoryVersion
 //
 // INPUT
 //

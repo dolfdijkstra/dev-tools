@@ -4,8 +4,8 @@
 %><%@ page import="COM.FutureTense.Interfaces.*,
                    java.util.StringTokenizer"
 %><cs:ftcs>
-<script type="text/javascript" src="ContentServer?pagename=Support/Assets/checkAssetsScript"></script>
-<link rel="stylesheet" type="text/css" href="ContentServer?pagename=Support/Assets/checkAssetsCSS" />
+<script type="text/javascript" src="ContentServer?pagename=DevTools/Assets/checkAssetsScript"></script>
+<link rel="stylesheet" type="text/css" href="ContentServer?pagename=DevTools/Assets/checkAssetsCSS" />
 <h3 id="title">Check Assets</h3>
 <%
 String theTypes = ics.GetVar("types");
@@ -39,7 +39,7 @@ if (theTypes == null) { %>
 <% } else { %>
 
   <form action="ContentServer" method="POST" onsubmit="submitExportPage('table_data', 'export_data')">
-    <input type="hidden" name="pagename" value="Support/Assets/checkAssetsExport"/>
+    <input type="hidden" name="pagename" value="DevTools/Assets/checkAssetsExport"/>
     <input id="table_data" type="hidden" name="table_data" value=""/>
     <input type="submit" value="Export Page"/>
   </form>

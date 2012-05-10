@@ -3,7 +3,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Verify/Cluster/nodeselectPost
+// DevTools/Verify/Cluster/nodeselectPost
 //
 // INPUT
 //
@@ -48,9 +48,9 @@ for (int i=0; i< numOfNodes;i++){
     String key = "cluster.node." + i + ".url";
     String value = ics.GetSSVar(key);
     %>
-    <ics:callelement element="Support/Verify/Cluster/remoteDispatch" >
+    <ics:callelement element="DevTools/Verify/Cluster/remoteDispatch" >
         <ics:argument name="fp.url" value="<%= value %>"/>
-        <ics:argument name="fp.pagename" value="Support/Verify/Cluster/helloVars"/>
+        <ics:argument name="fp.pagename" value="DevTools/Verify/Cluster/helloVars"/>
         <ics:argument name="fp.username" value="<%= ics.GetSSVar("cluster.node." + i + ".username") %>"/>
         <ics:argument name="fp.password" value="<%= ics.GetSSVar("cluster.node." + i + ".password") %>"/>
     </ics:callelement>

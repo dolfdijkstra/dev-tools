@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE FTCS SYSTEM "futuretense_cs.dtd">
 <FTCS Version="1.2">
-<!-- Support/CacheManager/listItemsByPage
+<!-- DevTools/CacheManager/listItemsByPage
 -
 - INPUT
 -
@@ -37,7 +37,7 @@ function openPreview(id)
 {
     var pURL = "<ics.resolvevariables NAME="$(Variables.preview-host)$(CS.Property.ft.approot)ContentServer" delimited="true"/>";
     pURL = pURL + "?pagename=";
-   	pURL = pURL + "Support/CacheManager/ShowCachedPage&#38;pid=" + id;
+   	pURL = pURL + "DevTools/CacheManager/ShowCachedPage&#38;pid=" + id;
      
     PreviewWindow = window.open(pURL, "NewPreviewContent", "width=700,height=480,scrollbars=yes,toolbar=no,location=no,status=yes,menubar=no,resizable=yes,directories=no");
     PreviewWindow.focus();
@@ -74,9 +74,9 @@ function showPreview(pURL)
 			<tr><td colspan="3"><CSVAR NAME="page.@urlhead"/></td></tr>
 		</table>
 		<br/>
-		<CALLELEMENT NAME="Support/CacheManager/listAssetDetails"/>		
+		<CALLELEMENT NAME="DevTools/CacheManager/listAssetDetails"/>		
 		<br/>
-		<CALLELEMENT NAME="Support/CacheManager/listPageMarkers">
+		<CALLELEMENT NAME="DevTools/CacheManager/listPageMarkers">
 			<ARGUMENT NAME="pagebody" VALUE="page.@urlpage"/>
 		</CALLELEMENT>		
 	</ELSE></IF>
@@ -86,7 +86,7 @@ function showPreview(pURL)
 function div_show(obj,key){
     new Ajax.Request('ContentServer', {
       method: 'get',
-      parameters: {pagename:'Support/CacheManager/ShowCachedPageEscaped',pid: key},
+      parameters: {pagename:'DevTools/CacheManager/ShowCachedPageEscaped',pid: key},
       onSuccess: function(response){
             var result = response.responseText;
             showPagelet(obj,result);

@@ -1,7 +1,7 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%//
-// Support/Assets/Home
+// DevTools/Assets/Home
 //
 // INPUT
 //
@@ -12,7 +12,7 @@
 <div class="medium-risk">
 <ul class="entry-header">
 <li class="with-care">
-         <h2><a href='ContentServer?pagename=Support/Assets/CheckedOut'><b>CheckedOut</b></a></h2>
+         <h2><a href='ContentServer?pagename=DevTools/Assets/CheckedOut'><b>CheckedOut</b></a></h2>
          <p>Lists all the checkout assets.</p>
     </li>
 </ul>
@@ -20,11 +20,11 @@
 <div class="high-risk">
 <ul class="entry-header">
 <li class="dangerous">
-         <h2><a href='ContentServer?pagename=Support/Assets/BulkSaveAssets'><b>BulkSaveAssets</b></a></h2>
+         <h2><a href='ContentServer?pagename=DevTools/Assets/BulkSaveAssets'><b>BulkSaveAssets</b></a></h2>
          <p>Allows to bulk load, save or void assets based on a entered query.</p>
     </li>
     <li class="dangerous">
-         <h2><a href='ContentServer?pagename=Support/Assets/checkAssets'><b>checkAssets</b></a></h2>
+         <h2><a href='ContentServer?pagename=DevTools/Assets/checkAssets'><b>checkAssets</b></a></h2>
          <p>Checks for assets integrity.</p>
          <ul>
          <li>Checks to see if table exists in the DB</li>
@@ -38,7 +38,7 @@
          </ul>
     </li>
     <li class="dangerous">
-         <h2><a href='ContentServer?pagename=Support/Assets/ScatterAsset'><b>ScatterAsset</b></a></h2>
+         <h2><a href='ContentServer?pagename=DevTools/Assets/ScatterAsset'><b>ScatterAsset</b></a></h2>
          <p>Loads and scatters an asset for inspection.</p>
     </li>
 </ul>

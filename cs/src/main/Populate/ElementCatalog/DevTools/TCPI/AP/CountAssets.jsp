@@ -15,9 +15,9 @@
 %><%@ page import="COM.FutureTense.Util.ftErrors" 
 %><%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
+<ics:callelement element="DevTools/general"/>
 <div id="content">
-<ics:callelement element="Support/Topnav"/>
+<ics:callelement element="DevTools/Topnav"/>
 <h3>Count Assets per Site</h3>
 <ics:clearerrno/>
 <ics:sql sql="SELECT count(id) as num FROM Publication" table="Publication" listname="sites"/>
@@ -63,6 +63,6 @@ Number of sites: <b><ics:listget listname="sites" fieldname="num"/></b><br/>
 	</tr>
     </ics:listloop>
 </table>
-<ics:callelement element="Support/Footer"/>
+<ics:callelement element="DevTools/Footer"/>
 </div>
 </cs:ftcs>

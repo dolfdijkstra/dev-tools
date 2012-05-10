@@ -2,7 +2,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"%>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"%>
 <%//
-// Support/CacheManager/flushByItemPost
+// DevTools/CacheManager/flushByItemPost
 //
 // INPUT
 //
@@ -47,7 +47,7 @@ if (!Utilities.goodString(idval)){
             <td nowrap align="right"><ics:resolvevariables name="pages.#curRow"/></td>
             <td nowrap><ics:resolvevariables name="pages.id"/></td>
             <td nowrap><ics:resolvevariables name="pages.mtime"/></td>
-            <td><a href='ContentServer?pagename=Support/CacheManager/listItemsByPage&pid=<ics:resolvevariables name="pages.pid"/>'><ics:resolvevariables name="pages.@urlqry"/></a></td>
+            <td><a href='ContentServer?pagename=DevTools/CacheManager/listItemsByPage&pid=<ics:resolvevariables name="pages.pid"/>'><ics:resolvevariables name="pages.@urlqry"/></a></td>
         </tr>
         </ics:listloop>
     </table>

@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
 %><%//
-// Support/TCPI/SQL/DelDups
+// DevTools/TCPI/SQL/DelDups
 //
 // INPUT
 //

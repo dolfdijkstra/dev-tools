@@ -1,16 +1,16 @@
 <?xml version="1.0" ?>
 <!DOCTYPE FTCS SYSTEM "futuretense_cs.dtd">
 <FTCS Version="1.2">
-<!-- Support/TCPI/PubKeys/Install
+<!-- DevTools/TCPI/PubKeys/Install
 -
 - INPUT
 -
 - OUTPUT
 -
 -->
-<CALLELEMENT NAME="Support/general"/>
+<CALLELEMENT NAME="DevTools/general"/>
 <div id="content">
-<CALLELEMENT NAME="Support/Topnav"/>
+<CALLELEMENT NAME="DevTools/Topnav"/>
 <setvar NAME="errno" VALUE="0"/>
 <ICS.QUERYEVENTS LIST="events" NAME="MovePubKeys" TYPE="1" />
 <IF COND="Variables.errno=-101">
@@ -18,7 +18,7 @@
 		Enabling PubKeys cleanup event <br/>
 		<setvar NAME="errno" VALUE="0"/>
 		<APPEVENT NAME="MovePubKeys" GUID="ContentServer" TIMES="*:1,11,21,31,41,51:30 */*/*">
-			<ARGUMENT NAME="pagename" VALUE="Support/TCPI/PubKeys/UpdateBatchEvent"/>
+			<ARGUMENT NAME="pagename" VALUE="DevTools/TCPI/PubKeys/UpdateBatchEvent"/>
 		</APPEVENT>
 		<IF COND="IsError.Variables.errno=true">
 		<THEN>
@@ -37,6 +37,6 @@
 	</IF>	
 </ELSE>
 </IF>
-<CALLELEMENT NAME="Support/Footer"/>
+<CALLELEMENT NAME="DevTools/Footer"/>
 </div>
 </FTCS>

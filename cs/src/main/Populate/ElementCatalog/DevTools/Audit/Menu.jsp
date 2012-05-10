@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/Audit/Menu
+// DevTools/Audit/Menu
 //
 // INPUT
 //
@@ -16,14 +16,14 @@
 %><%@ page import="COM.FutureTense.Util.ftMessage"
 %><%!
 String buildMenuUrl(String cmd){
-return "ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd=" + cmd ;
+return "ContentServer?pagename=DevTools/Audit/DispatcherFront&#38;cmd=" + cmd ;
 }
 %>
 <cs:ftcs>
 <div class="low-risk">
 <ul class="entry-header">
 <li class="read-only">
-     <h2><a href="ContentServer?pagename=Support/Info/collectInfo">Version Check</a></h2>
+     <h2><a href="ContentServer?pagename=DevTools/Info/collectInfo">Version Check</a></h2>
      <p>Useful to check build date and buid version number to make sure the latest release is installed.<br/>
         Displays following information:</p>
             <ul>
@@ -78,7 +78,7 @@ return "ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd=" + cmd ;
 <ul class="entry-header">
 
 <li class="with-care">
-     <h2><a href="ContentServer?pagename=Support/Audit/Default/SystemPageCacheCheck">Check SystemPageCache</a></h2>
+     <h2><a href="ContentServer?pagename=DevTools/Audit/Default/SystemPageCacheCheck">Check SystemPageCache</a></h2>
      <p>Checks SystemPageCache for missing files on disk. If records found, then there is the possibility the expire.</p>
 </li>
 

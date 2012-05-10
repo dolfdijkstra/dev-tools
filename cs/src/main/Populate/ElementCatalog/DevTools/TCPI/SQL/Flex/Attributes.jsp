@@ -1,7 +1,7 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
 %><%//
-// Support/TCPI/SQL/Flex/Attributes
+// DevTools/TCPI/SQL/Flex/Attributes
 //
 // INPUT
 //
@@ -14,14 +14,14 @@
 
 <ics:listloop listname="attrPools">
 
-<ics:callelement element="Support/TCPI/SQL/DeleteOrphans">
+<ics:callelement element="DevTools/TCPI/SQL/DeleteOrphans">
 	<ics:argument name="firsttable"  value='<%= ics.ResolveVariables("attrPools.assetattr_Args") %>'/>
 	<ics:argument name="secondtable" value='<%= ics.ResolveVariables("attrPools.assetattr") %>'/>
 	<ics:argument name="column1"     value="attributeid"/>
 	<ics:argument name="column2"     value="id"/>
 </ics:callelement>
 
-<ics:callelement element="Support/TCPI/SQL/DeleteOrphans">
+<ics:callelement element="DevTools/TCPI/SQL/DeleteOrphans">
 	<ics:argument name="firsttable"  value='<%= ics.ResolveVariables("attrPools.assetattr_Extension") %>'/>
 	<ics:argument name="secondtable" value='<%= ics.ResolveVariables("attrPools.assetattr") %>'/>
 	<ics:argument name="column1"     value="ownerid"/>

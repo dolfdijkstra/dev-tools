@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" %>
 <%//
-// Support/Performance/SimpleElementToCall
+// DevTools/Performance/SimpleElementToCall
 //
 // INPUT
 //

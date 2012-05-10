@@ -3,7 +3,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/DB/AssetTypeQueries
+// DevTools/DB/AssetTypeQueries
 //
 // INPUT
 //
@@ -44,7 +44,7 @@ if (queryids!=null && assettypes != null) {
 				%>
 				<h4><%= ics.ResolveVariables(query[qid][2]) %></h4>
 				<%= ics.ResolveVariables(query[qid][0]) %><br>
-				<ics:callelement element="Support/Audit/Default/DB/DisplayQuery">
+				<ics:callelement element="DevTools/Audit/Default/DB/DisplayQuery">
 					<ics:argument name="query" value='<%= ics.ResolveVariables(query[qid][0]) %>' />
 					<ics:argument name="table" value='<%= ics.ResolveVariables(query[qid][1]) %>' />
 				</ics:callelement>
@@ -88,7 +88,7 @@ for (int i=0; i< query.length; i++){
     </tr>
   <tr>      
       <td>
-      <input name="pagename" type="hidden" value="Support/Audit/DispatcherFront">
+      <input name="pagename" type="hidden" value="DevTools/Audit/DispatcherFront">
       <input name="cmd" type="hidden" value='<%= ics.GetVar("cmd") %>'>
       <input type="submit" name="Submit" value="Submit">
       </td>

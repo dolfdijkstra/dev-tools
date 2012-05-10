@@ -5,7 +5,7 @@
 %><%@ taglib prefix="time" uri="futuretense_cs/time.tld"
 %>
 <%//
-// Support/Performance/PageIntensive
+// DevTools/Performance/PageIntensive
 //
 // INPUT
 //
@@ -13,8 +13,8 @@
 //%>
 <cs:ftcs><time:set name="mystamp" /><%
 boolean cached = "true".equals(ics.GetVar("cached"));
-String pagename="Support/Performance/SimplePageToCall";
-if (cached) pagename="Support/Performance/SimpleCachedPageToCall";
+String pagename="DevTools/Performance/SimplePageToCall";
+if (cached) pagename="DevTools/Performance/SimpleCachedPageToCall";
 
 for (int i=0;i<Integer.parseInt(ics.GetVar("number"));i++){
 %><satellite:page pagename="<%= pagename %>"/><%

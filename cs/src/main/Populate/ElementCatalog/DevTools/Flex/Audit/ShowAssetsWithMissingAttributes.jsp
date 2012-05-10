@@ -2,7 +2,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Flex/Audit/ShowAssetsWithMissingAttributes
+// DevTools/Flex/Audit/ShowAssetsWithMissingAttributes
 //
 // INPUT
 //
@@ -44,7 +44,7 @@
         <satellite:link>
             <satellite:parameter name="assettype" value='<%= ics.ResolveVariables("Variables.assettype")  %>'/>
             <satellite:parameter name="assetid" value='<%= ics.ResolveVariables("assets.id") %>'/>
-            <satellite:parameter name="pagename" value="Support/Flex/Audit/Parents"/>
+            <satellite:parameter name="pagename" value="DevTools/Flex/Audit/Parents"/>
             <satellite:parameter name="OUTSTRING" value="theURL"/>
         </satellite:link>
         <td><a href='<%= ics.GetVar("theURL") %>'/><ics:resolvevariables name="assets.name"/></a></td>

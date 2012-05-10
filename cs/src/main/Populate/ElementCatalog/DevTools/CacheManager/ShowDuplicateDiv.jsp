@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/CacheManager/ShowDuplicate
+// DevTools/CacheManager/ShowDuplicate
 //
 // INPUT
 //
@@ -108,12 +108,12 @@ private String parseQuery(String qry) {
 }
 
 private void reportExcess(PageInfo pd, JspWriter writer) throws java.io.IOException {
-    writer.print("<td>Found "+pd.count+" identical pages: <br/>"+"<a href='ContentServer?pagename=Support/CacheManager/listPagename&pname="+pd.pagename+"&mode=detail'>"+pd.pagename+"</a></td>");
+    writer.print("<td>Found "+pd.count+" identical pages: <br/>"+"<a href='ContentServer?pagename=DevTools/CacheManager/listPagename&pname="+pd.pagename+"&mode=detail'>"+pd.pagename+"</a></td>");
     writer.print("<td style=\"padding:0px\"><table style=\"background-color:#CCFF99\" cellspacing=\"1px\" width=\"100%\"  class=\"altClass\">");
     writer.print("<tr><th>pageid</th><th>pagename</th><th>c</th><th>cid</th><th>p</th><th>context</th><th>rendermode</th><th>ft_ss</th><th>other params</th><th>seid</th><th>site</th><th>siteid</th>");
 
     for (String[] s: pd.qrystr) {
-        writer.print("<tr><td width=\"10%\"><a href=\"ContentServer?pagename=Support/CacheManager/listItemsByPage&pid="+s[0]+"\" onmouseover=\"div_show(this,'"+s[0]+"')\" onmouseout=\"div_hide()\">"+s[0]+"</a></td>");
+        writer.print("<tr><td width=\"10%\"><a href=\"ContentServer?pagename=DevTools/CacheManager/listItemsByPage&pid="+s[0]+"\" onmouseover=\"div_show(this,'"+s[0]+"')\" onmouseout=\"div_hide()\">"+s[0]+"</a></td>");
         writer.print(parseQuery(s[1])+"</tr>");
     }
     writer.print("</table></td>");

@@ -1,7 +1,7 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
 %><%//
-// Support/TCPI/SQL/IndexScript
+// DevTools/TCPI/SQL/IndexScript
 //
 // INPUT
 //
@@ -9,16 +9,16 @@
 //%>
 <cs:ftcs>
 
-<ics:callelement element="Support/TCPI/SQL/SQLScriptHeader">
+<ics:callelement element="DevTools/TCPI/SQL/SQLScriptHeader">
 	<ics:argument name="scriptname" value="index"/>
 </ics:callelement>
 
-<ics:callelement element="Support/TCPI/SQL/AssetIndexes"/>
-<ics:callelement element="Support/TCPI/SQL/FlexAssetDefs"/>
-<ics:callelement element="Support/TCPI/SQL/FlexAssets"/>
-<ics:callelement element="Support/TCPI/SQL/FlexGroupDefs"/>
-<ics:callelement element="Support/TCPI/SQL/FlexGroups"/>
-<ics:callelement element="Support/TCPI/SQL/TemporaryIndexes"/>
+<ics:callelement element="DevTools/TCPI/SQL/AssetIndexes"/>
+<ics:callelement element="DevTools/TCPI/SQL/FlexAssetDefs"/>
+<ics:callelement element="DevTools/TCPI/SQL/FlexAssets"/>
+<ics:callelement element="DevTools/TCPI/SQL/FlexGroupDefs"/>
+<ics:callelement element="DevTools/TCPI/SQL/FlexGroups"/>
+<ics:callelement element="DevTools/TCPI/SQL/TemporaryIndexes"/>
 
-<ics:callelement element="Support/TCPI/SQL/SQLScriptFooter"/>
+<ics:callelement element="DevTools/TCPI/SQL/SQLScriptFooter"/>
 </cs:ftcs>

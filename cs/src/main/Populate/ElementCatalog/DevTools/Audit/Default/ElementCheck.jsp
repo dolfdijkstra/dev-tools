@@ -2,7 +2,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Audit/Default/ElementCheck
+// DevTools/Audit/Default/ElementCheck
 //
 // INPUT
 //
@@ -47,7 +47,7 @@
                   if (xfile.equalsIgnoreCase(yfile)) {
                       String newpath = path+dirname+files[j];
                       out.print("<font color=\"orange\">"+files[j]+"</font>");
-                      out.print("&nbsp;<a href=\"ContentServer?pagename=Support/Audit/DispatcherFront&cmd=ElementCheck&filespec="+newpath+"&filepath="+oldpath+"&useme=yes\">UseMe</a><br/>");
+                      out.print("&nbsp;<a href=\"ContentServer?pagename=DevTools/Audit/DispatcherFront&cmd=ElementCheck&filespec="+newpath+"&filepath="+oldpath+"&useme=yes\">UseMe</a><br/>");
                   }
               }
           }

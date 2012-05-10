@@ -3,7 +3,7 @@
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%@ taglib prefix="asset" uri="futuretense_cs/asset.tld" %>
 <%//
-// Support/Audit/V7/RevTrack/historyFront
+// DevTools/Audit/V7/RevTrack/historyFront
 //
 // INPUT
 //
@@ -27,7 +27,7 @@
     %>
             <ics:sql sql="select * from SystemInfo" listname="tableList" table="SystemInfo"/>
             <form action="ContentServer" method="POST">
-                <input type="hidden" name="pagename" value="Support/Audit/DispatcherFront">
+                <input type="hidden" name="pagename" value="DevTools/Audit/DispatcherFront">
                 <input type="hidden" name="cmd" value="RevTrack/historyFront">
                 <select name="table">
                     <option value="">--Select a Table--</option>
@@ -89,7 +89,7 @@ function selectFirstFew() {
             <ics:sql sql='<%=sql%>' listname="assetList" table='<%=table%>'/>
             <form id="theForm" action="ContentServer" method="POST">
             <input type="hidden" name="table" value='<%=table%>'>
-            <input type="hidden" name="pagename" value="Support/Audit/DispatcherFront">
+            <input type="hidden" name="pagename" value="DevTools/Audit/DispatcherFront">
             <input type="hidden" name="cmd" value="RevTrack/historyPost">
             <p>Number of revisions to keep:
             <select name="max">
@@ -120,7 +120,7 @@ function selectFirstFew() {
                     String name = list.getValue("name");
                     if("true".equals(showHistory)) {
                         %>
-                        <ics:callelement element="Support/Audit/V7/RevTrack/getHistory">
+                        <ics:callelement element="DevTools/Audit/V7/RevTrack/getHistory">
                           <ics:argument name="table" value='<%=table%>'/>
                           <ics:argument name="assetid" value='<%=id%>'/>
                         </ics:callelement>

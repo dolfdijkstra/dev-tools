@@ -2,7 +2,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%
-// Support/Flex/Audit/ShowDefinitions
+// DevTools/Flex/Audit/ShowDefinitions
 %><cs:ftcs>
 <h3>FlexFamily Definitions</h3>
 <p>This pages lists the template definitions:  attributes defined and how many assets are using the template definition</p>
@@ -15,15 +15,15 @@ String sql ="SELECT assetattr FROM FlexAssetTypes  ORDER BY assetattr ASC ";
 <% if(ics.GetVar("assetattr") !=null){
   for (String type: ics.GetVar("assetattr").split(";")){ %>
 
-  <ics:callelement element="Support/Flex/Audit/ShowAttributes">
+  <ics:callelement element="DevTools/Flex/Audit/ShowAttributes">
     <ics:argument name="assetattr" value='<%= type %>' />
   </ics:callelement>
 
-  <ics:callelement element="Support/Flex/Audit/ShowDefinitionsAssets">
+  <ics:callelement element="DevTools/Flex/Audit/ShowDefinitionsAssets">
     <ics:argument name="assetattr" value='<%= type %>' />
   </ics:callelement>
 
-  <ics:callelement element="Support/Flex/Audit/ShowDefinitionsParent">
+  <ics:callelement element="DevTools/Flex/Audit/ShowDefinitionsParent">
     <ics:argument name="assetattr" value='<%= type %>' />
   </ics:callelement>
 

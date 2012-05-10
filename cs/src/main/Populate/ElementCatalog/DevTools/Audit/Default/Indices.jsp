@@ -3,7 +3,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Audit/Default/Indices
+// DevTools/Audit/Default/Indices
 //
 // INPUT
 //
@@ -21,16 +21,16 @@
 String dbType = ics.GetProperty("cs.dbtype");
 String defaultElementName = null;
 if (dbType.equals("Oracle")) {
-    defaultElementName = "Support/Audit/Default/IndicesOracle";
+    defaultElementName = "DevTools/Audit/Default/IndicesOracle";
 }
 else if (dbType.equals("DB2")) {
-    defaultElementName = "Support/Audit/Default/IndicesDB2";
+    defaultElementName = "DevTools/Audit/Default/IndicesDB2";
 }
 else if (dbType.equals("SQLAnywhere")) {
-    defaultElementName = "Support/Audit/Default/IndicesSQLAnywhere";
+    defaultElementName = "DevTools/Audit/Default/IndicesSQLAnywhere";
 }
 else {
-    defaultElementName = "Support/Audit/Default/IndicesJDBC";
+    defaultElementName = "DevTools/Audit/Default/IndicesJDBC";
 }
 
 if (ics.IsElement(defaultElementName)) {

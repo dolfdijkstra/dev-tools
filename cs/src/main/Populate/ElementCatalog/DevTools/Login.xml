@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE ftcs SYSTEM "futuretense_cs.dtd">
 <ftcs version="1.2">
-<!-- Support/Login
+<!-- DevTools/Login
 -
 - INPUT
 -
@@ -11,7 +11,7 @@
 <SETVAR NAME="errno" VALUE="0"/>
 <h1>Login with SiteGod Privileges</h1>
 <form name="LoginForm" enctype="multipart/form-data" action="ContentServer" method="POST">
-<input TYPE="hidden" name="pagename" value="Support/LoginPost"/>
+<input TYPE="hidden" name="pagename" value="DevTools/LoginPost"/>
 <input TYPE="hidden" name="redir" value="Variables.pagename" REPLACEALL="Variables.pagename"/>
 <table style="border:none">
     <tr> 

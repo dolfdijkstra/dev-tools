@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%
 //
-// Support/Verify/Cluster/TestFS
+// DevTools/Verify/Cluster/TestFS
 //
 // INPUT
 //
@@ -166,7 +166,7 @@ var fsTest = {
         $('resultsTable').style.visibility='visible';
         new Ajax.Request('ContentServer', {
           method: 'get',
-          parameters: {pagename:'Support/Verify/Cluster/FileSystemTest',numThreads: mytest.thread, numFiles: mytest.files,fileSize: mytest.size,numReads:mytest.reads,type:mytest.where,fileLock:mytest.fileLock,fileAttr:mytest.fileAttr,rafMode:mytest.rafMode},
+          parameters: {pagename:'DevTools/Verify/Cluster/FileSystemTest',numThreads: mytest.thread, numFiles: mytest.files,fileSize: mytest.size,numReads:mytest.reads,type:mytest.where,fileLock:mytest.fileLock,fileAttr:mytest.fileAttr,rafMode:mytest.rafMode},
           onSuccess: function(response){
                var result = response.responseText.evalJSON();
                fsTest.test.results.push(result);

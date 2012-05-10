@@ -3,7 +3,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Verify/xml/exportFront
+// DevTools/Verify/xml/exportFront
 //
 // INPUT
 //
@@ -16,9 +16,9 @@
 <%@ page import="COM.FutureTense.Util.ftErrors" %>
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
+<ics:callelement element="DevTools/general"/>
 <div id="content">
-<ics:callelement element="Support/Topnav"/>
+<ics:callelement element="DevTools/Topnav"/>
 <center><h3>Export TableData to XML Format</h3></center>
 <form method="POST" action="ContentServer">
   <table class="altClass">
@@ -44,8 +44,8 @@ if(ics.GetErrno() == 0 && schema != null && schema.hasData()){
     </tr>
   </table>
   <p><input type="submit" value="Submit">&nbsp;<input type="reset" value="Reset"></p>
-  <input type="hidden" name="pagename" value="Support/Verify/xml/export">
+  <input type="hidden" name="pagename" value="DevTools/Verify/xml/export">
 </form>
-<ics:callelement element="Support/Footer"/>
+<ics:callelement element="DevTools/Footer"/>
 </div>
 </cs:ftcs>

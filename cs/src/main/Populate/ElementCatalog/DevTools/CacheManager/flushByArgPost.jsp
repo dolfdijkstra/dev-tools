@@ -2,7 +2,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"%>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"%>
 <%//
-// Support/CacheManager/flushByArgPost
+// DevTools/CacheManager/flushByArgPost
 //
 // INPUT
 //
@@ -45,7 +45,7 @@ else
 <%
 		sc = cm.flushCSEngine(ics,CacheHelper._cs);
 		ics.SetObj("cmStatusCode",sc);
-		ics.CallElement("Support/CacheManager/dumpStatusCodes",null);
+		ics.CallElement("DevTools/CacheManager/dumpStatusCodes",null);
 		ics.SetObj("cmStatusCode",null);
 	}
 	if ("on".equals(ics.GetVar("cs-ss")))
@@ -55,7 +55,7 @@ else
 <%
 		sc = cm.flushCSEngine(ics,CacheHelper._ss);
 		ics.SetObj("cmStatusCode",sc);
-		ics.CallElement("Support/CacheManager/dumpStatusCodes",null);
+		ics.CallElement("DevTools/CacheManager/dumpStatusCodes",null);
 		ics.SetObj("cmStatusCode",null);
 	}
 	if ("on".equals(ics.GetVar("ss")))
@@ -65,7 +65,7 @@ else
 <%
 		sc = cm.flushSSEngines(ics);
 		ics.SetObj("cmStatusCode",sc);
-		ics.CallElement("Support/CacheManager/dumpStatusCodes",null);
+		ics.CallElement("DevTools/CacheManager/dumpStatusCodes",null);
 		ics.SetObj("cmStatusCode",null);
 	}
 }

@@ -1,7 +1,7 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
 %><%//
-// Support/Audit/DispatcherFront
+// DevTools/Audit/DispatcherFront
 //
 // INPUT
 //
@@ -10,7 +10,7 @@
 %><cs:ftcs><%
 String cmd = ics.GetVar("cmd");
 
-String defaultElementName = "Support/Audit/Default/" + cmd;
+String defaultElementName = "DevTools/Audit/Default/" + cmd;
 String elementName = null;
 
 if (ics.IsElement(defaultElementName)) {

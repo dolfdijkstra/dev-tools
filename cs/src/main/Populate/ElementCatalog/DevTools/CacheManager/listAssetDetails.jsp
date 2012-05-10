@@ -3,7 +3,7 @@
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%@ taglib prefix="asset" uri="futuretense_cs/asset.tld"
 %><%//
-// Support/CacheManager/listAssetDetails
+// DevTools/CacheManager/listAssetDetails
 //
 // INPUT
 //
@@ -33,7 +33,7 @@
     <% String id = ics.ResolveVariables("items.id"); %>
     <tr>
         <td align="right"><ics:resolvevariables name="items.#curRow"/></td>
-        <td><a href='ContentServer?pagename=Support/CacheManager/listByItemPost&#38;idlist=<%= id %>'><%= id %></a></td>
+        <td><a href='ContentServer?pagename=DevTools/CacheManager/listByItemPost&#38;idlist=<%= id %>'><%= id %></a></td>
         <td><ics:listget listname="items" fieldname="mdate"/></td>
         <% if (id.startsWith("asset-")) {
             int t = id.indexOf(":");

@@ -1,7 +1,7 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%//
-// Support/Home
+// DevTools/Home
 //
 // INPUT
 //
@@ -14,7 +14,7 @@
     <p>The Content Server Developers Tools are intended for use by experienced users with SiteGod privileges to assist in audit, cleanup, help diagnose and resolve problems. These tools can be customized by end users to their need.</p>
   <%
   if (!ics.UserIsMember("SiteGod")){
-      %><p><ics:callelement element="Support/Login"/></p><%
+      %><p><ics:callelement element="DevTools/Login"/></p><%
   } else {
     %><h3>Overview</h3>
     <ul>

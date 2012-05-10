@@ -1,7 +1,7 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%//
-// Support/Audit/Default/BodyCheck
+// DevTools/Audit/Default/BodyCheck
 //
 // INPUT
 //
@@ -32,10 +32,10 @@ private void fileRollup(JspWriter out, String urlfile, String path, String tblna
 
         File dirfiles = new File(path+dirname);
         out.print("<font color=\"green\">Create File: </font>");
-        out.print("&nbsp;<a href=\"ContentServer?pagename=Support/Audit/Default/BodyCheck&tblname="+tblname+"&limit="+limit+"&col="+column+"&start="+start+"&createme=yes\">CreateMe</a><br/>");
+        out.print("&nbsp;<a href=\"ContentServer?pagename=DevTools/Audit/Default/BodyCheck&tblname="+tblname+"&limit="+limit+"&col="+column+"&start="+start+"&createme=yes\">CreateMe</a><br/>");
 
         out.print("<font color=\"green\">Delete Current Row: </font>");
-        out.print("&nbsp;<a href=\"ContentServer?pagename=Support/Audit/Default/BodyCheck&tblname="+tblname+"&limit="+limit+"&col="+column+"&start="+start+"&deleteme=yes\">DeleteMe</a><br/>");
+        out.print("&nbsp;<a href=\"ContentServer?pagename=DevTools/Audit/Default/BodyCheck&tblname="+tblname+"&limit="+limit+"&col="+column+"&start="+start+"&deleteme=yes\">DeleteMe</a><br/>");
         /*
         String[] files = dirfiles.list();
 
@@ -53,7 +53,7 @@ private void fileRollup(JspWriter out, String urlfile, String path, String tblna
                 if (xfile.equalsIgnoreCase(yfile)) {
                     String newpath = path+dirname+files[j];
                     out.print("<font color=\"orange\">"+files[j]+"</font>");
-                    out.print("&nbsp;<a href=\"ContentServer?pagename=Support/Audit/Default/BodyCheck&tblname="+tblname+"&limit="+limit+"&col="+column+"&filespec="+newpath+"&filepath="+oldpath+"&start="+start+"&useme=yes\">UseMe</a><br/>");
+                    out.print("&nbsp;<a href=\"ContentServer?pagename=DevTools/Audit/Default/BodyCheck&tblname="+tblname+"&limit="+limit+"&col="+column+"&filespec="+newpath+"&filepath="+oldpath+"&start="+start+"&useme=yes\">UseMe</a><br/>");
                 }
             }
         }

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE FTCS SYSTEM "futuretense_cs.dtd">
 <FTCS Version="1.2">
-<!-- Support/TCPI/PubKeys/UpdateBatchEvent
+<!-- DevTools/TCPI/PubKeys/UpdateBatchEvent
 -
 - INPUT
 -
@@ -24,7 +24,7 @@
 <USER.LOGIN USERNAME="Variables.batchuser" PASSWORD="Variables.batchpass"/>
 <IF COND="IsError.Variables.errno!=true">
 <THEN>
-     <CALLELEMENT NAME="Support/TCPI/PubKeys/UpdateBatch">
+     <CALLELEMENT NAME="DevTools/TCPI/PubKeys/UpdateBatch">
         <ARGUMENT NAME="delete" VALUE="true" />
         <ARGUMENT NAME="limit" VALUE="500" />
      </CALLELEMENT>

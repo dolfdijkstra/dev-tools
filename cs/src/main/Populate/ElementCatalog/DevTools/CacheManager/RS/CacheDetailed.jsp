@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/CacheManager/RS/Cache
+// DevTools/CacheManager/RS/Cache
 //
 // INPUT
 //
@@ -42,11 +42,11 @@
     }
 %>
 <cs:ftcs>
-<a href="ContentServer?pagename=Support/CacheManager/RS/CacheVisualizationTable">Google Table</a>&nbsp;|
-<a href="ContentServer?pagename=Support/CacheManager/RS/CacheDetailed">Detailed</a>&nbsp;|
-<a href="ContentServer?pagename=Support/CacheManager/RS/Cache">Summary</a>&nbsp;|
-<a href="ContentServer?pagename=Support/CacheManager/RS/CacheWarnings">Warnings</a>&nbsp;|
-<a href="ContentServer?pagename=Support/CacheManager/RS/CacheText">Text</a><br/>
+<a href="ContentServer?pagename=DevTools/CacheManager/RS/CacheVisualizationTable">Google Table</a>&nbsp;|
+<a href="ContentServer?pagename=DevTools/CacheManager/RS/CacheDetailed">Detailed</a>&nbsp;|
+<a href="ContentServer?pagename=DevTools/CacheManager/RS/Cache">Summary</a>&nbsp;|
+<a href="ContentServer?pagename=DevTools/CacheManager/RS/CacheWarnings">Warnings</a>&nbsp;|
+<a href="ContentServer?pagename=DevTools/CacheManager/RS/CacheText">Text</a><br/>
 <h3>Resultset Cache Profiler</h3>
   <table class="altClass">
       <tr>
@@ -75,7 +75,7 @@
       for (Iterator itor = hashes.iterator(); itor.hasNext();){
       String key = (String)itor.next();
       %><tr><td><%= Integer.toString(i++) %></td><%
-      %><td><a href="ContentServer?pagename=Support/CacheManager/RS/CachedItems&key=<%=key %>"><%= key %></a></td><%
+      %><td><a href="ContentServer?pagename=DevTools/CacheManager/RS/CachedItems&key=<%=key %>"><%= key %></a></td><%
       ftTimedHashtable ht = ftTimedHashtable.findHash(key);
       if (ht != null) {
           RuntimeCacheStats stats = ht.getRuntimeStats();
@@ -85,7 +85,7 @@
             String fill_ratio ="N/A";
             if(total != 0){ hit_ratio = pctFormat.format(stats.getHits() / total);}
             if (ht.getCapacity() >0 ){ fill_ratio = pctFormat.format(ht.size() / max) ;}
-          %><td style="text-align:right;white-space: nowrap"><a href="ContentServer?pagename=Support/CacheManager/RS/CachedItemsValues&key=<%=key %>"><span title="fill ratio: <%= fill_ratio%>"><%= ht.size() %></span></a></td><%
+          %><td style="text-align:right;white-space: nowrap"><a href="ContentServer?pagename=DevTools/CacheManager/RS/CachedItemsValues&key=<%=key %>"><span title="fill ratio: <%= fill_ratio%>"><%= ht.size() %></span></a></td><%
           %><td style="text-align:right;white-space: nowrap"><span title="hit ratio: <%= hit_ratio%>"><%= stats.getHits()%></span></td><%
           %><td style="text-align:right;white-space: nowrap"><%= stats.getMisses()%></td><%
           %><td style="text-align:right;white-space: nowrap"><%= stats.getRemoveCount()%></td><%

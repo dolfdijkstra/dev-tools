@@ -3,7 +3,7 @@
 %><%@ taglib prefix="string" uri="futuretense_cs/string.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/CacheManager/RS/CachedItems
+// DevTools/CacheManager/RS/CachedItems
 //
 // INPUT
 //

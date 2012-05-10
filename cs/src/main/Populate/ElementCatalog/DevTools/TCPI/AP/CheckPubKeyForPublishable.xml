@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE FTCS SYSTEM "futuretense_cs.dtd">
 <FTCS Version="1.2">
-<!-- Support/TCPI/AP/CheckPubKeyForPublishable
+<!-- DevTools/TCPI/AP/CheckPubKeyForPublishable
 -
 - INPUT
 -
@@ -80,7 +80,7 @@ function checkall () {
 		          <DELIVERYTYPE.LOAD NAME="dtype" OBJECTID="targets.type"/>
 		          <DELIVERYTYPE.GET NAME="dtype" FIELD="name" OUTPUT="dtype:name"/>
               <LI>
-              <a href="ContentServer?pagename=Support/TCPI/AP/CheckPubKeyForPublishable&#38;pubtargetid=targets.id&#38;tname=targets.name (Variables.dtype:name)" REPLACEALL="targets.id,targets.name,Variables.dtype:name">
+              <a href="ContentServer?pagename=DevTools/TCPI/AP/CheckPubKeyForPublishable&#38;pubtargetid=targets.id&#38;tname=targets.name (Variables.dtype:name)" REPLACEALL="targets.id,targets.name,Variables.dtype:name">
 			        <CSVAR NAME="targets.name (Variables.dtype:name)"/></a><br/>
               </LI>
         </LOOP>

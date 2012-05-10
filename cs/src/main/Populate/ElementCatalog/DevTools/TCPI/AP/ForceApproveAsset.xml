@@ -1,16 +1,16 @@
 <?xml version="1.0" ?>
 <!DOCTYPE FTCS SYSTEM "futuretense_cs.dtd">
 <FTCS Version="1.2">
-<!-- Support/TCPI/AP/ForceApproveAsset
+<!-- DevTools/TCPI/AP/ForceApproveAsset
 -
 - INPUT
 -
 - OUTPUT
 -
 -->
-<CALLELEMENT NAME="Support/general"/>
+<CALLELEMENT NAME="DevTools/general"/>
 <div id="content">
-<CALLELEMENT NAME="Support/Topnav"/>
+<CALLELEMENT NAME="DevTools/Topnav"/>
 <h3>Force Approve Asset to all Approved Targets</h3>
 
 <IF COND="IsVariable.assetid=true">
@@ -65,6 +65,6 @@
 		No assetid found	
 </ELSE>
 </IF>
-<CALLELEMENT NAME="Support/Footer"/>
+<CALLELEMENT NAME="DevTools/Footer"/>
 </div>
 </FTCS> 

@@ -1,7 +1,7 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%//
-// Support/TCPI/AP/ListHeld
+// DevTools/TCPI/AP/ListHeld
 //
 // INPUT
 //
@@ -61,7 +61,7 @@
 
             <td><ics:listget listname="helds" fieldname="name"/></td>
             <td><ics:listget listname="helds" fieldname="assettype"/></td>
-            <td><a href='ContentServer?pagename=Support/TCPI/AP/ShowHeldSummary&assetid=<ics:listget listname="helds" fieldname="assetid"/>'><ics:listget listname="helds" fieldname="assetid"/></a></td>
+            <td><a href='ContentServer?pagename=DevTools/TCPI/AP/ShowHeldSummary&assetid=<ics:listget listname="helds" fieldname="assetid"/>'><ics:listget listname="helds" fieldname="assetid"/></a></td>
             <ics:clearerrno/>
             <ics:sql sql='<%= ics.ResolveVariables("SELECT id, status,createddate FROM helds.assettype WHERE id=helds.assetid") %>' table='<%= ics.ResolveVariables("helds.assettype") %>' listname="assetpubs"/>
             <% if (ics.GetErrno() ==0) { %>

@@ -38,7 +38,7 @@ int level = Integer.parseInt(ics.GetVar("level"));
 int nextLevel = level-1;
 
 for (int i=a; i<=max && level > 1;i++){
-    %><satellite:page pagename='Support/Performance/Standard/pagelet'><%
+    %><satellite:page pagename='DevTools/Performance/Standard/pagelet'><%
       %><satellite:parameter name="a" value='<%= Integer.toString(i) %>'/><%
       %><satellite:parameter name="max" value='<%= Integer.toString(max) %>'/><%
       %><satellite:parameter name="level" value='<%= Integer.toString(nextLevel) %>'/><%

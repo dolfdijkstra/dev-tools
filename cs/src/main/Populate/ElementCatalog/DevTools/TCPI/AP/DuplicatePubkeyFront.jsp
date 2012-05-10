@@ -3,7 +3,7 @@
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%@ taglib prefix="deliverytype" uri="futuretense_cs/deliverytype.tld" %>
 <%//
-// Support/TCPI/AP/DuplicatePubkeyFront
+// DevTools/TCPI/AP/DuplicatePubkeyFront
 //
 // INPUT
 //

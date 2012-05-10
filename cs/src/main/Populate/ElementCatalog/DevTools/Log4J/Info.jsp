@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%
 //
-// Support/Log4J/Info
+// DevTools/Log4J/Info
 //
 //
 %><cs:ftcs>
@@ -27,7 +27,7 @@ Download <a href="http://repo1.maven.org/maven2/log4j/log4j/1.2.15/log4j-1.2.15.
 <li>
 <p>A file log4j.xml needs to be created in WEB-INF/log4j.xml. This a a sample of such a file.
 <code>
-<% String log4j_xml = ics.ReadPage("Support/Log4J/Log4J_xml",null);
+<% String log4j_xml = ics.ReadPage("DevTools/Log4J/Log4J_xml",null);
 %><br/><%= log4j_xml.replace("<", "&lt;").replace(">","&gt;").replace("\n","<br/>\n") %>
 </code>
 </p>

@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/Flex/Audit/MissingAttributes
+// DevTools/Flex/Audit/MissingAttributes
 //
 // INPUT
 //
@@ -51,7 +51,7 @@
         <ics:sql sql='<%= ics.ResolveVariables("SELECT count(id) AS num FROM Variables.assettype WHERE types.tid = templateattributes.ownerid AND status!=\'VO\' AND NOT EXISTS (SELECT 1 FROM Variables.assettype_Mungo WHERE cs_attrid = templateattributes.attributeid AND cs_ownerid = Variables.assettype.id AND cs_assetgroupid IS NULL)") %>' table='<%= ics.ResolveVariables("Variables.assettype_Mungo") %>' listname="myCounter"/>
         <%
         if (Integer.parseInt(ics.ResolveVariables("myCounter.num"))>0){
-            %><td><a href='ContentServer?pagename=Support/Flex/Audit/ShowAssetsWithMissingAttributes&templateid=<ics:resolvevariables name="templateattributes.ownerid"/>&attributeid=<ics:resolvevariables name="templateattributes.attributeid"/>&attributename=<ics:resolvevariables name="templateattributes.aname"/>&templatename=<ics:resolvevariables name="templateattributes.defname"/>&assettype=<ics:getvar name="assettype"/>'><ics:resolvevariables name="myCounter.num"/></a></td>
+            %><td><a href='ContentServer?pagename=DevTools/Flex/Audit/ShowAssetsWithMissingAttributes&templateid=<ics:resolvevariables name="templateattributes.ownerid"/>&attributeid=<ics:resolvevariables name="templateattributes.attributeid"/>&attributename=<ics:resolvevariables name="templateattributes.aname"/>&templatename=<ics:resolvevariables name="templateattributes.defname"/>&assettype=<ics:getvar name="assettype"/>'><ics:resolvevariables name="myCounter.num"/></a></td>
         <% } else {
             %><td>0</td>
         <% } %>
@@ -60,7 +60,7 @@
         <ics:sql sql='<%= ics.ResolveVariables("SELECT count(id) AS num FROM Variables.assettype WHERE types.tid = templateattributes.ownerid AND status!=\'VO\' AND NOT EXISTS (SELECT 1 FROM Variables.assettype_AMap WHERE attributeid = templateattributes.attributeid AND ownerid = Variables.assettype.id AND inherited IS NULL)") %>' table='<%= ics.ResolveVariables("Variables.assettype_AMap") %>' listname="myCounter"/>
         <%
         if (Integer.parseInt(ics.ResolveVariables("myCounter.num"))>0){
-            %><td><a href='ContentServer?pagename=Support/Flex/Audit/ShowAssetsWithMissingAttributes&templateid=<ics:resolvevariables name="templateattributes.ownerid"/>&attributeid=<ics:resolvevariables name="templateattributes.attributeid"/>&attributename=<ics:resolvevariables name="templateattributes.aname"/>&templatename=<ics:resolvevariables name="templateattributes.defname"/>&assettype=<ics:getvar name="assettype"/>'><ics:resolvevariables name="myCounter.num"/></a></td>
+            %><td><a href='ContentServer?pagename=DevTools/Flex/Audit/ShowAssetsWithMissingAttributes&templateid=<ics:resolvevariables name="templateattributes.ownerid"/>&attributeid=<ics:resolvevariables name="templateattributes.attributeid"/>&attributename=<ics:resolvevariables name="templateattributes.aname"/>&templatename=<ics:resolvevariables name="templateattributes.defname"/>&assettype=<ics:getvar name="assettype"/>'><ics:resolvevariables name="myCounter.num"/></a></td>
         <% } else {
             %><td>0</td>
         <% } %>

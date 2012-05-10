@@ -4,7 +4,7 @@
 %><%@ taglib prefix="string" uri="futuretense_cs/string.tld"
 %><%
 //
-// Support/TCPI/AP/ForcePublish
+// DevTools/TCPI/AP/ForcePublish
 //
 // INPUT
 //

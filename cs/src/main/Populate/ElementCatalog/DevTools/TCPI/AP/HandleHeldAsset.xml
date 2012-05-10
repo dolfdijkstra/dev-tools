@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE FTCS SYSTEM "futuretense_cs.dtd">
 <FTCS Version="1.2">
-<!-- Support/TCPI/AP/HandleHeldAsset
+<!-- DevTools/TCPI/AP/HandleHeldAsset
 -
 - INPUT
 -
@@ -21,7 +21,7 @@
     			<td colspan="2"><font color="orange"><CSVAR NAME=" Blocked by: blockedby.assettype (blockedby.assetid)"/></font><BR/>
     			<IF COND="IsVariable.approveheld=true">
     			<THEN>
-    				<CALLELEMENT NAME="Support/TCPI/AP/ApproveAsset">
+    				<CALLELEMENT NAME="DevTools/TCPI/AP/ApproveAsset">
     					<ARGUMENT NAME="type" VALUE="blockedby.assettype"/>
     					<ARGUMENT NAME="id" VALUE="blockedby.assetid"/>
     					<ARGUMENT NAME="target" VALUE="Variables.target"/>
@@ -39,7 +39,7 @@
     		<td colspan="2" valign="top"><font color="red">Not blocked, asset itself needs to be approved</font><br/>
         		<IF COND="IsVariable.approveheld=true">
         		<THEN>
-        			<CALLELEMENT NAME="Support/TCPI/AP/ApproveAsset">
+        			<CALLELEMENT NAME="DevTools/TCPI/AP/ApproveAsset">
         				<ARGUMENT NAME="type" VALUE="Variables.type"/>
         				<ARGUMENT NAME="id" VALUE="Variables.assetid"/>
         				<ARGUMENT NAME="target" VALUE="Variables.target"/>

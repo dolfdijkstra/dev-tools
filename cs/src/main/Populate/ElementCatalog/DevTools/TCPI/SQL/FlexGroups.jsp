@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
 %><%//
-// Support/TCPI/SQL/FlexGroups
+// DevTools/TCPI/SQL/FlexGroups
 //
 // INPUT
 //
@@ -17,7 +17,7 @@
 <cs:ftcs>
 <ics:sql sql="select upper(assettype) AS assettype from FlexGroupTypes order by assettype" table="FlexGroupTypes" listname="LstFlexGroupTypes"/>
 <ics:listloop listname="LstFlexGroupTypes">
-	<ics:callelement element="Support/TCPI/SQL/FlexGroupIndex">
+	<ics:callelement element="DevTools/TCPI/SQL/FlexGroupIndex">
 		<ics:argument name="FlexGroupName" value='<%= ics.ResolveVariables("LstFlexGroupTypes.assettype") %>'/>
 	</ics:callelement>
 </ics:listloop>

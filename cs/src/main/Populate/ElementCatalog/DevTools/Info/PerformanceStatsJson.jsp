@@ -3,7 +3,7 @@
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%
 //
-// Support/Info/PerformanceStatsJson
+// DevTools/Info/PerformanceStatsJson
 //
 // INPUT
 //

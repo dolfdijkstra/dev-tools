@@ -3,7 +3,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Audit/V7/Publishing/ClearPubApproval
+// DevTools/Audit/V7/Publishing/ClearPubApproval
 //
 // INPUT
 //
@@ -29,7 +29,7 @@ for(int i=0; i< tables.length; i++){
 	ics.FlushCatalog(tables[i]);
 }
 %>
-	<ics:callelement element="Support/Audit/Default/DB/DisplayQuery">
+	<ics:callelement element="DevTools/Audit/Default/DB/DisplayQuery">
 		<ics:argument name="query" value='<%= query %>' />
 		<ics:argument name="table" value="ApprovedAssets" />
 	</ics:callelement>
@@ -77,7 +77,7 @@ if ("true".equals(ics.GetVar("deletepub"))){
     Purge tables
   <p><input type="text" name="check"></p>
   <p><input name="Purge" type="submit" value="Purge tables"></p>
-     <input type="hidden" name="pagename" value="Support/Audit/DispatcherFront">
+     <input type="hidden" name="pagename" value="DevTools/Audit/DispatcherFront">
      <input type="hidden" name="cmd" value='<%=cmd %>'>
      <input type="hidden" name="deletepub" value="true">
   <p>&nbsp; </p>

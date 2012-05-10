@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/TCPI/CleanUp/CleanAssetPublishLists
+// DevTools/TCPI/CleanUp/CleanAssetPublishLists
 //
 // INPUT
 //
@@ -113,7 +113,7 @@ if (bContinue) {
                     <td><ics:listget listname="assetcount" fieldname="num"/></td>
 
                     <% if (Integer.parseInt(ics.ResolveVariables("pscount.num")) > 0){ %>
-                        <td><a href='ContentServer?pagename=Support/TCPI/CleanUp/CleanAssetPublishLists&pubtable=<%= ics.ResolveVariables("pubtable.tblname") %>&delete=true'>fixme</a></td>
+                        <td><a href='ContentServer?pagename=DevTools/TCPI/CleanUp/CleanAssetPublishLists&pubtable=<%= ics.ResolveVariables("pubtable.tblname") %>&delete=true'>fixme</a></td>
                     <%
                     }
                 }

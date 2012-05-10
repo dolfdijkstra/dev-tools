@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
 %><%//
-// Support/TCPI/SQL/FlexAssets
+// DevTools/TCPI/SQL/FlexAssets
 //
 // INPUT
 //
@@ -18,7 +18,7 @@
 
 <ics:sql sql="select upper(assettype) AS assettype from FlexAssetTypes order by assettype" table="FlexAssetTypes" listname="LstFlexAssetTypes"/>
 <ics:listloop listname="LstFlexAssetTypes">
-	<ics:callelement element="Support/TCPI/SQL/FlexAssetIndexes">
+	<ics:callelement element="DevTools/TCPI/SQL/FlexAssetIndexes">
 		<ics:argument name="FlexAssetType" value='<%= ics.ResolveVariables("LstFlexAssetTypes.assettype") %>'/>
 	</ics:callelement>
 </ics:listloop>

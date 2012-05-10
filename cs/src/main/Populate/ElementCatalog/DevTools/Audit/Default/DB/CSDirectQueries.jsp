@@ -3,7 +3,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/DB/Queries
+// DevTools/DB/Queries
 //
 // INPUT
 //
@@ -47,7 +47,7 @@ if (queryid!=null){
 		%>
 		<h4><%= query[qid][2] %></h4>
 		<%= query[qid][0] %><br/>
-		<ics:callelement element="Support/Audit/Default/DB/DisplayQuery">
+		<ics:callelement element="DevTools/Audit/Default/DB/DisplayQuery">
 			<ics:argument name="query" value='<%= query[qid][0] %>' />
 			<ics:argument name="table" value='<%= query[qid][1] %>' />
 		</ics:callelement>
@@ -68,7 +68,7 @@ if (queryid!=null){
 
 for (int i=0; i< query.length; i++){
 	%><tr>
-	<td><a href='ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd=<%= ics.GetVar("cmd") %>&#38;queryid=<%=i %>'>Query <%= i %></a></td>
+	<td><a href='ContentServer?pagename=DevTools/Audit/DispatcherFront&#38;cmd=<%= ics.GetVar("cmd") %>&#38;queryid=<%=i %>'>Query <%= i %></a></td>
 	<td><%= query[i][2] %></td>
 	</tr>
 <%

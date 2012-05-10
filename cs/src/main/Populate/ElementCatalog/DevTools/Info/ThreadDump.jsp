@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%
 //
-// Support/Info/ThreadDump
+// DevTools/Info/ThreadDump
 //
 // INPUT
 //

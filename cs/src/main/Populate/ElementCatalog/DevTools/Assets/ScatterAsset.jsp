@@ -3,7 +3,7 @@
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%@ taglib prefix="asset" uri="futuretense_cs/asset.tld"
 %><%//
-// Support/Assets/ScatterAsset
+// DevTools/Assets/ScatterAsset
 //
 // INPUT
 //

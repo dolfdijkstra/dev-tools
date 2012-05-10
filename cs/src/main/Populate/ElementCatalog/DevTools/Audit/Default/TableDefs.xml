@@ -14,7 +14,7 @@
         <EXECSQL SQL="SELECT tblname FROM SystemInfo WHERE systable = 'A.systable' AND tblname NOT IN ('SystemAssets') ORDER BY LOWER(tblname) ASC" LIST="B"/>
         <b>Total <CSVAR NAME="B.#numRows"/> tables of type: <CSVAR NAME="A.systable"/></b><br/>
 		<LOOP LIST="B">
-			<a href="ContentServer?pagename=Support/Audit/Default/BodyCheck&#38;tblname=B.tblname" REPLACEALL="B.tblname"><CSVAR NAME="B.tblname"/></a>
+			<a href="ContentServer?pagename=DevTools/Audit/Default/BodyCheck&#38;tblname=B.tblname" REPLACEALL="B.tblname"><CSVAR NAME="B.tblname"/></a>
 			<SETVAR NAME="errno" VALUE="0"/>
 			<br/>
 		</LOOP>

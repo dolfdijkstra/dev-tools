@@ -1,6 +1,6 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%//
-// Support/Verify/Cluster/FileSystemTest
+// DevTools/Verify/Cluster/FileSystemTest
 //
 // INPUT
 //

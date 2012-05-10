@@ -61,10 +61,10 @@ String sleep = ics.GetVar("sleep");
 <a href='<%=ics.GetVar("theURL")%>'>pagelet style</a><br/>
 <%
 if ("element".equals(layoutstyle)){
-        %><render:callelement elementname="Support/Performance/Standard/layout" scoped="local"><render:argument name="style" value="<%= style %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/><render:argument name="items" value="<%= Integer.toString(items) %>"/><render:argument name="sleep" value="<%= sleep %>"/><render:argument name="ft_ss" value='<%= ics.GetVar("ft_ss") %>'/></render:callelement><br/><%
+        %><render:callelement elementname="DevTools/Performance/Standard/layout" scoped="local"><render:argument name="style" value="<%= style %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/><render:argument name="items" value="<%= Integer.toString(items) %>"/><render:argument name="sleep" value="<%= sleep %>"/><render:argument name="ft_ss" value='<%= ics.GetVar("ft_ss") %>'/></render:callelement><br/><%
 } else if ("embedded".equals(layoutstyle)){
-        %><render:contentserver pagename="Support/Performance/Standard/layout"><render:argument name="style" value="<%= style %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/><render:argument name="items" value="<%= Integer.toString(items) %>"/><render:argument name="sleep" value="<%= sleep %>"/></render:contentserver><br/><%
+        %><render:contentserver pagename="DevTools/Performance/Standard/layout"><render:argument name="style" value="<%= style %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/><render:argument name="items" value="<%= Integer.toString(items) %>"/><render:argument name="sleep" value="<%= sleep %>"/></render:contentserver><br/><%
 }else {
-        %><render:satellitepage pagename="Support/Performance/Standard/layout"><render:argument name="style" value="<%= style %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/><render:argument name="items" value="<%= Integer.toString(items) %>"/><render:argument name="sleep" value="<%= sleep %>"/></render:satellitepage><br/><%
+        %><render:satellitepage pagename="DevTools/Performance/Standard/layout"><render:argument name="style" value="<%= style %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/><render:argument name="items" value="<%= Integer.toString(items) %>"/><render:argument name="sleep" value="<%= sleep %>"/></render:satellitepage><br/><%
 }
 %></body></html></cs:ftcs>

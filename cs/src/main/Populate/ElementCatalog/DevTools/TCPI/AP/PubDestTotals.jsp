@@ -16,7 +16,7 @@ static String sqlTT="SELECT count(id) as num FROM ApprovedAssets WHERE targetid=
 static String sqlTTA="SELECT count(id) as num FROM ApprovedAssets";
 %>
 <cs:ftcs>
-<a href="ContentServer?pagename=Support/TCPI/AP/PubQueues&detail=true">Click here for more detail<a/><br/>
+<a href="ContentServer?pagename=DevTools/TCPI/AP/PubQueues&detail=true">Click here for more detail<a/><br/>
 
 <ics:sql sql="SELECT id,name FROM PubTarget ORDER BY name" table="PubTarget" listname="targets" />
 <ics:sql sql="SELECT assettype FROM AssetType ORDER BY assettype" table="AssetType" listname="assettypes" />
@@ -34,7 +34,7 @@ static String sqlTTA="SELECT count(id) as num FROM ApprovedAssets";
 <tr>
 	<td><ics:listget listname="assettypes" fieldname="#curRow"/></td>
   <ics:listget listname="assettypes" fieldname="assettype" output="tblname"/>
-	<td><a href='<%= "ContentServer?pagename=Support/Audit/Default/BodyCheck&tblname="+ics.ResolveVariables("Variables.tblname")%>'><%= ics.GetVar("tblname")%></a></td>
+	<td><a href='<%= "ContentServer?pagename=DevTools/Audit/Default/BodyCheck&tblname="+ics.ResolveVariables("Variables.tblname")%>'><%= ics.GetVar("tblname")%></a></td>
 	<ics:listloop listname="targets">
 		<ics:sql sql='<%= ics.ResolveVariables(sqlT) %>' table="ApprovedAssets" listname="aa"/>
 		<td><ics:listget listname="aa" fieldname="num"/></td>

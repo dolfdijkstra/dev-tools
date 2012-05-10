@@ -3,7 +3,7 @@
 %><%@ taglib prefix="render" uri="futuretense_cs/render.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/CacheManager/RS/CachedItems
+// DevTools/CacheManager/RS/CachedItems
 //
 // INPUT
 //
@@ -93,11 +93,11 @@
             i=1;
             for (String itemkey : keySet){
                 %><render:getpageurl outstr="detailsLink"
-                    pagename="Support/CacheManager/RS/CachedItemList">
+                    pagename="DevTools/CacheManager/RS/CachedItemList">
                     <render:argument name="key" value='<%=key%>'/>
                     <render:argument name="item" value='<%=itemkey%>'/>
                 </render:getpageurl><render:getpageurl outstr="detailsLink2"
-                    pagename="Support/CacheManager/RS/CachedItemListRow">
+                    pagename="DevTools/CacheManager/RS/CachedItemListRow">
                     <render:argument name="key" value='<%=key%>'/>
                     <render:argument name="item" value='<%=itemkey%>'/>
                 </render:getpageurl><%
@@ -115,7 +115,7 @@
 function div_show(obj,key,item){
     new Ajax.Request('ContentServer', {
       method: 'get',
-      parameters: {pagename:'Support/CacheManager/RS/CachedItemListRow',key: key, item: item},
+      parameters: {pagename:'DevTools/CacheManager/RS/CachedItemListRow',key: key, item: item},
       onSuccess: function(response){
             var result = response.responseText;
             var div= $('hoverbox');

@@ -28,7 +28,7 @@ if (typeof google != 'undefined'){
     google.load("visualization", "1", {packages:["table"]});
     google.setOnLoadCallback(drawTable);
 }else {
-    document.location="ContentServer?pagename=Support/Home";
+    document.location="ContentServer?pagename=DevTools/Home";
 }
 function drawTable() {
 
@@ -43,7 +43,7 @@ function fetchData() {
     $('message').style.visibility='visible';
     $('message').style.display='block';
 
-    var query = new google.visualization.Query('ContentServer?pagename=Support/TCPI/AP/PublishPerformanceJson&startdate=' +$('startdate').value +'&enddate='+$('enddate').value);
+    var query = new google.visualization.Query('ContentServer?pagename=DevTools/TCPI/AP/PublishPerformanceJson&startdate=' +$('startdate').value +'&enddate='+$('enddate').value);
     // Send the query with a callback function.
     query.send(handleQueryResponse);
     return true;

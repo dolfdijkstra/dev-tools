@@ -2,14 +2,14 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Flex/Audit/ShowMissingAttributesFront
+// DevTools/Flex/Audit/ShowMissingAttributesFront
 //
 // INPUT
 //
 // OUTPUT
 //%>
 <cs:ftcs>
-<ics:callelement element="Support/Flex/Audit/AssetTypeForm">
+<ics:callelement element="DevTools/Flex/Audit/AssetTypeForm">
     <ics:argument name="PostPage" value="MissingAttributes"/>
 </ics:callelement>
 </cs:ftcs>

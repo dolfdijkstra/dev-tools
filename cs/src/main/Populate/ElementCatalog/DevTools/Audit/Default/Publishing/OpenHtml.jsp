@@ -3,7 +3,7 @@
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%
 	//
-	// Support/Audit/Default/openHTML
+	// DevTools/Audit/Default/openHTML
 	//
 	// INPUT
 	//

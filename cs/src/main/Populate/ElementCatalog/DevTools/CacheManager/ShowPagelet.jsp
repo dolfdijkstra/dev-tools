@@ -3,7 +3,7 @@
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%@ taglib prefix="time" uri="futuretense_cs/time.tld"
 %><%//
-// Support/CacheManager/ShowPagelet
+// DevTools/CacheManager/ShowPagelet
 //
 // INPUT
 //
@@ -40,7 +40,7 @@
                 <td>
                 <satellite:link>
                   <satellite:parameter name='urlbase' value='Satellite'/>
-                  <satellite:parameter name='pagename' value='Support/CacheManager/listPagename'/>
+                  <satellite:parameter name='pagename' value='DevTools/CacheManager/listPagename'/>
                 </satellite:link>
                 <a href='<%= ics.GetVar("referURL")+"&pname="+ics.ResolveVariables("pagelist.pagename")+"&iname="+ics.ResolveVariables("idlist.assetid")+"&mode=itempages"%>'><ics:resolvevariables name="pagelist.pagename"/></a>
                 </td>

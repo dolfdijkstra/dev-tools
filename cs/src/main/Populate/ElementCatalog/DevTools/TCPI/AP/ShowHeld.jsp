@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/TCPI/AP/ShowHeld
+// DevTools/TCPI/AP/ShowHeld
 //
 // INPUT
 //
@@ -76,7 +76,7 @@ DEBUG: SQL errno = <ics:geterrno/>
         <tr>
             <td align="right" colspan="2">&nbsp;</td>
             <td align="right">PublishedAssets <ics:listget listname="publishedassets" fieldname="#curRow"/></td>
-            <td colspan="2"><a href='ContentServer?pagename=Support/TCPI/AP/ShowHeld&assetid=<ics:listget listname="publishedassets" fieldname="assetid" />'><ics:listget listname="publishedassets" fieldname="assettype" /> -
+            <td colspan="2"><a href='ContentServer?pagename=DevTools/TCPI/AP/ShowHeld&assetid=<ics:listget listname="publishedassets" fieldname="assetid" />'><ics:listget listname="publishedassets" fieldname="assettype" /> -
                 <ics:listget listname="publishedassets" fieldname="assetid" /></a></td>
             <td><ics:listget listname="publishedassets" fieldname="assetdate" /></td>
         </tr>
@@ -191,7 +191,7 @@ DEBUG: SQL errno = <ics:geterrno/>
                 <ics:listget listname="brokenrefs" fieldname="ownerid" output="ownerid" />
                 <ics:clearerrno/>
                 <ics:sql sql='<%= ics.ResolveVariables("SELECT assetid FROM ApprovedAssets WHERE id=Variables.ownerid")  %>'  table="ApprovedAssets" listname="owner"/>
-                <a href='ContentServer?pagename=Support/TCPI/AP/ShowHeld&assetid=<ics:listget listname="owner" fieldname="assetid" />'><ics:getvar name="ownerid"  /></a>
+                <a href='ContentServer?pagename=DevTools/TCPI/AP/ShowHeld&assetid=<ics:listget listname="owner" fieldname="assetid" />'><ics:getvar name="ownerid"  /></a>
             </td>
             <td><ics:listget listname="brokenrefs" fieldname="assettype" /></td>
             <td><ics:listget listname="brokenrefs" fieldname="assetid" /></td>
@@ -249,7 +249,7 @@ DEBUG: SQL errno = <ics:geterrno/>
                 <ics:clearerrno/>
                 <ics:sql sql='<%= ics.ResolveVariables("SELECT assetid, assettype FROM ApprovedAssets WHERE assetid=Variables.assetid2") %>' table="ApprovedAssets" listname="child"/>
                         <% if (ics.GetErrno()==0) { %>
-                            <a href='ContentServer?pagename=Support/TCPI/AP/ShowHeld&assetid=<ics:listget listname="deps" fieldname="assetid" />'><ics:getvar name="assetid2"  /></a>
+                            <a href='ContentServer?pagename=DevTools/TCPI/AP/ShowHeld&assetid=<ics:listget listname="deps" fieldname="assetid" />'><ics:getvar name="assetid2"  /></a>
                         <% } else { %>
                             <font color="red">no assetid = <ics:getvar name="assetid2"  /> in ApprovedAssets (i.e. needs to be approved)</font>
                 <% } %>
@@ -335,7 +335,7 @@ DEBUG: SQL errno = <ics:geterrno/>
             <ics:clearerrno/>
             <ics:sql sql='<%= ics.ResolveVariables("SELECT assetid, assettype FROM ApprovedAssets WHERE id=Variables.ownerid") %>' table="ApprovedAssets" listname="owner"/>
             <% if (ics.GetErrno()==0) { %>
-                <a href='ContentServer?pagename=Support/TCPI/AP/ShowHeld&assetid=<ics:listget listname="owner" fieldname="assetid" />'><ics:getvar name="ownerid"  /></a>
+                <a href='ContentServer?pagename=DevTools/TCPI/AP/ShowHeld&assetid=<ics:listget listname="owner" fieldname="assetid" />'><ics:getvar name="ownerid"  /></a>
                 (<ics:listget listname="owner" fieldname="assettype" />)
             <% } else { %>
                     <font color="red">Broken Parent Ref (i.e. no id=<ics:getvar name="ownerid"  />)</font>

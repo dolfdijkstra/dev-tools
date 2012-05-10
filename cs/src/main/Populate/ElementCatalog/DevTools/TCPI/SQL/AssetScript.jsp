@@ -1,7 +1,7 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
 %><%//
-// Support/TCPI/SQL/AssetScript
+// DevTools/TCPI/SQL/AssetScript
 //
 // INPUT
 //
@@ -10,19 +10,19 @@
 %><%@ page import="COM.FutureTense.Interfaces.ICS" 
 %><%@ page import="COM.FutureTense.Interfaces.Utilities" %>
 <cs:ftcs>
-<ics:callelement element="Support/TCPI/SQL/SQLScriptHeader">
+<ics:callelement element="DevTools/TCPI/SQL/SQLScriptHeader">
 <ics:argument name="scriptname" value="missing-assets"/>
 </ics:callelement>
 <%
 String[] tables={"AssetPublication","ApprovedAssetDeps","ApprovedAssets","AssetExportData","AssetPublishList","PublishedAssets","ActiveList","CheckOutInfo"};
 for (int i=0; i< tables.length;i++){
 	%>
-	<ics:callelement element="Support/TCPI/SQL/AssetSQL">
+	<ics:callelement element="DevTools/TCPI/SQL/AssetSQL">
 		<ics:argument name="tname"      value='<%= tables[i] %>' />
 		<ics:argument name="identifier" value="assetid"/>
 	</ics:callelement>
 	<%
 }
 %>
-<ics:callelement element="Support/TCPI/SQL/SQLScriptFooter"/>
+<ics:callelement element="DevTools/TCPI/SQL/SQLScriptFooter"/>
 </cs:ftcs>

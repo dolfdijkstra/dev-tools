@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/CacheManager/listPagename
+// DevTools/CacheManager/listPagename
 //
 // INPUT
 //
@@ -56,7 +56,7 @@ static String getQSStripped(String qs){
     <ics:listloop listname="pages">
     <tr>
       <td><%= i++ %></td>
-        <td><a href='ContentServer?pagename=Support/CacheManager/listPagename&pname=<ics:resolvevariables name="pages.pagename"/>&mode=detail'><ics:resolvevariables name="pages.pagename"/></a></td>
+        <td><a href='ContentServer?pagename=DevTools/CacheManager/listPagename&pname=<ics:resolvevariables name="pages.pagename"/>&mode=detail'><ics:resolvevariables name="pages.pagename"/></a></td>
         <td><ics:resolvevariables name="pages.num"/></td>
     </tr>
     </ics:listloop>
@@ -96,7 +96,7 @@ static String getQSStripped(String qs){
     <tr>
         <td><%= j++ %></td>
         <% String qs = ics.ResolveVariables("pages.@urlqry"); %>
-        <td><a href='ContentServer?pagename=Support/CacheManager/listItemsByPage&pid=<ics:resolvevariables name="pages.id"/>'><%= getPagename(qs) %></a></td>
+        <td><a href='ContentServer?pagename=DevTools/CacheManager/listItemsByPage&pid=<ics:resolvevariables name="pages.id"/>'><%= getPagename(qs) %></a></td>
         <td><%= getRenderMode(qs) %></td>
         <td><%= isSS(qs) %></td>
         <td><%= getQSStripped(qs) %></td>
@@ -124,7 +124,7 @@ static String getQSStripped(String qs){
         <% String qs = ics.ResolveVariables("pages.@urlqry");
         String pid = ics.ResolveVariables("pages.id");
         %>
-        <td><a href='ContentServer?pagename=Support/CacheManager/listItemsByPage&pid=<%= pid %>' onmouseover="div_show(this,'<%= pid %>')" onmouseout="div_hide()"><%= getPagename(qs) %></a></td>
+        <td><a href='ContentServer?pagename=DevTools/CacheManager/listItemsByPage&pid=<%= pid %>' onmouseover="div_show(this,'<%= pid %>')" onmouseout="div_hide()"><%= getPagename(qs) %></a></td>
         <td><%= getRenderMode(qs) %></td>
         <td><%= isSS(qs) %></td>
         <td><%= getQSStripped(qs) %></td>
@@ -139,7 +139,7 @@ static String getQSStripped(String qs){
 function div_show(obj,key){
     new Ajax.Request('ContentServer', {
       method: 'get',
-      parameters: {pagename:'Support/CacheManager/ShowCachedPageEscaped',pid: key},
+      parameters: {pagename:'DevTools/CacheManager/ShowCachedPageEscaped',pid: key},
       onSuccess: function(response){
             var result = response.responseText;
             showPagelet(obj,result);

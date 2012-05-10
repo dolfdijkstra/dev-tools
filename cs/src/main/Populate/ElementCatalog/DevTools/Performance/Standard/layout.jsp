@@ -17,15 +17,15 @@ if (ics.GetVar("items") !=null){
 String sleep= ics.GetVar("sleep");
 if ("element".equals(style)){
     for (int i=0; i< items; i++){
-        %><render:callelement elementname="Support/Performance/Standard/simple" scoped="local"><render:argument name="id" value="<%= Integer.toString(i) %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/><render:argument name="sleep" value="<%= sleep %>"/><render:argument name="ft_ss" value='<%= ics.GetVar("ft_ss") %>'/></render:callelement><br/><%
+        %><render:callelement elementname="DevTools/Performance/Standard/simple" scoped="local"><render:argument name="id" value="<%= Integer.toString(i) %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/><render:argument name="sleep" value="<%= sleep %>"/><render:argument name="ft_ss" value='<%= ics.GetVar("ft_ss") %>'/></render:callelement><br/><%
     }
 } else if ("embedded".equals(style)){
     for (int i=0; i< items; i++){
-        %><render:contentserver pagename="Support/Performance/Standard/simple"><render:argument name="id" value="<%= Integer.toString(i) %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/><render:argument name="sleep" value="<%= sleep %>"/></render:contentserver><br/><%
+        %><render:contentserver pagename="DevTools/Performance/Standard/simple"><render:argument name="id" value="<%= Integer.toString(i) %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/><render:argument name="sleep" value="<%= sleep %>"/></render:contentserver><br/><%
     }
 }else {
     for (int i=0; i< items; i++){
-        %><render:satellitepage pagename="Support/Performance/Standard/simple"><render:argument name="id" value="<%= Integer.toString(i) %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/><render:argument name="sleep" value="<%= sleep %>"/></render:satellitepage><br/><%
+        %><render:satellitepage pagename="DevTools/Performance/Standard/simple"><render:argument name="id" value="<%= Integer.toString(i) %>"/><render:argument name="cb" value="<%= Integer.toString(cb) %>"/><render:argument name="sleep" value="<%= sleep %>"/></render:satellitepage><br/><%
     }
 }
 %></cs:ftcs>

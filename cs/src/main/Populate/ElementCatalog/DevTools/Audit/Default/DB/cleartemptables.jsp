@@ -29,7 +29,7 @@ Best is to do a restart of the appserver after the changes in the db.
 
 <% String query = "select tblname from SystemInfo where systable in ('tmp','tmpt')"; %>
 <p><%= query %></p>
-    <ics:callelement element="Support/Audit/Default/DB/DisplayQuery">
+    <ics:callelement element="DevTools/Audit/Default/DB/DisplayQuery">
         <ics:argument name="query" value='<%= query %>' />
         <ics:argument name="table" value="SystemInfo" />
     </ics:callelement>
@@ -44,7 +44,7 @@ Best is to do a restart of the appserver after the changes in the db.
     }
 %>
 <p><%= query %></p>
-    <ics:callelement element="Support/Audit/Default/DB/DisplayQuery">
+    <ics:callelement element="DevTools/Audit/Default/DB/DisplayQuery">
         <ics:argument name="query" value='<%= query %>' />
         <ics:argument name="table" value="SystemInfo" />
     </ics:callelement>

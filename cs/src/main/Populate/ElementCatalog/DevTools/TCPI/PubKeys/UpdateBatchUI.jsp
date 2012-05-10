@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/TCPI/PubKeys/UpdateBatchUI
+// DevTools/TCPI/PubKeys/UpdateBatchUI
 //
 // INPUT
 //
@@ -15,11 +15,11 @@
 %><%@ page import="COM.FutureTense.Util.ftErrors"
 %><%@ page import="COM.FutureTense.Util.ftMessage"
 %><cs:ftcs>
-<ics:callelement element="Support/general"/>
+<ics:callelement element="DevTools/general"/>
 <div id="content">
-<ics:callelement element="Support/Topnav"/>
+<ics:callelement element="DevTools/Topnav"/>
 <h3>Move Files in PubKeyTable</h3>
-<ics:callelement element="Support/TCPI/PubKeys/UpdateBatch">
+<ics:callelement element="DevTools/TCPI/PubKeys/UpdateBatch">
   <ics:argument name="delete" value="true" />
   <ics:argument name="limit" value="500" />
 </ics:callelement>
@@ -27,6 +27,6 @@
 <ics:sql sql="SELECT count(id) as num FROM PubKeyTable WHERE urlkey NOT LIKE('%/%')" table="PubKeyTable" listname="pubkeys"/>
 <ics:resolvevariables name="pubkeys.num"/> pubkeys can be moved. <br/><a href='ContentServer?pagename=<ics:getvar name="pagename"/>&delete=true&limit=<ics:getvar name="limit"/>'>Click here to move <ics:getvar name="limit"/> pubkey urlkey fields.</a><br/>
 <ics:clearerrno />
-<ics:callelement element="Support/Footer"/>
+<ics:callelement element="DevTools/Footer"/>
 </div>
 </cs:ftcs>

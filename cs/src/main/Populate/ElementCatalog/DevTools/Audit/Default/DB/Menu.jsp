@@ -3,7 +3,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/Audit/Default/DB/Menu
+// DevTools/Audit/Default/DB/Menu
 //
 // INPUT
 //
@@ -19,25 +19,25 @@
 <center><h3>DB Consistency Check</h3></center>
 <table class="altClass">
 <tr>
-<td><b><satellite:link pagename="Support/Audit/DispatcherFront" ><satellite:argument name="cmd" value="DB/cleartemptables"/></satellite:link><a href='<ics:getvar name="referURL"/>'>TT-Tables</a></b></td>
+<td><b><satellite:link pagename="DevTools/Audit/DispatcherFront" ><satellite:argument name="cmd" value="DB/cleartemptables"/></satellite:link><a href='<ics:getvar name="referURL"/>'>TT-Tables</a></b></td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
 
 <tr>
-<td><b><satellite:link pagename="Support/Audit/DispatcherFront" ><satellite:argument name="cmd" value="DB/Queries"/></satellite:link><a href='<ics:getvar name="referURL"/>'>ContentServer Queries</a></b></td>
+<td><b><satellite:link pagename="DevTools/Audit/DispatcherFront" ><satellite:argument name="cmd" value="DB/Queries"/></satellite:link><a href='<ics:getvar name="referURL"/>'>ContentServer Queries</a></b></td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
 
 <tr>
-<td><b><satellite:link pagename="Support/Audit/DispatcherFront" ><satellite:argument name="cmd" value="DB/CSDirectQueries"/></satellite:link><a href='<ics:getvar name="referURL"/>'>CS-Direct Queries</a></b></td>
+<td><b><satellite:link pagename="DevTools/Audit/DispatcherFront" ><satellite:argument name="cmd" value="DB/CSDirectQueries"/></satellite:link><a href='<ics:getvar name="referURL"/>'>CS-Direct Queries</a></b></td>
 <td>CSDirect releated</td>
 <td>&nbsp;</td>
 </tr>
 
 <tr>
-<td><b><satellite:link pagename="Support/Audit/DispatcherFront" ><satellite:argument name="cmd" value="DB/AssetTypeQueries"/></satellite:link><a href='<ics:getvar name="referURL"/>'>AssetType Queries</a></b></td>
+<td><b><satellite:link pagename="DevTools/Audit/DispatcherFront" ><satellite:argument name="cmd" value="DB/AssetTypeQueries"/></satellite:link><a href='<ics:getvar name="referURL"/>'>AssetType Queries</a></b></td>
 <td>AssetType</td>
 <td>&nbsp;</td>
 </tr>

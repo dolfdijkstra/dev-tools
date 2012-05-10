@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE FTCS SYSTEM "futuretense_cs.dtd">
 <FTCS Version="1.1">
-<!-- Support/Audit/Default/AllTables
+<!-- DevTools/Audit/Default/AllTables
 -
 - OVERVIEW
 -
@@ -30,7 +30,7 @@
         <tr><th>Tablename</th><th>Number of Rows</th><th>CSz</th><th>Timeout</th><th>Abs</th><th>Time to Run SQL</th><th>Special TableKey</th></tr>
 	
 		<LOOP LIST="B">
-		<tr><td><a href="ContentServer?pagename=Support/Audit/Default/BodyCheck&#38;tblname=B.tblname" REPLACEALL="B.tblname"><CSVAR NAME="B.tblname"/></a></td>
+		<tr><td><a href="ContentServer?pagename=DevTools/Audit/Default/BodyCheck&#38;tblname=B.tblname" REPLACEALL="B.tblname"><CSVAR NAME="B.tblname"/></a></td>
 		<SETVAR NAME="errno" VALUE="0"/>
 		<SETVAR NAME="tablename" VALUE="B.tblname"/>
 		<TIME.SET NAME="mytabletime" />

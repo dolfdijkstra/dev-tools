@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/TCPI/AP/TopDependencies
+// DevTools/TCPI/AP/TopDependencies
 //
 // INPUT
 //
@@ -27,9 +27,9 @@
     <ics:listloop listname="aad">
     <tr>
         <td><ics:listget listname="aad" fieldname="assettype"/></td>
-        <td><a href='ContentServer?pagename=Support/TCPI/AP/ShowHeldSummary&assetid=<ics:listget listname="aad" fieldname="assetid"/>'><ics:listget listname="aad" fieldname="assetid"/></a></td>
+        <td><a href='ContentServer?pagename=DevTools/TCPI/AP/ShowHeldSummary&assetid=<ics:listget listname="aad" fieldname="assetid"/>'><ics:listget listname="aad" fieldname="assetid"/></a></td>
         <td><ics:listget listname="aad" fieldname="num"/></td>
-        <td><a href='ContentServer?pagename=Support/TCPI/AP/ForceApproveAsset&assetid=<ics:listget listname="aad" fieldname="assetid"/>&assettype=<ics:listget listname="aad" fieldname="assettype"/>'>Force Approve for all previous targets</a></td>
+        <td><a href='ContentServer?pagename=DevTools/TCPI/AP/ForceApproveAsset&assetid=<ics:listget listname="aad" fieldname="assetid"/>&assettype=<ics:listget listname="aad" fieldname="assettype"/>'>Force Approve for all previous targets</a></td>
     </tr>
     </ics:listloop>
 </table>

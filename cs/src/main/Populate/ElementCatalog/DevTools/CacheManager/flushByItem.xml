@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE FTCS SYSTEM "futuretense_cs.dtd">
 <FTCS Version="1.1">
-<!-- Support/CacheManager/flushByItem
+<!-- DevTools/CacheManager/flushByItem
 -
 - INPUT
 -
@@ -11,7 +11,7 @@
 <h3>Flush Pages by Item</h3>
 <p>Please enter a comma-separated list of items to flush. Assets need to be in the form of 'asset-123939289229:Product'.</p>
 <form method="post" action="ContentServer">
-	<input type="hidden" name="pagename" value="Support/CacheManager/flushByItemPost"/>
+	<input type="hidden" name="pagename" value="DevTools/CacheManager/flushByItemPost"/>
 	<textarea name="idlist" value="" cols="48"/><br />
 	<input type="checkbox" name="cs-cs"/>Flush pages from Content Server cached for a browser<br/>
 	<input type="checkbox" name="cs-ss"/>Flush pages from Content Server cached for a CS Satellite<br/>

@@ -3,7 +3,7 @@
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%
 //
-// Support/Log4J/Log4J
+// DevTools/Log4J/Log4J
 //
 // INPUT
 //

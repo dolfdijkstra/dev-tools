@@ -1,7 +1,7 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%//
-// Support/CacheManager/RS/Cache
+// DevTools/CacheManager/RS/Cache
 //
 // INPUT
 //
@@ -13,11 +13,11 @@
 %><%@ page import="java.util.*"
 %><%@ page import="java.text.*"
 %><cs:ftcs>
-<a href="ContentServer?pagename=Support/CacheManager/RS/CacheVisualizationTable">Google Table</a>&nbsp;|
-<a href="ContentServer?pagename=Support/CacheManager/RS/CacheDetailed">Detailed</a>&nbsp;|
-<a href="ContentServer?pagename=Support/CacheManager/RS/Cache">Summary</a>&nbsp;|
-<a href="ContentServer?pagename=Support/CacheManager/RS/CacheWarnings">Warnings</a>&nbsp;|
-<a href="ContentServer?pagename=Support/CacheManager/RS/CacheText">Text</a><br/>
+<a href="ContentServer?pagename=DevTools/CacheManager/RS/CacheVisualizationTable">Google Table</a>&nbsp;|
+<a href="ContentServer?pagename=DevTools/CacheManager/RS/CacheDetailed">Detailed</a>&nbsp;|
+<a href="ContentServer?pagename=DevTools/CacheManager/RS/Cache">Summary</a>&nbsp;|
+<a href="ContentServer?pagename=DevTools/CacheManager/RS/CacheWarnings">Warnings</a>&nbsp;|
+<a href="ContentServer?pagename=DevTools/CacheManager/RS/CacheText">Text</a><br/>
 <h3>Resultset Cache Profiler</h3>
 <table>
       <tr>

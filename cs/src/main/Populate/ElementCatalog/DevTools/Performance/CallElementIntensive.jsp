@@ -5,7 +5,7 @@
 <%@ taglib prefix="time" uri="futuretense_cs/time.tld" %>
 
 <%//
-// Support/Performance/CallElementIntensive
+// DevTools/Performance/CallElementIntensive
 //
 // INPUT
 //
@@ -26,7 +26,7 @@
 
 <%
 for (int i=0;i< Integer.parseInt(ics.GetVar("number")) ;i++){
-%><ics:callelement element="Support/Performance/SimpleElementToCall" />
+%><ics:callelement element="DevTools/Performance/SimpleElementToCall" />
 <%}%>
 <br><br>
 <time:get name="mystamp" /> ms<br>

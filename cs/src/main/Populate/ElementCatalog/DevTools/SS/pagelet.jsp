@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/SS/pagelet
+// DevTools/SS/pagelet
 //
 // INPUT
 //
@@ -21,6 +21,6 @@ sessionid: <%= ics.SessionID() %><br>
 page: <b><%= ics.pageURL() %></b><br>
 cacheable: <b><%= ics.isCacheable(ics.GetVar("pagename")) %></b><br>
 <hr/>
-<a href="Satellite?pagename=Support/SS/pagelet&a=<%= ics.GetVar("a") %>">self</a><br/>
-<a href="Satellite?pagename=Support/SS/pagelet&a=<%= ics.GetVar("a") %>0">a times ten</a>
+<a href="Satellite?pagename=DevTools/SS/pagelet&a=<%= ics.GetVar("a") %>">self</a><br/>
+<a href="Satellite?pagename=DevTools/SS/pagelet&a=<%= ics.GetVar("a") %>0">a times ten</a>
 </cs:ftcs>

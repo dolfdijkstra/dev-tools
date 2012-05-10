@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
 %><%//
-// Support/TCPI/SQL/FlexGroupDefs
+// DevTools/TCPI/SQL/FlexGroupDefs
 //
 // INPUT
 //
@@ -18,7 +18,7 @@
 
 <ics:sql sql="select upper(assettype) AS assettype from FlexGrpTmplTypes order by assettype" table="FlexGrpTmplTypes" listname="LstFlexGrpTmplTypes"/>
 <ics:listloop listname="LstFlexGrpTmplTypes">
-	<ics:callelement element="Support/TCPI/SQL/FlexDefIndexes">
+	<ics:callelement element="DevTools/TCPI/SQL/FlexDefIndexes">
 		<ics:argument name="FlexDef" value='<%= ics.ResolveVariables("LstFlexGrpTmplTypes.assettype") %>'/>
 	</ics:callelement>
 </ics:listloop>

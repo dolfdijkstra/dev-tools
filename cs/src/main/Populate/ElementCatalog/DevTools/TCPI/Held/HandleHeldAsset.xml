@@ -22,7 +22,7 @@
 			<td colspan="2"><font color="TCPI"><CSVAR NAME=" Blocked by: blockedby.assettype (blockedby.assetid)"/></font><BR/>
 			<IF COND="IsVariable.approve=true">
 			<THEN>
-				<CALLELEMENT NAME="Support/TCPI/Held/ApproveAsset">
+				<CALLELEMENT NAME="DevTools/TCPI/Held/ApproveAsset">
 					<ARGUMENT NAME="type" VALUE="blockedby.assettype"/>
 					<ARGUMENT NAME="id" VALUE="blockedby.assetid"/>
 					<ARGUMENT NAME="target" VALUE="Variables.target"/>
@@ -40,7 +40,7 @@
 
 		<IF COND="IsVariable.approve=true">
 		<THEN>
-			<CALLELEMENT NAME="Support/TCPI/Held/ApproveAsset">
+			<CALLELEMENT NAME="DevTools/TCPI/Held/ApproveAsset">
 				<ARGUMENT NAME="type" VALUE="Variables.type"/>
 				<ARGUMENT NAME="id" VALUE="Variables.assetid"/>
 				<ARGUMENT NAME="target" VALUE="Variables.target"/>

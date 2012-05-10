@@ -1,14 +1,14 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%//
-// Support/TCPI/SQL/ApprovedAssetDepsAlignment
+// DevTools/TCPI/SQL/ApprovedAssetDepsAlignment
 //
 // INPUT
 //
 // OUTPUT
 //
 %><cs:ftcs>
-<ics:callelement element="Support/TCPI/SQL/SQLScriptHeader">
+<ics:callelement element="DevTools/TCPI/SQL/SQLScriptHeader">
     <ics:argument name="scriptname" value="ApprovedAssetDeps-Alignment"/>
 </ics:callelement>
 
@@ -54,5 +54,5 @@ DELETE FROM PubMessage WHERE NOT EXISTS (SELECT 1 FROM PubSession WHERE id=PubMe
 commit;
 timing stop
 
-<ics:callelement element="Support/TCPI/SQL/SQLScriptFooter"/>
+<ics:callelement element="DevTools/TCPI/SQL/SQLScriptFooter"/>
 </cs:ftcs>

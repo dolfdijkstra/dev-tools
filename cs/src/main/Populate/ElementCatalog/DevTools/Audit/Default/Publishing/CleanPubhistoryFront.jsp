@@ -2,7 +2,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Audit/V7/Publishing/cleanPubhistoryFront
+// DevTools/Audit/V7/Publishing/cleanPubhistoryFront
 //
 // INPUT
 //
@@ -46,10 +46,10 @@
                 i++;
         %>
         <tr>
-            <td><a href="ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd=Publishing/OpenHtml&#38;var=<%= id %>"><%= id %></a></td>
+            <td><a href="ContentServer?pagename=DevTools/Audit/DispatcherFront&#38;cmd=Publishing/OpenHtml&#38;var=<%= id %>"><%= id %></a></td>
             <td><%= date %></td>
             <td><%= text %></td>
-        <td><a href="ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd=Publishing/CleanPubhistory&#38;var=<%= id %>">Delete</a></td>     </tr>
+        <td><a href="ContentServer?pagename=DevTools/Audit/DispatcherFront&#38;cmd=Publishing/CleanPubhistory&#38;var=<%= id %>">Delete</a></td>     </tr>
         <%
             }
         }
@@ -58,11 +58,11 @@
     <br/> Delete by Date <br/>
     <FORM action="ContentServer" method="post">
         <INPUT type="text" name="var">&nbsp;yyyy-mm-dd hh:mm:ss
-        <input type="hidden" name="pagename" value="Support/Audit/DispatcherFront">
+        <input type="hidden" name="pagename" value="DevTools/Audit/DispatcherFront">
         <input type="hidden" name="cmd" value="Publishing/CleanPubhistory"><br/><br/>
         &nbsp;<INPUT type="submit" value="Send">&nbsp;<INPUT type="reset">
     </FORM>
     <br/>
-    <a href="ContentServer?pagename=Support/Audit/DispatcherFront&#38;cmd=Publishing/CleanPubhistory&#38;var=all">DeleteAll</a>    
+    <a href="ContentServer?pagename=DevTools/Audit/DispatcherFront&#38;cmd=Publishing/CleanPubhistory&#38;var=all">DeleteAll</a>    
 </cs:ftcs>
 

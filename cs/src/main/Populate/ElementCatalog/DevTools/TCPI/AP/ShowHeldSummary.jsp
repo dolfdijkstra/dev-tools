@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/TCPI/AP/ShowHeldSummary
+// DevTools/TCPI/AP/ShowHeldSummary
 //
 // INPUT
 //
@@ -80,7 +80,7 @@
         </tr>
         </ics:listloop>
     </table>
-    <br/><a href='ContentServer?pagename=Support/TCPI/AP/ShowHeld&assetid=<ics:getvar name="assetid"/>'>Display also all depenancies</a><br/>
+    <br/><a href='ContentServer?pagename=DevTools/TCPI/AP/ShowHeld&assetid=<ics:getvar name="assetid"/>'>Display also all depenancies</a><br/>
 <% } else { %>
     <font color="red">No Depenedents to Display</font> <br/>
 <% } %>

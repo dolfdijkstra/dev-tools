@@ -3,7 +3,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Audit/Default/IndicesSQLAnywhere
+// DevTools/Audit/Default/IndicesSQLAnywhere
 //
 // INPUT
 //
@@ -28,7 +28,7 @@ String query = "SELECT t.table_name as tblname, i.index_name as indexname, c.col
 +"ORDER BY LOWER(t.table_name), i.index_name, ic.sequence,c.column_name";
 %>
 <h3><center>Lists all indexes</center></h3>
-<ics:callelement element="Support/Audit/Default/DB/DisplayQuery">
+<ics:callelement element="DevTools/Audit/Default/DB/DisplayQuery">
 	<ics:argument name="query" value='<%= query %>' />
 	<ics:argument name="table" value='SystemInfo' />
 </ics:callelement>

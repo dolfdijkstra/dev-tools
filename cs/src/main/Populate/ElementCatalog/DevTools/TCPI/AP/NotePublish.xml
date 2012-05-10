@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE ftcs SYSTEM "futuretense_cs.dtd">
 <ftcs version="1.2">
-<!-- Support/TCPI/AP/NotePublish
+<!-- DevTools/TCPI/AP/NotePublish
 -->
 <h3>Fake Publish</h3>
 <p>This tool marks all assets ready to publish as published. This is usefull if you copied the source database to the target as an initial content launch process and you want to let the source system that the asset are already 'published' to the target.</p>

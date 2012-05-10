@@ -1,7 +1,7 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%//
-// Support/TCPI/SQL/ApprovedAssetDepDups
+// DevTools/TCPI/SQL/ApprovedAssetDepDups
 //
 // INPUT
 //
@@ -14,15 +14,15 @@
 %><%@ page import="COM.FutureTense.Util.ftErrors"
 %><%@ page import="COM.FutureTense.Util.ftMessage"
 %><cs:ftcs>
-<ics:callelement element="Support/TCPI/SQL/SQLScriptHeader">
+<ics:callelement element="DevTools/TCPI/SQL/SQLScriptHeader">
     <ics:argument name="scriptname" value="ApprovedAssetDepDups"/>
 </ics:callelement>
 
 <ics:sql sql="SELECT DISTINCT targetid FROM ApprovedAssetDeps" table="ApprovedAssetDeps" listname="targets" limit="-1"/>
 <ics:listloop listname="targets">
-  <ics:callelement element="Support/TCPI/SQL/LastPubFix">
+  <ics:callelement element="DevTools/TCPI/SQL/LastPubFix">
       <ics:argument name="targetid"  value='<%= ics.ResolveVariables("targets.targetid") %>' />
   </ics:callelement>
 </ics:listloop>
-<ics:callelement element="Support/TCPI/SQL/SQLScriptFooter"/>
+<ics:callelement element="DevTools/TCPI/SQL/SQLScriptFooter"/>
 </cs:ftcs>

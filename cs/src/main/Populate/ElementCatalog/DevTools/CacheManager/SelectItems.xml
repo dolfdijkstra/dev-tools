@@ -55,7 +55,7 @@ function checkall () {
 		<IF COND="Variables.Submit=List for Flush"><THEN>
 		<p><b>Select asset(s) whose container pages need to be <i>Flushed</i></b></p>
 			<form method="post" action="ContentServer">
-				<input type="hidden" name="pagename" value="Support/CacheManager/flushByItemPost"/>
+				<input type="hidden" name="pagename" value="DevTools/CacheManager/flushByItemPost"/>
 				<input type="hidden" name="cs-cs" value="on"/>
 				<input type="hidden" name="cs-ss" value="on"/>
 				<input type="hidden" name="ss" value="on"/>
@@ -70,7 +70,7 @@ function checkall () {
 		</THEN><ELSE>
 		<p><b>Select asset(s) whose container pages need to be <i>Listed</i></b></p>
 			<form method="post" action="ContentServer">
-				<input type="hidden" name="pagename" value="Support/CacheManager/listByItemPost"/>
+				<input type="hidden" name="pagename" value="DevTools/CacheManager/listByItemPost"/>
 				<a href="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Select all assets';return true;" onmouseout="window.status='';return true;">check all</a>&nbsp;
 				<input type="submit" name="Submit" value="&nbsp;List&nbsp;"/><br/><br/>
 				<LOOP LIST="items">

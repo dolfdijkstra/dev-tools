@@ -72,7 +72,7 @@
 			<td align="right"><CSVAR NAME="heldlist.reason" /></td>
 			<IF COND="IsVariable.showBlocked=false">
 			<THEN>
-				<CALLELEMENT NAME="Support/TCPI/Held/CountBlockingAsset">
+				<CALLELEMENT NAME="DevTools/TCPI/Held/CountBlockingAsset">
 					<ARGUMENT NAME="type" VALUE="heldlist.assettype"/>
 					<ARGUMENT NAME="assetid" VALUE="heldlist.assetid"/>
 					<ARGUMENT NAME="target" VALUE="Variables.targ"/>
@@ -82,7 +82,7 @@
 			</tr>
 			<IF COND="IsVariable.showBlocked=true">
 			<THEN>
-				<CALLELEMENT NAME="Support/TCPI/Held/HandleHeldAsset">
+				<CALLELEMENT NAME="DevTools/TCPI/Held/HandleHeldAsset">
 					<ARGUMENT NAME="type" VALUE="heldlist.assettype"/>
 					<ARGUMENT NAME="assetid" VALUE="heldlist.assetid"/>
 					<ARGUMENT NAME="target" VALUE="Variables.targ"/>
@@ -99,15 +99,15 @@
 	<TIME.GET NAME="heldoperation" OUTPUT="elapsed" />
 	It took <CSVAR NAME="Variables.elapsed"/> ms to do the work.<br/><br/>
 	<LOGMSG STR="Finished Variables.pagename for uiPubTgts.name at CS.Date, runtime Variables.elapsed ms for heldlist.#numRows assets."/>
-	<a href="ContentServer?pagename=Support/TCPI/Held/FindHeld&#38;targ=Variables.targ&#38;showBlocked=true&#38;maxList=Variables.maxList" REPLACEALL="Variables.targ,Variables.maxList">Show held assets</a><br/>
+	<a href="ContentServer?pagename=DevTools/TCPI/Held/FindHeld&#38;targ=Variables.targ&#38;showBlocked=true&#38;maxList=Variables.maxList" REPLACEALL="Variables.targ,Variables.maxList">Show held assets</a><br/>
 
 	<IF COND="heldlist.#numRows!=0">
 	<THEN>
-		<a href="ContentServer?pagename=Support/TCPI/Held/FindHeld&#38;targ=Variables.targ&#38;showBlocked=true&#38;approve=true&#38;maxList=Variables.maxList" REPLACEALL="Variables.targ,Variables.maxList">ApproveAll</a><br/>
+		<a href="ContentServer?pagename=DevTools/TCPI/Held/FindHeld&#38;targ=Variables.targ&#38;showBlocked=true&#38;approve=true&#38;maxList=Variables.maxList" REPLACEALL="Variables.targ,Variables.maxList">ApproveAll</a><br/>
 	</THEN>
 	</IF>
 
-	<a href="ContentServer?pagename=Support/TCPI/Held/FindHeld&#38;targ=Variables.targ&#38;maxList=Variables.maxList" REPLACEALL="Variables.targ,Variables.maxList">Count blocking assets</a><br/>
+	<a href="ContentServer?pagename=DevTools/TCPI/Held/FindHeld&#38;targ=Variables.targ&#38;maxList=Variables.maxList" REPLACEALL="Variables.targ,Variables.maxList">Count blocking assets</a><br/>
 
 	</then>
 	</if>
@@ -122,7 +122,7 @@
 		<loop LIST="uiPubTgts">
 		    <DELIVERYTYPE.LOAD NAME="dtype" OBJECTID="uiPubTgts.type"/>
 		    <DELIVERYTYPE.GET NAME="dtype" FIELD="name" OUTPUT="dtype:name"/>
-			<a href="ContentServer?pagename=Support/TCPI/Held/FindHeld&#38;targ=uiPubTgts.id" REPLACEALL="uiPubTgts.id">
+			<a href="ContentServer?pagename=DevTools/TCPI/Held/FindHeld&#38;targ=uiPubTgts.id" REPLACEALL="uiPubTgts.id">
 			<CSVAR NAME="uiPubTgts.name (Variables.dtype:name)"/></a><br/>
 		</loop>
 	</then>

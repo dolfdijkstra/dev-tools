@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE FTCS SYSTEM "futuretense_cs.dtd">
 <FTCS Version="1.2">
-<!-- Support/Audit/Default/TableCount
+<!-- DevTools/Audit/Default/TableCount
 -
 - INPUT
 -
@@ -55,7 +55,7 @@
 <LOOP LIST="tables">
 	<tr>
 		<td align="right"><CSVAR NAME="tables.#curRow"/></td>
-		<td><a href="ContentServer?pagename=Support/Audit/Default/BodyCheck&#38;tblname=tables.tblname" REPLACEALL="tables.tblname"><CSVAR NAME="tables.tblname"/></a></td>
+		<td><a href="ContentServer?pagename=DevTools/Audit/Default/BodyCheck&#38;tblname=tables.tblname" REPLACEALL="tables.tblname"><CSVAR NAME="tables.tblname"/></a></td>
 
 		<SETVAR NAME="errno" VALUE="0"/>
 		<TIME.SET NAME="mytabletime" />

@@ -2,7 +2,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Audit/Default/storageCheck
+// DevTools/Audit/Default/storageCheck
 //
 // For pre 1.6 JDK's there was no way to get the available disk size.  Some code was taken from the following URL:
 // http://forum.java.sun.com/thread.jspa?threadID=193735&messageID=634286

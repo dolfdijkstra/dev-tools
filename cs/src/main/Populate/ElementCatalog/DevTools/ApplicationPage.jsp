@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%
 //
-// Support/ApplicationPage
+// DevTools/ApplicationPage
 //
 // INPUT
 //
@@ -12,9 +12,9 @@ long t1 = System.nanoTime(); %><cs:ftcs><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML
 <% 
 if("true".equals(ics.GetVar("ft_ss"))) { throw new ServletException("Satellite can not be a client"); } 
 %><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<ics:callelement element="Support/general"/><body>
-<ics:callelement element="Support/Topnav"/><div class="content" id="content">
+<ics:callelement element="DevTools/general"/><body>
+<ics:callelement element="DevTools/Topnav"/><div class="content" id="content">
 <ics:setvar name="errno" value="0" /><ics:callelement element='<%= ics.GetVar("pagename") %>'/></div>
-<ics:callelement element="Support/Footer"/><script type="text/javascript">var elapsed=<%= Long.toString((System.nanoTime()-t1)/1000) %>;</script></body>
+<ics:callelement element="DevTools/Footer"/><script type="text/javascript">var elapsed=<%= Long.toString((System.nanoTime()-t1)/1000) %>;</script></body>
 </html>
 </cs:ftcs>

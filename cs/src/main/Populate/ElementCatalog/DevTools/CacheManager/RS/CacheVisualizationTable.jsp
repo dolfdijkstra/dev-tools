@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/CacheManager/RS/CacheVisualization
+// DevTools/CacheManager/RS/CacheVisualization
 //
 // INPUT
 //
@@ -14,11 +14,11 @@
 %><%@ page import="java.util.*"
 %><%@ page import="java.text.*"
 %><cs:ftcs><script type="text/javascript" src="http://www.google.com/jsapi"></script>
-<a href="ContentServer?pagename=Support/CacheManager/RS/CacheVisualizationTable">Google Table</a>&nbsp;|
-<a href="ContentServer?pagename=Support/CacheManager/RS/CacheDetailed">Detailed</a>&nbsp;|
-<a href="ContentServer?pagename=Support/CacheManager/RS/Cache">Summary</a>&nbsp;|
-<a href="ContentServer?pagename=Support/CacheManager/RS/CacheWarnings">Warnings</a>&nbsp;|
-<a href="ContentServer?pagename=Support/CacheManager/RS/CacheText">Text</a><br/>
+<a href="ContentServer?pagename=DevTools/CacheManager/RS/CacheVisualizationTable">Google Table</a>&nbsp;|
+<a href="ContentServer?pagename=DevTools/CacheManager/RS/CacheDetailed">Detailed</a>&nbsp;|
+<a href="ContentServer?pagename=DevTools/CacheManager/RS/Cache">Summary</a>&nbsp;|
+<a href="ContentServer?pagename=DevTools/CacheManager/RS/CacheWarnings">Warnings</a>&nbsp;|
+<a href="ContentServer?pagename=DevTools/CacheManager/RS/CacheText">Text</a><br/>
 <h3>Resultset Cache Profiler</h3>
 <input type='button' value='Refresh' onclick='return getCacheData()' />
 <div id="table_div"></div>
@@ -30,7 +30,7 @@ if (typeof google != 'undefined'){
     google.load("visualization", "1", {packages:["table"]});
     google.setOnLoadCallback(drawTable2);
 }else {
-    document.location="ContentServer?pagename=Support/CacheManager/RS/CacheDetailed";
+    document.location="ContentServer?pagename=DevTools/CacheManager/RS/CacheDetailed";
 }
       function drawTable2() {
         table = new google.visualization.Table(document.getElementById('table_div'));
@@ -42,7 +42,7 @@ if (typeof google != 'undefined'){
         getCacheData();
       }
       function getCacheData() {
-        var query = new google.visualization.Query('ContentServer?pagename=Support/CacheManager/RS/CacheJson');
+        var query = new google.visualization.Query('ContentServer?pagename=DevTools/CacheManager/RS/CacheJson');
         //query.setRefreshInterval(10);
         // Send the query with a callback function.
         query.send(handleQueryResponse);

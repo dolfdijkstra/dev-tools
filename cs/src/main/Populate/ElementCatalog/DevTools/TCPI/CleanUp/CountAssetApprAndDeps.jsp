@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%//
-// Support/TCPI/CleanUp/CountAssetApprAndDeps
+// DevTools/TCPI/CleanUp/CountAssetApprAndDeps
 //
 // INPUT
 //
@@ -20,7 +20,7 @@ ics.SetVar("tname","ApprovedAssetDeps");
 boolean delete = false;//"true".equals(ics.GetVar("delete"));
 %>
 <h3>Check <ics:getvar name="tname"/> for Dependencies without a Owner</h3>
-<ics:callelement element="Support/TCPI/CleanUp/CountDuplicateTargetid"/>
+<ics:callelement element="DevTools/TCPI/CleanUp/CountDuplicateTargetid"/>
 <hr/>
 
 <ics:clearerrno />

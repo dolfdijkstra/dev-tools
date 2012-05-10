@@ -3,7 +3,7 @@
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%@ taglib prefix="object" uri="futuretense_cs/object.tld" %>
 <%//
-// Support/Verify/i18n/encoding
+// DevTools/Verify/i18n/encoding
 //
 // INPUT
 //
@@ -18,9 +18,9 @@
 <%@ page import="java.lang.*" %>
 <%@ page import="java.util.*" %>
 <cs:ftcs>
-<ics:callelement element="Support/general"/>
+<ics:callelement element="DevTools/general"/>
 <div id="content">
-<ics:callelement element="Support/Topnav"/>
+<ics:callelement element="DevTools/Topnav"/>
 <center><h3>Unicode Form Post</h3></center>
 <%
 IList meta = ics.CatalogDef("jsp01",null,new StringBuffer());
@@ -122,6 +122,6 @@ if (ics.GetErrno()==-104){
 		<input type='submit'/>
 	</form>
 	<hr />
-<ics:callelement element="Support/Footer"/>
+<ics:callelement element="DevTools/Footer"/>
 </div>        
 </cs:ftcs>

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE FTCS SYSTEM "futuretense_cs.dtd">
 <FTCS Version="1.2">
-<!-- Support/TCPI/Held/HeldEvent
+<!-- DevTools/TCPI/Held/HeldEvent
 -
 - INPUT
 -
@@ -14,7 +14,7 @@
 <USER.LOGIN USERNAME="Variables.batchuser" PASSWORD="Variables.batchpass"/>
 <IF COND="IsError.Variables.errno!=true">
 <THEN>
-	<CALLELEMENT NAME="Support/TCPI/AP/ApprovalStats">
+	<CALLELEMENT NAME="DevTools/TCPI/AP/ApprovalStats">
 		<ARGUMENT NAME="showBlocked" VALUE="true"/>
 		<ARGUMENT NAME="approve" VALUE="true"/>
 	</CALLELEMENT>

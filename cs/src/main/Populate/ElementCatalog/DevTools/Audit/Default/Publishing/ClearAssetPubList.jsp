@@ -3,7 +3,7 @@
 <%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
 <%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
 <%//
-// Support/Audit/V7/Publishing/ClearAssetPubList
+// DevTools/Audit/V7/Publishing/ClearAssetPubList
 //
 // INPUT
 //
@@ -19,7 +19,7 @@
 <h3>Delete Leftover Entries in AssetPublishList table</h3>
 
 <br/><b>Number of Pubsessions</b><br/>
-<ics:callelement element="Support/Audit/Default/DB/DisplayQuery">
+<ics:callelement element="DevTools/Audit/Default/DB/DisplayQuery">
     <ics:argument name="query" value='SELECT cs_status as status, count(id) as num FROM PubSession GROUP BY cs_status' />
 	<ics:argument name="table" value="PubSession" />
 </ics:callelement>
@@ -31,7 +31,7 @@ String cmd = ics.GetVar("cmd");
 	//query += "SELECT count(apl.id), ps.publishdate, ps.apl.*, PubSession '"+tables[i] +"' as tblname , count(*) as num FROM " + tables[i];
 	query = "SELECT count(apl.id) as num, ps.cs_status as status, ps.cs_sessiondate, ps.cs_sessionuser FROM AssetPublishList apl, PubSession ps WHERE ps.id = apl.pubsession GROUP BY ps.cs_sessiondate, ps.cs_status, ps.cs_sessionuser ORDER BY ps.cs_sessiondate";
 %>
-	<ics:callelement element="Support/Audit/Default/DB/DisplayQuery">
+	<ics:callelement element="DevTools/Audit/Default/DB/DisplayQuery">
 		<ics:argument name="query" value='<%= query %>' />
 		<ics:argument name="table" value="AssetPublishList" />
 	</ics:callelement>
@@ -67,7 +67,7 @@ if ("true".equals(ics.GetVar("deletepub"))){
   To purge the enties from the <b>AssetPublishList</b> for all non-running pubsessions, you have to type <b><i>&quot;<%= checkString %>&quot;</i></b> in the checkbox below and press Purge
   <p><input type="text" name="check"></p>
   <p><input name="Purge" type="submit" value="Purge"></p>
-     <input type="hidden" name="pagename" value="Support/Audit/DispatcherFront">
+     <input type="hidden" name="pagename" value="DevTools/Audit/DispatcherFront">
      <input type="hidden" name="cmd" value='<%=cmd %>'>
      <input type="hidden" name="deletepub" value="true">
   <p>&nbsp; </p>

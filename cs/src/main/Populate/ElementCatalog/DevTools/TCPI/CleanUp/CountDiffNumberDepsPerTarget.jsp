@@ -2,7 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
 %><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
 %><%//
-// Support/TCPI/CleanUp/CountDiffNumberDepsPerTarget
+// DevTools/TCPI/CleanUp/CountDiffNumberDepsPerTarget
 //
 // INPUT
 //
@@ -38,7 +38,7 @@ static String sql ="SELECT foa.assetid, assettype, numaa, numaad FROM ("
 
 		<tr>
 		<td><ics:listget listname="diffs" fieldname="assettype"/></td>
-		<td><a href='ContentServer?pagename=Support/TCPI/AP/ShowHeldSummary&assetid=<ics:listget listname="diffs" fieldname="assetid"/>'><ics:listget listname="diffs" fieldname="assetid"/></a></td>
+		<td><a href='ContentServer?pagename=DevTools/TCPI/AP/ShowHeldSummary&assetid=<ics:listget listname="diffs" fieldname="assetid"/>'><ics:listget listname="diffs" fieldname="assetid"/></a></td>
 		<td><ics:listget listname="diffs" fieldname="numaa"/></td>
 		<td><ics:listget listname="diffs" fieldname="numaad"/></td>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE FTCS SYSTEM "futuretense_cs.dtd">
 <FTCS Version="1.2">
-<!-- Support/TCPI/CleanUp/CountTablesOracle
+<!-- DevTools/TCPI/CleanUp/CountTablesOracle
 -
 - INPUT
 -
@@ -30,7 +30,7 @@
 
 	<LOOP LIST="usertables">
 	<tr>
-		<td><a href="ContentServer?pagename=Support/TCPI/CleanUp/OracleIndexes&#38;tblname=usertables.tbl" REPLACEALL="usertables.tbl"><CSVAR NAME="usertables.tbl"/></a></td>
+		<td><a href="ContentServer?pagename=DevTools/TCPI/CleanUp/OracleIndexes&#38;tblname=usertables.tbl" REPLACEALL="usertables.tbl"><CSVAR NAME="usertables.tbl"/></a></td>
 		<td align="right"><CSVAR NAME="usertables.num"/></td>
 		<td align="right"><CSVAR NAME="usertables.avgrowlen"/></td>
 		<td><CSVAR NAME="usertables.lastanalyzed"/></td>
