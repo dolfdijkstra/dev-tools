@@ -82,7 +82,6 @@ function showPreview(pURL)
 	</ELSE></IF>
 </ELSE></IF>
 <div id="hoverbox" style="position: absolute; visibility: hidden; width: 90%; background: #FFF;"></div>
-<script type="text/javascript" src='Variables.prototypeURL' REPLACEALL="Variables.prototypeURL"></script>
 <script type="text/javascript"><![CDATA[
 function div_show(obj,key){
     new Ajax.Request('ContentServer', {

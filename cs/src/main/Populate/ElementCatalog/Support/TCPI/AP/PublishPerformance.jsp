@@ -5,8 +5,7 @@
 %><%@ page import="COM.FutureTense.Util.*"
 %><%@ page import="java.util.*"
 %><%@ page import="java.text.*"
-%><cs:ftcs><script type="text/javascript" src='<%=ics.GetVar("prototypeURL")%>'></script>
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+%><cs:ftcs><script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <h3>Publish Sessions Elapsed Time</h3><%
 
 Calendar now = Calendar.getInstance();

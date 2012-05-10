@@ -36,7 +36,7 @@ public void jspInit(){
 ics.SetVar("st_version","4.0.0");
 %><satellite:link pagename='Support/css' satellite="true" outstring="cssURL" ><satellite:argument name="v" value='<%= ics.isCacheable("Support/css")?"40": Long.toString(System.currentTimeMillis()) %>'/></satellite:link><%
 %><head><script type="text/javascript">var began_loading = new Date().getTime();</script>
-<title><ics:getvar name="pagename"/></title>
+<title>WebCenter Sites:: <ics:getvar name="pagename"/></title>
 <meta http-equiv="Pragma" content="no-cache"/><%
 %><link rel="stylesheet" href='<%=ics.GetVar("cssURL")%>' type="text/css" media="screen"/>
 <script type="text/javascript"><%=csEnv %>

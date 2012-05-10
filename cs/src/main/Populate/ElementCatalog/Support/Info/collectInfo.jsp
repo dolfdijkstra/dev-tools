@@ -55,7 +55,6 @@
   //view.printAllThreads();
   view.printClassFolder();
   view.printAddresses();
-  view.printLicense();
   view.printServletRequestPropertyFile();
   view.printAllIniFiles(Utilities.osSafeSpec(context.getInitParameter("inipath")));
   view.printWebXml(context);
@@ -265,7 +264,6 @@ static class View {
     "user.name",
     "user.timezone",
     "user.variant",
-    "cs.LicenseFile",
     "cs.installDir"};
 
 
@@ -536,16 +534,6 @@ static class View {
         return sb.toString();
     }
 
-    void printLicense() throws IOException {
-        printTableSectionTitle("License");
-        String licFile = System.getProperty("cs.LicenseFile");
-        if (Utilities.goodString(licFile)){
-
-            String license =Utilities.readFile(licFile);
-            printTableRowSpan2("license", encodeString(license));
-
-        }
-    }
 
     void printServletRequestPropertyFile() throws IOException{
         Properties srProps = getResourceAsProperties("ServletRequest.properties");

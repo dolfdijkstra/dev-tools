@@ -21,7 +21,7 @@ private org.apache.commons.logging.Log log = org.apache.commons.logging.LogFacto
 %><div id="logo">
         <table width="100%" class="logo"><tr>
                 <td width="25%" class="logo"><%=ics.GetSSVar("username")%> at <%= hostname%>:<%= serverport%></td>
-                <td width="50%" class="logo"><p class="logo">Fatwire ContentServer Support Tools</p></td>
+                <td width="50%" class="logo"><p class="logo">Oracle WebCenter Sites Developers Tools</p></td>
                 <td width="25%"  class="logo" style="text-align:right"><%= df.format(new java.util.Date())%></td>
         </tr></table>
     </div>

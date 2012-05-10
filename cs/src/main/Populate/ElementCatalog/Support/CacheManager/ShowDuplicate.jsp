@@ -37,7 +37,6 @@ for (int i = 1; i <= rows; i++) {
 
 %><div id="hoverbox" style="position: absolute; visibility: hidden; width: 90%; background: #FFF;"></div>
 <div id="dups" style="width: 100%; background: #FFF;"></div>
-<script type="text/javascript" src='<%=ics.GetVar("prototypeURL")%>'></script>
 <script type="text/javascript">
 function div_show(obj,key){
     new Ajax.Request('ContentServer', {

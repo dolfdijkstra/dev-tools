@@ -37,5 +37,5 @@ function decorateTables(){
 }
 addEvent(window, 'load', decorateTables);
 </script>
-<div id="footer"><span style="float:left">Copyright &copy;2003-2011 FatWire Corporation.  All Rights Reserved.</span> <span style="float:right">&nbsp;Version <%= ics.GetVar("st_version") %></span></div>
+<div id="footer"><span style="float:left">Copyright &copy;2003-2011 Oracle Corporation.  All Rights Reserved.</span> <span style="float:right">&nbsp;Version <%= ics.GetVar("st_version") %></span></div>
 </cs:ftcs>

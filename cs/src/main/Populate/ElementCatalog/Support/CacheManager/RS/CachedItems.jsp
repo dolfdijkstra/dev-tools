@@ -111,8 +111,6 @@
         }
          %>
     </table>
-
-<script type="text/javascript" src='<%=ics.GetVar("prototypeURL")%>'></script>
 <script type="text/javascript">
 function div_show(obj,key,item){
     new Ajax.Request('ContentServer', {
