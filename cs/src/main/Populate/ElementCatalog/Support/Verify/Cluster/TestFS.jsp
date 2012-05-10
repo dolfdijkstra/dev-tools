@@ -20,10 +20,9 @@ public void jspInit(){
     } catch (java.net.UnknownHostException e){}
 }
 
-%><cs:ftcs><script type="text/javascript" src='<%=ics.GetVar("prototypeURL")%>'></script>
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+%><cs:ftcs><script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <h3>File System Test</h3>
-<p>This tool tests the performance of the shared file systems and compares the results against FatWire lab tests. The results of the tests will give an indication of the relative performance of the shared file system. This is most useful when tuning various NFS settings.</p>
+<p>This tool tests the performance of the shared file systems. The results of the tests will give an indication of the relative performance of the shared file system. This is most useful when tuning various NFS settings.</p>
 <div id="message" style="display: none"><img id="loadingimg" src="js/dojox/image/resources/images/loading.gif" onerror="this.remove();"/><b id="messageText">Running File System Tests. Please wait...</b></div>
 <div id="controlPanel"><input id="controlButton" type="button" value="Start FileSystemTest" onclick="fsTest.submitTest();"/>
 <input type="radio" name="testsize" value="short" id="shorttest"/> Short test
@@ -198,22 +197,7 @@ var fsTest = {
     finishTest: function (){
         fsTest.state=3;
         $('message').style.display='none';
-        //$('controlButton').style.display='none';
-        $('controlButton').value="Upload test results to the SupportTools web site for data collection and comparison.";
-        $('controlButton').onclick = function(){
-            var form = document.createElement('form');
-            form.action=location.protocol +'//fwsupporttools.appspot.com/upload/fstest';
-            form.enctype='application/x-www-form-urlencoded';
-            form.method='post';
-            var inputelement = document.createElement('input');
-            inputelement.type='hidden';
-            inputelement.name='payload';
-            inputelement.value=Object.toJSON(fsTest.test);
-            form.appendChild(inputelement);
-            $('controlButton').parentNode.appendChild(form);
-            form.submit();
-            //alert (Object.toJSON(test)); all we need to send to supporttools website
-        }
+        $('controlButton').style.display='none';
 
     },
     addTableRow :function addTableRow(rownum,label,mytest,result){
