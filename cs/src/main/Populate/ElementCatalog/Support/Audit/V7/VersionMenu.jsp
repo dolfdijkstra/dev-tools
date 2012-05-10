@@ -13,10 +13,6 @@ String buildMenuUrl(String cmd){
      <p>Checks DB integrity. Runs database queries to find out consistency of the system which are normally not available through Content Server UI.</p>
 </li>
 <li class="dangerous">
-     <h2><a href='<%=buildMenuUrl("SE/UseSE") %>'>Verity ReIndex</a></h2>
-     <p>Destroys and creates Verity searchengine index. Useful when bulk indexing needs to be done on multiple attributes.</p>
-</li>
-<li class="dangerous">
      <h2><a href='<%=buildMenuUrl("Workflow/CleanWorkflow") %>'>Clean Workflow Tables</a></h2>
     <p>Clears Finished Workflow History. Useful when workflow history becomes unmanageable and requires maintainance.<br/>
            Note: This tool does not backup any history, once history is deleted it is lost for ever.
