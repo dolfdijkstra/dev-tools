@@ -2,6 +2,7 @@
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="asset" uri="futuretense_cs/asset.tld"
 %><%@ taglib prefix="time" uri="futuretense_cs/time.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%@ taglib prefix="string" uri="futuretense_cs/string.tld"
 %><%//
 // DevTools/Assets/BulkSaveAssets
