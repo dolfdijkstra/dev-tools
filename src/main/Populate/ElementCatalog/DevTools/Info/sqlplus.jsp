@@ -1,5 +1,6 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%@ taglib prefix="time" uri="futuretense_cs/time.tld"
 %><%@ page import="javax.naming.*"
 %><%@ page import="java.sql.*"
@@ -15,13 +16,13 @@
     }
 
 
-%><form action="ContentServer" name="sqlplus" method="POST">
+%><satellite:form satellite="false" name="sqlplus" method="POST">
 <input type='hidden' name='pagename' value='<%=ics.GetVar("pagename")%>'/>
 <table style="border:none">
     <tr><td width="10%" style="border:none;text-align:right"><b>Enter SQL :</b></td><td style="border:none"><textarea name="sql" cols="102" rows="10" ><%=sSQL%></textarea></td></tr>
     <tr><td width="10%" style="border:none"></td><td style="border:none">&nbsp;<input type=submit value=Query name=button></td></tr>
 </table>
-</form>
+</satellite:form>
 <hr/>
 <time:set name="sqltime"/>
 <%

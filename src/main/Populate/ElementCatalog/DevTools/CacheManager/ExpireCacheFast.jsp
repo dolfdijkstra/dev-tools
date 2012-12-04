@@ -41,8 +41,9 @@ SystemPageCache Errno: <ics:geterrno/> (-502 is ok)<br>
 Total <b><ics:listget listname="itemlist" fieldname="itemnum"/></b> SystemItemCache rows will be deleted.<br/>
 <ics:sql sql='<%= "SELECT count(*) as pagenum FROM SystemPageCache WHERE etime > {d \'"+ Calendar.getInstance().get(Calendar.YEAR) +"-01-01\'}" %>' listname="pagelist" table="SystemPageCache"/>
 Total <b><ics:listget listname="pagelist" fieldname="pagenum"/></b> SystemPageCache (with filesystem data) will be expired.
-<form method="POST" action='ContentServer?pagename=<%=thisPage %>'>
+<satellite:form satellite="false" method="POST">
+<input type="hidden" name="pagename" value='<%=thisPage %>'/>
 <b>Do you want to expire all cache? </b>&nbsp;<input type="Submit" name="expire" value="Expire"><br/>
-</form>
+</satellite:form>
 <% } %>
 </cs:ftcs>

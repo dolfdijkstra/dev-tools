@@ -17,12 +17,12 @@
 %><%@ page import="COM.FutureTense.Util.ftMessage"
 %><%@ page import="java.util.*"
 %><cs:ftcs><h3>Load Asset</h3>
-<form method="GET">
+<satellite:form satellite="false" method="GET">
 <input type="hidden" name="pagename" value='<%= ics.GetVar("pagename") %>'/>
 <input type="hidden" name="cmd" value='<%= ics.GetVar("cmd") %>'/>
 Asset Type: <input type="text" name="assettype" /> Asset ID: <input type="text" name="assetid" /><br/>
 <input type="submit" value="Submit"/><br/>
-</form>
+</satellite:form>
 <br/>
 <%
 if (ics.GetVar("assettype") != null && !ics.GetVar("assettype").equals("") && ics.GetVar("assetid") != null && !ics.GetVar("assetid").equals("")) {

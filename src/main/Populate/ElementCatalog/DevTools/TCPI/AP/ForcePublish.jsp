@@ -1,5 +1,6 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%@ taglib prefix="deliverytype" uri="futuretense_cs/deliverytype.tld"
 %><%@ taglib prefix="string" uri="futuretense_cs/string.tld"
 %><%
@@ -33,8 +34,8 @@
 <ics:selectto table="PubTarget" listname="pubTgts" what="id,name,type"/>
 <ics:if condition='<%= ics.GetErrno()==0%>'>
 <ics:then>
-    <form method="POST" action='ContentServer'>
-    <input type="hidden" name="pagename" value='<%= ics.GetVar("pagename") %>' />
+<satellite:form satellite="false" id="tableform" method="POST">
+    <input type="hidden" name="pagename" value='<%=ics.GetVar("pagename") %>'/>
     <b>Select a Publish Destination:</b>
     <select name="id">
     <ics:listloop listname="pubTgts">
@@ -44,7 +45,7 @@
     </ics:listloop>
     </select>
     <input type="Submit" name="forcepub" value="RePublish"><br/>
-    </form>
+    </satellite:form>
     </ics:then>
 <ics:else>
     No Destinations Available

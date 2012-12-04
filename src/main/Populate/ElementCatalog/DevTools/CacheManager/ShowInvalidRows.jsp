@@ -130,8 +130,10 @@ try
 		out.println("defdir=" + sFilepath);
 	}
 %>
-<form method="POST" action='ContentServer?pagename=<%=thisPage %>'>
-	<table class="altClass" style="width:70%">
+<satellite:form satellite="false" id="tableform" method="POST">
+    <input type="hidden" name="pagename" value='<%=ics.GetVar("pagename") %>'/>
+    <input type="hidden" name="cmd" value='<%=ics.GetVar("cmd") %>'/> 
+    <table class="altClass" style="width:70%">
 	<tr>
 	    <th></th>
 	    <th>Pageid</th>
@@ -201,7 +203,7 @@ Items (SystemItemCache) without a referenced parent (SystemPageCache): <ics:list
 
 <br/><a href="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Check all';return true;" onmouseout="window.status='';return true;">CheckAll</a>
 &nbsp;<input type="Submit" name="DeleteItem" value="DeleteItem"><br/>
-</form> 
+</satellite:form> 
 
 SystemItemCache took <time:get name="itemtime"/> ms 
 </cs:ftcs>

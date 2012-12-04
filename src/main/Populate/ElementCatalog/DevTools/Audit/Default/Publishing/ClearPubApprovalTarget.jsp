@@ -55,7 +55,7 @@ if ("true".equals(ics.GetVar("deletepub")) && ics.GetVar("targetid") != null){
 	
 } else {
 %>
-<form name="form1" method="post" action="ContentServer">
+<satellite:form satellite="false" name="form1" method="post" >
     To purge all <b>publish/approval history for a specific target</b>, you have to type <b><i>&quot;<%= checkString %>&quot;</i></b> in the checkbox below, select a specific target and press 
     Purge tables. 
   <p><input type="text" name="check"></p>
@@ -77,7 +77,7 @@ if ("true".equals(ics.GetVar("deletepub")) && ics.GetVar("targetid") != null){
      <input type="hidden" name="cmd" value='<%=cmd %>'>
      <input type="hidden" name="deletepub" value="true">
   <p>&nbsp; </p>
-</form>
+</satellite:form>
 
 <%
 }

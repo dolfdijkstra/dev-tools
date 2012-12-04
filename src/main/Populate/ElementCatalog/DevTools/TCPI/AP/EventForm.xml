@@ -63,7 +63,10 @@ function checkall () {
 <ICS.QUERYEVENTS LIST="events" TYPE="1" ENABLED="Variables.enabled"/>
 <if COND="events.#numRows!=0">
 <then>
-	<form name="eventsForm" method="post" action="ContentServer?pagename=Variables.pagename&#38;cmd=EventForm&#38;enabled=Variables.enabled" REPLACEALL="Variables.pagename,Variables.enabled">
+	<satellite.form satellite="false" name="eventsForm" method="post">
+	<input type="hidden" name="pagename" value="Variables.pagename" REPLACEALL="Variables.pagename"/>
+	<input type="hidden" name="cmd" value="EventForm"/>
+	<input type="hidden" name="enabled" value="Variables.enabled" REPLACEALL="Variables.enabled"/>
 	<table class="altClass">
 	<tr>
 		<th width="5%">&nbsp;</th> 
@@ -97,7 +100,7 @@ function checkall () {
     </then>
     </if>
     &nbsp;<input type="submit" name="evtcmd" value="Destroy" />
-	</form>
+	</satellite.form>
 </then>
 </if>
 <if COND="Variables.enabled=true">

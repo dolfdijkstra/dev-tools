@@ -63,7 +63,7 @@ if ("true".equals(ics.GetVar("deletepub"))){
 	
 } else {
 %>
-<form name="form1" method="post" action="ContentServer">
+<satellite:form satellite="false" name="form1" method="post">
   To purge the enties from the <b>AssetPublishList</b> for all non-running pubsessions, you have to type <b><i>&quot;<%= checkString %>&quot;</i></b> in the checkbox below and press Purge
   <p><input type="text" name="check"></p>
   <p><input name="Purge" type="submit" value="Purge"></p>
@@ -71,7 +71,7 @@ if ("true".equals(ics.GetVar("deletepub"))){
      <input type="hidden" name="cmd" value='<%=cmd %>'>
      <input type="hidden" name="deletepub" value="true">
   <p>&nbsp; </p>
-</form>
+</satellite:form>
 <% } %>
 
 </cs:ftcs>

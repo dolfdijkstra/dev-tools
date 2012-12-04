@@ -10,12 +10,12 @@
 -->
 <h3>Flush Pages by Item</h3>
 <p>Please enter a comma-separated list of items to flush. Assets need to be in the form of 'asset-123939289229:Product'.</p>
-<form method="post" action="ContentServer">
+<satellite.form satellite="false" method="post">
 	<input type="hidden" name="pagename" value="DevTools/CacheManager/flushByItemPost"/>
 	<textarea name="idlist" value="" cols="48"/><br />
 	<input type="checkbox" name="cs-cs"/>Flush pages from Content Server cached for a browser<br/>
 	<input type="checkbox" name="cs-ss"/>Flush pages from Content Server cached for a CS Satellite<br/>
 	<input type="checkbox" name="ss"/>Flush pages from all Satellite engines<br/><br/>
 	<input type="submit" name="Submit" value="Submit"/>
-</form>
+</satellite.form>
 </FTCS> 

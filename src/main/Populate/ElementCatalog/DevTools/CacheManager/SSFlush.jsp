@@ -1,5 +1,6 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%@ page import="COM.FutureTense.Interfaces.*" %>
 <%@ page import="COM.FutureTense.Util.*" %>
 <%@ page import="COM.FutureTense.Cache.*"%>
@@ -18,7 +19,8 @@ if (ics.GetVar("expire")!=null) {
     }
 } else {
 
-%><form method="POST" action='ContentServer?pagename=<%=thisPage %>'>
+%><satellite:form satellite="false" method="POST">
+    <input type="hidden" name="pagename" value='<%=ics.GetVar("pagename") %>'/>
 <b>Do you want to flush all Satellite Server caches? </b>&nbsp;<input type="Submit" name="expire" value="Expire"><br/>
-</form>
+</satellite:form>
 <% } %></cs:ftcs>

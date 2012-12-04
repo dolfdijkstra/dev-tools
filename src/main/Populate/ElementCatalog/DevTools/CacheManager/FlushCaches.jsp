@@ -51,12 +51,14 @@ if (tables != null){
    %>
 </table>
 <% } %>
-<form method="POST" action='ContentServer?pagename=<%=thisPage %>&cmd=<%=cmd %>'>
+<satellite:form satellite="false" id="tableform" method="POST">
+    <input type="hidden" name="pagename" value='<%=ics.GetVar("pagename") %>'/>
+    <input type="hidden" name="cmd" value='<%=ics.GetVar("cmd") %>'/>
 <a href="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Check all';return true;" onmouseout="window.status='';return true;">CheckAll</a>&nbsp;<input type="Submit" name="Submit" value="Flush"><br/><br/>
 <% for (Object o: ftTimedHashtable.getAllCacheNames()){
         String key = (String)o;
         %><input name="table" type="checkbox" value='<%= key %>'/><%= key %><br/>
 <% }%>
 <br/><a href="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Check all';return true;" onmouseout="window.status='';return true;">CheckAll</a>&nbsp;<input type="Submit" name="Submit" value="Flush">
-</form>
+</satellite:form>
 </cs:ftcs>

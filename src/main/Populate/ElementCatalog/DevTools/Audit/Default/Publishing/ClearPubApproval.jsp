@@ -72,7 +72,7 @@ if ("true".equals(ics.GetVar("deletepub"))){
 	}
 } else {
 %>
-<form name="form1" method="post" action="ContentServer">
+<satellite:form satellite="false" name="form1" method="post">
     To purge <b>entire publish/approval history accumulated</b>, you have to type <b><i>&quot;<%= checkString %>&quot;</i></b> in the checkbox below and press 
     Purge tables
   <p><input type="text" name="check"></p>
@@ -81,7 +81,7 @@ if ("true".equals(ics.GetVar("deletepub"))){
      <input type="hidden" name="cmd" value='<%=cmd %>'>
      <input type="hidden" name="deletepub" value="true">
   <p>&nbsp; </p>
-</form>
+</satellite:form>
 
 <% } %>
 

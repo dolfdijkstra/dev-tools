@@ -105,22 +105,22 @@ if (ics.GetErrno()==-104){
 	</form>
 	<hr />
 
-	<form action="ContentServer" method='post' enctype='application/x-www-form-urlencoded'>
+	<satellite:form satellite="false" method='post' enctype='application/x-www-form-urlencoded'>
 		<input type='hidden' name='pagename' value='<%=ics.GetVar("pagename")%>'/> 
 		<input type='hidden' name='cmd' value='<%=ics.GetVar("cmd")%>'/> 
 		<input type='hidden' name='_charset_'/>
 		<input type='text' name="name" value='<%=ics.GetVar("name")%>' size='48' />
 		<input type='submit'/>
-	</form>
+	</satellite:form>
 	<hr />
 
-	<form action="ContentServer" method='post' enctype='multipart/form-data'>
+	<satellite:form satellite="false" method='post' enctype='multipart/form-data'>
 		<input type='hidden' name='pagename' value='<%=ics.GetVar("pagename")%>'/> 
 		<input type='hidden' name='cmd' value='<%=ics.GetVar("cmd")%>'/> 
 		<input type='hidden' name='_charset_'/>
 		<input type='text' name="name" value='<%=ics.GetVar("name")%>' size='48' />		
 		<input type='submit'/>
-	</form>
+	</satellite:form>
 	<hr />
 <ics:callelement element="DevTools/Footer"/>
 </div>        

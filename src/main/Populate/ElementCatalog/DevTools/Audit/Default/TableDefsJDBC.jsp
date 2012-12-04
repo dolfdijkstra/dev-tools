@@ -141,7 +141,7 @@ try {
     String sql="SELECT DISTINCT systable FROM SystemInfo ORDER BY systable DESC";
     IList types= ics.SQL("SystemInfo", sql,"A",-1,true,new StringBuffer());
 
-    %><form id="tableform" method="POST" action="ContentServer">
+    %><satellite:form satellite="false" id="tableform" method="POST">
     <input type="hidden" name="pagename" value='<%=ics.GetVar("pagename") %>'/>
     <input type="hidden" name="cmd" value='<%=ics.GetVar("cmd") %>'/>
     <a href="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Select all tables';return true;" onmouseout="window.status='';return true;">check all</a>&nbsp;
@@ -162,7 +162,7 @@ try {
         }
         %></td><%
     }
-    %></tr></table></form><%
+    %></tr></table></satellite:form><%
 } finally {
     if (con !=null){
         con.close();

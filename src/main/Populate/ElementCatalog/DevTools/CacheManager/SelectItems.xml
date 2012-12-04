@@ -28,7 +28,7 @@ function checkall () {
 <h3>Find which Pages an Asset is Referenced</h3>
 <IF COND="IsVariable.c=false"><THEN>
 <h4>Select AssetType</h4>
-<form method="post" action="ContentServer">
+<satellite.form satellite="true" method="post">
 	<input type="hidden" name="pagename" value="Variables.pagename" REPLACEALL="Variables.pagename"/>
    <select name="c">
        <SETVAR NAME="tablename" VALUE="AssetType"/>
@@ -39,7 +39,7 @@ function checkall () {
    </select>Optionally enter assetid: <input type="text" name="id" /><br/><br/>
    <input type="Submit" name="Submit" value="List for Flush"/>
    &nbsp;<input type="Submit" name="Submit" value="List Container Pages"/>
-</form>
+</satellite.form>
 </THEN><ELSE>
 	<SETVAR NAME="tablename" VALUE="SystemItemCache"/>
 	<IF COND="IsVariable.id=false"><THEN>
@@ -54,7 +54,7 @@ function checkall () {
 	<IF COND="IsError.Variables.errno=false"><THEN>
 		<IF COND="Variables.Submit=List for Flush"><THEN>
 		<p><b>Select asset(s) whose container pages need to be <i>Flushed</i></b></p>
-			<form method="post" action="ContentServer">
+			<satellite.form satellite="true" method="post">
 				<input type="hidden" name="pagename" value="DevTools/CacheManager/flushByItemPost"/>
 				<input type="hidden" name="cs-cs" value="on"/>
 				<input type="hidden" name="cs-ss" value="on"/>
@@ -66,10 +66,10 @@ function checkall () {
 				</LOOP>
 				<br/><a href="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Select all assets';return true;" onmouseout="window.status='';return true;">CheckAll</a>&nbsp;
 				<input type="submit" name="Submit" value="&nbsp;Flush&nbsp;"/>
-			</form>
+			</satellite.form>
 		</THEN><ELSE>
 		<p><b>Select asset(s) whose container pages need to be <i>Listed</i></b></p>
-			<form method="post" action="ContentServer">
+			<satellite.form satellite="true" method="post">
 				<input type="hidden" name="pagename" value="DevTools/CacheManager/listByItemPost"/>
 				<a href="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Select all assets';return true;" onmouseout="window.status='';return true;">check all</a>&nbsp;
 				<input type="submit" name="Submit" value="&nbsp;List&nbsp;"/><br/><br/>
@@ -78,7 +78,7 @@ function checkall () {
 				</LOOP>
 				<br/><a href="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Select all assets';return true;" onmouseout="window.status='';return true;">check all</a>&nbsp;
 				<input type="submit" name="Submit" value="&nbsp;List&nbsp;"/>
-			</form>
+			</satellite.form>
 		</ELSE></IF>
 	</THEN></IF>	
 </ELSE></IF>

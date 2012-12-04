@@ -23,7 +23,7 @@
        numOfNodes=4;
    }
 %>
-<form method="POST" action="ContentServer">
+<satellite:form satellite="false" method="POST">
 <input type="hidden" name="pagename" value="DevTools/Verify/Cluster/nodeselectPost"/>
 <input type="hidden" name="numofnodes" value="<%= numOfNodes %>"/>
 
@@ -41,5 +41,5 @@
   <td>&nbsp;</td>
 </tr>
 </table>
-</form>
+</satellite:form>
 </cs:ftcs>

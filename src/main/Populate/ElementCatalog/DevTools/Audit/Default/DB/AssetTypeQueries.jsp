@@ -54,7 +54,7 @@ if (queryids!=null && assettypes != null) {
 	}
 }
 %>
-<form name="form1" method="post" action="ContentServer">
+<satellite:form satellite="false" name="form1" method="post">
   <table>
   <tr>
       <td width="10%"><b>AssetType:</b></td>
@@ -96,7 +96,7 @@ for (int i=0; i< query.length; i++){
       <td>&nbsp;</td>
   </tr>
   </table>
-</form>
+</satellite:form>
 </br>
 
 </cs:ftcs>

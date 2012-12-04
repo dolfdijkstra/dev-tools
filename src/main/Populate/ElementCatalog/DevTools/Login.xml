@@ -10,7 +10,7 @@
 -->
 <SETVAR NAME="errno" VALUE="0"/>
 <h1>Login with SiteGod Privileges</h1>
-<form name="LoginForm" enctype="multipart/form-data" action="ContentServer" method="POST">
+<SATELLITE.FORM name="LoginForm" enctype="multipart/form-data" method="POST" SATELLITE="false">
 <input TYPE="hidden" name="pagename" value="DevTools/LoginPost"/>
 <input TYPE="hidden" name="redir" value="Variables.pagename" REPLACEALL="Variables.pagename"/>
 <table style="border:none">
@@ -27,7 +27,7 @@
       <td style="border:none"><input type="submit" value="&nbsp;Login&nbsp;"/>&nbsp;<input type="reset" value="&nbsp;Cancel&nbsp;"/></td>
     </tr>
   </table>
-</form>
+</SATELLITE.FORM>
 <script language="JavaScript">
 <![CDATA[
     document.LoginForm.authusername.focus();

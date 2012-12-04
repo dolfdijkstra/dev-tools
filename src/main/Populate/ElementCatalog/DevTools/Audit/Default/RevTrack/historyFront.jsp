@@ -26,7 +26,7 @@
         if(table==null) {
     %>
             <ics:sql sql="select * from SystemInfo" listname="tableList" table="SystemInfo"/>
-            <form action="ContentServer" method="POST">
+            <satellite:form satellite="false" method="POST">
                 <input type="hidden" name="pagename" value="DevTools/Audit/DispatcherFront">
                 <input type="hidden" name="cmd" value="RevTrack/historyFront">
                 <select name="table">
@@ -44,7 +44,7 @@
                     </ics:listloop>
                 </select>
                 <input type="submit" name="Select table to clean" value="Select Table">
-            </form>
+            </satellite:form>
     <%
         } else {
             %>
@@ -87,7 +87,7 @@ function selectFirstFew() {
             String sql = "select id, name from " + table + " order by id";
             %>
             <ics:sql sql='<%=sql%>' listname="assetList" table='<%=table%>'/>
-            <form id="theForm" action="ContentServer" method="POST">
+            <satellite:form satellite="false" id="theForm" method="POST">
             <input type="hidden" name="table" value='<%=table%>'>
             <input type="hidden" name="pagename" value="DevTools/Audit/DispatcherFront">
             <input type="hidden" name="cmd" value="RevTrack/historyPost">
@@ -149,7 +149,8 @@ function selectFirstFew() {
               </table>
                 <br/><br/><input type="submit" name="Delete revisions" value="Delete revisions"/>
                 <p>Force delete revisions, even if errors are encountered: <input type="checkbox" name="force" value="true"/>
-                </form>
+                </p>
+                </satellite:form>
             <%
         }
     } else {

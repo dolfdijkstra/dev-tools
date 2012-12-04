@@ -56,12 +56,12 @@
         %>
     </table>
     <br/> Delete by Date <br/>
-    <FORM action="ContentServer" method="post">
+    <satellite:form satellite="false" method="post">
         <INPUT type="text" name="var">&nbsp;yyyy-mm-dd hh:mm:ss
         <input type="hidden" name="pagename" value="DevTools/Audit/DispatcherFront">
         <input type="hidden" name="cmd" value="Publishing/CleanPubhistory"><br/><br/>
         &nbsp;<INPUT type="submit" value="Send">&nbsp;<INPUT type="reset">
-    </FORM>
+    </satellite:form>
     <br/>
     <a href="ContentServer?pagename=DevTools/Audit/DispatcherFront&#38;cmd=Publishing/CleanPubhistory&#38;var=all">DeleteAll</a>    
 </cs:ftcs>

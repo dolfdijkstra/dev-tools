@@ -49,7 +49,9 @@ if (tables != null){
 </table>
 <% } %>
 <ics:sql sql="SELECT tblname FROM SystemInfo WHERE tblname !='SystemAssets' ORDER BY LOWER(tblname)" listname="catalogs" table="SystemInfo"/>
-<form method="POST" action='ContentServer?pagename=<%=thisPage %>&cmd=<%=cmd %>'>
+<satellite:form satellite="false" method="POST">
+<input type="hidden" name="pagename" value="<%=thisPage %>"/>
+<input type="hidden" name="cmd" value="<%=cmd %>"/>
 &nbsp;<a href="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Check all';return true;" onmouseout="window.status='';return true;">CheckAll</a>
 &nbsp;<input type="Submit" name="Submit" value="Flush"><hr/>
 	<ics:listloop listname="catalogs">
@@ -57,5 +59,5 @@ if (tables != null){
 	</ics:listloop><hr/>
 &nbsp;<a href="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Check all';return true;" onmouseout="window.status='';return true;">CheckAll</a>
 &nbsp;<input type="Submit" name="Submit" value="Flush">
-</form>
+</satellite:form>
 </cs:ftcs>

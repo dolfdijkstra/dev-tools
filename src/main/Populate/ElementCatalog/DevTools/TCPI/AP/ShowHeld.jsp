@@ -417,8 +417,9 @@ if (ics.GetErrno()!=-101) {
 
 
 } else {
-    %><form method="POST" action='ContentServer?pagename=<%= ics.GetVar("pagename") %>'>
+    %><satellite:form satellite="false" id="tableform" method="POST">
+    <input type="hidden" name="pagename" value='<%=ics.GetVar("pagename") %>'/>
     <b>Any Assetid: </b><input type="text" name="assetid" value=""/>&nbsp;<input type="Submit" name="showheld" value="ShowHeld"><br/>
-    </form><%
+    </satellite:form><%
 }
 %></cs:ftcs>

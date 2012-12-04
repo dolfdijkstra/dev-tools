@@ -98,7 +98,7 @@ function checkall () {
 	<THEN>
 		<SETVAR NAME="dir" VALUE="CS.CatalogDir.PubKeyTable"/>
 		<SETVAR NAME="foundbad" VALUE="false"/>
-		<form action="ContentServer" method="POST" >
+		<satellite.form satellite="true" method="POST" >
 		<table class="altClass">
 		<tr>
 			<th>Nr.</th>
@@ -137,7 +137,7 @@ function checkall () {
 			<br/><b>All urlkey files were found on disk!</b><br/>No cleanup action is required for the assets that are now publishable for this Pubslish destination.<br/>
 		</ELSE>
 		</IF>
-		</form>
+		</satellite.form>
 		<FLUSH LIST="pubkeys"/>
 	</THEN>
 	<ELSE>

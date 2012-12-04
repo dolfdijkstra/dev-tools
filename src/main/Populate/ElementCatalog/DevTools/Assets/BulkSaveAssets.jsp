@@ -18,7 +18,7 @@
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
 <h3>Saving assets</h3>
-    <form action="ContentServer" enctype="multipart/form-data" method="POST">
+    <satellite:form satellite="false" enctype="multipart/form-data" method="POST">
         <h3>Asset Query</h3>
         <input type='hidden' name='pagename' value='<%=ics.GetVar("pagename")%>'/>
         Enter SQL: should return assettype and assetid as columnnames <input maxLength="204800" size="112" name="sql" value='<string:stream variable="sql"/>'/><br/>
@@ -30,7 +30,7 @@
         <option value="void" <%= "void".equals(ics.GetVar("cmd")) ? "selected=\"selected\"":""%>>Void</option>
     </select><br/>
     <input type="submit" value="Execute" name="button"><br/>
-</form>
+</satellite:form>
 <ics:if condition='<%= ics.GetVar("sql") != null %>'>
 <ics:then>
     Executing query: <string:stream variable="sql"/><br/>

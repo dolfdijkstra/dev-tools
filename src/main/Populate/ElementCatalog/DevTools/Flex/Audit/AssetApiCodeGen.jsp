@@ -59,7 +59,7 @@
 
         }
 
-%><form method="POST" action="ContentServer">
+%><satellite:form satellite="false" method="POST">
 <input type="radio" name="what" value="def" <%= "def".equals(ics.GetVar("what"))? "checked='checked'":"" %>/> Print Definition
 <input type="radio" name="what" value="assetapicode" <%= "assetapicode".equals(ics.GetVar("what"))? "checked='checked'":"" %>/> AssetApi Code Generation
 <input type="radio" name="what" value="gsfjspcode" <%= "gsfjspcode".equals(ics.GetVar("what"))? "checked='checked'":"" %>/> GSF JSP Code Generation
@@ -85,9 +85,7 @@
          %></select>
     <input type="hidden" name="pagename"  value='<%= ics.GetVar("pagename")  %>'/>
     <input type="submit" value="submit"/>
-</form><%
-
-%>
+</satellite:form>
 <%!
     static Set<String> KEYWORDS = new HashSet<String>(Arrays
             .asList(("abstract,assert,boolean,break,byte,case,catch,char,class,const,continue"

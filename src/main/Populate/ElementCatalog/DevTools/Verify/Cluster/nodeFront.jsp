@@ -17,10 +17,10 @@
 <%@ page import="COM.FutureTense.Util.ftMessage"%>
 <cs:ftcs>
 <p>Please fill in number of ClusterNodes in your environment</p>
-<form method="POST" action="ContentServer">
+<satellite:form satellite="false" method="POST">
   <p>Number of Nodes: <input type="text" name="numofnodes" size="20"></p>
   <p><input type="submit" value="Submit" name="B1">
      <input type="reset" value="Reset" name="B2"></p>
   <input type="hidden" value="DevTools/Verify/Cluster/nodeselect" name="pagename">
-</form>
+</satellite:form>
 </cs:ftcs>

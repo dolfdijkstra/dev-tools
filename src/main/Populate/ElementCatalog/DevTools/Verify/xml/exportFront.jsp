@@ -1,26 +1,25 @@
-<%@ page contentType="text/html; charset=utf-8" %>
-<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" %>
-<%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" %>
-<%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" %>
-<%//
+<%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld" 
+%><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld" 
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld" 
+%><%//
 // DevTools/Verify/xml/exportFront
 //
 // INPUT
 //
 // OUTPUT
-//%>
-<%@ page import="COM.FutureTense.Interfaces.FTValList" %>
-<%@ page import="COM.FutureTense.Interfaces.ICS" %>
-<%@ page import="COM.FutureTense.Interfaces.IList" %>
-<%@ page import="COM.FutureTense.Interfaces.Utilities" %>
-<%@ page import="COM.FutureTense.Util.ftErrors" %>
-<%@ page import="COM.FutureTense.Util.ftMessage"%>
-<cs:ftcs>
+//
+%><%@ page import="COM.FutureTense.Interfaces.FTValList" 
+%><%@ page import="COM.FutureTense.Interfaces.ICS" 
+%><%@ page import="COM.FutureTense.Interfaces.IList" 
+%><%@ page import="COM.FutureTense.Interfaces.Utilities" 
+%><%@ page import="COM.FutureTense.Util.ftErrors" 
+%><%@ page import="COM.FutureTense.Util.ftMessage"
+%><cs:ftcs>
 <ics:callelement element="DevTools/general"/>
 <div id="content">
 <ics:callelement element="DevTools/Topnav"/>
 <center><h3>Export TableData to XML Format</h3></center>
-<form method="POST" action="ContentServer">
+<satellite:form satellite="false" method="POST">
   <table class="altClass">
     <tr>
       <td style="text-align:right"><b>TableName: </b></td>
@@ -45,7 +44,7 @@ if(ics.GetErrno() == 0 && schema != null && schema.hasData()){
   </table>
   <p><input type="submit" value="Submit">&nbsp;<input type="reset" value="Reset"></p>
   <input type="hidden" name="pagename" value="DevTools/Verify/xml/export">
-</form>
+</satellite:form>
 <ics:callelement element="DevTools/Footer"/>
 </div>
 </cs:ftcs>

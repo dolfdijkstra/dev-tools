@@ -1,6 +1,7 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ taglib prefix="render" uri="futuretense_cs/render.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%@ page import="COM.FutureTense.Interfaces.*,
                    java.util.StringTokenizer"
 %><cs:ftcs>
@@ -13,7 +14,7 @@ StringBuffer errstr = new StringBuffer(128);
 
 if (theTypes == null) { %>
 
-  <form action="ContentServer" method="POST">
+  <satellite:form satellite="false" method="POST">
     <input type="hidden" name="pagename" value='<%= ics.GetVar("pagename") %>'/>
     <input type="Submit" value="Submit"/>
     <table class="altClass" style="width:50%">
@@ -34,15 +35,15 @@ if (theTypes == null) { %>
 
     </table>
     <input type="Submit" value="Submit"/>
-  </form>
+  </satellite:form>
 
 <% } else { %>
 
-  <form action="ContentServer" method="POST" onsubmit="submitExportPage('table_data', 'export_data')">
+  <satellite:form satellite="false" method="POST" onsubmit="submitExportPage('table_data', 'export_data')">
     <input type="hidden" name="pagename" value="DevTools/Assets/checkAssetsExport"/>
     <input id="table_data" type="hidden" name="table_data" value=""/>
     <input type="submit" value="Export Page"/>
-  </form>
+  </satellite:form>
 
   <div id="export_data">
   Show: <input type="checkbox" id="good-check" name="good" checked="true" onclick="setViewType('good', (this.checked) ? '' : 'none')"/><label class="good" for="good-check"> valid</label>&nbsp;&nbsp;

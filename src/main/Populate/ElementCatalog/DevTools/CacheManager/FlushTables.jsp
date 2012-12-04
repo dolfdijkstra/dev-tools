@@ -49,11 +49,13 @@ if (tables != null){
 </table>
 <% } %>
 <ics:sql sql="SELECT tblname FROM SystemInfo WHERE tblname !='SystemAssets' ORDER BY LOWER(tblname)" listname="catalogs" table="SystemInfo"/>
-<form method="POST" action='ContentServer?pagename=<%=thisPage %>&cmd=<%=cmd %>'>
+<satellite:form satellite="false" id="tableform" method="POST">
+    <input type="hidden" name="pagename" value='<%=ics.GetVar("pagename") %>'/>
+    <input type="hidden" name="cmd" value='<%=ics.GetVar("cmd") %>'/>
 <a href="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Check all';return true;" onmouseout="window.status='';return true;">CheckAll</a>&nbsp;<input type="Submit" name="Submit" value="Flush"><br/><br/>
 	<ics:listloop listname="catalogs">
 		<input name="table" type="checkbox" value='<ics:resolvevariables name="catalogs.tblname"/>'/><ics:resolvevariables name="catalogs.tblname"/><br/>
 	</ics:listloop>
 <br/><a href="javascript:void(0);" onclick="return checkall()" onmouseover="window.status='Check all';return true;" onmouseout="window.status='';return true;">CheckAll</a>&nbsp;<input type="Submit" name="Submit" value="Flush">
-</form>
+</satellite:form>
 </cs:ftcs>

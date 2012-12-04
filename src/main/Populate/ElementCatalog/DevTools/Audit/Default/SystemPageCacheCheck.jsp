@@ -1,4 +1,5 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
 %><%@ page import="COM.FutureTense.Interfaces.FTValList"
 %><%@ page import="COM.FutureTense.Interfaces.ICS"
@@ -63,7 +64,8 @@ if(Utilities.goodString(ics.GetVar("id"))) {
     if (ics.GetErrno() == 0){
             boolean foundBad=false;
     %>
-    <form method="POST" action="ContentServer?pagename=<ics:getvar name="pagename"/>">
+    <satellite:form satellite="false" method="POST">
+    <input type="hidden" name="pagename" value='<ics:getvar name="pagename"/>'/>
     <table class="altClass">
         <ics:listloop listname="bodies"><%
             numrows++;
@@ -106,8 +108,8 @@ if(Utilities.goodString(ics.GetVar("id"))) {
     <input type="hidden" name="limit" value='<ics:getvar name="limit" />'/>
     <% if (badrows>0) { %>
       <br/><input type="submit" name="command" value="Expire Selected Rows"/>
-    <% } %>
-    </form><%
+    <% } %></satellite:form>
+    <%
     if (badrows>0) {
         %>Total Rows with missing files: <b><%= badrows%></b><br/><%
     }

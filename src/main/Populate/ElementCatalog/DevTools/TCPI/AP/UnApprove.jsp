@@ -1,5 +1,6 @@
 <%@ taglib prefix="cs" uri="futuretense_cs/ftcs1_0.tld"
 %><%@ taglib prefix="ics" uri="futuretense_cs/ics.tld"
+%><%@ taglib prefix="satellite" uri="futuretense_cs/satellite.tld"
 %><%@ taglib prefix="deliverytype" uri="futuretense_cs/deliverytype.tld"
 %><%@ page import="COM.FutureTense.Interfaces.FTValList" 
 %><%@ page import="COM.FutureTense.Interfaces.ICS" 
@@ -154,7 +155,11 @@ if (ics.GetVar("targetid") == null) {
 	int maxNum = Integer.parseInt(ics.GetVar("limit"));
 	if (maxNum <1) maxNum=1;
 
-	%><form method="POST" action='ContentServer?pagename=<%=thisPage%>&targetid=<%=ics.GetVar("targetid")%>&limit=<%=Integer.toString(maxNum)%>' onsubmit="return checkVoided();">
+	%>
+	<satellite:form satellite="false" id="tableform" method="POST" onsubmit="return checkVoided();">
+    <input type="hidden" name="pagename" value='<%=ics.GetVar("pagename") %>'/>
+	<input type="hidden" name="targetid" value='<%=ics.GetVar("targetid") %>'/>
+	<input type="hidden" name="limit" value='<%=Integer.toString(maxNum)%>'/>
          <a href='ContentServer?pagename=<%=thisPage%>'>Back to site selection</a><br/>
          <br/>
     Total number of assets ready for publish: <%= Integer.toString(totalNum) %>. 
@@ -225,5 +230,6 @@ if (ics.GetVar("targetid") == null) {
     <br/>
     Number of held assets: <%=held%>, number of approved assets: <%=appr%><br/>
     <input type="submit" value="Unapprove selected assets"/>
-    </form><%
+    </satellite:form>
+    <%
 }%></cs:ftcs>
