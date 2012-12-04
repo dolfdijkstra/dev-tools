@@ -33,7 +33,7 @@ public void jspInit(){
 
 }
 %><cs:ftcs><%
-ics.SetVar("st_version","4.0.1");
+ics.SetVar("st_version","4.0.2");
 %><satellite:link pagename='DevTools/css' satellite="true" outstring="cssURL" ><satellite:argument name="v" value='<%= ics.isCacheable("DevTools/css")?"40": Long.toString(System.currentTimeMillis()) %>'/></satellite:link><%
 %><head><script type="text/javascript">var began_loading = new Date().getTime();</script>
 <title>WebCenter Sites:: <ics:getvar name="pagename"/></title>
