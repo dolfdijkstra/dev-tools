@@ -1,0 +1,8 @@
+#!/bin/bash
+stv=4.0.2
+echo building version ${stv}
+archive=`pwd`/dev-tools-${stv}.zip
+echo ${archive}
+if [ -f ${archive} ] ; then  rm -f ${archive}; fi; 
+cd git/src/main/Populate
+zip -r ${archive} *
